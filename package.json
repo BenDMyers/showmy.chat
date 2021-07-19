@@ -1,0 +1,16 @@
+{
+  "name": "showmychat",
+  "version": "1.0.0",
+  "main": ".eleventy.js",
+  "repository": "https://github.com/BenDMyers/showmy.chat.git",
+  "author": "Ben Myers <ben@benmyers.dev>",
+  "license": "MIT",
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "1.0.0-canary.39",
+    "eleventy-plugin-twitch-chat": "^0.0.2"
+  }
+}
