@@ -10,6 +10,9 @@ module.exports = function(eleventyConfig) {
 
 	eleventyConfig.addPlugin(twitchChat);
 
+	eleventyConfig.setTemplateFormats(['md', 'css']);
+	eleventyConfig.addWatchTarget('*.css');
+
 	return {
 		dir: {
 			input: 'src'

@@ -4,13 +4,20 @@ permalink:
 ---
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head style="margin: 0;">
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{ themeStylesheet }}" />
 	<title>{{ eleventy.serverless.path.channel }} | showmy.chat</title>
 </head>
 <body>
+	<style>
+		html, body {
+			margin: 0;
+			width: 100%;
+		}
+	</style>
 	{% twitchChat eleventy.serverless.path.channel %}
 </body>
 </html>

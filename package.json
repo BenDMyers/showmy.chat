@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@11ty/eleventy": "1.0.0-canary.39",
-    "eleventy-plugin-twitch-chat": "^0.0.2"
+    "eleventy-plugin-twitch-chat": "^0.0.2",
+    "valid-url": "^1.0.9"
   }
 }

@@ -1,0 +1,48 @@
+:root {
+	--twitch-gray: rgb(173, 173, 184);
+	--twitch-light: rgb(239, 239, 241);
+	--twitch-dark-background: rgb(24, 24, 27);
+	--twitch-purple: rgb(180, 84, 255);
+}
+
+body {
+	background-color: var(--twitch-dark-background);
+}
+  
+[data-twitch-chat] {
+	background-color: var(--twitch-dark-background);
+	color: var(--twitch-light);
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-size: 14.625px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+[data-twitch-chat] [data-twitch-message] {
+	line-height: 22.5px;
+	margin: 0;
+	padding-bottom: 5.625px;
+	padding-left: 22.5px;
+	padding-right: 22.5px;
+	padding-top: 5.625px;
+}
+[data-twitch-chat] [data-twitch-message] [data-twitch-message-reply] {
+	color: var(--twitch-gray);
+	display: block;
+}
+[data-twitch-chat] [data-twitch-message] .twitch-chat-sender {
+	color: var(--twitch-sender-color, var(--twitch-purple));
+	display: inline;
+	font-weight: 700;
+}
+[data-twitch-chat] [data-twitch-message] .twitch-chat-sender:after {
+	content: ": ";
+	color: var(--twitch-light);
+	font-weight: normal;
+}
+[data-twitch-chat] [data-twitch-message] .twitch-chat-message {
+	display: inline;
+}
+[data-twitch-chat] [data-twitch-message] .twitch-chat-message [data-twitch-emote] {
+	width: 1.2em;
+}
