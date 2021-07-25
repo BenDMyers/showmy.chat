@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const dirTree = require('directory-tree');
 
 const themesDirectory = path.join(__dirname, '..', 'themes');
 
@@ -16,7 +15,5 @@ const normalized = list.reduce(function(accumulated, current) {
 
 module.exports = {
 	list,
-	normalized,
-	currentWorking: process.cwd(),
-	directoryBoi: dirTree(path.join(__dirname, '..'))
+	normalized
 };
