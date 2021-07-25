@@ -12,5 +12,6 @@ const normalized = list.reduce(function(accumulated, current) {
 
 module.exports = {
 	list,
-	normalized
+	normalized,
+	currentWorking: process.cwd()
 };
