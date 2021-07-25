@@ -10,6 +10,8 @@ module.exports = function(eleventyConfig) {
 
 	eleventyConfig.addPlugin(twitchChat);
 
+	eleventyConfig.addPassthroughCopy('src/themes');
+
 	return {
 		dir: {
 			input: 'src'
