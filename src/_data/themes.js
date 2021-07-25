@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const list = fs
-	.readdirSync(`src/themes/`)
+	.readdirSync(`${process.cwd()}/src/themes/`)
 	.filter(stylesheet => stylesheet.endsWith('.css'))
 	.map(stylesheet => stylesheet.replace('.css', ''));
 
