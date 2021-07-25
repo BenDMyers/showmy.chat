@@ -36,6 +36,6 @@ module.exports = {
 		themeStylesheet: data => parseTheme(data)
 	},
 	permalink: {
-		serverless: '/c/:channel.html'
+		serverless: '/c/:channel'
 	}
 };

@@ -1,5 +1,5 @@
 [[redirects]]
-from = "/c/:channel.html"
+from = "/c/:channel"
 to = "/.netlify/functions/serverless"
 status = 200
 force = true
