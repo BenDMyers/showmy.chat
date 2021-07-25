@@ -2,3 +2,5 @@ node_modules
 yarn.lock
 package-lock.json
 _site
+netlify/functions/serverless/**
+!netlify/functions/serverless/index.js
