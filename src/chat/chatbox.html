@@ -4,13 +4,11 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="{{ themeStylesheet }}" />
+	<link rel="stylesheet" href="{{ eleventy.serverless.query.theme | toStylesheet: themes }}" />
 	<script src="https://cdn.jsdelivr.net/npm/comfy.js@latest/dist/comfy.min.js"></script>
 	<title>{{ eleventy.serverless.path.channel }} | showmy.chat</title>
 </head>
 <body>
-	<pre>{{ themes.directoryBoi | out }}</pre>
-	<pre>{{ themes.list | out }}</pre>
 	<ul data-twitch-chat="{{ eleventy.serverless.path.channel }}"></ul>
 	<script src="/scripts/handleChat.js"></script>
 </body>
