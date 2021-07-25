@@ -15,6 +15,8 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addPassthroughCopy('src/scripts');
 	eleventyConfig.addPassthroughCopy('src/themes');
 
+	eleventyConfig.addFilter('out', output => JSON.stringify(output, null, 2));
+
 	return {
 		dir: {
 			input: 'src'
