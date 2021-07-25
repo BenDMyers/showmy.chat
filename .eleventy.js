@@ -29,26 +29,14 @@ module.exports = function(eleventyConfig) {
 
 /**
  * Takes chosen theme and determines stylesheet href
+ * @param {string} theme chosen theme
  * @param {{
- * 		eleventy?: {
- * 			serverless?: {
- * 				path: {},
- * 				query: {
- * 					theme?: string
- * 				}
- * 			}
- * 		},
- * 		themes: {
- * 			list: string[],
- * 			normalized: Object<string, true>
- * 		}
- * }} data
+ * 		list: string[],
+ * 		normalized: Object<string, true>
+ * }}
  * @returns {string} valid href for chosen theme
  */
- function toStylesheet(theme, themes) {
-	// let themes = data.themes;
-	// let theme = data.eleventy?.serverless?.query?.theme || 'default';
-
+ function toStylesheet(theme = 'default', themes) {
 	if (isWebUri(theme)) {
 		return theme;
 	} else if (themes.normalized[theme]) {
