@@ -4,3 +4,5 @@ package-lock.json
 _site
 netlify/functions/serverless/**
 !netlify/functions/serverless/index.js
+# Local Netlify folder
+.netlify
