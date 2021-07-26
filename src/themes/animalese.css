@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@700&family=Varela+Round&display=swap');
+
+:root {
+	--twitch-gray: rgb(173, 173, 184);
+	--twitch-light: rgb(239, 239, 241);
+	--twitch-dark-background: rgb(24, 24, 27);
+	--twitch-purple: rgb(180, 84, 255);
+}
+
+[data-twitch-chat] {
+	/* background-color: var(--twitch-dark-background); */
+	color: var(--twitch-dark-background);
+	/* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
+	font-family: Hind, Roboto, Helvetica, sans-serif;
+	font-weight: 700;
+	font-size: 25px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	padding-top: 1.2em;
+}
+
+[data-twitch-chat] > * + * {
+	margin-top: 3rem;
+}
+
+[data-twitch-chat] [data-twitch-message] {
+	/* line-height: 22.5px;
+	margin: 0;
+	padding-bottom: 5.625px;
+	padding-left: 22.5px;
+	padding-right: 22.5px;
+	padding-top: 5.625px; */
+}
+
+[data-twitch-chat] [data-twitch-message] [data-twitch-message-reply] {
+	display: none;
+}
+
+[data-twitch-chat] [data-twitch-message] .twitch-chat-sender {
+	background-color: var(--twitch-sender-color, var(--twitch-purple));
+	font-family: 'Varela Round', Tahoma, sans-serif;
+	font-weight: 400;
+
+	padding: 0.5rem 2rem;
+	width: max-content;
+    /* color: #482016; */
+	color: rgba(0, 0, 0, 0.9);
+	/* color: color-contrast(var(--twitch-sender-color, var(--twitch-purple)) vs rgba(0, 0, 0, 0.9), whitesmoke); */
+	/* mix-blend-mode: difference; */
+    /* background-color: #dd8530; */
+    border-radius: 30%/100% 100% 120% 120%;
+    transform: rotateX(1deg) rotateZ(-2deg) translateX(20%) translateY(-45%);
+}
+
+[data-twitch-chat] [data-twitch-message] .twitch-chat-message {
+	background-color: #fdf8e3;
+	color: #807256;
+	padding: calc(1rem + 0.6em) 3rem 1rem 3rem;
+	/* padding-top: calc(1rem + 0.6em); */
+	max-width: 50ch;
+	margin-top: -1.6em;
+	border-radius: 30%/100% 100% 120% 120%;
+}
+[data-twitch-chat] [data-twitch-message] .twitch-chat-message [data-twitch-emote] {
+	width: 1.5em;
+	margin-bottom: -0.3em;
+}

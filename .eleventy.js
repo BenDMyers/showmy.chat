@@ -17,7 +17,6 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addPassthroughCopy('src/themes');
 
 	eleventyConfig.addFilter('debug', output => JSON.stringify(output, null, 2));
-
 	eleventyConfig.addFilter('toStylesheet', toStylesheet)
 
 	return {
