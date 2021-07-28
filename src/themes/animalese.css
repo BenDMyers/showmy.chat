@@ -9,6 +9,8 @@
 
 html, body {
 	overflow: hidden;
+	height: 100vh;
+	margin-top: 0;
 }
 
 [data-twitch-chat] {
@@ -20,14 +22,19 @@ html, body {
 	margin: 0;
 	padding: 0;
 
-	height: 1080px;
+	height: 100vh;
 	overflow: auto;
 	display: flex;
-	flex-direction: column-reverse;
+	flex-direction: column;
+	justify-content: flex-end;
 }
 
-[data-twitch-chat] > * + * {
+[data-twitch-chat] > * {
 	margin-top: 3rem;
+}
+
+[data-twitch-chat] > *:last-child {
+	margin-bottom: 2rem;
 }
 
 [data-twitch-chat] [data-twitch-message] {
