@@ -46,3 +46,8 @@ body {
 [data-twitch-chat] [data-twitch-message] .twitch-chat-message [data-twitch-emote] {
 	width: 1.2em;
 }
+[data-twitch-mentioned-user] {
+	background-color: #dedee3;
+	color: inherit;
+	padding: 0.2rem 0.4rem;
+}

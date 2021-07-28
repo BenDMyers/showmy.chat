@@ -47,6 +47,16 @@ function formatEmotes(text, emotes = {}) {
 	return htmlEntities(splitText).join('')
 }
 
+/**
+ * @param {string} messageContents
+ * @returns {string} message with any user mentioned wrapped in <mark> tags
+ */
+function formatUserMentions(messageContents) {
+	return messageContents.replace(/@([\w]+)/g, function (substring, mentionedUser) {
+		return `<mark data-twitch-mentioned-user="${mentionedUser}">@${mentionedUser}</mark>`;
+	});
+}
+
 ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
 	const newMessage = document.createElement('li');
 
@@ -55,7 +65,11 @@ ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
 	sender.innerHTML = user;
 
 	const message = document.createElement('div');
-	message.innerHTML = formatEmotes(messageContents, extra.messageEmotes);;
+	let formattedMessage = formatEmotes(messageContents, extra.messageEmotes);
+	// formattedMessage = formatLinks(formattedMessage);
+	formattedMessage = formatUserMentions(formattedMessage);
+
+	message.innerHTML = formattedMessage;
 	message.classList.add('twitch-chat-message');
 
 	if (extra.userState['reply-parent-msg-id']) {
