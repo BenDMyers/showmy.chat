@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@700&family=Varela+Round&display=swap');
 
-:root {
-	--twitch-gray: rgb(173, 173, 184);
-	--twitch-light: rgb(239, 239, 241);
-	--twitch-dark-background: rgb(24, 24, 27);
-	--twitch-purple: rgb(180, 84, 255);
-}
-
 html, body {
 	overflow: hidden;
 	height: 100vh;
@@ -14,7 +7,6 @@ html, body {
 }
 
 [data-twitch-chat] {
-	color: var(--twitch-dark-background);
 	font-family: Hind, Roboto, Helvetica, sans-serif;
 	font-weight: 700;
 	font-size: 25px;
