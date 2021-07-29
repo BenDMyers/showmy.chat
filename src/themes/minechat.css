@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+html,
+body {
+  overflow: hidden;
+  height: 100vh;
+  margin-top: 0;
+}
+
+body {
+  font-family: "Press Start 2P", cursive;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+[data-twitch-chat] {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+[data-twitch-chat] > * {
+  margin-top: 0.6rem;
+}
+
+[data-twitch-chat] > *:last-child {
+  margin-bottom: 2rem;
+}
+
+[data-twitch-chat] [data-twitch-message] [data-twitch-message-reply] {
+  display: none;
+}
+
+/* css to add "operator crown" for the broadcaster */
+[data-twitch-sender-roles="broadcaster"] > .twitch-chat-sender::before {
+  --size: 1.5rem;
+  content: "";
+  display: inline-block;
+  background-color: var(--twitch-sender-color, var(--twitch-purple));
+  height: var(--size);
+  width: var(--size);
+  margin-inline-end: 1rem;
+  clip-path: polygon(50% 0%, 76% 26%, 100% 0, 100% 95%, 0 95%, 0 0, 24% 24%);
+}
+
+[data-twitch-sender-roles="broadcaster"] > .twitch-chat-sender::after {
+  content: ":";
+}
+
+[data-twitch-chat] [data-twitch-message] {
+  text-shadow: 2px 3px rgb(0, 0, 0, 0.6);
+}
+
+[data-twitch-chat] [data-twitch-message] .twitch-chat-sender {
+  display: inline-block;
+  color: var(--twitch-sender-color, var(--twitch-purple));
+  font-weight: 400;
+  width: max-content;
+  margin-inline-end: 1rem;
+}
+
+[data-twitch-chat] [data-twitch-message] .twitch-chat-message {
+  display: inline;
+  color: #fff;
+  max-width: 50ch;
+  word-wrap: break-word;
+  line-height: 3rem;
+}
+
+[data-twitch-chat]
+  [data-twitch-message]
+  .twitch-chat-message
+  [data-twitch-emote] {
+  width: 1.5em;
+  margin-bottom: -0.3em;
+}
+
+[data-twitch-mentioned-user] {
+  background-color: transparent;
+  color: #ed8400;
+}
