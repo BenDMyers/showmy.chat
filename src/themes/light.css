@@ -5,6 +5,12 @@
 	--twitch-purple: rgb(180, 84, 255);
 }
 
+html, body {
+	overflow: hidden;
+	height: 100vh;
+	margin-top: 0;
+}
+
 body {
 	background-color: var(--twitch-light);
 }
@@ -17,6 +23,12 @@ body {
 	list-style: none;
 	margin: 0;
 	padding: 0;
+
+	height: 100vh;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
 }
 [data-twitch-chat] [data-twitch-message] {
 	line-height: 22.5px;
