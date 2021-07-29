@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>showmy.chat</title>
+	<link rel="stylesheet" href="https://unpkg.com/mvp.css" />
+</head>
+<body>
+	<header>
+		<a href="/">showmy.chat</a>
+	</header>
+	<main>
+		<h1>Instant, themed Twitch chat overlays</h1>
+		<form onsubmit="handleSubmit(event)">
+			<label for="channel">Channel name</label>
+			<input
+				type="text"
+				id="channel"
+				name="channel"
+				required
+			/>
+
+			<label for="theme">Theme</label>
+			<select id="theme" name="theme">
+				<option value="default">default</option>
+				<option value="light">light</option>
+				{%- for theme in themes.list -%}
+				{%- unless theme == "default" or theme == "light" -%}
+				<option value="{{ theme }}">{{ theme }}</option>
+				{%- endunless -%}
+				{%- endfor %}
+			</select>
+
+			<button type="submit">Get my URL!</button>
+
+			<div>
+				<output></output>
+			</div>
+		</form>
+	</main>
+	<footer>
+		&copy; 2021, Ben Myers &middot; <a href="https://github.com/BenDMyers/showmy.chat">Contribute on GitHub</a>
+	</footer>
+
+	<script>
+		const output = document.querySelector('output');
+
+		function handleSubmit(event) {
+			event.preventDefault();
+
+			const form = document.querySelector('form');
+			const {channel, ...fields} = Object.fromEntries(new FormData(form));
+
+			if (fields.theme === 'default') {
+				delete fields.theme;
+			}
+
+			const queryParams = new URLSearchParams(fields).toString();
+			const paramString = queryParams ? `?${queryParams}` : '';
+
+			output.innerHTML = `<strong>showmy.chat/c/</strong>${channel}${paramString}`; 
+		}
+	</script>
+</body>
+</html>
