@@ -24,8 +24,12 @@
 
 			<label for="theme">Theme</label>
 			<select id="theme" name="theme">
-				{%- for theme in themes.list %}
+				<option value="default">default</option>
+				<option value="light">light</option>
+				{%- for theme in themes.list -%}
+				{%- unless theme == "default" or theme == "light" -%}
 				<option value="{{ theme }}">{{ theme }}</option>
+				{%- endunless -%}
 				{%- endfor %}
 			</select>
 
