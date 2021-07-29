@@ -4,6 +4,8 @@ html, body {
 	overflow: hidden;
 	height: 100vh;
 	margin-top: 0;
+	
+	--twitch-purple: rgb(180, 84, 255);
 }
 
 [data-twitch-chat] {
