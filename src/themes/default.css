@@ -42,6 +42,8 @@ body {
 	color: var(--twitch-gray);
 	display: block;
 	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 [data-twitch-chat] [data-twitch-message] .twitch-chat-sender {
 	color: var(--twitch-sender-color, var(--twitch-purple));
