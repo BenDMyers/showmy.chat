@@ -40,6 +40,10 @@
     --tw-ring-shadow: 0 0 transparent;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 html, body {
 	background-color: var(--purple);
 	overflow: hidden;
@@ -74,8 +78,7 @@ html, body {
 }
 
 [data-twitch-message] {
-	margin: .5rem;
-	display: inline-flex;
+	margin: 0.5rem;
 }
 
 [data-twitch-message-reply] {
@@ -85,7 +88,7 @@ html, body {
 .twitch-chat-sender {
 	--text-color: var(--peppermint);
 
-	display: inline-flex;
+	display: inline;
     justify-content: center;
     align-items: center;
     /* gap: .25em; */
@@ -94,11 +97,11 @@ html, body {
     background-color: var(--text-bg-color);
     padding: .15em .25em;
     border-radius: .25em;
+	margin-right: 0.25em;
 }
 
 .twitch-chat-sender::after {
 	content: ':';
-	margin-right: 0.25em;
 }
 
 [data-twitch-sender-roles~="mod"] .twitch-chat-sender {
@@ -112,7 +115,7 @@ html, body {
 	--text-bg-color: var(--founder-red);
 }
 
-.data-twitch-chat-message {
+.twitch-chat-message {
 	color: var(--chat-text-color);
-	display: inline-flex;
+	display: inline;
 }
