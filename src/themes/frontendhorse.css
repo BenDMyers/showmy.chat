@@ -1,0 +1,118 @@
+:root {
+	--offWhite: #fefbf5;
+    --jockey: #fbabba;
+	--mod-green: #27ae60;
+	--founder-red: #c0392b;
+    --peppermint: #f8574e;
+    --peppermint-saturated: #ff4237;
+    --peppermint-dark: #e24239;
+    --lucky: #f9cb25;
+    --trailblazer: #164993;
+    --lipizzan: #dedbe1;
+    --lipizzan-dark: #d2ccd8;
+    --trough: #2bc1ae;
+    --purple: #2e1080;
+    --offBlack: #3f3a44;
+    --textBlack: #534d4c;
+    --cc-blue: #283074;
+    --cc-green: #02be83;
+    --cc-pink: #f05d79;
+    --cc-white: #fff;
+    --desire: #eb3b5a;
+    --yellow-blue-gradient: linear-gradient(180deg,#e4f8ff,#fffbe6);
+    --slide-height: 1080px;
+    --slide-width: 1920px;
+    --dmchat-bg: #2a2951;
+    --dmchat-red: #ff847d;
+    --dmchat-blue: #7bd0ff;
+    --dmchat-green: #30fe82;
+    --dmchat-pink: #fbabba;
+    --dmchat-yellow: #fcff71;
+    --dmchat-teal: #6bffe4;
+    --dmchat-text: #fff;
+
+	--tw-shadow: 0 0 transparent;
+    --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgba(59,130,246,0.5);
+    --tw-ring-offset-shadow: 0 0 transparent;
+    --tw-ring-shadow: 0 0 transparent;
+}
+
+html, body {
+	background-color: var(--purple);
+	overflow: hidden;
+	height: 100vh;
+	padding: 0;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+[data-twitch-chat] {
+	--chat-font-size: 16px;
+	--chat-background-color: var(--offWhite);
+	--chat-text-color: var(--textBlack);
+
+	background-color: var(--chat-background-color);
+	color: var(--chat-text-color);
+	font-size: var(--chat-font-size);
+
+	width: 99vw;
+    height: 98vh;
+    filter: drop-shadow(0 4px 4px rgba(0,0,0,.1));
+    padding: .5rem 1rem;
+    border-radius: 20px;
+
+	list-style: none;
+	margin: 0;
+
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+[data-twitch-message] {
+	margin: .5rem;
+	display: inline-flex;
+}
+
+[data-twitch-message-reply] {
+	display: none;
+}
+
+.twitch-chat-sender {
+	--text-color: var(--peppermint);
+
+	display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    /* gap: .25em; */
+    font-weight: 700;
+    color: var(--text-color);
+    background-color: var(--text-bg-color);
+    padding: .15em .25em;
+    border-radius: .25em;
+}
+
+.twitch-chat-sender::after {
+	content: ':';
+	margin-right: 0.25em;
+}
+
+[data-twitch-sender-roles~="mod"] .twitch-chat-sender {
+	--text-color: white;
+	--text-bg-color: var(--mod-green);
+}
+
+[data-twitch-sender-roles~="broadcaster"] .twitch-chat-sender,
+[data-twitch-sender-roles~="founder"] .twitch-chat-sender {
+	--text-color: white;
+	--text-bg-color: var(--founder-red);
+}
+
+.data-twitch-chat-message {
+	color: var(--chat-text-color);
+	display: inline-flex;
+}
