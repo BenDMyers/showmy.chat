@@ -44,7 +44,7 @@ body {
   --size: 1.5rem;
   content: "";
   display: inline-block;
-  background-color: var(--twitch-sender-color, var(--twitch-purple));
+  background-color: var(--twitch-sender-color, white);
   height: var(--size);
   width: var(--size);
   margin-inline-end: 1rem;
