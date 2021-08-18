@@ -1,44 +1,10 @@
 :root {
 	--offWhite: #fefbf5;
-    --jockey: #fbabba;
 	--mod-green: #27ae60;
 	--founder-red: #c0392b;
 	--subscriber-purple: #8e44ad;
     --peppermint: #f8574e;
-    --peppermint-saturated: #ff4237;
-    --peppermint-dark: #e24239;
-    --lucky: #f9cb25;
-    --trailblazer: #164993;
-    --lipizzan: #dedbe1;
-    --lipizzan-dark: #d2ccd8;
-    --trough: #2bc1ae;
-    --purple: #2e1080;
-    --offBlack: #3f3a44;
     --textBlack: #534d4c;
-    --cc-blue: #283074;
-    --cc-green: #02be83;
-    --cc-pink: #f05d79;
-    --cc-white: #fff;
-    --desire: #eb3b5a;
-    --yellow-blue-gradient: linear-gradient(180deg,#e4f8ff,#fffbe6);
-    --slide-height: 1080px;
-    --slide-width: 1920px;
-    --dmchat-bg: #2a2951;
-    --dmchat-red: #ff847d;
-    --dmchat-blue: #7bd0ff;
-    --dmchat-green: #30fe82;
-    --dmchat-pink: #fbabba;
-    --dmchat-yellow: #fcff71;
-    --dmchat-teal: #6bffe4;
-    --dmchat-text: #fff;
-
-	--tw-shadow: 0 0 transparent;
-    --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
-    --tw-ring-offset-width: 0px;
-    --tw-ring-offset-color: #fff;
-    --tw-ring-color: rgba(59,130,246,0.5);
-    --tw-ring-offset-shadow: 0 0 transparent;
-    --tw-ring-shadow: 0 0 transparent;
 }
 
 * {
