@@ -46,7 +46,6 @@
 }
 
 html, body {
-	background-color: var(--purple);
 	overflow: hidden;
 	height: 100vh;
 	padding: 0;
