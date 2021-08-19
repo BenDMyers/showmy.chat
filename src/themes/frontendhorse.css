@@ -29,10 +29,10 @@ html, body {
 	font-size: var(--chat-font-size);
 
 	width: 99vw;
-    height: 98vh;
-    filter: drop-shadow(0 4px 4px rgba(0,0,0,.1));
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+	height: 98vh;
+	filter: drop-shadow(0 4px 4px rgba(0,0,0,.1));
+	padding: 0.5rem 1rem;
+	border-radius: 20px;
 
 	list-style: none;
 	margin: 0;
@@ -55,14 +55,14 @@ html, body {
 	--text-color: var(--twitch-sender-color, var(--peppermint));
 
 	display: inline;
-    justify-content: center;
-    align-items: center;
-    font-weight: 700;
-    color: var(--text-color);
-    background-color: var(--text-bg-color);
+	justify-content: center;
+	align-items: center;
+	font-weight: 700;
+	color: var(--text-color);
+	background-color: var(--text-bg-color);
 	padding-top: 0.3em;
 	padding-bottom: 0.3em;
-    border-radius: 0.25em;
+	border-radius: 0.25em;
 	margin-right: 0.25em;
 
 	position: relative;
