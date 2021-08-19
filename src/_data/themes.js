@@ -5,10 +5,6 @@ const themesDirectory = path.join(__dirname, '..', 'themes');
 
 const list = fs
 	.readdirSync(themesDirectory)
-	.map(ss => {
-		console.log(ss);
-		return ss;
-	})
 	.filter(stylesheet => stylesheet.endsWith('.css'))
 	.map(stylesheet => stylesheet.replace('.css', ''));
 
