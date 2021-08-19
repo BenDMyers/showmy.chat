@@ -60,7 +60,8 @@ html, body {
     font-weight: 700;
     color: var(--text-color);
     background-color: var(--text-bg-color);
-	padding-block: 0.35em;
+	padding-top: 0.3em;
+	padding-bottom: 0.3em;
     border-radius: 0.25em;
 	margin-right: 0.25em;
 
