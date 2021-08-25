@@ -44,7 +44,7 @@ body {
   --size: 1.5rem;
   content: "";
   display: inline-block;
-  background-color: var(--twitch-sender-color, white);
+  background-color: var(--twitch-sender-color, cyan);
   height: var(--size);
   width: var(--size);
   margin-inline-end: 1rem;
@@ -61,7 +61,7 @@ body {
 
 [data-twitch-chat] [data-twitch-message] .twitch-chat-sender {
   display: inline-block;
-  color: var(--twitch-sender-color, white);
+  color: var(--twitch-sender-color, cyan);
   font-weight: 400;
   width: max-content;
   margin-inline-end: 1rem;
