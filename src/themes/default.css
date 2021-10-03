@@ -30,7 +30,8 @@ body {
 	flex-direction: column;
 	justify-content: flex-end;
 }
-[data-twitch-chat] [data-twitch-message] {
+
+[data-twitch-message] {
 	line-height: 22.5px;
 	margin: 0;
 	padding-bottom: 5.625px;
@@ -38,29 +39,35 @@ body {
 	padding-right: 22.5px;
 	padding-top: 5.625px;
 }
-[data-twitch-chat] [data-twitch-message] [data-twitch-message-reply] {
+
+[data-twitch-message-reply] {
 	color: var(--twitch-gray);
 	display: block;
 	text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
-[data-twitch-chat] [data-twitch-message] .twitch-chat-sender {
+
+[data-twitch-message] .twitch-chat-sender {
 	color: var(--twitch-sender-color, var(--twitch-purple));
 	display: inline;
 	font-weight: 700;
 }
-[data-twitch-chat] [data-twitch-message] .twitch-chat-sender:after {
+
+[data-twitch-message] .twitch-chat-sender:after {
 	content: ": ";
 	color: var(--twitch-light);
 	font-weight: normal;
 }
-[data-twitch-chat] [data-twitch-message] .twitch-chat-message {
+
+[data-twitch-message] .twitch-chat-message {
 	display: inline;
 }
-[data-twitch-chat] [data-twitch-message] .twitch-chat-message [data-twitch-emote] {
+
+[data-twitch-emote] {
 	width: 1.2em;
 }
+
 [data-twitch-mentioned-user] {
 	background-color: #323239;
 	color: inherit;
