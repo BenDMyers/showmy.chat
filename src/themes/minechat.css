@@ -85,5 +85,10 @@ body {
 
 [data-twitch-mentioned-user] {
   background-color: transparent;
-  color: #ed8400;
+  color: gold;
+}
+
+[data-twitch-message] a {
+	color: cyan;
+	text-decoration: none;
 }

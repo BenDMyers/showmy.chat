@@ -134,3 +134,8 @@ html, body {
 	background-color: transparent;
 	color: var(--chat-text-color);
 }
+
+[data-twitch-message] a {
+	color: var(--peppermint);
+	text-decoration: none;
+}

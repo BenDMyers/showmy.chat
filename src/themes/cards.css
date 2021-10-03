@@ -86,3 +86,8 @@ html, body {
 	width: 1.7em;
 	margin-bottom: -0.3em;
 }
+
+[data-twitch-message] a {
+	color: navy;
+	text-decoration: none;
+}

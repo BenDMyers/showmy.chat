@@ -5,7 +5,8 @@ html, body {
 	height: 100vh;
 	margin-top: 0;
 
-	--twitch-purple: rgb(180, 84, 255);
+	--link-blue: #00cfcf;
+	--mentions: #ed8400;
 }
 
 [data-twitch-chat] {
@@ -49,7 +50,7 @@ html, body {
 }
 
 [data-twitch-chat] [data-twitch-message] .twitch-chat-sender {
-	background-color: var(--twitch-sender-color, var(--twitch-purple));
+	background-color: var(--twitch-sender-color, turquoise);
 	font-family: 'Varela Round', Tahoma, sans-serif;
 	font-weight: 400;
 
@@ -76,5 +77,9 @@ html, body {
 }
 [data-twitch-mentioned-user] {
 	background-color: transparent;
-	color: #ed8400;
+	color: var(--mentions);
+}
+[data-twitch-message] a {
+	color: var(--link-blue);
+	text-decoration: none;
 }
