@@ -57,6 +57,17 @@ function formatUserMentions(messageContents) {
 	});
 }
 
+/**
+ * @param {string} messageContents
+ * @returns {string} message with any links wrapped in <a href>
+ */
+function formatLinks(messageContents) {
+	const urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
+	return messageContents.replace(urlRegex, function (link) {
+		return `<a href="${link}">${link}</a>`;
+	});
+}
+
 ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
 	const newMessage = document.createElement('li');
 
@@ -66,7 +77,7 @@ ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
 
 	const message = document.createElement('div');
 	let formattedMessage = formatEmotes(messageContents, extra.messageEmotes);
-	// formattedMessage = formatLinks(formattedMessage);
+	formattedMessage = formatLinks(formattedMessage);
 	formattedMessage = formatUserMentions(formattedMessage);
 
 	message.innerHTML = formattedMessage;
