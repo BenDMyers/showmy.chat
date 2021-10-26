@@ -70,6 +70,7 @@ function formatLinks(messageContents) {
 }
 
 ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
+	console.log({user, messageContents, flags, extra})
 	const newMessage = document.createElement('li');
 
 	const sender = document.createElement('div');
@@ -119,6 +120,10 @@ ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
 	if (extra.userColor) {
 		newMessage.setAttribute('data-twitch-sender-color', extra.userColor);
 		newMessage.setAttribute('style', `--twitch-sender-color: ${extra.userColor}`);
+	}
+
+	if (extra.userState['first-msg']) {
+		newMessage.setAttribute('data-twitch-sender-first-message', true);
 	}
 
 	chatbox.appendChild(newMessage);
