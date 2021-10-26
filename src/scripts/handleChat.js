@@ -70,7 +70,6 @@ function formatLinks(messageContents) {
 }
 
 ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
-	console.log({user, messageContents, flags, extra})
 	const newMessage = document.createElement('li');
 
 	const sender = document.createElement('div');
