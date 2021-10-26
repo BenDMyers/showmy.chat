@@ -121,6 +121,10 @@ ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
 		newMessage.setAttribute('style', `--twitch-sender-color: ${extra.userColor}`);
 	}
 
+	if (extra.userState['first-msg']) {
+		newMessage.setAttribute('data-twitch-sender-first-message', true);
+	}
+
 	chatbox.appendChild(newMessage);
 }
 
