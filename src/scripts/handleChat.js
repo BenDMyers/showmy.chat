@@ -1,6 +1,9 @@
 const chatbox = document.querySelector('[data-twitch-chat]');
 const watchedChannels = chatbox.getAttribute('data-twitch-chat');
 
+let mostRecentSender = '';
+let currentMessageGroup = 0;
+
 function htmlEntities(html) {
 	function it() {
 		return html.map(function(n, i, arr) {
@@ -125,12 +128,25 @@ ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
 		newMessage.setAttribute('data-twitch-sender-first-message', true);
 	}
 
+	if (user !== mostRecentSender) {
+		mostRecentSender = user;
+		currentMessageGroup++;
+		newMessage.setAttribute('data-twitch-first-message-in-group', true);
+	}
+	newMessage.setAttribute('data-twitch-message-group', currentMessageGroup);
+
 	chatbox.appendChild(newMessage);
 }
 
 ComfyJS.onMessageDeleted = function(id, extra) {
 	const messageToDelete = document.querySelector(`[data-twitch-message="${id}"]`);
 	if (messageToDelete) {
+		let wasFirstInGroup = messageToDelete.getAttribute('data-twitch-first-message-in-group');
+		let group = messageToDelete.getAttribute('data-twitch-message-group');
+		let hasNextInGroup = messageToDelete.nextSibling && messageToDelete.nextSibling.getAttribute('data-twitch-message-group') === group;
+		if (wasFirstInGroup && hasNextInGroup) {
+			messageToDelete.nextSibling.setAttribute('data-twitch-first-message-in-group', true);
+		}
 		messageToDelete.remove();
 	}
 }
