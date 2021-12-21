@@ -7,6 +7,14 @@
 	<link rel="stylesheet" href="{{ eleventy.serverless.query.theme | toStylesheet: themes }}" />
 	<script src="https://cdn.jsdelivr.net/npm/comfy.js@latest/dist/comfy.min.js"></script>
 	<title>{{ eleventy.serverless.path.channel }} | showmy.chat</title>
+	<meta property="og:site_name" content="showmy.chat" />
+	<meta property="og:title" content="{{ eleventy.serverless.path.channel }}'s Themed Chat Overlay" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://showmy.chat/c/{{ eleventy.serverless.path.channel }}" />
+	<meta property="og:description" content="Themed chat overlay built on demand by showmy.chat for {{ eleventy.serverless.path.channel }}" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="{{ eleventy.serverless.path.channel }}'s Chat Overlay" />
+	<meta name="twitter:description" content="Themed chat overlay built on demand by showmy.chat for {{ eleventy.serverless.path.channel }}" />
 </head>
 <body>
 	<ul data-twitch-chat="{{ eleventy.serverless.path.channel }}"></ul>
