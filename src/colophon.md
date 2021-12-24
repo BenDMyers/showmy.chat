@@ -10,4 +10,4 @@ layout: page.html
 
 **showmy.chat** could not be possible without the hard work put into [ComfyJS](https://github.com/instafluff/ComfyJS/), a wrapper around [tmi.js](https://tmijs.com/) that makes Twitch chats' web sockets easy to use.
 
-The styles are currently powered by Andy Brewer's [MVP.css](https://andybrewer.github.io/mvp/).
+The styles are currently powered by Lucas Larroche's [Pico](https://picocss.com/) styles.

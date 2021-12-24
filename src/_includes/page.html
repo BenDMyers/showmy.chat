@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>showmy.chat</title>
-	<link rel="stylesheet" href="https://unpkg.com/mvp.css" />
+	<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.classless.min.css" />
 </head>
 <body>
 	<header>
@@ -17,5 +17,12 @@
 	<footer>
 		&copy; 2021, Ben Myers &middot; <a href="/colophon/">Colophon</a> &middot; <a href="https://github.com/BenDMyers/showmy.chat">Contribute on GitHub</a>
 	</footer>
+	<style>
+		@media only screen and (prefers-color-scheme: dark) {
+			:root:not([data-theme=light]) {
+				--form-element-border-color: var(--color);
+			}
+		}
+	</style>
 </body>
 </html>
