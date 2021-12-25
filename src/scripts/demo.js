@@ -1,3 +1,5 @@
+console.log(faker)
+
 /**
  * @typedef {object} MockUser
  * @property {string} user
@@ -94,9 +96,22 @@ const MOCK_COMFY = (function () {
 		let messageContents = faker.lorem.sentences(numSentences);
 
 		const extra = {
+			id: faker.random.uuid(),
 			userState: {},
 			userColor: chatter.userColor
 		};
+
+		if (Math.random() < 0.25 && messages.length) {
+			const recentMessages = messages.slice(-5);
+			const replied = recentMessages[Math.floor(Math.random() * recentMessages.length)];
+			const [repliedUser, replyBody, , , replyExtra] = replied;
+			if (!replyExtra.userState['reply-parent-msg-id']) {
+				extra.userState['reply-parent-msg-id'] = replyExtra.id;
+				extra.userState['reply-parent-msg-body'] = replyBody;
+				extra.userState['reply-parent-display-name'] = repliedUser;
+				messageContents = `@${repliedUser} ${messageContents}`;
+			}
+		}
 
 		// Publish message
 		const message = [chatter.user, messageContents, chatter.roles, null, extra];
