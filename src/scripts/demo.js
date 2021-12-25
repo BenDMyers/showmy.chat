@@ -51,12 +51,10 @@ const MOCK_COMFY = (function () {
 	const broadcaster = generateUser();
 	broadcaster.roles = {broadcaster: true, mod: false, subscriber: false, founder: false, vip: false};
 	
-	const allUsers = [broadcaster, ...mods, ...viewers];
+	const allUsers = [broadcaster, ...mods, broadcaster, ...viewers, broadcaster];
 	console.log({allUsers})
 
 	const comfy = {
-		channel: 'YourNameHere',
-
 		/**
 		 * 
 		 * @param {string} user 
@@ -74,11 +72,12 @@ const MOCK_COMFY = (function () {
 		onMessageDeleted(id, extra) {},
 
 		/**
-	 	 * @param {string} [channelName] 
+	 	 * @param {string[]} [channelNames] 
 	 	 */
-		Init(channelName) {
-			if (channelName) {
-				this.channel = channelName;
+		Init(_, __, channelNames) {
+			console.log(channelNames, broadcaster)
+			if (channelNames.length) {
+				broadcaster.user = channelNames[0];
 			}
 	
 			let duration = Math.floor(Math.random() * 4) + 3;
