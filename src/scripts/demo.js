@@ -101,6 +101,17 @@ const MOCK_COMFY = (function () {
 			userColor: chatter.userColor
 		};
 
+		// Randomly mention users
+		if (Math.random() < 0.25) {
+			const words = messageContents.split(' ');
+			const index = Math.floor(Math.random() * words.length);
+			const mentionedUser = allUsers[Math.floor(Math.random() * allUsers.length)];
+			const mention = `@${mentionedUser.user}`;
+			words[index] = mention;
+			messageContents = words.join(' ');
+		}
+
+		// Randomly reply to recent messages
 		if (Math.random() < 0.25 && messages.length) {
 			const recentMessages = messages.slice(-5);
 			const replied = recentMessages[Math.floor(Math.random() * recentMessages.length)];
