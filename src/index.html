@@ -37,7 +37,13 @@ layout: page.html
 		</div>
 	</form>
 	
-	<iframe id="preview" src="/c/showmychat?DEMO=true" frameborder="0"></iframe>
+	<iframe
+		id="preview"
+		src="/c/showmychat?DEMO=true"
+		frameborder="0"
+		allowtransparency="true"
+	>
+	</iframe>
 </div>
 <script>
 	const overlayBuilderForm = document.getElementById('overlay-builder');
@@ -71,10 +77,14 @@ layout: page.html
 		}
 		values.append('DEMO', 'true');
 		const queries = new URLSearchParams(values).toString();
-		preview.contentWindow.location.replace(`/c/${channelName}?${queries}`); 
+		preview.contentWindow.location.replace(`/c/${channelName}?${queries}`);
 	}
 </script>
 <style>
+	:root {
+		color-scheme: light dark;
+	}
+
 	.col-2 {
 		display: flex;
 		gap: 4em;
@@ -87,6 +97,16 @@ layout: page.html
 	#preview {
 		min-height: 30em;
 		height: 100%;
-		border: 1px solid var(--color);
+		background: transparent;
+	}
+
+	@media (max-width: 576px) {
+		.col-2 {
+			flex-direction: column;
+		}
+
+		.col-2 > * {
+			width: 100%;
+		}
 	}
 </style>
