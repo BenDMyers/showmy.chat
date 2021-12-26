@@ -16,6 +16,31 @@ console.log(faker)
 const MOCK_COMFY = (function () {
 	const COMMON_COLORS = ['#ff0000', '#0000ff', '#008000', '#b22222', '#ff7f50', '#9ACD32', '#FF4500', '#2E8B57', '#DAA520', '#D2691E', '#5F9EA0', '#1E90FF', '#FF69B4', '#8A2BE2', '#00FF7F']
 	
+	const GLOBAL_EMOTES = [
+		{name: 'VirtualHug', id: '301696583'},
+		{name: 'StinkyGlitch', id: '304486324'},
+		{name: 'TwitchUnity', id: '196892'},
+		{name: 'MorphinTime', id: '156787'},
+		{name: 'bleedPurple', id: '62835'},
+		{name: 'SeemsGood', id: '64138'},
+		{name: 'BibleThump', id: '86'},
+		{name: '<3', id: '555555584'},
+		{name: ':p', id: '555555593'},
+		{name: ';)', id: '555555589'},
+		{name: ':D', id: '555555560'},
+		{name: ':)', id: '1'},
+	];
+
+	/**
+	 * @param {any[]} array 
+	 */
+	function choose(array) {
+		if (array && array.length > 0) {
+			const index = Math.floor(Math.random() * array.length);
+			return array[index];
+		}
+	}
+
 	/**
 	 * @returns {MockUser}
 	 */
@@ -58,7 +83,6 @@ const MOCK_COMFY = (function () {
 
 	const comfy = {
 		/**
-		 * 
 		 * @param {string} user 
 		 * @param {string} messageContents 
 		 * @param {object} flags 
@@ -112,7 +136,9 @@ const MOCK_COMFY = (function () {
 		}
 
 		// Randomly reply to recent messages
+		let isReply = false;
 		if (Math.random() < 0.25 && messages.length) {
+			isReply = true;
 			const recentMessages = messages.slice(-5);
 			const replied = recentMessages[Math.floor(Math.random() * recentMessages.length)];
 			const [repliedUser, replyBody, , , replyExtra] = replied;
@@ -121,6 +147,35 @@ const MOCK_COMFY = (function () {
 				extra.userState['reply-parent-msg-body'] = replyBody;
 				extra.userState['reply-parent-display-name'] = repliedUser;
 				messageContents = `@${repliedUser} ${messageContents}`;
+			}
+		}
+
+		// Randomly add emotes
+		if (Math.random() < 0.4) {
+			/** @type {string[]} */
+			const words = messageContents.split(' ');
+			const minimumIndex = isReply ? 1 : 0;
+			do {
+				const index = Math.max(minimumIndex, Math.floor(Math.random() * words.length));
+				/** @type {{name: string, id: string}} */
+				const chosenEmote = choose(GLOBAL_EMOTES);
+				words.splice(index, 0, chosenEmote.name);
+			} while (Math.random() < 0.33)
+			messageContents = words.join(' ');
+
+			extra.messageEmotes = {};
+			for (const emote of GLOBAL_EMOTES) {
+				let position = 0;
+				while (messageContents.indexOf(emote.name, position) !== -1) {
+					if (!extra.messageEmotes[emote.id]) {
+						extra.messageEmotes[emote.id] = [];
+					}
+
+					const start = messageContents.indexOf(emote.name, position);
+					const end = start + emote.name.length - 1;
+					extra.messageEmotes[emote.id].push(`${start}-${end}`);
+					position = end;
+				}
 			}
 		}
 
