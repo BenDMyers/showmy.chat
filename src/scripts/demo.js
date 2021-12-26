@@ -1,5 +1,3 @@
-console.log(faker)
-
 /**
  * @typedef {object} MockUser
  * @property {string} user
@@ -32,6 +30,7 @@ const MOCK_COMFY = (function () {
 	];
 
 	/**
+	 * Selects a random element from an element
 	 * @param {any[]} array 
 	 */
 	function choose(array) {
@@ -42,6 +41,7 @@ const MOCK_COMFY = (function () {
 	}
 
 	/**
+	 * Generates a realistic user, with potential roles and user color.
 	 * @returns {MockUser}
 	 */
 	function generateUser() {
@@ -79,7 +79,6 @@ const MOCK_COMFY = (function () {
 	broadcaster.roles = {broadcaster: true, mod: false, subscriber: false, founder: false, vip: false};
 	
 	const allUsers = [broadcaster, ...mods, broadcaster, ...viewers, broadcaster];
-	console.log({allUsers})
 
 	const comfy = {
 		/**
@@ -101,21 +100,20 @@ const MOCK_COMFY = (function () {
 	 	 * @param {string[]} [channelNames] 
 	 	 */
 		Init(_, __, channelNames) {
-			console.log(channelNames, broadcaster)
 			if (channelNames.length) {
 				broadcaster.user = channelNames[0];
 			}
-	
-			let duration = Math.floor(Math.random() * 4) + 3;
-			setTimeout(_generateNextMessage, 50);
+			setTimeout(_generateNextMessage, 500);
 		}
 	};
 
 	const messages = [];
+	/**
+	 * Generates a realistic message and "sends" it
+	 */
 	function _generateNextMessage() {
 		// Generate message
 		let chatter = allUsers[Math.floor(Math.random() * allUsers.length)];
-		console.log({chatter})
 		let numSentences = Math.floor(Math.random() * 3) + 1;
 		let messageContents = faker.lorem.sentences(numSentences);
 
