@@ -30,7 +30,7 @@ layout: page.html
 			{%- endfor %}
 		</select>
 	
-		<button type="submit">Get my URL!</button>
+		<button type="submit" style="margin-top: 1em;">Get my URL!</button>
 	
 		<div>
 			<output></output>
@@ -55,14 +55,13 @@ layout: page.html
 	function handleSubmit(event) {
 		event.preventDefault();
 
-		const form = document.querySelector('form');
-		const {channel, ...fields} = Object.fromEntries(new FormData(form));
-
-		if (fields.theme === 'default') {
-			delete fields.theme;
+		const values = new FormData(overlayBuilderForm);
+		const channelName = values.get('channel');
+		values.delete('channel');
+		if (values.get('theme') === 'default') {
+			values.delete('theme');
 		}
-
-		const queryParams = new URLSearchParams(fields).toString();
+		const queryParams = new URLSearchParams(values).toString();
 		const paramString = queryParams ? `?${queryParams}` : '';
 
 		output.innerHTML = `<strong>showmy.chat/c/</strong>${channel}${paramString}`; 
@@ -98,6 +97,8 @@ layout: page.html
 		min-height: 30em;
 		height: 100%;
 		background: transparent;
+		position: sticky;
+		top: 3em;
 	}
 
 	@media (max-width: 576px) {
