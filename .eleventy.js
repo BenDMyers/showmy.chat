@@ -1,8 +1,12 @@
 const {EleventyServerlessBundlerPlugin} = require('@11ty/eleventy');
 const {isWebUri} = require('valid-url');
 
-// const twitchChat = require('eleventy-plugin-twitch-chat');
-
+/**
+ * @typedef {import('@11ty/eleventy/src/UserConfig')} EleventyConfig
+ * @typedef {ReturnType<import('@11ty/eleventy/src/defaultConfig')>} EleventyReturnValue
+ * 
+ * @type {(eleventyConfig: EleventyConfig)) => EleventyReturnValue}
+ */
 module.exports = function(eleventyConfig) {
 	eleventyConfig.addPlugin(EleventyServerlessBundlerPlugin, {
 		name: 'serverless',
@@ -10,8 +14,6 @@ module.exports = function(eleventyConfig) {
 		inputDir: './src',
 		copy: ['src/themes/']
 	});
-
-	// eleventyConfig.addPlugin(twitchChat);
 
 	eleventyConfig.addPassthroughCopy('src/scripts');
 	eleventyConfig.addPassthroughCopy('src/themes');
