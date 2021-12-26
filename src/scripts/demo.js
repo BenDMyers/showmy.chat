@@ -151,7 +151,7 @@ const MOCK_COMFY = (function () {
 		}
 
 		// Randomly add emotes
-		if (Math.random() < 0.4) {
+		if (Math.random() < 0.3) {
 			/** @type {string[]} */
 			const words = messageContents.split(' ');
 			const minimumIndex = isReply ? 1 : 0;
@@ -160,7 +160,7 @@ const MOCK_COMFY = (function () {
 				/** @type {{name: string, id: string}} */
 				const chosenEmote = choose(GLOBAL_EMOTES);
 				words.splice(index, 0, chosenEmote.name);
-			} while (Math.random() < 0.33)
+			} while (Math.random() < 0.15)
 			messageContents = words.join(' ');
 
 			extra.messageEmotes = {};
