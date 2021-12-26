@@ -107,7 +107,7 @@ const MOCK_COMFY = (function () {
 			}
 	
 			let duration = Math.floor(Math.random() * 4) + 3;
-			setTimeout(_generateNextMessage, duration * 1000);
+			setTimeout(_generateNextMessage, 50);
 		}
 	};
 

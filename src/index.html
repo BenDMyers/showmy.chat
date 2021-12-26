@@ -3,7 +3,7 @@ layout: page.html
 ---
 <h1>Instant, themed Twitch chat overlays</h1>
 <div class="col-2">
-	<form onsubmit="handleSubmit(event)">
+	<form id="overlay-builder" onsubmit="handleSubmit(event)">
 		<label for="channel">Channel name</label>
 		<input
 			type="text"
@@ -14,14 +14,12 @@ layout: page.html
 			autocorrect="off"
 			autocapitalize="off"
 			spellcheck="false"
-			data-updatepreview="onblur"
 		/>
 	
 		<label for="theme">Theme</label>
 		<select
 			id="theme"
 			name="theme"
-			data-updatepreview="onchange"
 		>
 			<option value="default">default</option>
 			<option value="light">light</option>
@@ -39,10 +37,14 @@ layout: page.html
 		</div>
 	</form>
 	
-	<iframe id="preview" src="http://localhost:8080/c/showmychat?DEMO=true" frameborder="0"></iframe>
+	<iframe id="preview" src="/c/showmychat?DEMO=true" frameborder="0"></iframe>
 </div>
 <script>
+	const overlayBuilderForm = document.getElementById('overlay-builder');
 	const output = document.querySelector('output');
+	const preview = document.getElementById('preview');
+	const allFields = document.querySelectorAll('[name]');
+	allFields.forEach(field => field.addEventListener('change', updatePreview));
 
 	function handleSubmit(event) {
 		event.preventDefault();
@@ -58,6 +60,18 @@ layout: page.html
 		const paramString = queryParams ? `?${queryParams}` : '';
 
 		output.innerHTML = `<strong>showmy.chat/c/</strong>${channel}${paramString}`; 
+	}
+
+	function updatePreview() {
+		const values = new FormData(overlayBuilderForm);
+		const channelName = values.get('channel') || 'showmychat';
+		values.delete('channel');
+		if (values.get('theme') === 'default') {
+			values.delete('theme');
+		}
+		values.append('DEMO', 'true');
+		const queries = new URLSearchParams(values).toString();
+		preview.contentWindow.location.replace(`/c/${channelName}?${queries}`); 
 	}
 </script>
 <style>
