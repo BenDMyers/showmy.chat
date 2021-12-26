@@ -2,36 +2,45 @@
 layout: page.html
 ---
 <h1>Instant, themed Twitch chat overlays</h1>
-<form onsubmit="handleSubmit(event)">
-	<label for="channel">Channel name</label>
-	<input
-		type="text"
-		id="channel"
-		name="channel"
-		required
-		autocomplete="off"
-		autocorrect="off"
-		autocapitalize="off"
-		spellcheck="false"
-	/>
-
-	<label for="theme">Theme</label>
-	<select id="theme" name="theme">
-		<option value="default">default</option>
-		<option value="light">light</option>
-		{%- for theme in themes.list -%}
-		{%- unless theme == "default" or theme == "light" -%}
-		<option value="{{ theme }}">{{ theme }}</option>
-		{%- endunless -%}
-		{%- endfor %}
-	</select>
-
-	<button type="submit">Get my URL!</button>
-
-	<div>
-		<output></output>
-	</div>
-</form>
+<div class="col-2">
+	<form onsubmit="handleSubmit(event)">
+		<label for="channel">Channel name</label>
+		<input
+			type="text"
+			id="channel"
+			name="channel"
+			required
+			autocomplete="off"
+			autocorrect="off"
+			autocapitalize="off"
+			spellcheck="false"
+			data-updatepreview="onblur"
+		/>
+	
+		<label for="theme">Theme</label>
+		<select
+			id="theme"
+			name="theme"
+			data-updatepreview="onchange"
+		>
+			<option value="default">default</option>
+			<option value="light">light</option>
+			{%- for theme in themes.list -%}
+			{%- unless theme == "default" or theme == "light" -%}
+			<option value="{{ theme }}">{{ theme }}</option>
+			{%- endunless -%}
+			{%- endfor %}
+		</select>
+	
+		<button type="submit">Get my URL!</button>
+	
+		<div>
+			<output></output>
+		</div>
+	</form>
+	
+	<iframe id="preview" src="http://localhost:8080/c/showmychat?DEMO=true" frameborder="0"></iframe>
+</div>
 <script>
 	const output = document.querySelector('output');
 
@@ -51,3 +60,19 @@ layout: page.html
 		output.innerHTML = `<strong>showmy.chat/c/</strong>${channel}${paramString}`; 
 	}
 </script>
+<style>
+	.col-2 {
+		display: flex;
+		gap: 4em;
+	}
+
+	.col-2 > * {
+		width: 50%;
+	}
+
+	#preview {
+		min-height: 30em;
+		height: 100%;
+		border: 1px solid var(--color);
+	}
+</style>
