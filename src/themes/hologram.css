@@ -5,7 +5,6 @@ body {
 	overflow: hidden;
 	height: 100vh;
 	margin: 0;
-	font-size: 1.75rem;
 	filter: contrast(150%);
 	font-family: Megrim, sans-serif;
 }
@@ -23,10 +22,6 @@ body {
 
 [data-twitch-chat] > * {
 	margin-top: 1rem;
-}
-
-[data-twitch-chat] > *:last-child {
-	margin-bottom: 2rem;
 }
 
 [data-twitch-message-reply] {
