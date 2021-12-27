@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Megrim&display=swap');
+
+html,
+body {
+	overflow: hidden;
+	height: 100vh;
+	margin: 0;
+	font-size: 1.75rem;
+	filter: contrast(150%);
+	font-family: Megrim, sans-serif;
+}
+
+[data-twitch-chat] {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+[data-twitch-chat] > * {
+	margin-top: 1rem;
+}
+
+[data-twitch-chat] > *:last-child {
+	margin-bottom: 2rem;
+}
+
+[data-twitch-message-reply] {
+	display: none;
+}
+
+[data-twitch-message] {
+	color: white;
+	text-shadow:
+		0 0 7px rgba(188, 253, 254, 0.8),
+		0 0 7px rgba(188, 253, 254, 0.8),
+		0 0 7px rgba(188, 253, 254, 0.8),
+		0 0 7px rgba(188, 253, 254, 0.8);
+}
+
+@keyframes flicker {
+	0%, 18%, 18.4%, 22%, 22.4%, 25%, 25.4%, 53%, 53.4%, 57%, 57.4%, 100% {
+		text-shadow:
+			0 0 7px var(--neon-glow-color),
+			0 0 10px var(--neon-glow-color),
+			0 0 21px var(--neon-glow-color),
+			0 0 42px var(--neon-glow-color),
+			0 0 82px var(--neon-glow-color),
+			0 0 92px var(--neon-glow-color),
+			0 0 102px var(--neon-glow-color),
+			0 0 151px var(--neon-glow-color),
+			0 0 7px var(--neon-glow-color),
+			0 0 10px var(--neon-glow-color),
+			0 0 21px var(--neon-glow-color),
+			0 0 42px var(--neon-glow-color),
+			0 0 82px var(--neon-glow-color),
+			0 0 92px var(--neon-glow-color),
+			0 0 102px var(--neon-glow-color),
+			0 0 151px var(--neon-glow-color);
+		color: white;
+		font-style: normal;
+	}
+	0%, 18.2%, 22.2%, 25.2%, 53.2%, 57.2% {       
+		text-shadow: 
+			0 0 7px var(--neon-glow-color),
+			0 0 10px var(--neon-glow-color),
+			0 0 21px var(--neon-glow-color),
+			0 0 42px var(--neon-glow-color),
+			0 0 82px var(--neon-glow-color),
+			0 0 7px var(--neon-glow-color),
+			0 0 10px var(--neon-glow-color),
+			0 0 21px var(--neon-glow-color),
+			0 0 82px var(--neon-glow-color);
+		color:rgb(255, 255, 255, 0.7);
+	}
+	82.99% {
+		font-style: normal;
+	}
+	83% {
+		font-style: italic;
+	}
+	84% {
+		font-style: normal;
+	}
+}
+
+.twitch-chat-sender {
+	--neon-glow-color: deepskyblue;
+	text-shadow:
+		0 0 7px var(--neon-glow-color),
+		0 0 10px var(--neon-glow-color),
+		0 0 21px var(--neon-glow-color),
+		0 0 42px var(--neon-glow-color),
+		0 0 82px var(--neon-glow-color),
+		0 0 92px var(--neon-glow-color),
+		0 0 102px var(--neon-glow-color),
+		0 0 151px var(--neon-glow-color),
+		0 0 7px var(--neon-glow-color),
+		0 0 10px var(--neon-glow-color),
+		0 0 21px var(--neon-glow-color),
+		0 0 42px var(--neon-glow-color),
+		0 0 82px var(--neon-glow-color),
+		0 0 92px var(--neon-glow-color),
+		0 0 102px var(--neon-glow-color),
+		0 0 151px var(--neon-glow-color);
+	color: rgba(255, 255, 255, 0.8);
+	font-size: 115%;
+	animation: flicker 6s infinite;
+}
+
+.twitch-chat-message {
+	--neon-glow-color: deepskyblue;
+	display: inline;
+	color: white;
+	text-shadow:
+		0 0 3px var(--neon-glow-color),
+		0 0 7px var(--neon-glow-color),
+		0 0 7px var(--neon-glow-color);
+	max-width: 50ch;
+	word-wrap: break-word;
+	line-height: 1.2rem;
+}
+
+[data-twitch-emote] {
+	width: 1.5em;
+	margin-bottom: -0.3em;
+	filter:
+		opacity(0.55)
+		brightness(1.2)
+		drop-shadow(0 0 0 cyan)
+		drop-shadow(0 0 5px lightseagreen);
+}
+
+[data-twitch-mentioned-user] {
+	--neon-glow-color: darkorange;
+	background-color: transparent;
+	color: white;
+	animation: flicker 8s infinite;
+}
+
+[data-twitch-message] a {
+	--neon-glow-color: deepskyblue;
+	animation: flicker 7s infinite;
+	text-decoration: none;
+}
