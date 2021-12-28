@@ -44,7 +44,7 @@ function formatEmotes(text, emotes = {}) {
 				let emoteName = text.substr(mote[0], length + 1);
 				splitText = splitText.slice(0, mote[0]).concat(empty).concat(splitText.slice(mote[1] + 1, splitText.length));
 				let emoteSrc = `https://static-cdn.jtvnw.net/emoticons/v2/${emoteId}/default/light/3.0`;
-				splitText.splice(mote[0], 1, `<img alt="${emoteName}" data-twitch-emote="${emoteName}" src="${emoteSrc}">`);
+				splitText.splice(mote[0], 1, `<img alt="${emoteName}" data-twitch-emote="${emoteName}" data-twitch-emote-id="${emoteId}" src="${emoteSrc}">`);
 			}
 		}
 	}

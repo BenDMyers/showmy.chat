@@ -27,6 +27,8 @@ const MOCK_COMFY = (function () {
 		{name: ';)', id: '555555589'},
 		{name: ':D', id: '555555560'},
 		{name: ':)', id: '1'},
+		{name: 'kdubHappier', id: 'emotesv2_f66f18cc38174ef8868e0799f2985dc1'},
+		{name: 'enigmaZone', id: 'emotesv2_0806455ae50b4f09b4bac6a8e117b74c'},
 	];
 
 	/**
