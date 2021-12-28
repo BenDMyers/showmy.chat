@@ -69,7 +69,9 @@ body {
 			0 0 calc(7px / 1.75) var(--neon-glow-color),
 			0 0 calc(10px / 1.75) var(--neon-glow-color),
 			0 0 calc(21px / 1.75) var(--neon-glow-color),
-			0 0 calc(7px / 1.75) var(--neon-glow-color);
+			0 0 calc(7px / 1.75) var(--neon-glow-color),
+			0 0 calc(10px / 1.75) var(--neon-glow-color),
+			0 0 calc(21px / 1.75) var(--neon-glow-color);
 		color:rgb(255, 255, 255, 0.7);
 	}
 	82.99% {
@@ -126,6 +128,7 @@ body {
 	filter:
 		opacity(0.55)
 		brightness(1.2)
+		grayscale(0.6)
 		drop-shadow(0 0 0 var(--emote-glow-color))
 		drop-shadow(0 0 calc(5px / 1.75) var(--emote-glow-color));
 }
