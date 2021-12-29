@@ -2,6 +2,8 @@
 
 **On-Demand, Themeable Twitch Chat Overlays For Everyone**
 
+[Join the Discord server!](https://discord.gg/K78fXzVxja)
+
 This is the repo for [showmy.chat](https://showmy.chat), an on-demand themed Twitch chat overlay generator. These chat overlays can be used in broadcasting software such as [OBS](https://obsproject.com).
 
 **What does this mean?** It means that anyone can go to [showmy.chat](https://showmy.chat), enter the name of their Twitch channel, and select a theme, and they'll get a URL they can use as a source in their broadcasting software of choice to display a live chat feed!
