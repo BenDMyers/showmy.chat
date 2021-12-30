@@ -1,5 +1,5 @@
 ---
-layout: page.html
+layout: page.njk
 ---
 <h1>Instant, themed Twitch chat overlays</h1>
 <div class="col-2">
@@ -24,9 +24,9 @@ layout: page.html
 			<option value="default">{{'Default' | i18n}}</option>
 			<option value="light">{{'Light' | i18n}}</option>
 			{%- for theme in themes.list -%}
-			{%- unless theme == "default" or theme == "light" -%}
+			{%- if theme != "default" and theme != "light" -%}
 			<option value="{{ theme }}">{{ theme }}</option>
-			{%- endunless -%}
+			{%- endif -%}
 			{%- endfor %}
 		</select>
 	

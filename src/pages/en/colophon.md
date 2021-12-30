@@ -1,5 +1,5 @@
 ---
-layout: page.html
+layout: page.njk
 ---
 
 # Colophon
