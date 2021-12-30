@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ locale }}" dir="{{ dir }}">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +16,7 @@
 		{{ content }}
 	</main>
 	<footer>
-		&copy; 2021, Ben Myers &middot; <a href="/colophon/">Colophon</a> &middot; <a href="https://discord.gg/K78fXzVxja">Discord</a> &middot; <a href="https://github.com/BenDMyers/showmy.chat">Contribute on GitHub</a>
+		&copy; 2021, Ben Myers &middot; <a href="/colophon/">{{'Colophon' | i18n }}</a> &middot; <a href="https://discord.gg/K78fXzVxja">Discord</a> &middot; <a href="https://github.com/BenDMyers/showmy.chat">{{'Contribute on GitHub' | i18n}}</a>
 	</footer>
 	<style>
 		@media only screen and (prefers-color-scheme: dark) {

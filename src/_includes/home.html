@@ -4,7 +4,7 @@ layout: page.html
 <h1>Instant, themed Twitch chat overlays</h1>
 <div class="col-2">
 	<form id="overlay-builder" onsubmit="handleSubmit(event)">
-		<label for="channel">Channel name</label>
+		<label for="channel">{{'Channel name' | i18n}}</label>
 		<input
 			type="text"
 			id="channel"
@@ -16,13 +16,13 @@ layout: page.html
 			spellcheck="false"
 		/>
 	
-		<label for="theme">Theme</label>
+		<label for="theme">{{'Theme' | i18n}}</label>
 		<select
 			id="theme"
 			name="theme"
 		>
-			<option value="default">default</option>
-			<option value="light">light</option>
+			<option value="default">{{'Default' | i18n}}</option>
+			<option value="light">{{'Light' | i18n}}</option>
 			{%- for theme in themes.list -%}
 			{%- unless theme == "default" or theme == "light" -%}
 			<option value="{{ theme }}">{{ theme }}</option>
@@ -30,7 +30,7 @@ layout: page.html
 			{%- endfor %}
 		</select>
 	
-		<button type="submit" style="margin-top: 1em;">Get my URL!</button>
+		<button type="submit" style="margin-top: 1em;">{{'Get my URL!' | i18n}}</button>
 	
 		<div>
 			<output></output>

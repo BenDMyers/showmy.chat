@@ -1,5 +1,8 @@
 const {EleventyServerlessBundlerPlugin} = require('@11ty/eleventy');
+const i18n = require('eleventy-plugin-i18n');
 const {isWebUri} = require('valid-url');
+
+const translations = require('./src/_data/translations');
 
 /**
  * @typedef {import('@11ty/eleventy/src/UserConfig')} EleventyConfig
@@ -13,6 +16,11 @@ module.exports = function(eleventyConfig) {
 		functionsDir: './netlify/functions',
 		inputDir: './src',
 		copy: ['src/themes/']
+	});
+
+	eleventyConfig.addPlugin(i18n, {
+		translations,
+		fallbackLocales: {'*': 'en'}
 	});
 
 	eleventyConfig.addPassthroughCopy('src/scripts');
