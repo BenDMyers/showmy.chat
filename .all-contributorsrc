@@ -15,6 +15,15 @@
         "design",
         "infra"
       ]
+    },
+    {
+      "login": "Jarvis1010",
+      "name": "Travis Waith-Mair",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5460770?v=4",
+      "profile": "https://non-traditional.dev",
+      "contributions": [
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
