@@ -1,3 +1,13 @@
 module.exports = {
-	boop: (...x) => console.log(...x)
+	eleventyComputed: {
+		permalink: (data) => {
+			const {filePathStem} = data.page;
+			return filePathStem
+				.replace('/pages', '')
+				.replace('/en', '')
+				.replace('/index', '')
+				+ '/';
+		},
+		boop: (...x) => console.log(...x)
+	}
 };
