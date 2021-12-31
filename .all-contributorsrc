@@ -24,6 +24,15 @@
       "contributions": [
         "design"
       ]
+    },
+    {
+      "login": "chantastic",
+      "name": "Michael Chan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/658360?v=4",
+      "profile": "http://twitter.com/chantastic",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
