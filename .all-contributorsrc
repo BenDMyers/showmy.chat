@@ -33,6 +33,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "ajcwebdev",
+      "name": "Anthony Campolo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12433465?v=4",
+      "profile": "https://ajcweb.dev/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
