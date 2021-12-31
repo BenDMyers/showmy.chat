@@ -1,6 +1,6 @@
 # showmy.chat
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **On-Demand, Themeable Twitch Chat Overlays For Everyone**
@@ -37,6 +37,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="http://benmyers.dev"><img src="https://avatars.githubusercontent.com/u/18060369?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ben Myers</b></sub></a><br /><a href="https://github.com/BenDMyers/showmy.chat/commits?author=BenDMyers" title="Code">💻</a> <a href="#design-BenDMyers" title="Design">🎨</a> <a href="#infra-BenDMyers" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
     <td align="center"><a href="https://non-traditional.dev"><img src="https://avatars.githubusercontent.com/u/5460770?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Travis Waith-Mair</b></sub></a><br /><a href="#design-Jarvis1010" title="Design">🎨</a></td>
+    <td align="center"><a href="http://twitter.com/chantastic"><img src="https://avatars.githubusercontent.com/u/658360?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Michael Chan</b></sub></a><br /><a href="#content-chantastic" title="Content">🖋</a></td>
   </tr>
 </table>
 
