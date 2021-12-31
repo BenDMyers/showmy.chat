@@ -2,48 +2,114 @@
 layout: page.html
 ---
 <h1>Instant, themed Twitch chat overlays</h1>
-<form onsubmit="handleSubmit(event)">
-	<label for="channel">Channel name</label>
-	<input
-		type="text"
-		id="channel"
-		name="channel"
-		required
-	/>
-
-	<label for="theme">Theme</label>
-	<select id="theme" name="theme">
-		<option value="default">default</option>
-		<option value="light">light</option>
-		{%- for theme in themes.list -%}
-		{%- unless theme == "default" or theme == "light" -%}
-		<option value="{{ theme }}">{{ theme }}</option>
-		{%- endunless -%}
-		{%- endfor %}
-	</select>
-
-	<button type="submit">Get my URL!</button>
-
-	<div>
-		<output></output>
-	</div>
-</form>
+<div class="col-2">
+	<form id="overlay-builder" onsubmit="handleSubmit(event)">
+		<label for="channel">Channel name</label>
+		<input
+			type="text"
+			id="channel"
+			name="channel"
+			required
+			autocomplete="off"
+			autocorrect="off"
+			autocapitalize="off"
+			spellcheck="false"
+		/>
+	
+		<label for="theme">Theme</label>
+		<select
+			id="theme"
+			name="theme"
+		>
+			<option value="default">default</option>
+			<option value="light">light</option>
+			{%- for theme in themes.list -%}
+			{%- unless theme == "default" or theme == "light" -%}
+			<option value="{{ theme }}">{{ theme }}</option>
+			{%- endunless -%}
+			{%- endfor %}
+		</select>
+	
+		<button type="submit" style="margin-top: 1em;">Get my URL!</button>
+	
+		<div>
+			<output></output>
+		</div>
+	</form>
+	
+	<iframe
+		id="preview"
+		src="/c/showmychat?DEMO=true"
+		frameborder="0"
+		allowtransparency="true"
+	>
+	</iframe>
+</div>
 <script>
+	const overlayBuilderForm = document.getElementById('overlay-builder');
 	const output = document.querySelector('output');
+	const preview = document.getElementById('preview');
+	const allFields = document.querySelectorAll('[name]');
+	allFields.forEach(field => field.addEventListener('change', updatePreview));
 
 	function handleSubmit(event) {
 		event.preventDefault();
 
-		const form = document.querySelector('form');
-		const {channel, ...fields} = Object.fromEntries(new FormData(form));
-
-		if (fields.theme === 'default') {
-			delete fields.theme;
+		const values = new FormData(overlayBuilderForm);
+		const channelName = values.get('channel');
+		values.delete('channel');
+		if (values.get('theme') === 'default') {
+			values.delete('theme');
 		}
-
-		const queryParams = new URLSearchParams(fields).toString();
+		const queryParams = new URLSearchParams(values).toString();
 		const paramString = queryParams ? `?${queryParams}` : '';
 
-		output.innerHTML = `<strong>showmy.chat/c/</strong>${channel}${paramString}`; 
+		output.innerHTML = `<strong>showmy.chat/c/</strong>${channelName}${paramString}`; 
+	}
+
+	function updatePreview() {
+		const values = new FormData(overlayBuilderForm);
+		const channelName = values.get('channel') || 'showmychat';
+		values.delete('channel');
+		if (values.get('theme') === 'default') {
+			values.delete('theme');
+		}
+		values.append('DEMO', 'true');
+		const queries = new URLSearchParams(values).toString();
+		preview.contentWindow.location.replace(`/c/${channelName}?${queries}`);
 	}
 </script>
+<style>
+	:root {
+		color-scheme: light dark;
+	}
+
+	.col-2 {
+		display: flex;
+		gap: 4em;
+	}
+
+	.col-2 > * {
+		width: 50%;
+	}
+
+	#preview {
+		min-height: 30em;
+		height: 100%;
+		background: transparent;
+		background: var(--code-background-color);
+		position: sticky;
+		top: 3em;
+		resize: both;
+	}
+
+	@media (max-width: 576px) {
+		.col-2 {
+			flex-direction: column;
+		}
+
+		.col-2 > * {
+			width: 100%;
+		}
+	}
+</style>
