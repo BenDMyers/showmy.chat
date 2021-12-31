@@ -6,6 +6,17 @@
   "commit": false,
   "contributors": [
     {
+      "login": "BenDMyers",
+      "name": "Ben Myers",
+      "avatar_url": "https://avatars.githubusercontent.com/u/18060369?v=4",
+      "profile": "http://benmyers.dev",
+      "contributions": [
+        "code",
+        "design",
+        "infra"
+      ]
+    },
+    {
       "login": "Jarvis1010",
       "name": "Travis Waith-Mair",
       "avatar_url": "https://avatars.githubusercontent.com/u/5460770?v=4",
