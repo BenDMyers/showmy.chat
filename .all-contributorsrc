@@ -1,0 +1,53 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "BenDMyers",
+      "name": "Ben Myers",
+      "avatar_url": "https://avatars.githubusercontent.com/u/18060369?v=4",
+      "profile": "http://benmyers.dev",
+      "contributions": [
+        "code",
+        "design",
+        "infra"
+      ]
+    },
+    {
+      "login": "Jarvis1010",
+      "name": "Travis Waith-Mair",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5460770?v=4",
+      "profile": "https://non-traditional.dev",
+      "contributions": [
+        "design"
+      ]
+    },
+    {
+      "login": "chantastic",
+      "name": "Michael Chan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/658360?v=4",
+      "profile": "http://twitter.com/chantastic",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "ajcwebdev",
+      "name": "Anthony Campolo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12433465?v=4",
+      "profile": "https://ajcweb.dev/",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "showmy.chat",
+  "projectOwner": "BenDMyers",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
