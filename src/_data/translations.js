@@ -2,7 +2,7 @@ const translations = {
 	'Channel name': {
 		en: 'Channel name',
 		ar: 'اِسْم مُسْتَخْدِم',
-		de: 'Kanals Name',
+		de: 'Channel Name',
 		la: 'Nomen canalis'
 	},
 	'Colophon': {
@@ -12,7 +12,7 @@ const translations = {
 	},
 	'Contribute on GitHub': {
 		en: 'Contribute on GitHub',
-		de: 'Beitragen in GitHub'
+		de: 'Auf GitHub mitmachen'
 	},
 	'Default': {
 		en: 'Default',
@@ -21,7 +21,11 @@ const translations = {
 	'Get my URL!': {
 		en: 'Get my URL!',
 		ar: 'احصل على عنوان الويب الخاص بي',
-		de: 'Besorgen meine Webadresse!'
+		de: 'Gib mir meine URL!'
+	},
+	'instant themed Twitch chat overlays': {
+		en: 'Instant, themed Twitch chat overlays',
+		de: 'Sofortige, themed Twitch Chat Overlays'
 	},
 	'Light': {
 		en: 'Light',
