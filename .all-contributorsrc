@@ -42,6 +42,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "nachtfunke",
+      "name": "Thomas Michael Semmler",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4201323?v=4",
+      "profile": "http://helloyes.dev",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
