@@ -21,11 +21,11 @@ layout: page.html
 			id="theme"
 			name="theme"
 		>
-			<option value="default">default</option>
-			<option value="light">light</option>
+			<option value="default">Default</option>
+			<option value="light">Light</option>
 			{%- for theme in themes.list -%}
 			{%- unless theme == "default" or theme == "light" -%}
-			<option value="{{ theme }}">{{ theme }}</option>
+			<option value="{{ theme }}">{{ theme | formatThemeName }}</option>
 			{%- endunless -%}
 			{%- endfor %}
 		</select>

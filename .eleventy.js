@@ -1,4 +1,5 @@
 const {EleventyServerlessBundlerPlugin} = require('@11ty/eleventy');
+const {titleCase} = require('title-case');
 const {isWebUri} = require('valid-url');
 
 /**
@@ -19,7 +20,8 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addPassthroughCopy('src/themes');
 
 	eleventyConfig.addFilter('debug', output => JSON.stringify(output, null, 2));
-	eleventyConfig.addFilter('toStylesheet', toStylesheet)
+	eleventyConfig.addFilter('formatThemeName', input => titleCase(input.replace(/\-/g, ' ')));
+	eleventyConfig.addFilter('toStylesheet', toStylesheet);
 
 	return {
 		dir: {
