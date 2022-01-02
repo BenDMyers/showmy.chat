@@ -1,6 +1,6 @@
 # showmy.chat
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **On-Demand, Themeable Twitch Chat Overlays For Everyone**
@@ -39,6 +39,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://non-traditional.dev"><img src="https://avatars.githubusercontent.com/u/5460770?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Travis Waith-Mair</b></sub></a><br /><a href="#design-Jarvis1010" title="Design">🎨</a></td>
     <td align="center"><a href="http://twitter.com/chantastic"><img src="https://avatars.githubusercontent.com/u/658360?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Michael Chan</b></sub></a><br /><a href="#content-chantastic" title="Content">🖋</a></td>
     <td align="center"><a href="https://ajcweb.dev/"><img src="https://avatars.githubusercontent.com/u/12433465?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Anthony Campolo</b></sub></a><br /><a href="https://github.com/BenDMyers/showmy.chat/commits?author=ajcwebdev" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://helloyes.dev"><img src="https://avatars.githubusercontent.com/u/4201323?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Thomas Michael Semmler</b></sub></a><br /><a href="#translation-nachtfunke" title="Translation">🌍</a></td>
   </tr>
 </table>
 

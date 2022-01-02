@@ -25,7 +25,7 @@ layout: page.njk
 			<option value="light">{{'Light' | i18n}}</option>
 			{%- for theme in themes.list -%}
 			{%- if theme != "default" and theme != "light" -%}
-			<option value="{{ theme }}">{{ theme }}</option>
+			<option value="{{ theme }}">{{ theme | formatThemeName }}</option>
 			{%- endif -%}
 			{%- endfor %}
 		</select>
