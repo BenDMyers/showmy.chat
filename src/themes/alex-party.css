@@ -83,7 +83,6 @@ body {
 	background-color: transparent;
 	font-family: 'Papyrus', 'Comic Sans MS', cursive;
 	font-weight: 600;
-	/* -webkit-text-stroke: 1px var(--twitch-purple); */
     text-shadow: 2px 2px 0px var(--twitch-purple);
 	color: inherit;
 }

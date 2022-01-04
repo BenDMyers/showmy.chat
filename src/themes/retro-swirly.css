@@ -27,10 +27,14 @@
 	--sl-color-4: darkred;
 }
 
+*{
+	box-sizing: border-box;
+}
+
 html, body {
 	overflow: hidden;
 	height: 100vh;
-	margin-top: 0;
+	margin: 0;
 }
 
 body {
@@ -44,8 +48,8 @@ body {
 	font-size: 16px;
 	list-style: none;
 	margin: 0;
-	padding: 0;
-	padding-left: 60px;
+	padding: 5px;
+	padding-left: 85px;
 	height: 100vh;
 	overflow: auto;
 	display: flex;
@@ -114,15 +118,19 @@ body {
 	min-height: 100vh;
 	min-width:100vw;
 	pointer-events: none;
+	filter: drop-shadow(3px 3px 10px rgba(0,0,0,0.6));
 }
 
 [data-twitch-message] {
-	line-height: 22.5px;
+	line-height: 1.25em;
 	margin: 0;
-	padding-bottom: 5.625px;
-	padding-left: 22.5px;
-	padding-right: 22.5px;
-	padding-top: 5.625px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	padding: 5px 10px;
+	border-radius: 10px;
+	background-color: white;
+	border: calc(var(--sl-col-width) / 2) var(--sl-color-4) solid;
+	filter: drop-shadow(1px 1px 5px rgba(0,0,0,0.4));
 }
 
 [data-twitch-message-reply] {
@@ -155,7 +163,7 @@ body {
 }
 
 [data-twitch-mentioned-user] {
-	background-color: #dedee3;
+	background-color: transparent;
 	color: inherit;
 	font-weight: 700;
 	font-family: "MuseoModerno", cursive;
