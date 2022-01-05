@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100..900&family=Zen+Antique+Soft&display=swap');
+
+:root {
+	--twitch-gray: rgb(97, 97, 97);
+	--twitch-light: lightblue;
+	--twitch-dark-background: rgb(24, 24, 27);
+	--twitch-purple: rgb(180, 84, 255);
+	/*
+
+	Welcome to Alex's Terrible Retro Swirly theme.
+
+	--sl-offset - this can be used to adjust the left/right placement of the vertical lines.
+	--sl-v-offset - used to adjust the height of the swirly.
+	--sl-col-width - the thickness of the column lines.
+	--sl-left - set this as `--sl-left: ;` if you would like the swirly to be on the left side.
+	--sl-color-# - these will set the colors of the lines.
+
+	Enjoy!
+	*/
+	--sl-offset: 10px;
+	--sl-v-offset: 100px;
+	--sl-col-width: 10px;
+	--sl-left: initial;
+	--sl-color-1: yellow;
+	--sl-color-2: orange;
+	--sl-color-3: darkorange;
+	--sl-color-4: darkred;
+}
+
+*{
+	box-sizing: border-box;
+}
+
+html, body {
+	overflow: hidden;
+	height: 100vh;
+	margin: 0;
+}
+
+body {
+	background-color: var(--twitch-light);
+}
+
+[data-twitch-chat] {
+	background-color: var(--twitch-light);
+	color: var(--twitch-dark-background);
+	font-family: "Zen Antique Soft", serif;
+	font-size: 16px;
+	list-style: none;
+	margin: 0;
+	padding: 5px;
+	padding-left: 70px;
+	height: 100vh;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	
+}
+
+[data-twitch-chat]::after{
+	--offset: calc(var(--sl-offset, 0px) + 1px);
+	--v-offset: var(--sl-v-offset, 40px);
+	--col: var(--sl-col-width, 10px);
+	--width: calc(7 * var(--col));
+	--ring1: calc(var(--col) * 1);
+	--ring2: calc(var(--col) * 2);
+	--ring3: calc(var(--col) * 3);
+	--ring4: calc(var(--col) * 4);
+	--ring5: calc(var(--col) * 5);
+	--ring6: calc(var(--col) * 6);
+	--ring7: calc(var(--col) * 7);
+	--col1: calc(var(--offset) + var(--ring1));
+	--col2: calc(var(--offset) + var(--ring2));
+	--col3: calc(var(--offset) + var(--ring3));
+	--col4: calc(var(--offset) + var(--ring4));
+	--col5: calc(var(--offset) + var(--ring5));
+	--col6: calc(var(--offset) + var(--ring6));
+	--col7: calc(var(--offset) + var(--ring7));
+	--offset-width: calc(var(--offset) + var(--width));
+	--offset-width-rings: calc(var(--offset-width) + (4 * var(--col)));
+  
+	--i-linear-gradient: linear-gradient(
+	  to right,
+	  transparent 0 var(--offset),
+	  var(--sl-color1, yellow) var(--offset) var(--col1),
+	  var(--sl-color2, orange) var(--col1) var(--col2),
+	  var(--sl-color3, darkorange) var(--col2) var(--col3),
+	  var(--sl-color4, darkred) var(--col3) var(--col4),
+	  var(--sl-color3, darkorange) var(--col4) var(--col5),
+	  var(--sl-color2, orange) var(--col5) var(--col6),
+	  var(--sl-color1, yellow) var(--col6) var(--col7),
+	  transparent var(--col7)
+	);
+  
+	--right: var(--sl-left) calc(var(--offset) - 2px);
+  
+	--i-radial-gradient: radial-gradient(
+	  circle at var(--right, var(--offset-width)) var(--v-offset),
+	  var(--sl-color1, yellow) 0 var(--ring1),
+	  var(--sl-color2, orange) var(--ring1) var(--ring2),
+	  var(--sl-color3, darkorange) var(--ring2) var(--ring3),
+	  var(--sl-color4, darkred) var(--ring3) var(--ring4),
+	  transparent var(--ring4)
+	);
+  
+	background: var(--i-linear-gradient) 0 var(--v-offset) /
+		var(--offset-width-rings) 100%,
+	  var(--i-radial-gradient) top 0 left 0 / var(--offset-width-rings) 100%,
+	  var(--i-linear-gradient) top 0 left 0 / var(--offset-width-rings) 100%;
+	background-repeat: no-repeat;
+	background-attachment: local;
+	background-origin: border-box;
+	position:fixed;
+	top:0;
+	left:0;
+	content:'';
+	min-height: 100vh;
+	min-width:100vw;
+	pointer-events: none;
+	filter: drop-shadow(3px 3px 10px rgba(0,0,0,0.6));
+}
+
+[data-twitch-message] {
+	line-height: 1.25em;
+	margin: 0;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	padding: 5px 10px;
+	padding-left: 15px;
+	border-radius: 10px;
+	background-color: white;
+	border: calc(var(--sl-col-width) / 2) var(--sl-color-4) solid;
+	filter: drop-shadow(1px 1px 5px rgba(0,0,0,0.4));
+}
+
+[data-twitch-message-reply] {
+	color: var(--twitch-gray);
+	display: block;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+    overflow: hidden;
+}
+
+[data-twitch-message] .twitch-chat-sender {
+	color: var(--twitch-sender-color, var(--twitch-purple));
+	display: inline;
+	font-weight: 700;
+	font-family: "MuseoModerno", cursive;
+}
+
+[data-twitch-message] .twitch-chat-sender:after {
+	content: ": ";
+	color: var(--twitch-dark-background);
+	font-weight: normal;
+}
+
+[data-twitch-message] .twitch-chat-message {
+	display: inline;
+}
+
+[data-twitch-emote] {
+	width: 1.2em;
+}
+
+[data-twitch-mentioned-user] {
+	background-color: transparent;
+	color: inherit;
+	font-weight: 700;
+	font-family: "MuseoModerno", cursive;
+}
+
+[data-twitch-message] a {
+	color: var(--twitch-purple);
+	text-decoration: none;
+}
