@@ -51,6 +51,16 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "fimion",
+      "name": "Alex Riviere",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13134182?v=4",
+      "profile": "https://alex.party",
+      "contributions": [
+        "content",
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
