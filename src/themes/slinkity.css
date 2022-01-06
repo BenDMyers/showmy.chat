@@ -1,9 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap');
 
 :root {
 	--slinkity-pink: #ff00d6;
 	--slinkity-yellow: #faff02;
-	--slinkity-synthwave-purple: #2a2038;
+	--slinkity-purple-10: #040307;
+	--slinkity-purple-20: #19102D;
+	--slinkity-purple-30: #271A47;
 	--slinkity-gray: #333333;
 	--slinkity-gradient: var(--slinkity-pink) 0%, var(--slinkity-yellow) 100%;
 	--border-width: 6px;
@@ -30,7 +32,8 @@ html, body {
 }
 
 [data-twitch-message] {
-	background-color: var(--slinkity-gray);
+	background-color: var(--slinkity-purple-20);
+	/* background-color: var(--slinkity-synthwave-purple); */
 	color: white;
 	margin-block: 1em;
 	padding: 0.75em;
@@ -55,6 +58,11 @@ html, body {
 	border-inline-end-width: 0;
 }
 
+.twitch-chat-message {
+	color: rgba(255, 255, 255, 0.85);
+	margin-top: 0.5em;
+}
+
 @keyframes show {
 	100% {
 		opacity: 1;
@@ -63,8 +71,10 @@ html, body {
 }
 
 .twitch-chat-sender {
+	font-family: Monaco, 'Anonymous Pro', monospace;
+	text-transform: uppercase;
+	font-size: 80%;
 	font-weight: 700;
-	margin-bottom: 0.1em;
 	display: inline;
 }
 
