@@ -3,6 +3,7 @@
 	--twitch-light: rgb(239, 239, 241);
 	--twitch-dark-background: rgb(24, 24, 27);
 	--twitch-purple: rgb(180, 84, 255);
+	--twitch-highlight-purple: #755ebc;
 }
 
 html, body {
@@ -62,6 +63,12 @@ body {
 
 [data-twitch-message] .twitch-chat-message {
 	display: inline;
+}
+
+[data-twitch-message-status*="highlighted"] .twitch-chat-message {
+	background-color: var(--twitch-highlight-purple);
+	border: 4px solid var(--twitch-highlight-purple);
+	color: white;
 }
 
 [data-twitch-emote] {

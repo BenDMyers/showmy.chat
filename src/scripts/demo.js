@@ -123,6 +123,8 @@ const MOCK_COMFY = (function () {
 			userColor: chatter.userColor
 		};
 
+		const flags = {};
+
 		// Randomly mention users
 		if (Math.random() < 0.25) {
 			const words = messageContents.split(' ');
@@ -147,6 +149,11 @@ const MOCK_COMFY = (function () {
 				messageContents = `@${repliedUser} ${messageContents}`;
 			}
 		}
+
+		// Randomly highlight messages
+		if (Math.random() < 0.1) {
+			flags.highlighted = true;
+		} 
 
 		// Randomly add emotes
 		if (Math.random() < 0.3) {
@@ -178,7 +185,13 @@ const MOCK_COMFY = (function () {
 		}
 
 		// Publish message
-		const message = [chatter.user, messageContents, chatter.roles, null, extra];
+		const message = [
+			chatter.user,
+			messageContents,
+			{...chatter.roles, ...flags},
+			null,
+			extra
+		];
 		messages.push(message);
 		comfy.onChat(...message);
 
