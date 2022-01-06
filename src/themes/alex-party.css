@@ -91,3 +91,10 @@ body {
 	color: var(--twitch-purple);
 	text-decoration: none;
 }
+
+[data-twitch-message-status*="highlighted"] .twitch-chat-message{
+	background-color: lightsalmon;
+	font-family: 'Papyrus', fantasy;
+	font-weight: 600;
+	padding: 0 0.1em;
+}
