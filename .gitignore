@@ -6,3 +6,4 @@ netlify/functions/serverless/**
 !netlify/functions/serverless/index.js
 # Local Netlify folder
 .netlify
+.DS_Store

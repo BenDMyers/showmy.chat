@@ -10,7 +10,7 @@
     "dev": "eleventy --serve"
   },
   "dependencies": {
-    "@11ty/eleventy": "1.0.0-canary.39",
+    "@11ty/eleventy": "^1.0.0-beta.10",
     "jsdom": "^16.6.0",
     "title-case": "^3.0.3",
     "valid-url": "^1.0.9"
