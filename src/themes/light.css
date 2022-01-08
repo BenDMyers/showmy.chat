@@ -80,6 +80,10 @@ body {
 	padding: 0.2rem 0.4rem;
 }
 
+[data-twitch-message-status*="highlighted"] [data-twitch-mentioned-user] {
+	background-color: transparent;
+}
+
 [data-twitch-message] a {
 	color: var(--twitch-purple);
 	text-decoration: none;
