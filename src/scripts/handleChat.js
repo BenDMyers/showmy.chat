@@ -56,7 +56,9 @@ function formatEmotes(text, emotes = {}) {
  * @returns {string} message with any user mentioned wrapped in <mark> tags
  */
 function formatUserMentions(messageContents) {
-	return messageContents.replace(/@([^?.!,~+%:'\\\/`\s]+)/g, function (substring, mentionedUser) {
+	/* OBS 27.1.3 uses v75 of embedded chrome which has the following bug:
+	*/
+	return messageContents.replace(/@(([\w]|\&\#83;|\&\#115;)+)/g, function (substring, mentionedUser) {
 		return `<mark data-twitch-mentioned-user="${mentionedUser}">@${mentionedUser}</mark>`;
 	});
 }
