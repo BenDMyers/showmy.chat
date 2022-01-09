@@ -56,8 +56,12 @@ function formatEmotes(text, emotes = {}) {
  * @returns {string} message with any user mentioned wrapped in <mark> tags
  */
 function formatUserMentions(messageContents) {
-	/* OBS 27.1.3 uses v75 of embedded chrome which has the following bug:
-	*/
+	/** 
+	 * OBS 27.1.3 uses v75 of embedded chrome which has the following bug:
+	 * https://stackoverflow.com/questions/56499440/chrome-75-regexp-s-matches-strange-unicode-range
+	 * The result is that using /@([\w]+)/g as a regex will not match 's' or 'S' and instead return early.
+	 * This will be fixed in OBS 27.2, but this regex will match both &#83; (S) and &#115; (s) and will not cut things off.
+	 */
 	return messageContents.replace(/@(([\w]|\&\#83;|\&\#115;)+)/g, function (substring, mentionedUser) {
 		return `<mark data-twitch-mentioned-user="${mentionedUser}">@${mentionedUser}</mark>`;
 	});
