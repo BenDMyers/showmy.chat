@@ -56,7 +56,7 @@ function formatEmotes(text, emotes = {}) {
  * @returns {string} message with any user mentioned wrapped in <mark> tags
  */
 function formatUserMentions(messageContents) {
-	return messageContents.replace(/@([\w]+)/g, function (substring, mentionedUser) {
+	return messageContents.replace(/@([^?.!,~\s]+)/g, function (substring, mentionedUser) {
 		return `<mark data-twitch-mentioned-user="${mentionedUser}">@${mentionedUser}</mark>`;
 	});
 }
