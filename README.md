@@ -40,7 +40,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://twitter.com/chantastic"><img src="https://avatars.githubusercontent.com/u/658360?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Michael Chan</b></sub></a><br /><a href="#content-chantastic" title="Content">🖋</a></td>
     <td align="center"><a href="https://ajcweb.dev/"><img src="https://avatars.githubusercontent.com/u/12433465?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Anthony Campolo</b></sub></a><br /><a href="https://github.com/BenDMyers/showmy.chat/commits?author=ajcwebdev" title="Documentation">📖</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=ajcwebdev" title="Code">💻</a></td>
     <td align="center"><a href="http://helloyes.dev"><img src="https://avatars.githubusercontent.com/u/4201323?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Thomas Michael Semmler</b></sub></a><br /><a href="#translation-nachtfunke" title="Translation">🌍</a></td>
-    <td align="center"><a href="https://alex.party"><img src="https://avatars.githubusercontent.com/u/13134182?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alex Riviere</b></sub></a><br /><a href="#content-fimion" title="Content">🖋</a> <a href="#design-fimion" title="Design">🎨</a></td>
+    <td align="center"><a href="https://alex.party"><img src="https://avatars.githubusercontent.com/u/13134182?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alex Riviere</b></sub></a><br /><a href="#content-fimion" title="Content">🖋</a> <a href="#design-fimion" title="Design">🎨</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=fimion" title="Code">💻</a></td>
   </tr>
 </table>
 
