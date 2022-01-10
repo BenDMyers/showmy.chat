@@ -54,7 +54,7 @@ async function getBttvChannelEmoteDict(userId, fetchFunction){
 
 async function defaultFetch(url){ 
     const response = await fetch(url);
-    const json = response.json();
+    const json = await response.json();
     return new Promise(resolve => { 
         resolve(json);
     })
