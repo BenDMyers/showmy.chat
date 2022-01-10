@@ -53,9 +53,9 @@ function formatEmotes(text, emotes = {}) {
 }
 
 function formatBttvEmotes(text){ 
-	for (key in bttvChannelEmoteDict){ 
+	for (key in bttvEmoteDict){ 
 		if (text.includes(key)){ 
-			const bttvId = bttvChannelEmoteDict[key]
+			const bttvId = bttvEmoteDict[key]
 			text = replaceKeywordWithEmoteImageString(
 				text,
 				key,
@@ -183,8 +183,8 @@ function removeMessageFromDomAndShiftOthers(messageToDelete) {
 let testDict
 async function init(){
 	const twitchUserId = await getTwitchUserId(watchedChannels.split(' ')[0]);
-	bttvChannelEmoteDict = await getBttvChannelEmoteDict(twitchUserId);
-	bttvChannelEmoteDict = await addGlobalEmotesToDict(bttvChannelEmoteDict);
+	bttvEmoteDict = await getBttvChannelEmoteDict(twitchUserId);
+	bttvEmoteDict = await addGlobalEmotesToDict(bttvEmoteDict);
 	ComfyJS.Init(null, null, watchedChannels.split(' '));
 }
 
