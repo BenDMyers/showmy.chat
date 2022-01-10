@@ -16,6 +16,10 @@ function replaceKeywordWithBttvEmoteImageString(textContent, keyword, imageSourc
 }
 
 
+/**
+ * @param {Array} arrayOfInputs values to be tested 
+ * @returns {Boolean} true if all inputs provided are both truthy and strings, false if not
+ */
 function areAllTruthyStrings(arrayOfInputs)  { 
     let areTruthyStrings = true;
     if (arrayOfInputs.length === 0){ areTruthyStrings = false }
@@ -26,6 +30,10 @@ function areAllTruthyStrings(arrayOfInputs)  {
 }
 
 
+/**
+ * @param {string} username twitch username, case insensitive
+ * @returns {string} twitch user id
+ */
 async function getTwitchUserId(username, fetchFunction){ 
     if (!username || typeof username !== "string"){ 
         return null;
@@ -40,6 +48,12 @@ async function getTwitchUserId(username, fetchFunction){
 }
 
 
+/**
+ * @param {string} userId twitch's user ID 
+ * @param {Function} fetchFunction optional - a specific fetch function that returns a promise
+ * that resolves to a json of the fetch data
+ * @returns {Object} key is the friendly emote name, value is the BTTV emote id
+ */
 async function getBttvChannelEmoteDict(userId, fetchFunction){
     if ( !userId || typeof userId !== "string") {return null} 
     fetchFunction = fetchFunction || defaultFetch
@@ -53,6 +67,10 @@ async function getBttvChannelEmoteDict(userId, fetchFunction){
 }
 
 
+/**
+ * @param {string} url url to retrieve json from
+ * @returns {Object} json data received from fetch
+ */
 async function defaultFetch(url){ 
     const response = await fetch(url);
     const json = await response.json();
@@ -62,6 +80,10 @@ async function defaultFetch(url){
 }
 
 
+/**
+ * @param {Object} channelData  data structure provided by BTTV's api for channel queries
+ * @returns {Object} key is the friendly emote name, value is the BTTV emote id
+ */
 function convertBttvChannelDataToEmoteDict(channelData){ 
     if (!channelData || typeof channelData !== "object") { return null };
     let emotesArray = []
@@ -76,12 +98,21 @@ function convertBttvChannelDataToEmoteDict(channelData){
 }
     
 
+/**
+ * @param {string} bttvEmoteId  BTTV's uid for the emote
+ * @returns {string} url for the emote's image source
+ */
 function getBttvImageUrl(bttvEmoteId){ 
     if (!bttvEmoteId || typeof bttvEmoteId !== "string"){ return null}
     return url = `https://cdn.betterttv.net/emote/${bttvEmoteId}/3x`
 }
 
 
+
+/**
+ * @param {Object} dictObject  key is friendly emote name, value is the BTTV emote id
+ * @returns {Object} same as input - key is friendlyh name, value is id
+ */
 async function addGlobalEmotesToDict(dictObject,fetchFunction){ 
     if (!dictObject || typeof dictObject !== "object") { return null }
     fetchFunction = fetchFunction || defaultFetch
