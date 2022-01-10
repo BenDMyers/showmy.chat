@@ -1,4 +1,11 @@
-const m = require('../src/scripts/bttvIntegration.js');
+const {
+    replaceKeywordWithEmoteImageString, 
+    getTwitchUserId,
+    getBttvChannelEmoteDict,
+    convertBttvChannelDataToEmoteDict,
+    getBttvImageUrl,
+    addGlobalEmotesToDict
+} = require('../src/scripts/bttvIntegration.js');
 const axios = require('axios');
 
 async function fetchFunction(url) {
@@ -13,26 +20,26 @@ async function fetchFunction(url) {
 describe("BTTV integration -> replaceKeywordWithEmoteImageString", () => {
     test('missing text content throws exception', () => {
         expect(() => {
-            m.replaceKeywordWithEmoteImageString()
+            replaceKeywordWithEmoteImageString()
         }).toThrow()
     })
 
     test('missing keyword, image source, or id, returns untouched text content', () => {
-        expect(m.replaceKeywordWithEmoteImageString("Hi, I'm text content!")).toBe("Hi, I'm text content!");
-        expect(m.replaceKeywordWithEmoteImageString("Hi, I'm text content!", "blargh")).toBe("Hi, I'm text content!")
-        expect(m.replaceKeywordWithEmoteImageString("Hi, I'm text content!", "blargh", "blargh.png")).toBe("Hi, I'm text content!")
+        expect(replaceKeywordWithEmoteImageString("Hi, I'm text content!")).toBe("Hi, I'm text content!");
+        expect(replaceKeywordWithEmoteImageString("Hi, I'm text content!", "blargh")).toBe("Hi, I'm text content!")
+        expect(replaceKeywordWithEmoteImageString("Hi, I'm text content!", "blargh", "blargh.png")).toBe("Hi, I'm text content!")
     })
 
     test('if text content invalid, throws exception', () => {
         expect(() => {
-            m.replaceKeywordWithEmoteImageString({ "i'm": "an", "object": "silly" })
+            replaceKeywordWithEmoteImageString({ "i'm": "an", "object": "silly" })
         }).toThrow()
     })
 
 
     test('if keyword, image source, or id are invalid, returns text content', () => {
         expect(
-            m.replaceKeywordWithEmoteImageString(
+            replaceKeywordWithEmoteImageString(
                 "Hi, I'm text content!",
                 ["array", "of", "strings"],
                 1387130913509150,
@@ -42,7 +49,7 @@ describe("BTTV integration -> replaceKeywordWithEmoteImageString", () => {
     })
 
     test('replaces basic string with matching value properly', () => {
-        expect(m.replaceKeywordWithEmoteImageString("hello hi hell hellp phello", "hello", "getrekt.png", "69420"))
+        expect(replaceKeywordWithEmoteImageString("hello hi hell hellp phello", "hello", "getrekt.png", "69420"))
             .toBe('<img alt="hello" data-twitch-emote="hello" data-twitch-emote-id="69420" src="getrekt.png"></img> hi hell hellp phello')
     })
 
@@ -51,20 +58,20 @@ describe("BTTV integration -> replaceKeywordWithEmoteImageString", () => {
 
 describe("BTTV Integration -> getTwitchUserId", () => {
     test('no argument given for username return null', async () => {
-        await expect(m.getTwitchUserId()).resolves.toBe(null);
+        await expect(getTwitchUserId()).resolves.toBe(null);
     })
 
     test('if username argument is not a string, return null', async () => {
-        await expect(m.getTwitchUserId(13851958124)).resolves.toBe(null)
+        await expect(getTwitchUserId(13851958124)).resolves.toBe(null)
     })
 
     test('with valid input, returns a string', async () => {
-        const result = await m.getTwitchUserId("frostyypaws", fetchFunction)
+        const result = await getTwitchUserId("frostyypaws", fetchFunction)
         expect(typeof result).toBe("string")
     })
 
     test('with valid input of a user with known id, returns correct id', async () => {
-        const result = await m.getTwitchUserId("frostyypaws", fetchFunction)
+        const result = await getTwitchUserId("frostyypaws", fetchFunction)
         expect(result).toBe("66154494")
     })
 })
@@ -86,24 +93,24 @@ describe("BTTV Integration -> getBttvChannelEmoteDict", () => {
     }
 
     const sampleBttvUserNotFound = { "message": "user not found" }
-    
+
     test('if no channel id provided returns null', async () => {
-        const result = await m.getBttvChannelEmoteDict();
+        const result = await getBttvChannelEmoteDict();
         expect(result).toBe(null);
     })
 
     test('if channel id provided is not string, returns null', async () => {
-        const result = await m.getBttvChannelEmoteDict({ "id": "39031091" });
+        const result = await getBttvChannelEmoteDict({ "id": "39031091" });
         expect(result).toBe(null);
     })
 
     test('with valid input, expect response to be a object', async () => {
-        const result = await m.getBttvChannelEmoteDict("66154494", fetchFunction);
+        const result = await getBttvChannelEmoteDict("66154494", fetchFunction);
         expect(typeof result).toBe("object");
     })
 
     test('with valid input with known response, expect response key:value pairs to be correct', async () => {
-        const result = await m.getBttvChannelEmoteDict("66154494", fetchFunction);
+        const result = await getBttvChannelEmoteDict("66154494", fetchFunction);
         expect(result.pepinoSip).toBe("607b80f339b5010444d015f8");
         expect(result.peepoLeave).toBe("5d9be805d2458468c1f4dbb3")
     })
@@ -111,25 +118,25 @@ describe("BTTV Integration -> getBttvChannelEmoteDict", () => {
 
 describe("BTTV Integration -> convertBttvChannelDataToEmoteDict", () => {
     test('no channel data returns null', () => {
-        expect(m.convertBttvChannelDataToEmoteDict()).toBe(null);
+        expect(convertBttvChannelDataToEmoteDict()).toBe(null);
     })
 
     test('channel data not object returns null', () => {
-        expect(m.convertBttvChannelDataToEmoteDict("derpderp")).toBe(null)
+        expect(convertBttvChannelDataToEmoteDict("derpderp")).toBe(null)
     })
 
     test('with valid input that doesnt have shared emotes, returns proper data structure', () => {
-        expect(m.convertBttvChannelDataToEmoteDict(sampleBttvChannelDataNoShared).megaF).toBe("5d4fc81baff6f30ad530cd0d");
-        expect(m.convertBttvChannelDataToEmoteDict(sampleBttvChannelDataNoShared).dealWithIt).toBe("6057e66961e7e44b5aa4f050")
+        expect(convertBttvChannelDataToEmoteDict(sampleBttvChannelDataNoShared).megaF).toBe("5d4fc81baff6f30ad530cd0d");
+        expect(convertBttvChannelDataToEmoteDict(sampleBttvChannelDataNoShared).dealWithIt).toBe("6057e66961e7e44b5aa4f050")
     })
 
     test('with valid input that doesnt have channel emotes, returns proper data structure', () => {
-        expect(m.convertBttvChannelDataToEmoteDict(sampleBttvChannelDataNoChannel).megaF).toBe("5d4fc81baff6f30ad530cd0d");
-        expect(m.convertBttvChannelDataToEmoteDict(sampleBttvChannelDataNoChannel).dealWithIt).toBe("6057e66961e7e44b5aa4f050")
+        expect(convertBttvChannelDataToEmoteDict(sampleBttvChannelDataNoChannel).megaF).toBe("5d4fc81baff6f30ad530cd0d");
+        expect(convertBttvChannelDataToEmoteDict(sampleBttvChannelDataNoChannel).dealWithIt).toBe("6057e66961e7e44b5aa4f050")
     })
 
     test('with valid input that doesnt have any emotes, returns empty object', () => {
-        const result = m.convertBttvChannelDataToEmoteDict(sampleBttvUserNotFound);
+        const result = convertBttvChannelDataToEmoteDict(sampleBttvUserNotFound);
         const keys = Object.keys(result);
         expect(keys.length).toBe(0)
     })
@@ -137,31 +144,31 @@ describe("BTTV Integration -> convertBttvChannelDataToEmoteDict", () => {
 
 describe("BTTV Integration -> getBttvImageUrl", () => {
     test('if no id passed, is an empty string, or id isnt a string, return null', () => {
-        expect(m.getBttvImageUrl()).toBe(null);
-        expect(m.getBttvImageUrl("")).toBe(null);
-        expect(m.getBttvImageUrl({ "link": "blah.com/blah" })).toBe(null);
+        expect(getBttvImageUrl()).toBe(null);
+        expect(getBttvImageUrl("")).toBe(null);
+        expect(getBttvImageUrl({ "link": "blah.com/blah" })).toBe(null);
     })
 
     test('if valid id passed, returns string', () => {
-        expect(typeof m.getBttvImageUrl("60636293a407570b72f2807b")).toBe("string")
+        expect(typeof getBttvImageUrl("60636293a407570b72f2807b")).toBe("string")
     })
 
     test('if valid id passed, returns proper image link', () => {
-        expect(m.getBttvImageUrl("60636293a407570b72f2807b")).toBe("https://cdn.betterttv.net/emote/60636293a407570b72f2807b/3x")
+        expect(getBttvImageUrl("60636293a407570b72f2807b")).toBe("https://cdn.betterttv.net/emote/60636293a407570b72f2807b/3x")
     })
 })
 
 describe("BTTV Integration -> addGlobalEmotesToDict", () => {
     test('if argument not an object, or not provided, returns null', async () => {
-        await expect(m.addGlobalEmotesToDict()).resolves.toBe(null);
-        await expect(m.addGlobalEmotesToDict("hi i'm not an object hehe", fetchFunction)).resolves.toBe(null);
+        await expect(addGlobalEmotesToDict()).resolves.toBe(null);
+        await expect(addGlobalEmotesToDict("hi i'm not an object hehe", fetchFunction)).resolves.toBe(null);
     })
 
     test('valid argument  (including empty object/dict) returns correct object with global emotes in them', async () => {
-        const response = await m.addGlobalEmotesToDict({}, fetchFunction);
+        const response = await addGlobalEmotesToDict({}, fetchFunction);
         expect(response.AngelThump).toBe('566ca1a365dbbdab32ec055b');
         expect(response.DuckerZ).toBe('573d38b50ffbf6cc5cc38dc9');
-        const responseWithIngoingDict = await m.addGlobalEmotesToDict({ "testytestytesty": "yup i'm still here" }, fetchFunction);
+        const responseWithIngoingDict = await addGlobalEmotesToDict({ "testytestytesty": "yup i'm still here" }, fetchFunction);
         expect(responseWithIngoingDict.testytestytesty).toBe("yup i'm still here");
         expect(responseWithIngoingDict.FeelsBadMan).toBe("566c9fc265dbbdab32ec053b")
     })
