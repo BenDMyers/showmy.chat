@@ -18,34 +18,22 @@ async function fetchFunction(url) {
 
 
 describe("BTTV integration -> replaceKeywordWithEmoteImageString", () => {
-    test('missing text content throws exception', () => {
-        expect(() => {
-            replaceKeywordWithEmoteImageString()
-        }).toThrow()
+    test('missing text content keyword, image source, or id, returns null', () => {
+        expect(replaceKeywordWithEmoteImageString()).toBe(null);
+        expect(replaceKeywordWithEmoteImageString("Hi, I'm text content!")).toBe(null);
+        expect(replaceKeywordWithEmoteImageString("Hi, I'm text content!", "blargh")).toBe(null)
+        expect(replaceKeywordWithEmoteImageString("Hi, I'm text content!", "blargh", "blargh.png")).toBe(null)
     })
 
-    test('missing keyword, image source, or id, returns untouched text content', () => {
-        expect(replaceKeywordWithEmoteImageString("Hi, I'm text content!")).toBe("Hi, I'm text content!");
-        expect(replaceKeywordWithEmoteImageString("Hi, I'm text content!", "blargh")).toBe("Hi, I'm text content!")
-        expect(replaceKeywordWithEmoteImageString("Hi, I'm text content!", "blargh", "blargh.png")).toBe("Hi, I'm text content!")
-    })
-
-    test('if text content invalid, throws exception', () => {
-        expect(() => {
-            replaceKeywordWithEmoteImageString({ "i'm": "an", "object": "silly" })
-        }).toThrow()
-    })
-
-
-    test('if keyword, image source, or id are invalid, returns text content', () => {
+    test('if keyword, image source, or id are invalid, returns null', () => {
         expect(
             replaceKeywordWithEmoteImageString(
-                "Hi, I'm text content!",
+                { "i'm": "an", "object": "silly" },
                 ["array", "of", "strings"],
                 1387130913509150,
-                { "id": "13891309" }
+                NaN
             )
-        ).toBe("Hi, I'm text content!")
+        ).toBe(null)
     })
 
     test('replaces basic string with matching value properly', () => {

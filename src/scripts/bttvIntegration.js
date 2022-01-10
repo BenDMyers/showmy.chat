@@ -1,12 +1,6 @@
 function replaceKeywordWithEmoteImageString(textContent, keyword, imageSource, id){ 
-    if (!textContent) { 
-        throw "Text content is not provided!" 
-    } else if (typeof textContent !== "string"){ 
-        throw "Text content is not a string!"
-    }
-    const otherArgumentsAreValid = areValidInputs(keyword, imageSource, id); 
-    if (!otherArgumentsAreValid) {return textContent }
-
+    const otherArgumentsAreValid = areValidInputs(textContent, keyword, imageSource, id); 
+    if (!otherArgumentsAreValid) {return null }
     const imageHtmlString = `<img alt="${keyword}" data-twitch-emote="${keyword}" data-twitch-emote-id="${id}" src="${imageSource}"></img>`;
     const words = textContent.split(' ');
     const modifiedTextContent = words.map(word => word === keyword ? imageHtmlString : word).join(' ');
