@@ -50,8 +50,8 @@ async function getTwitchUserId(username, fetchFunction){
 
 /**
  * @param {string} userId twitch's user ID 
- * @param {Function} fetchFunction optional - a specific fetch function that returns a promise
- * that resolves to a json of the fetch data
+ * @param {Function} fetchFunction OPTIONAL - a specific fetch function that returns a promise
+ * that resolves to a json of the fetch data.
  * @returns {Object} key is the friendly emote name, value is the BTTV emote id
  */
 async function getBttvChannelEmoteDict(userId, fetchFunction){
@@ -111,7 +111,7 @@ function getBttvImageUrl(bttvEmoteId){
 
 /**
  * @param {Object} dictObject  key is friendly emote name, value is the BTTV emote id
- * @returns {Object} same as input - key is friendlyh name, value is id
+ * @returns {Object} same as input - key is friendly name, value is id
  */
 async function addGlobalEmotesToDict(dictObject,fetchFunction){ 
     if (!dictObject || typeof dictObject !== "object") { return null }
