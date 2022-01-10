@@ -3,7 +3,7 @@ const watchedChannels = chatbox.getAttribute('data-twitch-chat');
 
 let mostRecentSender = '';
 let currentMessageGroup = 0;
-let bttvChannelEmoteDict = {}
+let bttvEmoteDict = {}
 
 function htmlEntities(html) {
 	function it() {
