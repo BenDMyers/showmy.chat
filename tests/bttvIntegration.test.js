@@ -102,7 +102,6 @@ describe("BTTV Integration -> getBttvChannelEmoteDict", () => {
 
     test('with valid input with known response, expect response key:value pairs to be correct', async () => {
         const result = await m.getBttvChannelEmoteDict("66154494", fetchFunction);
-        console.log(result);
         expect(result.pepinoSip).toBe("607b80f339b5010444d015f8");
         expect(result.peepoLeave).toBe("5d9be805d2458468c1f4dbb3")
     })
@@ -147,5 +146,21 @@ describe("BTTV Integration -> getBttvImageUrl", ()=>{
 
     test('if valid id passed, returns proper image link', () => { 
         expect(m.getBttvImageUrl("60636293a407570b72f2807b")).toBe("https://cdn.betterttv.net/emote/60636293a407570b72f2807b/3x")
+    })
+})
+
+describe("BTTV Integration -> addGlobalEmotesToDict", ()=>{ 
+    test('if argument not an object, or not provided, returns null', async ()=> { 
+        await expect(m.addGlobalEmotesToDict()).resolves.toBe(null);
+        await expect(m.addGlobalEmotesToDict("hi i'm not an object hehe", fetchFunction)).resolves.toBe(null);
+    })
+
+    test('valid argument  (including empty object/dict) returns correct object with global emotes in them', async ()=>{ 
+        const response = await m.addGlobalEmotesToDict({},fetchFunction);
+        expect(response.AngelThump).toBe('566ca1a365dbbdab32ec055b');
+        expect(response.DuckerZ).toBe('573d38b50ffbf6cc5cc38dc9');
+        const responseWithIngoingDict = await m.addGlobalEmotesToDict({"testytestytesty":"yup i'm still here"},fetchFunction); 
+        expect (responseWithIngoingDict.testytestytesty).toBe("yup i'm still here");
+        expect (responseWithIngoingDict.FeelsBadMan).toBe("566c9fc265dbbdab32ec053b")
     })
 })

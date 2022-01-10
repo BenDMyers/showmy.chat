@@ -173,9 +173,12 @@ function removeMessageFromDomAndShiftOthers(messageToDelete) {
 	messageToDelete.remove();
 }
 
+
+let testDict
 async function init(){
 	const twitchUserId = await getTwitchUserId(watchedChannels.split(' ')[0]);
 	bttvChannelEmoteDict = await getBttvChannelEmoteDict(twitchUserId);
+	bttvChannelEmoteDict = await addGlobalEmotesToDict(bttvChannelEmoteDict);
 	ComfyJS.Init(null, null, watchedChannels.split(' '));
 }
 

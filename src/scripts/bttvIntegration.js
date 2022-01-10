@@ -82,11 +82,24 @@ function getBttvImageUrl(bttvEmoteId){
 }
 
 
+async function addGlobalEmotesToDict(dictObject,fetchFunction){ 
+    if (!dictObject || typeof dictObject !== "object") { return null }
+    fetchFunction = fetchFunction || defaultFetch
+    const bttvUrl = "https://api.betterttv.net/3/cached/emotes/global";
+    const response = await fetchFunction(bttvUrl);
+    const emoteDict = convertBttvChannelDataToEmoteDict({"sharedEmotes":response})
+    dictObject = {...dictObject,...emoteDict}
+    return new Promise( resolve => { 
+        resolve(dictObject);
+    })
+}
+
 module.exports = { 
     replaceKeywordWithEmoteImageString, 
     getTwitchUserId,
     getBttvChannelEmoteDict,
     convertBttvChannelDataToEmoteDict,
-    getBttvImageUrl
+    getBttvImageUrl,
+    addGlobalEmotesToDict
 }
 
