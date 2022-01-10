@@ -2,27 +2,27 @@
  * @param {string} textContent the base text to search for keywords
  * @param {string} keyword the keyword that matches to an emote
  * @param {string} imageSource the image source url string of that emote
- * @param {string} id the source id of that emote
+ * @param {string} id the BTTV id of that emote
  * @returns {string} the base text modified with any matched keywords turned into html image tags
  */
-function replaceKeywordWithEmoteImageString(textContent, keyword, imageSource, id){ 
-    const argumentsExistAndAreStrings = areTruthyStrings(arguments); 
-    if (!argumentsExistAndAreStrings) {return null }
-    const imageHtmlString = `<img alt="${keyword}" data-twitch-emote="${keyword}" data-twitch-emote-id="${id}" src="${imageSource}"></img>`;
+function replaceKeywordWithBttvEmoteImageString(textContent, keyword, imageSource, id){ 
+    const argumentsExistAndAreStrings = areAllTruthyStrings([textContent,keyword,imageSource,id]); 
+    if (!argumentsExistAndAreStrings) { return null }
+    const imageHtmlString = 
+    `<img alt="${keyword}" data-twitch-emote="${keyword}" data-twitch-emote-id="${id}" data-twitch-emote-source="bttv" src="${imageSource}"></img>`;
     const words = textContent.split(' ');
     const modifiedTextContent = words.map(word => word === keyword ? imageHtmlString : word).join(' ');
     return modifiedTextContent;
 }
 
 
-function areTruthyStrings(arrayOfInputs)  { 
-    let hasValidInputs = true;
+function areAllTruthyStrings(arrayOfInputs)  { 
+    let areTruthyStrings = true;
+    if (arrayOfInputs.length === 0){ areTruthyStrings = false }
     for (input of arrayOfInputs){ 
-        if (!input || typeof input !== "string"){ 
-            hasValidInputs = false;
-        }
+        if (!input || typeof input !== "string"){ areTruthyStrings = false }
     }
-    return hasValidInputs
+    return areTruthyStrings
 }
 
 
@@ -96,7 +96,7 @@ async function addGlobalEmotesToDict(dictObject,fetchFunction){
 
 
 module.exports = { 
-    replaceKeywordWithEmoteImageString, 
+    replaceKeywordWithBttvEmoteImageString, 
     getTwitchUserId,
     getBttvChannelEmoteDict,
     convertBttvChannelDataToEmoteDict,

@@ -1,5 +1,5 @@
 const {
-    replaceKeywordWithEmoteImageString, 
+    replaceKeywordWithBttvEmoteImageString, 
     getTwitchUserId,
     getBttvChannelEmoteDict,
     convertBttvChannelDataToEmoteDict,
@@ -17,17 +17,17 @@ async function fetchFunction(url) {
 
 
 
-describe("BTTV integration -> replaceKeywordWithEmoteImageString", () => {
+describe("BTTV integration -> replaceKeywordWithBttvEmoteImageString", () => {
     test('missing text content keyword, image source, or id, returns null', () => {
-        expect(replaceKeywordWithEmoteImageString()).toBe(null);
-        expect(replaceKeywordWithEmoteImageString("Hi, I'm text content!")).toBe(null);
-        expect(replaceKeywordWithEmoteImageString("Hi, I'm text content!", "blargh")).toBe(null)
-        expect(replaceKeywordWithEmoteImageString("Hi, I'm text content!", "blargh", "blargh.png")).toBe(null)
+        expect(replaceKeywordWithBttvEmoteImageString()).toBe(null);
+        expect(replaceKeywordWithBttvEmoteImageString("Hi, I'm text content!")).toBe(null);
+        expect(replaceKeywordWithBttvEmoteImageString("Hi, I'm text content!", "blargh")).toBe(null)
+        expect(replaceKeywordWithBttvEmoteImageString("Hi, I'm text content!", "blargh", "blargh.png")).toBe(null)
     })
 
     test('if keyword, image source, or id are invalid, returns null', () => {
         expect(
-            replaceKeywordWithEmoteImageString(
+            replaceKeywordWithBttvEmoteImageString(
                 { "i'm": "an", "object": "silly" },
                 ["array", "of", "strings"],
                 1387130913509150,
@@ -37,8 +37,8 @@ describe("BTTV integration -> replaceKeywordWithEmoteImageString", () => {
     })
 
     test('replaces basic string with matching value properly', () => {
-        expect(replaceKeywordWithEmoteImageString("hello hi hell hellp phello", "hello", "getrekt.png", "69420"))
-            .toBe('<img alt="hello" data-twitch-emote="hello" data-twitch-emote-id="69420" src="getrekt.png"></img> hi hell hellp phello')
+        expect(replaceKeywordWithBttvEmoteImageString("hello hi hell hellp phello", "hello", "getrekt.png", "69420"))
+            .toBe('<img alt="hello" data-twitch-emote="hello" data-twitch-emote-id="69420" data-twitch-emote-source="bttv" src="getrekt.png"></img> hi hell hellp phello')
     })
 
 
