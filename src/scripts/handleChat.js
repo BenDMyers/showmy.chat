@@ -180,7 +180,6 @@ function removeMessageFromDomAndShiftOthers(messageToDelete) {
 }
 
 
-let testDict
 async function init(){
 	const twitchUserId = await getTwitchUserId(watchedChannels.split(' ')[0]);
 	bttvEmoteDict = await getBttvChannelEmoteDict(twitchUserId);
