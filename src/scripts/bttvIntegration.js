@@ -17,8 +17,8 @@ function replaceKeywordWithEmoteImageString(textContent, keyword, imageSource, i
 
 function areTruthyStrings(arrayOfInputs)  { 
     let hasValidInputs = true;
-    for (arg of arguments){ 
-        if (!arg || typeof arg !== "string"){ 
+    for (input of arrayOfInputs){ 
+        if (!input || typeof input !== "string"){ 
             hasValidInputs = false;
         }
     }
