@@ -141,14 +141,18 @@ ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
 ComfyJS.onMessageDeleted = function(id, extra) {
 	const messageToDelete = document.querySelector(`[data-twitch-message="${id}"]`);
 	if (messageToDelete) {
-		let wasFirstInGroup = messageToDelete.getAttribute('data-twitch-first-message-in-group');
-		let group = messageToDelete.getAttribute('data-twitch-message-group');
-		let hasNextInGroup = messageToDelete.nextSibling && messageToDelete.nextSibling.getAttribute('data-twitch-message-group') === group;
-		if (wasFirstInGroup && hasNextInGroup) {
-			messageToDelete.nextSibling.setAttribute('data-twitch-first-message-in-group', true);
-		}
-		messageToDelete.remove();
+		removeMessageFromDomAndShiftOthers(messageToDelete);
 	}
+}
+
+function removeMessageFromDomAndShiftOthers(messageToDelete) {
+	let wasFirstInGroup = messageToDelete.getAttribute('data-twitch-first-message-in-group');
+	let group = messageToDelete.getAttribute('data-twitch-message-group');
+	let hasNextInGroup = messageToDelete.nextSibling && messageToDelete.nextSibling.getAttribute('data-twitch-message-group') === group;
+	if (wasFirstInGroup && hasNextInGroup) {
+		messageToDelete.nextSibling.setAttribute('data-twitch-first-message-in-group', true);
+	}
+	messageToDelete.remove();
 }
 
 ComfyJS.Init(null, null, watchedChannels.split(' '));
