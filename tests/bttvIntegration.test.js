@@ -76,23 +76,24 @@ describe("BTTV Integration -> getTwitchUserId", () => {
     })
 })
 
+
+const sampleBttvChannelDataNoShared = {
+    "id": "5d4a1e8f9728020aca0db02a",
+    "bots": [],
+    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/61f3133d-6e62-4b1a-af40-7ce3d0c9bb3b-profile_image-300x300.png",
+    "channelEmotes": [{ "id": "5d4fc81baff6f30ad530cd0d", "code": "megaF", "imageType": "png", "userId": "5d4a1e8f9728020aca0db02a" }, { "id": "6057e66961e7e44b5aa4f050", "code": "dealWithIt", "imageType": "png", "userId": "5d4a1e8f9728020aca0db02a" }, { "id": "6057e6eb61e7e44b5aa4f058", "code": "elmoBuff", "imageType": "png", "userId": "5d4a1e8f9728020aca0db02a" }]
+}
+
+const sampleBttvChannelDataNoChannel = {
+    "id": "5d4a1e8f9728020aca0db02a",
+    "bots": [],
+    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/61f3133d-6e62-4b1a-af40-7ce3d0c9bb3b-profile_image-300x300.png",
+    "sharedEmotes": [{ "id": "5d4fc81baff6f30ad530cd0d", "code": "megaF", "imageType": "png", "userId": "5d4a1e8f9728020aca0db02a" }, { "id": "6057e66961e7e44b5aa4f050", "code": "dealWithIt", "imageType": "png", "userId": "5d4a1e8f9728020aca0db02a" }, { "id": "6057e6eb61e7e44b5aa4f058", "code": "elmoBuff", "imageType": "png", "userId": "5d4a1e8f9728020aca0db02a" }]
+}
+
+const sampleBttvUserNotFound = { "message": "user not found" }
+
 describe("BTTV Integration -> getBttvChannelEmoteDict", () => {
-
-    const sampleBttvChannelDataNoShared = {
-        "id": "5d4a1e8f9728020aca0db02a",
-        "bots": [],
-        "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/61f3133d-6e62-4b1a-af40-7ce3d0c9bb3b-profile_image-300x300.png",
-        "channelEmotes": [{ "id": "5d4fc81baff6f30ad530cd0d", "code": "megaF", "imageType": "png", "userId": "5d4a1e8f9728020aca0db02a" }, { "id": "6057e66961e7e44b5aa4f050", "code": "dealWithIt", "imageType": "png", "userId": "5d4a1e8f9728020aca0db02a" }, { "id": "6057e6eb61e7e44b5aa4f058", "code": "elmoBuff", "imageType": "png", "userId": "5d4a1e8f9728020aca0db02a" }]
-    }
-
-    const sampleBttvChannelDataNoChannel = {
-        "id": "5d4a1e8f9728020aca0db02a",
-        "bots": [],
-        "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/61f3133d-6e62-4b1a-af40-7ce3d0c9bb3b-profile_image-300x300.png",
-        "sharedEmotes": [{ "id": "5d4fc81baff6f30ad530cd0d", "code": "megaF", "imageType": "png", "userId": "5d4a1e8f9728020aca0db02a" }, { "id": "6057e66961e7e44b5aa4f050", "code": "dealWithIt", "imageType": "png", "userId": "5d4a1e8f9728020aca0db02a" }, { "id": "6057e6eb61e7e44b5aa4f058", "code": "elmoBuff", "imageType": "png", "userId": "5d4a1e8f9728020aca0db02a" }]
-    }
-
-    const sampleBttvUserNotFound = { "message": "user not found" }
 
     test('if no channel id provided returns null', async () => {
         const result = await getBttvChannelEmoteDict();
