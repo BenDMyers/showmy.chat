@@ -74,12 +74,13 @@ function convertBttvChannelDataToEmoteDict(channelData){
     }
     return emotesDict
 }
-
+    
 
 function getBttvImageUrl(bttvEmoteId){ 
     if (!bttvEmoteId || typeof bttvEmoteId !== "string"){ return null}
     return url = `https://cdn.betterttv.net/emote/${bttvEmoteId}/3x`
 }
+
 
 module.exports = { 
     replaceKeywordWithEmoteImageString, 
