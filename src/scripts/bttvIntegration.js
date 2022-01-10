@@ -3,9 +3,9 @@
  * @param {string} keyword the keyword that matches to an emote
  * @param {string} imageSource the image source url string of that emote
  * @param {string} id the BTTV id of that emote
- * @returns {string} the base text modified with any matched keywords turned into html image tags
+ * @returns {string} the base text modified with any matched keywords turned into html image tags with that emote's as src
  */
-function replaceKeywordWithBttvEmoteImageString(textContent, keyword, imageSource, id){ 
+function replaceKeywordWithBttvEmoteImage(textContent, keyword, imageSource, id){ 
     const argumentsExistAndAreStrings = areAllTruthyStrings([textContent,keyword,imageSource,id]); 
     if (!argumentsExistAndAreStrings) { return null }
     const imageHtmlString = 
@@ -127,7 +127,7 @@ async function addGlobalEmotesToDict(dictObject,fetchFunction){
 
 
 module.exports = { 
-    replaceKeywordWithBttvEmoteImageString, 
+    replaceKeywordWithBttvEmoteImage, 
     getTwitchUserId,
     getBttvChannelEmoteDict,
     convertBttvChannelDataToEmoteDict,

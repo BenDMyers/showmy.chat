@@ -1,5 +1,5 @@
 const {
-    replaceKeywordWithBttvEmoteImageString, 
+    replaceKeywordWithBttvEmoteImage, 
     getTwitchUserId,
     getBttvChannelEmoteDict,
     convertBttvChannelDataToEmoteDict,
@@ -17,17 +17,17 @@ async function fetchFunction(url) {
 
 
 
-describe("BTTV integration -> replaceKeywordWithBttvEmoteImageString", () => {
+describe("BTTV integration -> replaceKeywordWithBttvEmoteImage", () => {
     test('missing text content keyword, image source, or id, returns null', () => {
-        expect(replaceKeywordWithBttvEmoteImageString()).toBe(null);
-        expect(replaceKeywordWithBttvEmoteImageString("Hi, I'm text content!")).toBe(null);
-        expect(replaceKeywordWithBttvEmoteImageString("Hi, I'm text content!", "blargh")).toBe(null)
-        expect(replaceKeywordWithBttvEmoteImageString("Hi, I'm text content!", "blargh", "blargh.png")).toBe(null)
+        expect(replaceKeywordWithBttvEmoteImage()).toBe(null);
+        expect(replaceKeywordWithBttvEmoteImage("Hi, I'm text content!")).toBe(null);
+        expect(replaceKeywordWithBttvEmoteImage("Hi, I'm text content!", "blargh")).toBe(null)
+        expect(replaceKeywordWithBttvEmoteImage("Hi, I'm text content!", "blargh", "blargh.png")).toBe(null)
     })
 
     test('if keyword, image source, or id are invalid, returns null', () => {
         expect(
-            replaceKeywordWithBttvEmoteImageString(
+            replaceKeywordWithBttvEmoteImage(
                 { "i'm": "an", "object": "silly" },
                 ["array", "of", "strings"],
                 1387130913509150,
@@ -37,7 +37,7 @@ describe("BTTV integration -> replaceKeywordWithBttvEmoteImageString", () => {
     })
 
     test('replaces basic string with matching value properly', () => {
-        expect(replaceKeywordWithBttvEmoteImageString("hello hi hell hellp phello", "hello", "getrekt.png", "69420"))
+        expect(replaceKeywordWithBttvEmoteImage("hello hi hell hellp phello", "hello", "getrekt.png", "69420"))
             .toBe('<img alt="hello" data-twitch-emote="hello" data-twitch-emote-id="69420" data-twitch-emote-source="bttv" src="getrekt.png"></img> hi hell hellp phello')
     })
 
