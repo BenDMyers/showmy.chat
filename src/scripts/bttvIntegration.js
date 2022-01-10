@@ -1,6 +1,13 @@
+/**
+ * @param {string} textContent the base text to search for keywords
+ * @param {string} keyword the keyword that matches to an emote
+ * @param {string} imageSource the image source url string of that emote
+ * @param {string} id the source id of that emote
+ * @returns {string} the base text modified with any matched keywords turned into html image tags
+ */
 function replaceKeywordWithEmoteImageString(textContent, keyword, imageSource, id){ 
-    const otherArgumentsAreValid = areValidInputs(textContent, keyword, imageSource, id); 
-    if (!otherArgumentsAreValid) {return null }
+    const argumentsExistAndAreStrings = areTruthyStrings(textContent, keyword, imageSource, id); 
+    if (!argumentsExistAndAreStrings) {return null }
     const imageHtmlString = `<img alt="${keyword}" data-twitch-emote="${keyword}" data-twitch-emote-id="${id}" src="${imageSource}"></img>`;
     const words = textContent.split(' ');
     const modifiedTextContent = words.map(word => word === keyword ? imageHtmlString : word).join(' ');
@@ -8,7 +15,7 @@ function replaceKeywordWithEmoteImageString(textContent, keyword, imageSource, i
 }
 
 
-function areValidInputs(keyword, imageSource, id)  { 
+function areTruthyStrings(keyword, imageSource, id)  { 
     let hasValidInputs = true;
     for (arg of arguments){ 
         if (!arg || typeof arg !== "string"){ 
