@@ -61,7 +61,6 @@ async function defaultFetch(url){
 }
 
 
-
 function convertBttvChannelDataToEmoteDict(channelData){ 
     if (!channelData || typeof channelData !== "object") { return null };
     let emotesArray = []
@@ -93,6 +92,7 @@ async function addGlobalEmotesToDict(dictObject,fetchFunction){
         resolve(dictObject);
     })
 }
+
 
 module.exports = { 
     replaceKeywordWithEmoteImageString, 
