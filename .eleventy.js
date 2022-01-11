@@ -21,6 +21,7 @@ module.exports = function(eleventyConfig) {
 
 	eleventyConfig.addFilter('debug', output => JSON.stringify(output, null, 2));
 	eleventyConfig.addFilter('formatThemeName', input => titleCase(input.replace(/\-/g, ' ')));
+	eleventyConfig.addFilter('json', JSON.stringify);
 	eleventyConfig.addFilter('toStylesheet', toStylesheet);
 
 	return {
