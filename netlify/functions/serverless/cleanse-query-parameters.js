@@ -24,10 +24,13 @@ const VALID_PARAMETERS = {
 function cleanseQueryParameters(queryStringParameters) {
 	const queryParameters = {};
 	for (const param in queryStringParameters) {
+		// If this is a valid parameter name at all...
 		if (VALID_PARAMETERS[param]) {
 			const paramValue = queryStringParameters[param];
 			const {validate, transform} = VALID_PARAMETERS[param];
+			// And if it meets our requirements for that 
 			if (validate(paramValue)) {
+				// Keep the parameter and (if necessary) transform its value
 				const newValue = transform ? transform(paramValue) : paramValue;
 				queryParameters[param] = newValue;
 			} else {
