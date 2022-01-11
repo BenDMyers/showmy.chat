@@ -22,13 +22,19 @@ const VALID_PARAMETERS = {
  * @return {Object<string, any>} reformatted query parameters
  */
 function cleanseQueryParameters(queryStringParameters) {
-	const queryParameters = {};
+	// Preload configurations with OPTIONAL defaults
+	const queryParameters = {
+		showLatestMessages: 100,
+		theme: 'default'
+	};
+
+	// Iterate over provided query parameters
 	for (const param in queryStringParameters) {
-		// If this is a valid parameter name at all...
+		// If this is a valid parameter name at all…
 		if (VALID_PARAMETERS[param]) {
 			const paramValue = queryStringParameters[param];
 			const {validate, transform} = VALID_PARAMETERS[param];
-			// And if it meets our requirements for that 
+			// And if it meets our requirements for that…
 			if (validate(paramValue)) {
 				// Keep the parameter and (if necessary) transform its value
 				const newValue = transform ? transform(paramValue) : paramValue;
