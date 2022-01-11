@@ -30,7 +30,11 @@ function cleanseQueryParameters(queryStringParameters) {
 			if (validate(paramValue)) {
 				const newValue = transform ? transform(paramValue) : paramValue;
 				queryParameters[param] = newValue;
+			} else {
+				console.error(`"${paramValue}" is not a valid value for the "${param}" configuration.`);
 			}
+		} else {
+			console.error(`"${param}" is not a valid configuration for a showmy.chat overlay`);
 		}
 	}
 	return queryParameters;
