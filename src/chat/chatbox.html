@@ -10,6 +10,9 @@
 		}
 	</style>
 	<link rel="stylesheet" href="{{ eleventy.serverless.query.theme | toStylesheet: themes }}" />
+	<script>
+		window.CONFIG = Object.freeze({{ eleventy.serverless.query | serialize }});
+	</script>
 	{% if eleventy.serverless.query.DEMO %}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
 	<script src="/scripts/demo.js"></script>
