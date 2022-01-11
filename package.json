@@ -12,6 +12,7 @@
   "dependencies": {
     "@11ty/eleventy": "^1.0.0",
     "jsdom": "^16.6.0",
+    "serialize-javascript": "^6.0.0",
     "title-case": "^3.0.3",
     "valid-url": "^1.0.9"
   }
