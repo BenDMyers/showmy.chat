@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,9 +22,11 @@
 	{% endif %}
 	<title>{{ eleventy.serverless.path.channel }} | showmy.chat</title>
 </head>
+
 <body>
 	<ul data-twitch-chat="{{ eleventy.serverless.path.channel }}"></ul>
-	<script src="/scripts/bttvIntegration.js"></script>
-	<script src="/scripts/handleChat.js"></script>
+	<script src="/scripts/bttvIntegration.js" type="module"></script>
+	<script src="/scripts/handleChat.js" type="module"></script>
 </body>
+
 </html>
