@@ -6,8 +6,9 @@ html, body {
 	margin-top: 0;
 	font-family: Lato, sans-serif;
 	--animation-duration: 500ms;
-    --slide-x-amount:500%; 
+    --slide-x-amount:100%; 
     --text-align-side:left;
+    --slide-in-out-delay: 550ms;
 }
 
 [data-twitch-chat] {
@@ -30,14 +31,13 @@ html, body {
     color: white;
 	padding: 0.75em;
 	word-wrap: break-word;
-    transition-delay: 300ms;
 	transition:
 		opacity var(--animation-duration) ease-in-out,
 		transform var(--animation-duration) ease-in-out;
-
 	opacity: 0;
 	transform: translateX(var(--slide-x-amount));
 	animation: show var(--animation-duration) ease-in-out forwards;
+    animation-delay: var(--slide-in-out-delay);
 }
 
 @keyframes show {
@@ -55,6 +55,7 @@ html, body {
 
 [data-twitch-message]:nth-last-child(n+6) {
 	opacity: 0;
+    transition-delay: var(--slide-in-out-delay);
 	transform: translateX(var(--slide-x-amount));
 	transition:
 		opacity var(--animation-duration) ease-in-out,
