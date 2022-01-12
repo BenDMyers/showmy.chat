@@ -5,14 +5,14 @@
  * @param {string} id the BTTV id of that emote
  * @returns {string} the base text modified with any matched keywords turned into html image tags with that emote as src
  */
-function replaceKeywordWithBttvEmoteImage(textContent, keyword, imageSource, id){ 
-    const argumentsExistAndAreStrings = areAllTruthyStrings([textContent,keyword,imageSource,id]); 
-    if (!argumentsExistAndAreStrings) { return null }
-    const imageHtmlString = 
-    `<img alt="${keyword}" data-twitch-emote="${keyword}" data-twitch-emote-id="${id}" data-twitch-emote-source="bttv" src="${imageSource}"></img>`;
-    const words = textContent.split(' ');
-    const modifiedTextContent = words.map(word => word === keyword ? imageHtmlString : word).join(' ');
-    return modifiedTextContent;
+export function replaceKeywordWithBttvEmoteImage(textContent, keyword, imageSource, id) {
+	const argumentsExistAndAreStrings = areAllTruthyStrings([textContent, keyword, imageSource, id]);
+	if (!argumentsExistAndAreStrings) { return null }
+	const imageHtmlString =
+		`<img alt="${keyword}" data-twitch-emote="${keyword}" data-twitch-emote-id="${id}" data-twitch-emote-source="bttv" src="${imageSource}"></img>`;
+	const words = textContent.split(' ');
+	const modifiedTextContent = words.map(word => word === keyword ? imageHtmlString : word).join(' ');
+	return modifiedTextContent;
 }
 
 
@@ -20,13 +20,13 @@ function replaceKeywordWithBttvEmoteImage(textContent, keyword, imageSource, id)
  * @param {Array} arrayOfInputs values to be tested 
  * @returns {Boolean} true if all inputs provided are both truthy and strings, false if not
  */
-function areAllTruthyStrings(arrayOfInputs)  { 
-    let areTruthyStrings = true;
-    if (arrayOfInputs.length === 0){ areTruthyStrings = false }
-    for (input of arrayOfInputs){ 
-        if (!input || typeof input !== "string"){ areTruthyStrings = false }
-    }
-    return areTruthyStrings
+export function areAllTruthyStrings(arrayOfInputs) {
+	let areTruthyStrings = true;
+	if (arrayOfInputs.length === 0) { areTruthyStrings = false }
+	for (const input of arrayOfInputs) {
+		if (!input || typeof input !== "string") { areTruthyStrings = false }
+	}
+	return areTruthyStrings
 }
 
 
@@ -34,17 +34,22 @@ function areAllTruthyStrings(arrayOfInputs)  {
  * @param {string} username twitch username, case insensitive
  * @returns {string} twitch user id
  */
-async function getTwitchUserId(username, fetchFunction){ 
-    if (!username || typeof username !== "string"){ 
-        return null;
-    }
-    fetchFunction = fetchFunction || defaultFetch
-    const apiBaseUrl = "https://streamraiders.tips/_functions/getTwitchProfileData/";
-    const urlToQuery = apiBaseUrl + username;
-    const twitchUserData = await fetchFunction(urlToQuery);
-    return new Promise( resolve => { 
-        resolve(twitchUserData.id)
-    })
+export async function getTwitchUserId(username, fetchFunction) {
+	if (!username || typeof username !== "string") {
+		return null;
+	}
+	fetchFunction = fetchFunction || defaultFetch
+	const apiBaseUrl = "https://streamraiders.tips/_functions/getTwitchProfileData/";
+	const urlToQuery = apiBaseUrl + username;
+
+	try {
+		const twitchUserData = await fetchFunction(urlToQuery);
+		return new Promise(resolve => {
+			resolve(twitchUserData.id)
+		})
+	} catch (err) {
+		console.log(err);
+	}
 }
 
 
@@ -54,16 +59,16 @@ async function getTwitchUserId(username, fetchFunction){
  * that resolves to a json of the fetched url resource.
  * @returns {Object<string, string>} key is the friendly emote name, value is the BTTV emote id
  */
-async function getBttvChannelEmoteDict(userId, fetchFunction){
-    if ( !userId || typeof userId !== "string") {return null} 
-    fetchFunction = fetchFunction || defaultFetch
-    const apiBaseUrl = "https://api.betterttv.net/3/cached/users/twitch/"
-    const urlToQuery = apiBaseUrl + userId;
-    const bttvChannelData = await fetchFunction(urlToQuery);
-    const emoteDict = convertBttvChannelDataToEmoteDict(bttvChannelData);
-    return new Promise( resolve=> { 
-        resolve(emoteDict);
-    })
+export async function getBttvChannelEmoteDict(userId, fetchFunction) {
+	if (!userId || typeof userId !== "string") { return null }
+	fetchFunction = fetchFunction || defaultFetch
+	const apiBaseUrl = "https://api.betterttv.net/3/cached/users/twitch/"
+	const urlToQuery = apiBaseUrl + userId;
+	const bttvChannelData = await fetchFunction(urlToQuery);
+	const emoteDict = convertBttvChannelDataToEmoteDict(bttvChannelData);
+	return new Promise(resolve => {
+		resolve(emoteDict);
+	})
 }
 
 
@@ -71,12 +76,12 @@ async function getBttvChannelEmoteDict(userId, fetchFunction){
  * @param {string} url url to retrieve json from
  * @returns {Object} json data received from fetch
  */
-async function defaultFetch(url){ 
-    const response = await fetch(url);
-    const json = await response.json();
-    return new Promise(resolve => { 
-        resolve(json);
-    })
+export async function defaultFetch(url) {
+	const response = await fetch(url);
+	const json = await response.json();
+	return new Promise(resolve => {
+		resolve(json);
+	})
 }
 
 
@@ -92,27 +97,27 @@ async function defaultFetch(url){
  * 
  * @returns {Object} key is the friendly emote name, value is the BTTV emote id
  */
-function convertBttvChannelDataToEmoteDict(channelData){ 
-    if (!channelData || typeof channelData !== "object") { return null };
+export function convertBttvChannelDataToEmoteDict(channelData) {
+	if (!channelData || typeof channelData !== "object") { return null };
 
-    let emotesDict = {};
-    if (channelData.channelEmotes) {
-        channelData.channelEmotes.forEach(emote => emotesDict[emote.code] = emote.id);
-    }
-    if (channelData.sharedEmotes) {
-        channelData.sharedEmotes.forEach(emote => emotesDict[emote.code] = emote.id);
-    }
-    return emotesDict;
+	let emotesDict = {};
+	if (channelData.channelEmotes) {
+		channelData.channelEmotes.forEach(emote => emotesDict[emote.code] = emote.id);
+	}
+	if (channelData.sharedEmotes) {
+		channelData.sharedEmotes.forEach(emote => emotesDict[emote.code] = emote.id);
+	}
+	return emotesDict;
 }
-    
+
 
 /**
  * @param {string} bttvEmoteId  BTTV's uid for the emote
  * @returns {string} url for the emote's image source
  */
-function getBttvImageUrl(bttvEmoteId){ 
-    if (!bttvEmoteId || typeof bttvEmoteId !== "string"){ return null}
-    return url = `https://cdn.betterttv.net/emote/${bttvEmoteId}/3x`
+export function getBttvImageUrl(bttvEmoteId) {
+	if (!bttvEmoteId || typeof bttvEmoteId !== "string") { return null }
+	return `https://cdn.betterttv.net/emote/${bttvEmoteId}/3x`;
 }
 
 
@@ -121,25 +126,14 @@ function getBttvImageUrl(bttvEmoteId){
  * @param {Object<string, string>} dictObject  key is friendly emote name, value is the BTTV emote id
  * @returns {Object<string, string>} same as input - key is friendly name, value is id
  */
-async function addGlobalBttvEmotesToDict(dictObject,fetchFunction){ 
-    if (!dictObject || typeof dictObject !== "object") { return null }
-    fetchFunction = fetchFunction || defaultFetch
-    const bttvUrl = "https://api.betterttv.net/3/cached/emotes/global";
-    const response = await fetchFunction(bttvUrl);
-    const emoteDict = convertBttvChannelDataToEmoteDict({"sharedEmotes":response})
-    dictObject = {...dictObject,...emoteDict}
-    return new Promise( resolve => { 
-        resolve(dictObject);
-    })
+export async function addGlobalBttvEmotesToDict(dictObject, fetchFunction) {
+	if (!dictObject || typeof dictObject !== "object") { return null }
+	fetchFunction = fetchFunction || defaultFetch
+	const bttvUrl = "https://api.betterttv.net/3/cached/emotes/global";
+	const response = await fetchFunction(bttvUrl);
+	const emoteDict = convertBttvChannelDataToEmoteDict({ "sharedEmotes": response })
+	dictObject = { ...dictObject, ...emoteDict }
+	return new Promise(resolve => {
+		resolve(dictObject);
+	})
 }
-
-
-module.exports = { 
-    replaceKeywordWithBttvEmoteImage, 
-    getTwitchUserId,
-    getBttvChannelEmoteDict,
-    convertBttvChannelDataToEmoteDict,
-    getBttvImageUrl,
-    addGlobalBttvEmotesToDict
-}
-
