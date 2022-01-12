@@ -4,7 +4,7 @@ const {
     getBttvChannelEmoteDict,
     convertBttvChannelDataToEmoteDict,
     getBttvImageUrl,
-    addGlobalEmotesToDict
+    addGlobalBttvEmotesToDict
 } = require('../src/scripts/bttvIntegration.js');
 const axios = require('axios');
 
@@ -149,15 +149,15 @@ describe("BTTV Integration -> getBttvImageUrl", () => {
 
 describe("BTTV Integration -> addGlobalEmotesToDict", () => {
     test('if argument not an object, or not provided, returns null', async () => {
-        await expect(addGlobalEmotesToDict()).resolves.toBe(null);
-        await expect(addGlobalEmotesToDict("hi i'm not an object hehe", fetchFunction)).resolves.toBe(null);
+        await expect(addGlobalBttvEmotesToDict()).resolves.toBe(null);
+        await expect(addGlobalBttvEmotesToDict("hi i'm not an object hehe", fetchFunction)).resolves.toBe(null);
     })
 
     test('valid argument  (including empty object/dict) returns correct object with global emotes in them', async () => {
-        const response = await addGlobalEmotesToDict({}, fetchFunction);
+        const response = await addGlobalBttvEmotesToDict({}, fetchFunction);
         expect(response.AngelThump).toBe('566ca1a365dbbdab32ec055b');
         expect(response.DuckerZ).toBe('573d38b50ffbf6cc5cc38dc9');
-        const responseWithIngoingDict = await addGlobalEmotesToDict({ "testytestytesty": "yup i'm still here" }, fetchFunction);
+        const responseWithIngoingDict = await addGlobalBttvEmotesToDict({ "testytestytesty": "yup i'm still here" }, fetchFunction);
         expect(responseWithIngoingDict.testytestytesty).toBe("yup i'm still here");
         expect(responseWithIngoingDict.FeelsBadMan).toBe("566c9fc265dbbdab32ec053b")
     })

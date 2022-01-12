@@ -3,7 +3,7 @@
  * @param {string} keyword the keyword that matches to an emote
  * @param {string} imageSource the image source url string of that emote
  * @param {string} id the BTTV id of that emote
- * @returns {string} the base text modified with any matched keywords turned into html image tags with that emote's as src
+ * @returns {string} the base text modified with any matched keywords turned into html image tags with that emote as src
  */
 function replaceKeywordWithBttvEmoteImage(textContent, keyword, imageSource, id){ 
     const argumentsExistAndAreStrings = areAllTruthyStrings([textContent,keyword,imageSource,id]); 
@@ -50,9 +50,9 @@ async function getTwitchUserId(username, fetchFunction){
 
 /**
  * @param {string} userId twitch's user ID 
- * @param {Function} fetchFunction OPTIONAL - a specific fetch function that returns a promise
- * that resolves to a json of the fetch data.
- * @returns {Object} key is the friendly emote name, value is the BTTV emote id
+ * @param {Function} [fetchFunction] a specific fetch function that returns a promise
+ * that resolves to a json of the fetched url resource.
+ * @returns {Object<string, string>} key is the friendly emote name, value is the BTTV emote id
  */
 async function getBttvChannelEmoteDict(userId, fetchFunction){
     if ( !userId || typeof userId !== "string") {return null} 
@@ -81,20 +81,28 @@ async function defaultFetch(url){
 
 
 /**
- * @param {Object} channelData  data structure provided by BTTV's api for channel queries
+ * @param {{
+ *    id: {string}, 
+ *    avatar: {string},  
+ *    bots: {string}[],
+ *    [channelEmotes]: {code: string, id: string, imageType: string}[],
+ *    [sharedEmotes]: {code: string, id: string, imageType: string}[]
+ * }} channelData  data structure provided by BTTV's api for channel queries. 
+ * If user not found, will receive {"message":"user not found"}
+ * 
  * @returns {Object} key is the friendly emote name, value is the BTTV emote id
  */
 function convertBttvChannelDataToEmoteDict(channelData){ 
     if (!channelData || typeof channelData !== "object") { return null };
-    let emotesArray = []
-    if (channelData.channelEmotes) { emotesArray.push(...channelData.channelEmotes) }
-    if (channelData.sharedEmotes) { emotesArray.push(...channelData.sharedEmotes)}
+
     let emotesDict = {};
-    for (emote of emotesArray){ 
-        const emoteName = emote.code;
-        emotesDict[emoteName] = emote.id;
+    if (channelData.channelEmotes) {
+        channelData.channelEmotes.forEach(emote => emotesDict[emote.code] = emote.id);
     }
-    return emotesDict
+    if (channelData.sharedEmotes) {
+        channelData.sharedEmotes.forEach(emote => emotesDict[emote.code] = emote.id);
+    }
+    return emotesDict;
 }
     
 
@@ -110,10 +118,10 @@ function getBttvImageUrl(bttvEmoteId){
 
 
 /**
- * @param {Object} dictObject  key is friendly emote name, value is the BTTV emote id
- * @returns {Object} same as input - key is friendly name, value is id
+ * @param {Object<string, string>} dictObject  key is friendly emote name, value is the BTTV emote id
+ * @returns {Object<string, string>} same as input - key is friendly name, value is id
  */
-async function addGlobalEmotesToDict(dictObject,fetchFunction){ 
+async function addGlobalBttvEmotesToDict(dictObject,fetchFunction){ 
     if (!dictObject || typeof dictObject !== "object") { return null }
     fetchFunction = fetchFunction || defaultFetch
     const bttvUrl = "https://api.betterttv.net/3/cached/emotes/global";
@@ -132,6 +140,6 @@ module.exports = {
     getBttvChannelEmoteDict,
     convertBttvChannelDataToEmoteDict,
     getBttvImageUrl,
-    addGlobalEmotesToDict
+    addGlobalBttvEmotesToDict
 }
 
