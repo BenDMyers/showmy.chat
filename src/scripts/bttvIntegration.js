@@ -82,9 +82,9 @@ async function defaultFetch(url){
 
 /**
  * @param {{
- *    id: {string}, 
- *    avatar: {string},  
- *    bots: {string}[],
+ *    id: string,
+ *    avatar: string, 
+ *    bots: string[],
  *    [channelEmotes]: {code: string, id: string, imageType: string}[],
  *    [sharedEmotes]: {code: string, id: string, imageType: string}[]
  * }} channelData  data structure provided by BTTV's api for channel queries. 
