@@ -3,6 +3,7 @@ const watchedChannels = chatbox.getAttribute('data-twitch-chat');
 
 let mostRecentSender = '';
 let currentMessageGroup = 0;
+let bttvEmoteDict = {}
 
 function htmlEntities(html) {
 	function it() {
@@ -51,6 +52,22 @@ function formatEmotes(text, emotes = {}) {
 	return htmlEntities(splitText).join('')
 }
 
+function formatBttvEmotes(text){ 
+	for (key in bttvEmoteDict){ 
+		if (text.includes(key)){ 
+			const bttvId = bttvEmoteDict[key]
+			text = replaceKeywordWithEmoteImageString(
+				text,
+				key,
+				getBttvImageUrl(bttvId),
+				bttvId
+			)
+		}
+	}
+	return text
+}
+
+
 /**
  * @param {string} messageContents
  * @returns {string} message with any user mentioned wrapped in <mark> tags
@@ -87,6 +104,7 @@ ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
 
 	const message = document.createElement('div');
 	let formattedMessage = formatEmotes(messageContents, extra.messageEmotes);
+	formattedMessage = formatBttvEmotes(formattedMessage);
 	// formattedMessage = formatLinks(formattedMessage);
 	formattedMessage = formatUserMentions(formattedMessage);
 
@@ -160,6 +178,7 @@ ComfyJS.onMessageDeleted = function(id, extra) {
 	if (messageToDelete) {
 		removeMessageFromDomAndShiftOthers(messageToDelete);
 	}
+	messageToDelete.remove();
 }
 
 function removeMessageFromDomAndShiftOthers(messageToDelete) {
@@ -172,4 +191,12 @@ function removeMessageFromDomAndShiftOthers(messageToDelete) {
 	messageToDelete.remove();
 }
 
-ComfyJS.Init(null, null, watchedChannels.split(' '));
+
+async function init(){
+	const twitchUserId = await getTwitchUserId(watchedChannels.split(' ')[0]);
+	bttvEmoteDict = await getBttvChannelEmoteDict(twitchUserId);
+	bttvEmoteDict = await addGlobalBttvEmotesToDict(bttvEmoteDict);
+	ComfyJS.Init(null, null, watchedChannels.split(' '));
+}
+
+init();
