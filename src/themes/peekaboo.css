@@ -6,7 +6,7 @@ html, body {
 	margin-top: 0;
 	font-family: Lato, sans-serif;
 	--animation-duration: 500ms;
-    --slide-x-amount:300%; 
+    --slide-x-amount:500%; 
     --text-align-side:left;
 }
 
@@ -25,6 +25,7 @@ html, body {
 
 [data-twitch-message] {
     width: 380px;
+    font-weight: 900;
     letter-spacing: 0.5px;
     color: white;
 	padding: 0.75em;
@@ -56,8 +57,8 @@ html, body {
 	opacity: 0;
 	transform: translateX(var(--slide-x-amount));
 	transition:
-		opacity var(--animation-duration) ease-in,
-		transform var(--animation-duration) ease-in;
+		opacity var(--animation-duration) ease-in-out,
+		transform var(--animation-duration) ease-in-out;
 }
 
 .twitch-chat-sender {
@@ -69,7 +70,6 @@ html, body {
     border-radius: 4px;
     font-size: 1.5rem;
 	font-family: Lato, sans-serif;
-	font-weight: 900;
 	color: var(--twitch-sender-color, #0e2058);
 	margin-bottom: 0.1em;
 }
