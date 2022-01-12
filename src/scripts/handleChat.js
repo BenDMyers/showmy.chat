@@ -160,6 +160,17 @@ ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
 	newMessage.setAttribute('data-twitch-message-group', currentMessageGroup);
 
 	chatbox.appendChild(newMessage);
+
+	// Optionally, users may specify a max number of messages to show.
+	// If we exceed that number, remove the oldest still shown message.
+	/** @type {{showLatestMessages?: number}} */
+	const {showLatestMessages} = window.CONFIG;
+	if (showLatestMessages) {
+		while (document.querySelectorAll('[data-twitch-message]').length > showLatestMessages) {
+			const oldestMessage = document.querySelector('[data-twitch-message]');
+			removeMessageFromDomAndShiftOthers(oldestMessage);
+		}
+	}
 }
 
 ComfyJS.onMessageDeleted = function(id, extra) {
@@ -167,6 +178,7 @@ ComfyJS.onMessageDeleted = function(id, extra) {
 	if (messageToDelete) {
 		removeMessageFromDomAndShiftOthers(messageToDelete);
 	}
+	messageToDelete.remove();
 }
 
 function removeMessageFromDomAndShiftOthers(messageToDelete) {
