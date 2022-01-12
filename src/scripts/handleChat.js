@@ -1,4 +1,5 @@
 import {replaceKeywordWithBttvEmoteImage, getBttvImageUrl, getTwitchUserId, getBttvChannelEmoteDict, addGlobalBttvEmotesToDict} from './bttvIntegration.js';
+import {isLightOrDark} from './colorContrast.js';
 
 const chatbox = document.querySelector('[data-twitch-chat]');
 const watchedChannels = chatbox.getAttribute('data-twitch-chat');
@@ -148,6 +149,11 @@ ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
 	if (extra.userColor) {
 		newMessage.setAttribute('data-twitch-sender-color', extra.userColor);
 		newMessage.setAttribute('style', `--twitch-sender-color: ${extra.userColor}`);
+
+		const senderColorLightness = isLightOrDark(extra.userColor);
+		const idealContrastForSenderColor = senderColorLightness === 'light' ? 'dark' : 'light';
+		newMessage.setAttribute('data-twitch-sender-color-lightness', senderColorLightness);
+		newMessage.setAttribute('data-twitch-sender-color-pair-with', idealContrastForSenderColor);
 	}
 
 	if (extra.userState['first-msg']) {
