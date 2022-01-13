@@ -6,7 +6,7 @@ const VALID_PARAMETERS = {
 		validate: isBoolean,
 		transform: toBoolean
 	},
-	displayCommands: {
+	showCommands: {
 		validate: isBoolean,
 		transform: toBoolean
 	},

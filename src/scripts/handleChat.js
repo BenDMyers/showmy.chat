@@ -194,7 +194,7 @@ ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
 }
 
 ComfyJS.onCommand = function(user, command, message, flags, extra = {}) {
-	if (window.CONFIG.displayCommands) {
+	if (window.CONFIG.showCommands) {
 		const augmentedExtra = {...extra, _isCommand: true, _commandName: command, _commandHasBody: !!message};
 		ComfyJS.onChat(user, `!${command} ${message}`, flags, null, augmentedExtra);
 	}
