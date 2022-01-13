@@ -55,6 +55,19 @@ body {
 	font-size: 115%;
 }
 
+[data-twitch-sender-roles*="subscriber"] .twitch-chat-sender::after {
+	content: "*";
+	color: var(--accent);
+}
+
+[data-twitch-sender-roles*="founder"] .twitch-chat-sender::after,
+[data-twitch-sender-roles*="vip"] .twitch-chat-sender::after,
+[data-twitch-sender-roles*="mod"] .twitch-chat-sender::after,
+[data-twitch-sender-roles*="broadcaster"] .twitch-chat-sender::after {
+	content: "**";
+	color: var(--accent);
+}
+
 /* part of a message block with the text of the message */
 .twitch-chat-message {
 	display: inline;
@@ -80,4 +93,3 @@ body {
 	color: var(--accent);
 	text-shadow: 0 0 5px var(--accent);
 }
-
