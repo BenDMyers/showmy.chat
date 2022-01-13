@@ -46,7 +46,11 @@ body {
 
 /* replying to line on top of a message */
 [data-twitch-message-reply] {
+	display: block;
 	opacity: 0.6;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 /* part of a message block with the sender of the message */
