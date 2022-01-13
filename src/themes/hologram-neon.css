@@ -5,6 +5,7 @@
 	--message-glow-color: mediumpurple;
 	--emote-glow-color: mediumpurple;
 	--mention-glow-color: darkorange;
+	--command-glow-color: magenta;
 }
 
 html,
@@ -126,6 +127,13 @@ body {
 		grayscale(0.7)
 		drop-shadow(0 0 0 var(--emote-glow-color))
 		drop-shadow(0 0 calc(5px / 1.75) var(--emote-glow-color));
+}
+
+.twitch-chat-command {
+	--neon-glow-color: var(--command-glow-color);
+	background-color: transparent;
+	color: white;
+	animation: flicker 8s infinite;
 }
 
 [data-twitch-mentioned-user] {

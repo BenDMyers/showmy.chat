@@ -75,6 +75,11 @@ body {
   line-height: 3rem;
 }
 
+.twitch-chat-command {
+	background-color: transparent;
+	color: inherit;
+}
+
 [data-twitch-chat]
   [data-twitch-message]
   .twitch-chat-message

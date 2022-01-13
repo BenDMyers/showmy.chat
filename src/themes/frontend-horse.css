@@ -120,6 +120,11 @@ html, body {
 	line-height: 24px;
 }
 
+.twitch-chat-command {
+	background-color: transparent;
+	color: inherit;
+}
+
 [data-twitch-emote] {
 	display: inline-block;
 	height: 1.5em;

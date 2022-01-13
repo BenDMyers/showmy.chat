@@ -77,7 +77,8 @@ html, body {
 	display: none;
 }
 
-[data-twitch-mentioned-user] {
+[data-twitch-mentioned-user],
+.twitch-chat-command {
 	background: transparent;
 	font-weight: 700;
 }
