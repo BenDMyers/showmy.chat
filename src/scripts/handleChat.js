@@ -88,6 +88,17 @@ function formatUserMentions(messageContents) {
 
 /**
  * @param {string} messageContents
+ * @returns {string} message with the chat command wrapped in a <mark> tag
+ */
+function formatChatCommand(messageContents) {
+	const COMMAND_REGEX = /^!(([\w]|\&\#83;|\&\#115;)+)/;
+	return messageContents.replace(COMMAND_REGEX, function (substring, command) {
+		return `<mark class="twitch-chat-command">!${command}</mark>`;
+	});
+}
+
+/**
+ * @param {string} messageContents
  * @returns {string} message with any links wrapped in <a href>
  */
 function formatLinks(messageContents) {
@@ -109,6 +120,13 @@ ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
 	formattedMessage = formatBttvEmotes(formattedMessage);
 	// formattedMessage = formatLinks(formattedMessage);
 	formattedMessage = formatUserMentions(formattedMessage);
+	if (extra._isCommand) {
+		formattedMessage = formatChatCommand(formattedMessage);
+		newMessage.setAttribute('data-twitch-command', extra._commandName);
+		if (extra._commandHasBody) {
+			newMessage.setAttribute('data-twitch-command-has-message', true);
+		}
+	}
 
 	message.innerHTML = formattedMessage;
 	message.classList.add('twitch-chat-message');
@@ -175,9 +193,10 @@ ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
 	}
 }
 
-ComfyJS.onCommand = function(user, command, message, flags, extra) {
+ComfyJS.onCommand = function(user, command, message, flags, extra = {}) {
 	if (window.CONFIG.displayCommands) {
-		ComfyJS.onChat(user, `!${command} ${message}`, flags, null, extra);
+		const augmentedExtra = {...extra, _isCommand: true, _commandName: command, _commandHasBody: !!message};
+		ComfyJS.onChat(user, `!${command} ${message}`, flags, null, augmentedExtra);
 	}
 }
 
