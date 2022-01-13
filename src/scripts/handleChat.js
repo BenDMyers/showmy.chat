@@ -175,6 +175,12 @@ ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
 	}
 }
 
+ComfyJS.onCommand = function(user, command, message, flags, extra) {
+	if (window.CONFIG.displayCommands) {
+		ComfyJS.onChat(user, `!${command} ${message}`, flags, null, extra);
+	}
+}
+
 ComfyJS.onMessageDeleted = function(id, extra) {
 	const messageToDelete = document.querySelector(`[data-twitch-message="${id}"]`);
 	if (messageToDelete) {
