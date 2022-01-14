@@ -3,6 +3,8 @@ import {replaceKeywordWithBttvEmoteImage, getBttvImageUrl, getTwitchUserId, getB
 const chatbox = document.querySelector('[data-twitch-chat]');
 const watchedChannels = chatbox.getAttribute('data-twitch-chat');
 
+const avatars = {};
+
 let mostRecentSender = '';
 let currentMessageGroup = 0;
 let bttvEmoteDict = {}
@@ -97,8 +99,45 @@ function formatLinks(messageContents) {
 	});
 }
 
-ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
+/**
+ * Retrieves a message sender's avatar URL.
+ * Uses memoization for faster retrieval.
+ * @param {string} user username to get avatar of
+ * @returns {string} URL of avatar to use as a source
+ */
+async function getUserAvatar(user) {
+	if (avatars[user]) {
+		return avatars[user];
+	}
+
+	const response = await fetch(`https://streamraiders.tips/_functions/getTwitchProfileImageLink/${user}`);
+	const avatarUrl = await response.text();
+	avatars[user] = avatarUrl;
+	console.log({user, avatarUrl});
+	return avatarUrl;
+}
+
+// ComfyJS.onJoin = async function (user, self, extra) {
+// 	console.log({joined: user});
+// 	await getUserAvatar(user);
+// }
+
+ComfyJS.onChat = async function(user, messageContents, flags, self, extra) {
+	const avatarUrl = await getUserAvatar(user);
 	const newMessage = document.createElement('li');
+
+	const avatar = document.createElement('img');
+	if (!document.getElementById(`preload-avatar-$${user}`)) {
+		const preloadAvatar = document.createElement('link');
+		preloadAvatar.setAttribute('id', `preload-avatar-$${user}`);
+		preloadAvatar.setAttribute('rel', 'preload');
+		preloadAvatar.setAttribute('as', 'image');
+		preloadAvatar.setAttribute('href', avatarUrl);
+		document.head.appendChild(preloadAvatar);
+	}
+	avatar.setAttribute('src', avatarUrl);
+	avatar.setAttribute('alt', user);
+	avatar.setAttribute('data-twitch-sender-avatar', user);
 
 	const sender = document.createElement('div');
 	sender.classList.add('twitch-chat-sender');
@@ -121,6 +160,7 @@ ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
 		newMessage.appendChild(replyPreview);
 	}
 
+	avatar && newMessage.appendChild(avatar);
 	newMessage.appendChild(sender);
 	newMessage.appendChild(message);
 

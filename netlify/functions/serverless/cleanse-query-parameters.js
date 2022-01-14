@@ -6,6 +6,10 @@ const VALID_PARAMETERS = {
 		validate: isBoolean,
 		transform: toBoolean
 	},
+	showAvatars: {
+		validate: isBoolean,
+		transform: toBoolean
+	},
 	showLatestMessages: {
 		validate: isPositiveInteger,
 		transform: Number.parseInt
