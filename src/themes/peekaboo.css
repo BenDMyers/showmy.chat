@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
 
 html, body {
-	overflow-y: hidden;
+	overflow: hidden;
 	height: 100vh;
 	margin-top: 0;
 	font-family: Lato, sans-serif;
@@ -9,6 +9,7 @@ html, body {
     --slide-x-amount:100%; 
     --text-align-side:left;
     --slide-in-out-delay: 550ms;
+	--user-avatar-height: 75px;
 }
 
 [data-twitch-chat] {
@@ -25,7 +26,8 @@ html, body {
 }
 
 [data-twitch-message] {
-    width: 380px;
+	margin-top: calc( var(--user-avatar-height)*-1 );
+    width: 465px;
     font-weight: 900;
     letter-spacing: 0.5px;
     color: white;
@@ -53,7 +55,7 @@ html, body {
 	animation: none;
 }
 
-[data-twitch-message]:nth-last-child(n+6) {
+[data-twitch-message]:nth-last-child(n+8) {
 	opacity: 0;
     transition-delay: var(--slide-in-out-delay);
 	transform: translateX(var(--slide-x-amount));
@@ -103,3 +105,14 @@ html, body {
 	text-decoration: none;
 }
 
+
+[data-twitch-sender-avatar] {
+	height: 3em;
+	border-radius: 4px;
+	transform: translateY( calc( var(--user-avatar-height) - 9px));
+}
+
+.twitch-chat-sender,
+.twitch-chat-message{
+	transform: translateX(var(--user-avatar-height));
+}

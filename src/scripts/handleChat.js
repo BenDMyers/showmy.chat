@@ -110,8 +110,9 @@ async function getUserAvatar(user) {
 		return avatars[user];
 	}
 
-	const response = await fetch(`https://streamraiders.tips/_functions/getTwitchProfileImageLink/${user}`);
-	const avatarUrl = await response.text();
+	const response = await fetch(`https://streamraiders.tips/_functions/getTwitchProfileData/${user}`);
+	const jsonResponse = await response.json();
+	const avatarUrl = jsonResponse.profile_image_url
 	avatars[user] = avatarUrl;
 	console.log({user, avatarUrl});
 	return avatarUrl;
