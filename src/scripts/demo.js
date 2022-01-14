@@ -214,7 +214,6 @@ const MOCK_COMFY = (function () {
 	}
 
 	function _generateChatCommand() {
-		console.log('command')
 		const extra = {userState: {}};
 
 		if (Math.random() < 0.2) {
