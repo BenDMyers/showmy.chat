@@ -44,10 +44,19 @@ layout: page.html
 		allowtransparency="true"
 	>
 	</iframe>
+
+	<template id="output-template">
+		<p>Your URL is:</p>
+		<div>
+			<p class="url"></p>
+			<button name="Copy link to clipboard">Copy</button>
+		</div>
+	</template>
 </div>
 <script>
 	const overlayBuilderForm = document.getElementById('overlay-builder');
 	const linkOutput = document.querySelector('output');
+	const outputTemplate = document.querySelector("#output-template");
 	const preview = document.getElementById('preview');
 	const allFields = document.querySelectorAll('[name]');
 	allFields.forEach(field => field.addEventListener('change', updatePreview));
@@ -63,8 +72,29 @@ layout: page.html
 		}
 		const queryParams = new URLSearchParams(values).toString();
 		const paramString = queryParams ? `?${queryParams}` : '';
+		const url = `showmy.chat/c/${channelName}${paramString}`;
 
-		linkOutput.innerHTML = `<strong>showmy.chat/c/</strong>${channelName}${paramString}`; 
+		const template = outputTemplate.content.cloneNode(true);
+
+		const urlEl  = template.querySelector(".url");
+		urlEl.innerText = url;
+
+		const copyButton = template.querySelector("button");
+		// remove copybutton if clipboard API is not supported
+		if (typeof navigator.clipboard === `undefined`) {
+			copyButton.remove();
+		} else {
+			copyButton.addEventListener("click", async (event) => {
+				event.preventDefault();
+
+				await navigator.clipboard.writeText(url);
+				copyButton.innerText = "Copied";
+				copyButton.name = "Copied link to clipboard";
+			});
+		}
+
+		linkOutput.innerHTML = "";
+		linkOutput.appendChild(template);
 	}
 
 	function updatePreview() {
@@ -101,6 +131,26 @@ layout: page.html
 		position: sticky;
 		top: 3em;
 		resize: both;
+	}
+
+	output p {
+		margin-bottom: calc(var(--spacing) * .25);
+	}
+
+	output div {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+
+	output div p{
+		flex: 1;
+	}
+
+	output div button{
+		/* reset pico */
+		width: auto;
+		margin-bottom: 0;
 	}
 
 	@media (max-width: 576px) {
