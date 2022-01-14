@@ -79,7 +79,8 @@ body {
 	width: 1.25em;
 }
 
-[data-twitch-mentioned-user] {
+[data-twitch-mentioned-user],
+.twitch-chat-command {
 	background-color: transparent;
 	font-family: 'Papyrus', 'Comic Sans MS', cursive;
 	font-weight: 600;

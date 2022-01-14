@@ -60,6 +60,26 @@
       "profile": "https://alex.party",
       "contributions": [
         "content",
+        "design",
+        "code"
+      ]
+    },
+    {
+      "login": "KenAKAFrosty",
+      "name": "Ken aka Frosty",
+      "avatar_url": "https://avatars.githubusercontent.com/u/90424167?v=4",
+      "profile": "https://github.com/KenAKAFrosty",
+      "contributions": [
+        "content",
+        "code"
+      ]
+    },
+    {
+      "login": "NickyMeuleman",
+      "name": "Nicky Meuleman",
+      "avatar_url": "https://avatars.githubusercontent.com/u/30179461?v=4",
+      "profile": "https://nickymeuleman.netlify.app/",
+      "contributions": [
         "design"
       ]
     },

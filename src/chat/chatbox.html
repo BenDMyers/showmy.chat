@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,9 @@
 		}
 	</style>
 	<link rel="stylesheet" href="{{ eleventy.serverless.query.theme | toStylesheet: themes }}" />
+	<script>
+		window.CONFIG = Object.freeze({{ eleventy.serverless.query | serialize }});
+	</script>
 	{% if eleventy.serverless.query.DEMO %}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
 	<script src="/scripts/demo.js"></script>
@@ -18,8 +22,11 @@
 	{% endif %}
 	<title>{{ eleventy.serverless.path.channel }} | showmy.chat</title>
 </head>
+
 <body>
 	<ul data-twitch-chat="{{ eleventy.serverless.path.channel }}"></ul>
-	<script src="/scripts/handleChat.js"></script>
+	<script src="/scripts/bttvIntegration.js" type="module"></script>
+	<script src="/scripts/handleChat.js" type="module"></script>
 </body>
+
 </html>
