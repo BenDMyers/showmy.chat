@@ -65,12 +65,31 @@ html, body {
 		transform var(--animation-duration) ease-in;
 }
 
+[data-avatars-enabled="true"] [data-twitch-message] {
+	display: grid;
+	grid-template-areas: "avatar username" "avatar message";
+	grid-template-columns: 1fr 11fr;
+	column-gap: 0.75em;
+}
+
+[data-twitch-sender-avatar] {
+	height: 3em;
+	border-radius: 50%;
+	grid-area: avatar;
+	margin-block: auto;
+}
+
 .twitch-chat-sender {
 	font-family: Poppins, sans-serif;
 	font-weight: 800;
 	text-transform: uppercase;
 	color: var(--twitch-sender-color, #0e2058);
 	margin-bottom: 0.1em;
+	grid-area: username;
+}
+
+.twitch-chat-message {
+	grid-area: message;
 }
 
 [data-twitch-message-reply] {
@@ -85,6 +104,7 @@ html, body {
 [data-twitch-emote] {
 	width: 1.7em;
 	margin-bottom: -0.3em;
+	filter: drop-shadow(1px 0.5px 1px rgba(0, 0, 0, 0.3));
 }
 
 [data-twitch-message] a {
