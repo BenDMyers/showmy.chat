@@ -82,6 +82,17 @@
       "contributions": [
         "design"
       ]
+    },
+    {
+      "login": "KenAKAFrosty",
+      "name": "Ken aka Frosty",
+      "avatar_url": "https://avatars.githubusercontent.com/u/90424167?v=4",
+      "profile": "https://github.com/KenAKAFrosty",
+      "contributions": [
+        "content",
+        "code",
+        "infra"
+      ]
     }
   ],
   "contributorsPerLine": 7,
