@@ -1,3 +1,5 @@
+import {replaceKeywordWithBttvEmoteImage, getBttvImageUrl, getTwitchUserId, getBttvChannelEmoteDict, addGlobalBttvEmotesToDict} from './bttvIntegration.js';
+
 const chatbox = document.querySelector('[data-twitch-chat]');
 const watchedChannels = chatbox.getAttribute('data-twitch-chat');
 
@@ -5,6 +7,7 @@ const avatars = {};
 
 let mostRecentSender = '';
 let currentMessageGroup = 0;
+let bttvEmoteDict = {}
 
 function htmlEntities(html) {
 	function it() {
@@ -53,12 +56,34 @@ function formatEmotes(text, emotes = {}) {
 	return htmlEntities(splitText).join('')
 }
 
+function formatBttvEmotes(text){ 
+	for (const key in bttvEmoteDict){ 
+		if (text.includes(key)){ 
+			const bttvId = bttvEmoteDict[key]
+			text = replaceKeywordWithBttvEmoteImage(
+				text,
+				key,
+				getBttvImageUrl(bttvId),
+				bttvId
+			)
+		}
+	}
+	return text
+}
+
+
 /**
  * @param {string} messageContents
  * @returns {string} message with any user mentioned wrapped in <mark> tags
  */
 function formatUserMentions(messageContents) {
-	return messageContents.replace(/@([\w]+)/g, function (substring, mentionedUser) {
+	/** 
+	 * OBS 27.1.3 uses v75 of embedded chrome which has the following bug:
+	 * https://stackoverflow.com/questions/56499440/chrome-75-regexp-s-matches-strange-unicode-range
+	 * The result is that using /@([\w]+)/g as a regex will not match 's' or 'S' and instead return early.
+	 * This will be fixed in OBS 27.2, but this regex will match both &#83; (S) and &#115; (s) and will not cut things off.
+	 */
+	return messageContents.replace(/@(([\w]|\&\#83;|\&\#115;)+)/g, function (substring, mentionedUser) {
 		return `<mark data-twitch-mentioned-user="${mentionedUser}">@${mentionedUser}</mark>`;
 	});
 }
@@ -120,6 +145,7 @@ ComfyJS.onChat = async function(user, messageContents, flags, self, extra) {
 
 	const message = document.createElement('div');
 	let formattedMessage = formatEmotes(messageContents, extra.messageEmotes);
+	formattedMessage = formatBttvEmotes(formattedMessage);
 	// formattedMessage = formatLinks(formattedMessage);
 	formattedMessage = formatUserMentions(formattedMessage);
 
@@ -176,19 +202,43 @@ ComfyJS.onChat = async function(user, messageContents, flags, self, extra) {
 	newMessage.setAttribute('data-twitch-message-group', currentMessageGroup);
 
 	chatbox.appendChild(newMessage);
+
+	// Optionally, users may specify a max number of messages to show.
+	// If we exceed that number, remove the oldest still shown message.
+	/** @type {{showLatestMessages?: number}} */
+	const {showLatestMessages} = window.CONFIG;
+	if (showLatestMessages) {
+		while (document.querySelectorAll('[data-twitch-message]').length > showLatestMessages) {
+			const oldestMessage = document.querySelector('[data-twitch-message]');
+			removeMessageFromDomAndShiftOthers(oldestMessage);
+		}
+	}
 }
 
 ComfyJS.onMessageDeleted = function(id, extra) {
 	const messageToDelete = document.querySelector(`[data-twitch-message="${id}"]`);
 	if (messageToDelete) {
-		let wasFirstInGroup = messageToDelete.getAttribute('data-twitch-first-message-in-group');
-		let group = messageToDelete.getAttribute('data-twitch-message-group');
-		let hasNextInGroup = messageToDelete.nextSibling && messageToDelete.nextSibling.getAttribute('data-twitch-message-group') === group;
-		if (wasFirstInGroup && hasNextInGroup) {
-			messageToDelete.nextSibling.setAttribute('data-twitch-first-message-in-group', true);
-		}
-		messageToDelete.remove();
+		removeMessageFromDomAndShiftOthers(messageToDelete);
 	}
+	messageToDelete.remove();
 }
 
-ComfyJS.Init(null, null, watchedChannels.split(' '));
+function removeMessageFromDomAndShiftOthers(messageToDelete) {
+	let wasFirstInGroup = messageToDelete.getAttribute('data-twitch-first-message-in-group');
+	let group = messageToDelete.getAttribute('data-twitch-message-group');
+	let hasNextInGroup = messageToDelete.nextSibling && messageToDelete.nextSibling.getAttribute('data-twitch-message-group') === group;
+	if (wasFirstInGroup && hasNextInGroup) {
+		messageToDelete.nextSibling.setAttribute('data-twitch-first-message-in-group', true);
+	}
+	messageToDelete.remove();
+}
+
+
+async function init(){
+	const twitchUserId = await getTwitchUserId(watchedChannels.split(' ')[0]);
+	bttvEmoteDict = await getBttvChannelEmoteDict(twitchUserId);
+	bttvEmoteDict = await addGlobalBttvEmotesToDict(bttvEmoteDict);
+	ComfyJS.Init(null, null, watchedChannels.split(' '));
+}
+
+init();

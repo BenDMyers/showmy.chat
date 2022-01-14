@@ -1,4 +1,5 @@
 const {EleventyServerlessBundlerPlugin} = require('@11ty/eleventy');
+const serialize = require('serialize-javascript');
 const {titleCase} = require('title-case');
 const {isWebUri} = require('valid-url');
 
@@ -21,6 +22,7 @@ module.exports = function(eleventyConfig) {
 
 	eleventyConfig.addFilter('debug', output => JSON.stringify(output, null, 2));
 	eleventyConfig.addFilter('formatThemeName', input => titleCase(input.replace(/\-/g, ' ')));
+	eleventyConfig.addFilter('serialize', input => serialize(input, {isJSON: true}));
 	eleventyConfig.addFilter('toStylesheet', toStylesheet);
 
 	return {

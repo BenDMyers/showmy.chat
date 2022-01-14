@@ -47,7 +47,7 @@ layout: page.html
 </div>
 <script>
 	const overlayBuilderForm = document.getElementById('overlay-builder');
-	const output = document.querySelector('output');
+	const linkOutput = document.querySelector('output');
 	const preview = document.getElementById('preview');
 	const allFields = document.querySelectorAll('[name]');
 	allFields.forEach(field => field.addEventListener('change', updatePreview));
@@ -64,7 +64,7 @@ layout: page.html
 		const queryParams = new URLSearchParams(values).toString();
 		const paramString = queryParams ? `?${queryParams}` : '';
 
-		output.innerHTML = `<strong>showmy.chat/c/</strong>${channelName}${paramString}`; 
+		linkOutput.innerHTML = `<strong>showmy.chat/c/</strong>${channelName}${paramString}`; 
 	}
 
 	function updatePreview() {
