@@ -1,3 +1,5 @@
+import {replaceKeywordWithBttvEmoteImage, getBttvImageUrl, getTwitchUserId, getBttvChannelEmoteDict, addGlobalBttvEmotesToDict} from './bttvIntegration.js';
+
 const chatbox = document.querySelector('[data-twitch-chat]');
 const watchedChannels = chatbox.getAttribute('data-twitch-chat');
 
@@ -53,10 +55,10 @@ function formatEmotes(text, emotes = {}) {
 }
 
 function formatBttvEmotes(text){ 
-	for (key in bttvEmoteDict){ 
+	for (const key in bttvEmoteDict){ 
 		if (text.includes(key)){ 
 			const bttvId = bttvEmoteDict[key]
-			text = replaceKeywordWithEmoteImageString(
+			text = replaceKeywordWithBttvEmoteImage(
 				text,
 				key,
 				getBttvImageUrl(bttvId),
