@@ -135,5 +135,5 @@ export async function addGlobalBttvEmotesToDict(dictObject, fetchFunction) {
 	dictObject = { ...dictObject, ...emoteDict }
 	return new Promise(resolve => {
 		resolve(dictObject);
-	})
+	}) 
 }

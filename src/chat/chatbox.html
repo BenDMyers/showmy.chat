@@ -23,7 +23,9 @@
 	<title>{{ eleventy.serverless.path.channel }} | showmy.chat</title>
 </head>
 
-<body>
+<body
+	{% if eleventy.serverless.query.showAvatars %} data-avatars-enabled="true" {% endif %}
+>
 	<ul data-twitch-chat="{{ eleventy.serverless.path.channel }}"></ul>
 	<script src="/scripts/bttvIntegration.js" type="module"></script>
 	<script src="/scripts/handleChat.js" type="module"></script>

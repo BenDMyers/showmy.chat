@@ -11,6 +11,9 @@
  * @property {userColor} [string]
  */
 
+/** @type {MockUser | undefined} */
+let broadcaster;
+
 const MOCK_COMFY = (function () {
 	const COMMON_COLORS = ['#ff0000', '#0000ff', '#008000', '#b22222', '#ff7f50', '#9ACD32', '#FF4500', '#2E8B57', '#DAA520', '#D2691E', '#5F9EA0', '#1E90FF', '#FF69B4', '#8A2BE2', '#00FF7F']
 	
@@ -75,7 +78,7 @@ const MOCK_COMFY = (function () {
 	const twenty = new Array(20).fill('');
 	const viewers = twenty.map(_generateUser);
 
-	const broadcaster = _generateUser();
+	broadcaster = _generateUser();
 	broadcaster.roles = {broadcaster: true, mod: false, subscriber: false, founder: false, vip: false};
 	
 	const allUsers = [broadcaster, ...mods, broadcaster, ...viewers, broadcaster];
@@ -210,3 +213,22 @@ const MOCK_COMFY = (function () {
 })();
 
 window.ComfyJS = MOCK_COMFY;
+
+// Mock fetch to intercept requests
+(function() {
+	const defaultFetch = window.fetch;
+	window.fetch = async function fetchWithIntercepts(url, ...args) {
+		if (url && url.startsWith('https://streamraiders.tips/_functions/getTwitchProfileImageLink/')) {
+			const [, username] = url.split('https://streamraiders.tips/_functions/getTwitchProfileImageLink/');
+
+			if (username !== broadcaster.user) {
+				// const fakeUrl = `https://avatars.dicebear.com/api/personas/${username}.svg`;
+				const fakeUrl = `https://i.pravatar.cc/300?u=${username}`;
+				return Promise.resolve({text: () => Promise.resolve(fakeUrl)});
+			}
+
+		}
+		
+		return defaultFetch(url, ...args);
+	}
+})();

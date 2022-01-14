@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+
+html, body {
+	overflow: hidden;
+	height: 100vh;
+	margin-top: 0;
+	font-family: Lato, sans-serif;
+	--animation-duration: 500ms;
+    --slide-x-amount:100%; 
+    --text-align-side:left;
+    --slide-in-out-delay: 550ms;
+	--user-avatar-height: 75px;
+}
+
+[data-twitch-chat] {
+    text-align: var(--text-align-side);
+	list-style: none;
+	margin: 0;
+	padding: 0.1em;
+    font-size: 1.3rem;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	color: #333;
+}
+
+[data-twitch-message] {
+	margin-top: calc( var(--user-avatar-height)*-1 );
+    width: 465px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    color: white;
+	padding: 0.75em;
+	word-wrap: break-word;
+	transition:
+		opacity var(--animation-duration) ease-in-out,
+		transform var(--animation-duration) ease-in-out;
+	opacity: 0;
+	transform: translateX(var(--slide-x-amount));
+	animation: show var(--animation-duration) ease-in-out forwards;
+    animation-delay: var(--slide-in-out-delay);
+}
+
+@keyframes show {
+	100% {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+[data-twitch-message]:not(:last-of-type) {
+	opacity: 1;
+    transform: none;
+	animation: none;
+}
+
+[data-twitch-message]:nth-last-child(n+8) {
+	opacity: 0;
+    transition-delay: var(--slide-in-out-delay);
+	transform: translateX(var(--slide-x-amount));
+	transition:
+		opacity var(--animation-duration) ease-in-out,
+		transform var(--animation-duration) ease-in-out;
+}
+
+.twitch-chat-sender {
+    letter-spacing: 1.2px;
+    background-color: rgba(255, 255, 255, 0.90);
+    width: fit-content;
+    padding: 1px 5px 1px 5px;
+    box-shadow: 2px 1px 6px grey;
+    border-radius: 4px;
+    font-size: 1.5rem;
+	font-family: Lato, sans-serif;
+	color: var(--twitch-sender-color, #0e2058);
+	margin-bottom: 0.1em;
+}
+
+.twitch-chat-message{ 
+    background-color: rgba(255, 255, 255, 0.90);
+    padding: 5px;
+    box-shadow: 3px 1px 4px grey;
+    border-radius: 4px;
+    color: rgba(0,0,0,0.9);
+}
+
+[data-twitch-message-reply] {
+	display: none;
+}
+
+[data-twitch-mentioned-user] {
+    color: rgb(110, 94, 0);
+	background: transparent;
+	font-weight: 700;
+}
+
+[data-twitch-emote] {
+	width: 1.7em;
+	margin-bottom: -0.3em;
+}
+
+[data-twitch-message] a {
+	color: navy;
+	text-decoration: none;
+}
+
+
+[data-twitch-sender-avatar] {
+	height: 3em;
+	border-radius: 4px;
+	transform: translateY( calc( var(--user-avatar-height) - 9px));
+}
+
+.twitch-chat-sender,
+.twitch-chat-message{
+	transform: translateX(var(--user-avatar-height));
+}
