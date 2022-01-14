@@ -6,6 +6,15 @@ const VALID_PARAMETERS = {
 		validate: isBoolean,
 		transform: toBoolean
 	},
+	showCommands: {
+		validate: value => (isBoolean(value) || isCommaSeparatedList(value)),
+		transform: value => {
+			if (isBoolean(value)) {
+				return toBoolean(value);
+			}
+			return value.split(',');
+		}
+	},
 	showLatestMessages: {
 		validate: isPositiveInteger,
 		transform: Number.parseInt
@@ -62,6 +71,11 @@ module.exports = cleanseQueryParameters;
 /** @type {Validator} */
 function isBoolean(value) {
 	return ['true', 'false'].includes(value);
+}
+/** @type {Validator} */
+function isCommaSeparatedList(value) {
+	const COMMA_SEPARATED = /^[\w-]+(,[\w-]+)*$/;
+	return COMMA_SEPARATED.test(value);
 }
 /** @type {Validator} */
 function isString(value) {

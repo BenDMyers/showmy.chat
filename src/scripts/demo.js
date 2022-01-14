@@ -91,6 +91,16 @@ const MOCK_COMFY = (function () {
 		onChat(user, messageContents, flags, self, extra) {},
 
 		/**
+		 * @param {string} user
+		 * @param {string} command
+		 * @param {string} messageContents 
+		 * @param {object} flags 
+		 * @param {object} self
+		 * @param {{userState: object}} extra 
+		 */
+		onCommand(user, command, messageContents, flags, self, extra) {},
+
+		/**
 		 * @param {string} id
 		 * @param {object} extra 
 		 */
@@ -196,15 +206,34 @@ const MOCK_COMFY = (function () {
 		comfy.onChat(...message);
 
 		// Ready up the next message
-		let duration = Math.floor(Math.random() * 4) + 3;
-		setTimeout(_generateNextMessage, duration * 1000);
+		const duration = Math.floor(Math.random() * 4) + 3;
+		const nextGeneratedMessage = Math.random() < 0.25 ?
+			_generateChatCommand :
+			_generateNextMessage;
+		setTimeout(nextGeneratedMessage, duration * 1000);
 	}
 
-	/**
-	 * @param {string} id
-	 * @param {object} extra 
-	 */
-	comfy.onMessageDeleted = function(id, extra) {}
+	function _generateChatCommand() {
+		const extra = {userState: {}};
+
+		if (Math.random() < 0.2) {
+			// 1 in every 5 commands, the broadcaster shouts out someone
+			extra.userColor = broadcaster.userColor;
+			const mentionedUser = _choose([...mods, ...viewers]);
+			const mention = `@${mentionedUser.user}`;
+			messages.push([broadcaster.user, `!so ${mention}`, {...broadcaster.roles}, null, extra]);
+			comfy.onCommand(broadcaster.user, 'so', mention, {...broadcaster.roles},  extra);
+		} else {
+			const randomCommenter = _choose(allUsers);
+			extra.userColor = randomCommenter.userColor;
+			messages.push([randomCommenter.user, '!uptime', {...randomCommenter.roles}, null, extra]);
+			comfy.onCommand(randomCommenter.user, 'uptime', '', {...randomCommenter.roles}, extra);
+		}
+		
+		const duration = Math.floor(Math.random() * 2) + 2;
+		setTimeout(_generateNextMessage, duration * 1000);
+
+	}
 
 	return comfy;
 })();

@@ -85,6 +85,13 @@ body {
 	color: white;
 }
 
+/* chat commands */
+.twitch-chat-command {
+	background-color: transparent;
+	color: white;
+	text-shadow: 0 0 5px white;
+}
+
 /* emotes */
 [data-twitch-emote] {
 	width: 1.5em;

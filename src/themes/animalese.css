@@ -71,6 +71,12 @@ html, body {
 	border-radius: 30%/100% 100% 120% 120%;
 	word-wrap: break-word;
 }
+
+.twitch-chat-message .twitch-chat-command {
+	background-color: transparent;
+	color: inherit;
+}
+
 [data-twitch-chat] [data-twitch-message] .twitch-chat-message [data-twitch-emote] {
 	width: 1.5em;
 	margin-bottom: -0.3em;

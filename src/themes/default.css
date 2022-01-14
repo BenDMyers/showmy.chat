@@ -81,6 +81,11 @@ body {
 	padding: 0.2rem 0.4rem;
 }
 
+.twitch-chat-command {
+	background-color: transparent;
+	color: inherit;
+}
+
 [data-twitch-message-status*="highlighted"] [data-twitch-mentioned-user] {
 	background-color: transparent;
 }
