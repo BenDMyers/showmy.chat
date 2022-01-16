@@ -1,22 +1,35 @@
 {
-  "name": "showmychat",
-  "version": "1.0.0",
-  "main": ".eleventy.js",
-  "repository": "https://github.com/BenDMyers/showmy.chat.git",
-  "author": "Ben Myers <ben@benmyers.dev>",
-  "license": "MIT",
-  "scripts": {
-    "build": "eleventy",
-    "dev": "eleventy --serve",
-    "test": "jest"
-  },
-  "dependencies": {
-    "@11ty/eleventy": "^1.0.0-beta.10",
-    "axios": "^0.24.0",
-    "jest": "^27.4.7",
-    "jsdom": "^16.6.0",
-    "serialize-javascript": "^6.0.0",
-    "title-case": "^3.0.3",
-    "valid-url": "^1.0.9"
-  }
+	"name": "showmychat",
+	"version": "1.0.0",
+	"main": ".eleventy.js",
+	"repository": "https://github.com/BenDMyers/showmy.chat.git",
+	"author": "Ben Myers <ben@benmyers.dev>",
+	"license": "MIT",
+	"scripts": {
+		"build": "eleventy",
+		"dev": "eleventy --serve",
+		"test": "jest",
+		"prettier": "prettier -l .",
+		"stylelint": "stylelint '**/*.{css,html}'",
+		"eslint": "eslint '**/*.js'"
+	},
+	"dependencies": {
+		"@11ty/eleventy": "^1.0.0-beta.10",
+		"axios": "^0.24.0",
+		"jest": "^27.4.7",
+		"jsdom": "^16.6.0",
+		"serialize-javascript": "^6.0.0",
+		"title-case": "^3.0.3",
+		"valid-url": "^1.0.9"
+	},
+	"devDependencies": {
+		"eslint": "^8.6.0",
+		"eslint-config-prettier": "^8.3.0",
+		"postcss-html": "^1.3.0",
+		"postcss-syntax": "^0.36.2",
+		"prettier": "2.5.1",
+		"stylelint": "^14.2.0",
+		"stylelint-config-prettier": "^9.0.3",
+		"stylelint-config-recommended": "^6.0.0"
+	}
 }

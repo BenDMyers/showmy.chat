@@ -1,0 +1,10 @@
+node_modules
+yarn.lock
+package-lock.json
+_site
+netlify/functions/serverless/**
+!netlify/functions/serverless/index.js
+!netlify/functions/serverless/cleanse-query-parameters.js
+# Local Netlify folder
+.netlify
+.DS_Store
