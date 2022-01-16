@@ -5,13 +5,14 @@
 		"jest": true,
 		"es2021": true
 	},
-	"extends": ["eslint:recommended", "prettier"],
 	"parserOptions": {
 		"ecmaVersion": 13,
 		"sourceType": "script"
 	},
+	"extends": ["eslint:recommended", "plugin:jsdoc/recommended", "prettier"],
+	"plugins": ["jsdoc"],
 	"rules": {
-		"no-unused-vars": ["error", { "args": "none" }]
+		"no-unused-vars": ["error", {"args": "none"}]
 	},
 	"overrides": [
 		{
