@@ -214,7 +214,6 @@ ComfyJS.onMessageDeleted = function(id, extra) {
 	if (messageToDelete) {
 		removeMessageFromDomAndShiftOthers(messageToDelete);
 	}
-	messageToDelete.remove();
 }
 
 function removeMessageFromDomAndShiftOthers(messageToDelete) {
