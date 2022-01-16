@@ -13,8 +13,6 @@
  * @property {userColor} [string]
  */
 
-console.log('test');
-
 const MOCK_COMFY = (function () {
 	const COMMON_COLORS = [
 		'#ff0000',
