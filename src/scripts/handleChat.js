@@ -109,6 +109,11 @@ function formatLinks(messageContents) {
 }
 
 ComfyJS.onChat = function(user, messageContents, flags, self, extra) {
+	// If sender is blocklisted, don't even think about doing the rest of this
+	const hideSender = Array.isArray(window.CONFIG.hideMessagesFrom) && window.CONFIG.hideMessagesFrom.includes(user.toLowerCase());
+	if (hideSender) return;
+
+	// Assemble message node
 	const newMessage = document.createElement('li');
 
 	const sender = document.createElement('div');

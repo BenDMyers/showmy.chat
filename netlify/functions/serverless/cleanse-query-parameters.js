@@ -8,7 +8,7 @@ const VALID_PARAMETERS = {
 	},
 	hideMessagesFrom: {
 		validate: isCommaSeparatedList,
-		transform: toStringArray
+		transform: value => toStringArray(value.toLowerCase())
 	},
 	showCommands: {
 		validate: value => (isBoolean(value) || isCommaSeparatedList(value)),
