@@ -3,9 +3,13 @@
 	"editor.formatOnSave": true,
 	// enable prettier as default formatter for all supported filetypes
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	// run eslint --fix on save
+	// automatically fix eslint violations on save with the editor extension
+	// automatically fix stylelint violations on save with the editor extension
+	// automatically fix markdownlint violations on save with the editor extension
 	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": true
+		"source.fixAll.eslint": true,
+		"source.fixAll.stylelint": true,
+		"source.fixAll.markdownlint": true
 	},
 	// always show eslint in the statusbar
 	"eslint.alwaysShowStatus": true
