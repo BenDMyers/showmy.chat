@@ -150,7 +150,7 @@ export function getBttvImageUrl(bttvEmoteId) {
 
 /**
  * @param {object<string, string>} dictObject  key is friendly emote name, value is the BTTV emote id
- * @param fetchFunction
+ * @param {function} [fetchFunction]
  * @returns {object<string, string>} same as input - key is friendly name, value is id
  */
 export async function addGlobalBttvEmotesToDict(dictObject, fetchFunction) {
