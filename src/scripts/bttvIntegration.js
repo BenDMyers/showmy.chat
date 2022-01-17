@@ -47,7 +47,7 @@ export function areAllTruthyStrings(arrayOfInputs) {
 
 /**
  * @param {string} username twitch username, case insensitive
- * @param fetchFunction
+ * @param {function} [fetchFunction]
  * @returns {string} twitch user id
  */
 export async function getTwitchUserId(username, fetchFunction) {
