@@ -12,5 +12,9 @@
 		"source.fixAll.markdownlint": true
 	},
 	// always show eslint in the statusbar
-	"eslint.alwaysShowStatus": true
+	"eslint.alwaysShowStatus": true,
+	// set the default formatter for HTML instead of Prettier
+	"[html]": {
+		"editor.defaultFormatter": "vscode.html-language-features"
+	}
 }

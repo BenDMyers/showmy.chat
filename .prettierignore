@@ -12,3 +12,4 @@ netlify/functions/serverless/**
 
 # prettierignore specific files
 .all-contributorsrc
+*.html

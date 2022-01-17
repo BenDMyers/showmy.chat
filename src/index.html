@@ -6,22 +6,12 @@ layout: page.html
 <div class="col-2">
 	<form id="overlay-builder">
 		<label for="channel">Channel name</label>
-		<input
-			type="text"
-			id="channel"
-			name="channel"
-			required="true"
-			autocomplete="off"
-			autocorrect="off"
-			autocapitalize="off"
-			spellcheck="false"
-		/>
-
+		<input type="text" id="channel" name="channel" required="true" autocomplete="off" autocorrect="off"
+			autocapitalize="off" spellcheck="false" />
 		<label for="theme">Theme</label>
 		<select id="theme" name="theme">
 			<option value="default">Default</option>
 			<option value="light">Light</option>
-			<!-- prettier-ignore -->
 			{%- for theme in themes.list -%}
 			{%- unless theme == "default" or theme =="light" -%}
 			<option value="{{ theme }}">{{ theme | formatThemeName }}</option>
@@ -35,12 +25,7 @@ layout: page.html
 		</div>
 	</form>
 
-	<iframe
-		id="preview"
-		src="/c/showmychat?DEMO=true"
-		frameborder="0"
-		allowtransparency="true"
-	>
+	<iframe id="preview" src="/c/showmychat?DEMO=true" frameborder="0" allowtransparency="true">
 	</iframe>
 </div>
 <script>
@@ -94,7 +79,7 @@ layout: page.html
 		gap: 4em;
 	}
 
-	.col-2 > * {
+	.col-2>* {
 		width: 50%;
 	}
 
@@ -113,7 +98,7 @@ layout: page.html
 			flex-direction: column;
 		}
 
-		.col-2 > * {
+		.col-2>* {
 			width: 100%;
 		}
 	}
