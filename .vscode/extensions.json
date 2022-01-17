@@ -7,6 +7,7 @@
 		"mkaufman.HTMLHint",
 		"dbaeumer.vscode-eslint",
 		"stylelint.vscode-stylelint",
-		"esbenp.prettier-vscode"
+		"esbenp.prettier-vscode",
+		"davidanson.vscode-markdownlint"
 	]
 }

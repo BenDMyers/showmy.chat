@@ -13,6 +13,7 @@
 		"stylelint": "stylelint '**/*.{css,html}'",
 		"eslint": "eslint '**/*.js'",
 		"htmlhint": "htmlhint '**/*.html'",
+		"markdownlint": "markdownlint-cli2 '**/*.md'",
 		"prepare": "husky install"
 	},
 	"dependencies": {

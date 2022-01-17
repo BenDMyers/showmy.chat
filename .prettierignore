@@ -8,5 +8,7 @@ netlify/functions/serverless/**
 # Local Netlify folder
 .netlify
 .DS_Store
+.eslintcache
 
+# prettierignore specific files
 .all-contributorsrc
