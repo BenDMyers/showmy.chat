@@ -1,54 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>showmy.chat</title>
-		<link
-			rel="stylesheet"
-			href="https://unpkg.com/@picocss/pico@latest/css/pico.classless.min.css"
-		/>
-	</head>
-	<body>
-		<header>
-			<a href="/">showmy.chat</a>
-			<nav>
-				<a href="/docs/">Guides</a>
-				<a href="https://discord.gg/K78fXzVxja">Discord</a>
-			</nav>
-		</header>
-		<main>{{ content }}</main>
-		<footer>
-			&copy; 2022, Ben Myers &middot; <a href="/colophon/">Colophon</a> &middot;
-			<a href="https://discord.gg/K78fXzVxja">Discord</a> &middot;
-			<a href="https://github.com/BenDMyers/showmy.chat"
-				>Contribute on GitHub</a
-			>
-		</footer>
-		<style>
-			@media only screen and (prefers-color-scheme: dark) {
-				:root:not([data-theme='light']) {
-					--form-element-border-color: var(--color);
-				}
-			}
 
-			body header {
-				padding-bottom: 0;
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>showmy.chat</title>
+	<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.classless.min.css" />
+</head>
 
-				display: flex;
-				justify-content: space-between;
+<body>
+	<header>
+		<a href="/">showmy.chat</a>
+		<nav>
+			<a href="/docs/">Guides</a>
+			<a href="https://discord.gg/K78fXzVxja">Discord</a>
+		</nav>
+	</header>
+	<main>{{ content }}</main>
+	<footer>
+		&copy; 2022, Ben Myers &middot; <a href="/colophon/">Colophon</a> &middot;
+		<a href="https://discord.gg/K78fXzVxja">Discord</a> &middot;
+		<a href="https://github.com/BenDMyers/showmy.chat">Contribute on GitHub</a>
+	</footer>
+	<style>
+		@media only screen and (prefers-color-scheme: dark) {
+			:root:not([data-theme='light']) {
+				--form-element-border-color: var(--color);
 			}
+		}
 
-			header nav {
-				display: inline-flex;
-				justify-content: space-between;
-				gap: 2em;
-			}
+		body header {
+			padding-bottom: 0;
+			display: flex;
+			justify-content: space-between;
+		}
 
-			header nav a {
-				display: inline-block;
-			}
-		</style>
-	</body>
+		header nav {
+			display: inline-flex;
+			justify-content: space-between;
+			gap: 2em;
+		}
+
+		header nav a {
+			display: inline-block;
+		}
+	</style>
+</body>
+
 </html>
