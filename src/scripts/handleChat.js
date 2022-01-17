@@ -16,7 +16,7 @@ let currentMessageGroup = 0;
 let bttvEmoteDict = {};
 
 /**
- * @param html
+ * @param {string} html full HTML. string for a message
  */
 function htmlEntities(html) {
 	/**
