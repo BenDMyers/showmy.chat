@@ -13,7 +13,7 @@
 	"plugins": ["jsdoc", "html"],
 	"rules": {
 		"no-unused-vars": ["error", {"args": "none"}],
-		"no-console": "warn"
+		"no-console": "error"
 	},
 	"overrides": [
 		{
