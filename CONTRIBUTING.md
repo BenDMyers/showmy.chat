@@ -20,5 +20,3 @@ To make a theme, create a new stylesheet in the `src/themes` directory. The styl
 <http://localhost:8080/c/showmychat?theme=your-theme-here&DEMO=true>
 
 You can look at the other theme stylesheets in the directory to get inspiration!
-
-test
