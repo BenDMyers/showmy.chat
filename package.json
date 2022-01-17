@@ -42,9 +42,9 @@
 		"stylelint-config-recommended": "^6.0.0"
 	},
 	"lint-staged": {
-		"*.md": "markdownlint-cli2-fix",
 		"*.{js,html}": "eslint --cache --fix",
-		"*.css": "stylelint --fix",
+		"*.{css,html}": "stylelint --fix",
+		"*.md": "markdownlint-cli2-fix",
 		"*.{js,css,md}": "prettier --write"
 	}
 }

@@ -1,9 +1,11 @@
 module.exports = {
-	"extends": ["stylelint-config-recommended", "stylelint-config-prettier"],
-	"overrides": [
+	extends: ['stylelint-config-recommended', 'stylelint-config-prettier'],
+	rules: {'alpha-value-notation': 'percentage'},
+	overrides: [
 		{
-			"files": ["**/*.html"],
-			"customSyntax": "postcss-html"
-		}
-	]
-}
+			files: ['**/*.html'],
+			customSyntax: 'postcss-html',
+			rules: {'alpha-value-notation': 'percentage'},
+		},
+	],
+};
