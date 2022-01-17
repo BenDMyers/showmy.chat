@@ -52,7 +52,9 @@ const MOCK_COMFY = (function () {
 	/**
 	 * Selects a random element from an element
 	 *
-	 * @param {any[]} array
+	 * @template Item
+	 * @param {Item[]} array
+	 * @returns {Item} randomly selected element
 	 */
 	function _choose(array) {
 		if (array && array.length > 0) {
