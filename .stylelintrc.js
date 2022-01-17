@@ -7,6 +7,10 @@ module.exports = {
 		{
 			files: ['**/*.html'],
 			customSyntax: 'postcss-html',
+			rules: {
+				'selector-combinator-space-after': 'always',
+				'selector-combinator-space-before': 'always',
+			},
 		},
 	],
 };
