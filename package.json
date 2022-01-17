@@ -28,6 +28,7 @@
 	"devDependencies": {
 		"eslint": "^8.6.0",
 		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-html": "^6.2.0",
 		"eslint-plugin-jsdoc": "^37.6.1",
 		"htmlhint": "^1.1.0",
 		"husky": "^7.0.4",
@@ -42,7 +43,7 @@
 	},
 	"lint-staged": {
 		"*.md": "markdownlint-cli2-fix",
-		"*.js": "eslint --cache --fix",
+		"*.{js, html}": "eslint --cache --fix",
 		"*.css": "stylelint --fix",
 		"*.{js,css,md}": "prettier --write"
 	}
