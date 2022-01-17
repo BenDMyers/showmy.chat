@@ -46,6 +46,6 @@
 		"*.{js,html}": "eslint --cache --fix",
 		"*.{css,html}": "stylelint --fix",
 		"*.md": "markdownlint-cli2-fix",
-		"*.{js,css,md,json,jsonc}": "prettier --write"
+		"*.{js,css,md,json,jsonc,yml}": "prettier --write"
 	}
 }
