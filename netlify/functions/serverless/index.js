@@ -40,13 +40,3 @@ async function handler(event) {
 }
 
 exports.handler = handler;
-
-// /**
-//  * Determines whether a string represents a positive integer
-//  * @param {string} str
-//  * @returns {boolean}
-//  */
-//  function isPositiveInteger(str) {
-// 	const num = Number(str);
-// 	return Number.isInteger(num) && num > 0;
-// }
