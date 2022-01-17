@@ -6,6 +6,10 @@ const VALID_PARAMETERS = {
 		validate: isBoolean,
 		transform: toBoolean,
 	},
+	hideMessagesFrom: {
+		validate: isCommaSeparatedList,
+		transform: value => toStringArray(value.toLowerCase())
+	},
 	showCommands: {
 		validate: (value) => isBoolean(value) || isCommaSeparatedList(value),
 		transform: (value) => {
@@ -100,7 +104,18 @@ function isPositiveInteger(value) {
  * @returns {any} query parameter's value transformed into a more usable format
  */
 
-/** @type {Transformer} */
+/**
+ * @type {Transformer}
+ * @returns {string[]}
+ */
+function toStringArray(value) {
+	return value.split(',');
+}
+
+/**
+ * @type {Transformer}
+ * @returns {boolean}
+ */
 function toBoolean(value) {
 	return value === 'true' ? true : false;
 }
