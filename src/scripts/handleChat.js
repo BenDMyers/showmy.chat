@@ -78,7 +78,7 @@ function formatEmotes(text, emotes = {}) {
 }
 
 /**
- * @param text
+ * @param {string} text message text
  */
 function formatBttvEmotes(text) {
 	for (const key in bttvEmoteDict) {
