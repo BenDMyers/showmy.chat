@@ -116,7 +116,7 @@ export async function defaultFetch(url) {
  *    [sharedEmotes]: {code: string, id: string, imageType: string}[]
  * }} channelData  data structure provided by BTTV's api for channel queries.
  * If user not found, will receive {"message":"user not found"}
- * @returns {object} key is the friendly emote name, value is the BTTV emote id
+ * @returns {object<string, string>} key is the friendly emote name, value is the BTTV emote id
  */
 export function convertBttvChannelDataToEmoteDict(channelData) {
 	if (!channelData || typeof channelData !== 'object') {
