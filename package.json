@@ -11,7 +11,7 @@
 		"test": "jest",
 		"prettier": "prettier -l .",
 		"stylelint": "stylelint '**/*.{css,html}'",
-		"eslint": "eslint '**/*.js'",
+		"eslint": "eslint '**/*.{js,html}'",
 		"htmlhint": "htmlhint '**/*.html'",
 		"markdownlint": "markdownlint-cli2 '**/*.md'",
 		"prepare": "husky install"
@@ -43,7 +43,7 @@
 	},
 	"lint-staged": {
 		"*.md": "markdownlint-cli2-fix",
-		"*.{js, html}": "eslint --cache --fix",
+		"*.{js,html}": "eslint --cache --fix",
 		"*.css": "stylelint --fix",
 		"*.{js,css,md}": "prettier --write"
 	}
