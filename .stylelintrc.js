@@ -1,5 +1,8 @@
 module.exports = {
-	extends: ['stylelint-config-recommended', 'stylelint-config-prettier'],
+	extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+	rules: {
+		'declaration-block-no-redundant-longhand-properties': null,
+	},
 	overrides: [
 		{
 			files: ['**/*.html'],

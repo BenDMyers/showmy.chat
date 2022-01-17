@@ -1,10 +1,10 @@
 :root {
-	--offWhite: #fefbf5;
+	--off-white: #fefbf5;
 	--mod-green: #27ae60;
 	--founder-red: #c0392b;
 	--subscriber-purple: #8e44ad;
 	--peppermint: #f8574e;
-	--textBlack: #534d4c;
+	--text-black: #534d4c;
 }
 
 * {
@@ -23,22 +23,19 @@ body {
 
 [data-twitch-chat] {
 	--chat-font-size: 16px;
-	--chat-background-color: var(--offWhite);
-	--chat-text-color: var(--textBlack);
+	--chat-background-color: var(--off-white);
+	--chat-text-color: var(--text-black);
 
 	background-color: var(--chat-background-color);
 	color: var(--chat-text-color);
 	font-size: var(--chat-font-size);
-
 	width: 99vw;
 	height: 98vh;
-	filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.1));
+	filter: drop-shadow(0 4px 4px rgb(0 0 0 / 10%));
 	padding: 0.5rem 1rem;
 	border-radius: 20px;
-
 	list-style: none;
 	margin: 0;
-
 	overflow: auto;
 	display: flex;
 	flex-direction: column;
@@ -66,7 +63,6 @@ body {
 	padding-bottom: 0.3em;
 	border-radius: 0.25em;
 	margin-right: 0.25em;
-
 	position: relative;
 }
 
@@ -100,6 +96,7 @@ body {
 	--text-color: white;
 	--text-bg-color: var(--mod-green);
 }
+
 [data-twitch-sender-roles~='mod'] .twitch-chat-sender::before {
 	content: url('data:image/svg+xml; utf8, <svg stroke="white" fill="white" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="display: inline-block;"><g><path fill="none" d="M0 0h24v24H0z"></path><path fill-rule="nonzero" d="M7.05 13.406l3.534 3.536-1.413 1.414 1.415 1.415-1.414 1.414-2.475-2.475-2.829 2.829-1.414-1.414 2.829-2.83-2.475-2.474 1.414-1.414 1.414 1.413 1.413-1.414zM3 3l3.546.003 11.817 11.818 1.415-1.414 1.414 1.414-2.474 2.475 2.828 2.829-1.414 1.414-2.829-2.829-2.475 2.475-1.414-1.414 1.414-1.415L3.003 6.531 3 3zm14.457 0L21 3.003l.002 3.523-4.053 4.052-3.536-3.535L17.457 3z"></path></g></svg>');
 }

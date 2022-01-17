@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100..900&family=Zen+Antique+Soft&display=swap');
 
 :root {
-	--twitch-gray: rgb(97, 97, 97);
+	--twitch-gray: rgb(97 97 97);
 	--twitch-light: lightblue;
-	--twitch-dark-background: rgb(24, 24, 27);
-	--twitch-purple: rgb(180, 84, 255);
+	--twitch-dark-background: rgb(24 24 27);
+	--twitch-purple: rgb(180 84 255);
+
 	/*
 
 	Welcome to Alex's Terrible Retro Swirly theme.
@@ -79,7 +80,6 @@ body {
 	--col7: calc(var(--offset) + var(--ring7));
 	--offset-width: calc(var(--offset) + var(--width));
 	--offset-width-rings: calc(var(--offset-width) + (4 * var(--col)));
-
 	--i-linear-gradient: linear-gradient(
 		to right,
 		transparent 0 var(--offset),
@@ -92,9 +92,7 @@ body {
 		var(--sl-color1, yellow) var(--col6) var(--col7),
 		transparent var(--col7)
 	);
-
 	--right: var(--sl-left) calc(var(--offset) - 2px);
-
 	--i-radial-gradient: radial-gradient(
 		circle at var(--right, var(--offset-width)) var(--v-offset),
 		var(--sl-color1, yellow) 0 var(--ring1),
@@ -118,7 +116,7 @@ body {
 	min-height: 100vh;
 	min-width: 100vw;
 	pointer-events: none;
-	filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.6));
+	filter: drop-shadow(3px 3px 10px rgb(0 0 0 / 60%));
 }
 
 [data-twitch-message] {
@@ -131,7 +129,7 @@ body {
 	border-radius: 10px;
 	background-color: white;
 	border: calc(var(--sl-col-width) / 2) var(--sl-color-4) solid;
-	filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.4));
+	filter: drop-shadow(1px 1px 5px rgb(0 0 0 / 40%));
 }
 
 [data-twitch-message-reply] {
@@ -146,10 +144,10 @@ body {
 	color: var(--twitch-sender-color, var(--twitch-purple));
 	display: inline;
 	font-weight: 700;
-	font-family: 'MuseoModerno', cursive;
+	font-family: MuseoModerno, cursive;
 }
 
-[data-twitch-message] .twitch-chat-sender:after {
+[data-twitch-message] .twitch-chat-sender::after {
 	content: ': ';
 	color: var(--twitch-dark-background);
 	font-weight: normal;
@@ -168,7 +166,7 @@ body {
 	background-color: transparent;
 	color: inherit;
 	font-weight: 700;
-	font-family: 'MuseoModerno', cursive;
+	font-family: MuseoModerno, cursive;
 }
 
 [data-twitch-message] a {

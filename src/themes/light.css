@@ -1,8 +1,8 @@
 :root {
-	--twitch-gray: rgb(173, 173, 184);
-	--twitch-light: rgb(239, 239, 241);
-	--twitch-dark-background: rgb(24, 24, 27);
-	--twitch-purple: rgb(180, 84, 255);
+	--twitch-gray: rgb(173 173 184);
+	--twitch-light: rgb(239 239 241);
+	--twitch-dark-background: rgb(24 24 27);
+	--twitch-purple: rgb(180 84 255);
 }
 
 html,
@@ -25,7 +25,6 @@ body {
 	list-style: none;
 	margin: 0;
 	padding: 0;
-
 	height: 100vh;
 	overflow: auto;
 	display: flex;
@@ -56,7 +55,7 @@ body {
 	font-weight: 700;
 }
 
-[data-twitch-message] .twitch-chat-sender:after {
+[data-twitch-message] .twitch-chat-sender::after {
 	content: ': ';
 	color: var(--twitch-dark-background);
 	font-weight: normal;
