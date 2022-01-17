@@ -16,7 +16,7 @@ let currentMessageGroup = 0;
 let bttvEmoteDict = {};
 
 /**
- * @param html
+ * @param {string} html full HTML. string for a message
  */
 function htmlEntities(html) {
 	/**
@@ -45,7 +45,7 @@ function htmlEntities(html) {
  *
  * @param {string} text - message contents
  * @param {object} emotes - object which details which emote IDs can be found at which substring ranges in the message
- * @returns
+ * @returns {string} message with valid emotes replaced with `<img>` tags
  */
 function formatEmotes(text, emotes = {}) {
 	let splitText = text.split('');
@@ -78,7 +78,7 @@ function formatEmotes(text, emotes = {}) {
 }
 
 /**
- * @param text
+ * @param {string} text message text
  */
 function formatBttvEmotes(text) {
 	for (const key in bttvEmoteDict) {
@@ -293,7 +293,7 @@ function removeMessageFromDomAndShiftOthers(messageToDelete) {
 }
 
 /**
- *
+ * Fetches necessary user data and begins listening for chat messages
  */
 async function init() {
 	const twitchUserId = await getTwitchUserId(watchedChannels.split(' ')[0]);

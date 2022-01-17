@@ -244,7 +244,7 @@ const MOCK_COMFY = (function () {
 	}
 
 	/**
-	 *
+	 * Sends a mock `!uptime` command from a random user or a mock `!so` command from the broadcaster
 	 */
 	function _generateChatCommand() {
 		const extra = {userState: {}};
