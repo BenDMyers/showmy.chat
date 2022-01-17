@@ -6,7 +6,8 @@
 	--twitch-highlight-purple: #755ebc;
 }
 
-html, body {
+html,
+body {
 	overflow: hidden;
 	height: 100vh;
 	margin-top: 0;
@@ -19,7 +20,8 @@ body {
 [data-twitch-chat] {
 	background-color: var(--twitch-dark-background);
 	color: var(--twitch-light);
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+		Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 	font-size: 14.625px;
 	list-style: none;
 	margin: 0;
@@ -45,8 +47,8 @@ body {
 	color: var(--twitch-gray);
 	display: block;
 	text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 [data-twitch-message] .twitch-chat-sender {
@@ -56,7 +58,7 @@ body {
 }
 
 [data-twitch-message] .twitch-chat-sender:after {
-	content: ": ";
+	content: ': ';
 	color: var(--twitch-light);
 	font-weight: normal;
 }
@@ -65,7 +67,7 @@ body {
 	display: inline;
 }
 
-[data-twitch-message-status*="highlighted"] .twitch-chat-message {
+[data-twitch-message-status*='highlighted'] .twitch-chat-message {
 	background-color: var(--twitch-highlight-purple);
 	border: 4px solid var(--twitch-highlight-purple);
 	color: white;
@@ -86,7 +88,7 @@ body {
 	color: inherit;
 }
 
-[data-twitch-message-status*="highlighted"] [data-twitch-mentioned-user] {
+[data-twitch-message-status*='highlighted'] [data-twitch-mentioned-user] {
 	background-color: transparent;
 }
 

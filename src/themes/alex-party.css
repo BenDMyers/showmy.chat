@@ -6,13 +6,14 @@
 	--alex-border-color: blue;
 }
 
-html, body {
+html,
+body {
 	overflow: hidden;
 	height: 100vh;
 	margin: 0;
 }
 
-*{
+* {
 	box-sizing: border-box;
 }
 
@@ -25,7 +26,7 @@ body {
 	color: var(--twitch-dark-background);
 	border: 1em var(--alex-border-color) ridge;
 	border-radius: 1em;
-	font-family: "Comic Sans MS", cursive;
+	font-family: 'Comic Sans MS', cursive;
 	font-size: 24px;
 	list-style: none;
 	margin: 0;
@@ -52,7 +53,7 @@ body {
 	display: block;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-    overflow: hidden;
+	overflow: hidden;
 	font-family: 'Papyrus', 'Comic Sans MS', cursive;
 	font-weight: 600;
 }
@@ -62,11 +63,11 @@ body {
 	display: inline;
 	font-weight: 700;
 	-webkit-text-stroke: 1px var(--alex-border-color);
-    text-shadow: 2px 2px 0px var(--alex-border-color);
+	text-shadow: 2px 2px 0px var(--alex-border-color);
 }
 
 [data-twitch-message] .twitch-chat-sender:after {
-	content: ": ";
+	content: ': ';
 	color: var(--twitch-dark-background);
 	font-weight: normal;
 }
@@ -84,7 +85,7 @@ body {
 	background-color: transparent;
 	font-family: 'Papyrus', 'Comic Sans MS', cursive;
 	font-weight: 600;
-    text-shadow: 2px 2px 0px var(--twitch-purple);
+	text-shadow: 2px 2px 0px var(--twitch-purple);
 	color: inherit;
 }
 
@@ -93,7 +94,7 @@ body {
 	text-decoration: none;
 }
 
-[data-twitch-message-status*="highlighted"] .twitch-chat-message{
+[data-twitch-message-status*='highlighted'] .twitch-chat-message {
 	background-color: lightsalmon;
 	font-family: 'Papyrus', fantasy;
 	font-weight: 600;

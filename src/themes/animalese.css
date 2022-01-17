@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@700&family=Varela+Round&display=swap');
 
-html, body {
+html,
+body {
 	overflow: hidden;
 	height: 100vh;
 	margin-top: 0;
@@ -58,8 +59,8 @@ html, body {
 	width: max-content;
 	color: rgba(0, 0, 0, 0.9);
 
-    border-radius: 100vw;
-    transform: rotateX(1deg) rotateZ(-2deg) translateX(20%) translateY(-45%);
+	border-radius: 100vw;
+	transform: rotateX(1deg) rotateZ(-2deg) translateX(20%) translateY(-45%);
 }
 
 [data-twitch-chat] [data-twitch-message] .twitch-chat-message {
@@ -77,7 +78,10 @@ html, body {
 	color: inherit;
 }
 
-[data-twitch-chat] [data-twitch-message] .twitch-chat-message [data-twitch-emote] {
+[data-twitch-chat]
+	[data-twitch-message]
+	.twitch-chat-message
+	[data-twitch-emote] {
 	width: 1.5em;
 	margin-bottom: -0.3em;
 }

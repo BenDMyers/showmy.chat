@@ -4,12 +4,29 @@ layout: page.html
 
 <h1>Overlay Configuration API</h1>
 
-<p>The <dfn style="font-weight: bold;">overlay configuration API</dfn> is the set of query parameters which can be provided as part of your <b>showmy.chat</b> overlay URL to customize its behavior. Every query parameter is optional.</p>
+<p>
+	The <dfn style="font-weight: bold">overlay configuration API</dfn> is the set
+	of query parameters which can be provided as part of your
+	<b>showmy.chat</b> overlay URL to customize its behavior. Every query
+	parameter is optional.
+</p>
 
-<blockquote><strong>Not all of these APIs are currently supported by the URL builder on the homepage.</strong> If you'd like to add support for these APIs in the URL builder, we'll happily accept <a href="https://github.com/BenDMyers/showmy.chat">your contributions on GitHub</a>!</blockquote>
+<blockquote>
+	<strong
+		>Not all of these APIs are currently supported by the URL builder on the
+		homepage.</strong
+	>
+	If you'd like to add support for these APIs in the URL builder, we'll happily
+	accept
+	<a href="https://github.com/BenDMyers/showmy.chat"
+		>your contributions on GitHub</a
+	>!
+</blockquote>
 
-<table style="position: relative; margin-top: 1em;">
-	<caption style="font-weight: bold; margin-bottom: 1.5em;">Overlay Configuration Options</caption>
+<table style="position: relative; margin-top: 1em">
+	<caption style="font-weight: bold; margin-bottom: 1.5em">
+		Overlay Configuration Options
+	</caption>
 	<thead>
 		<tr>
 			<th scope="col">Parameter</th>
@@ -19,29 +36,41 @@ layout: page.html
 		</tr>
 	</thead>
 	<tbody>
-		<tr id="DEMO">
+		<tr id="demo">
 			<th scope="row">
-				<code><a href="#DEMO">DEMO</a></code>
+				<code><a href="#demo">DEMO</a></code>
 			</th>
 			<td><code>true</code> or <code>false</code></td>
 			<td><code>false</code></td>
-			<td>Displays plausible but randomly generated messages instead of a live feed</td>
+			<td>
+				Displays plausible but randomly generated messages instead of a live
+				feed
+			</td>
 		</tr>
-		<tr id="showCommands">
+		<tr id="show-commands">
 			<th scope="row">
-				<code><a href="#showCommands">showCommands</a></code>
+				<code><a href="#show-commands">showCommands</a></code>
 			</th>
-			<td><code>true</code>, <code>false</code>, or a comma-separated list of commands to show</td>
+			<td>
+				<code>true</code>, <code>false</code>, or a comma-separated list of
+				commands to show
+			</td>
 			<td><code>false</code></td>
-			<td>Displays chat commands (such as <samp>!commands</samp>) as though they were regular chat messages</td>
+			<td>
+				Displays chat commands (such as <samp>!commands</samp>) as though they
+				were regular chat messages
+			</td>
 		</tr>
-		<tr id="showLatestMessages">
+		<tr id="show-latest-messages">
 			<th scope="row">
-				<code><a href="#showLatestMessages">showLatestMessages</a></code>
+				<code><a href="#show-latest-messages">showLatestMessages</a></code>
 			</th>
 			<td>Any positive integer</td>
 			<td>100</td>
-			<td>Removes old messages once you reach the provided threshold (useful for performance)</td>
+			<td>
+				Removes old messages once you reach the provided threshold (useful for
+				performance)
+			</td>
 		</tr>
 		<tr id="theme">
 			<th scope="row">
@@ -49,20 +78,24 @@ layout: page.html
 			</th>
 			<td>String</td>
 			<td><code>default</code></td>
-			<td>Determines which stylesheet to load. Either the name (filename without the <code>.css</code> extension) of a theme stylesheet in this project, or a valid URI of a CSS stylesheet.</td>
+			<td>
+				Determines which stylesheet to load. Either the name (filename without
+				the <code>.css</code> extension) of a theme stylesheet in this project,
+				or a valid URI of a CSS stylesheet.
+			</td>
 		</tr>
 	</tbody>
 </table>
 
 <style>
-	th[scope="col"] {
+	th[scope='col'] {
 		font-weight: bold;
 		text-align: center;
 		position: sticky !important;
 		top: -2px;
 		background-color: var(--background-color);
 	}
-	
+
 	tr:target {
 		background-color: var(--muted-border-color);
 		scroll-margin-top: 3em;
