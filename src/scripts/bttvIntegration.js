@@ -47,7 +47,7 @@ export function areAllTruthyStrings(arrayOfInputs) {
 
 /**
  * @param {string} username twitch username, case insensitive
- * @param fetchFunction
+ * @param {function} [fetchFunction]
  * @returns {string} twitch user id
  */
 export async function getTwitchUserId(username, fetchFunction) {
@@ -116,7 +116,7 @@ export async function defaultFetch(url) {
  *    [sharedEmotes]: {code: string, id: string, imageType: string}[]
  * }} channelData  data structure provided by BTTV's api for channel queries.
  * If user not found, will receive {"message":"user not found"}
- * @returns {object} key is the friendly emote name, value is the BTTV emote id
+ * @returns {object<string, string>} key is the friendly emote name, value is the BTTV emote id
  */
 export function convertBttvChannelDataToEmoteDict(channelData) {
 	if (!channelData || typeof channelData !== 'object') {
@@ -150,7 +150,7 @@ export function getBttvImageUrl(bttvEmoteId) {
 
 /**
  * @param {object<string, string>} dictObject  key is friendly emote name, value is the BTTV emote id
- * @param fetchFunction
+ * @param {function} [fetchFunction]
  * @returns {object<string, string>} same as input - key is friendly name, value is id
  */
 export async function addGlobalBttvEmotesToDict(dictObject, fetchFunction) {
