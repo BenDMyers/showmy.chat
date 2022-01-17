@@ -293,7 +293,7 @@ function removeMessageFromDomAndShiftOthers(messageToDelete) {
 }
 
 /**
- *
+ * Fetches necessary user data and begins listening for chat messages
  */
 async function init() {
 	const twitchUserId = await getTwitchUserId(watchedChannels.split(' ')[0]);
