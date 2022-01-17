@@ -45,7 +45,7 @@ function htmlEntities(html) {
  *
  * @param {string} text - message contents
  * @param {object} emotes - object which details which emote IDs can be found at which substring ranges in the message
- * @returns
+ * @returns {string} message with valid emotes replaced with `<img>` tags
  */
 function formatEmotes(text, emotes = {}) {
 	let splitText = text.split('');
