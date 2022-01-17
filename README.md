@@ -2,7 +2,7 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
@@ -48,7 +48,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/KenAKAFrosty"><img src="https://avatars.githubusercontent.com/u/90424167?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ken aka Frosty</b></sub></a><br /><a href="#content-KenAKAFrosty" title="Content">🖋</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=KenAKAFrosty" title="Code">💻</a> <a href="#infra-KenAKAFrosty" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://nickymeuleman.netlify.app/"><img src="https://avatars.githubusercontent.com/u/30179461?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nicky Meuleman</b></sub></a><br /><a href="#design-NickyMeuleman" title="Design">🎨</a></td>
+    <td align="center"><a href="https://nickymeuleman.netlify.app/"><img src="https://avatars.githubusercontent.com/u/30179461?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nicky Meuleman</b></sub></a><br /><a href="#design-NickyMeuleman" title="Design">🎨</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=NickyMeuleman" title="Code">💻</a> <a href="#tool-NickyMeuleman" title="Tools">🔧</a></td>
   </tr>
 </table>
 
