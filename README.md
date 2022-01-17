@@ -1,7 +1,14 @@
 # showmy.chat
+
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
 
 **On-Demand, Themeable Twitch Chat Overlays For Everyone**
 
@@ -26,6 +33,7 @@ This is the repo for [showmy.chat](https://showmy.chat), an on-demand themed Twi
 **showmy.chat** overlays leverage [ComfyJS](https://github.com/instafluff/ComfyJS), which in turn is built on top of [tmi.js](https://tmijs.com), to receive and parse messages. Major thanks to everyone in these communities who have done the hard work to ensure that interacting with Twitch's chat API is as easy as possible.
 
 Finally, **showmy.chat** is indebted to [Style Stage](https://stylestage.dev), [Stephanie Eckles](https://thinkdobecreate.com)'s modern spiritual successor to [CSS Zen Garden](http://www.csszengarden.com), for inspiration. Style Stage demonstrates how the same markup can be styled in a plethora of creative ways, and leverages community-contributed stylesheets. **showmy.chat** was initially conceived of as "What if Style Stage, but for Twitch chat overlays?"
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):

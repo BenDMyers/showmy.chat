@@ -1,39 +1,41 @@
 /**
- * @type {Object<string, {validate: Validator, transform?: Transformer}}
+ * @type {object<string, {validate: Validator, transform?: Transformer}>}
  */
 const VALID_PARAMETERS = {
 	DEMO: {
 		validate: isBoolean,
-		transform: toBoolean
+		transform: toBoolean,
 	},
 	hideMessagesFrom: {
 		validate: isCommaSeparatedList,
-		transform: value => toStringArray(value.toLowerCase())
+		transform: (value) => toStringArray(value.toLowerCase()),
 	},
 	showCommands: {
-		validate: value => (isBoolean(value) || isCommaSeparatedList(value)),
-		transform: value => (isBoolean(value) ? toBoolean(value) : toStringArray(value))
+		validate: (value) => isBoolean(value) || isCommaSeparatedList(value),
+		transform: (value) =>
+			isBoolean(value) ? toBoolean(value) : toStringArray(value),
 	},
 	showLatestMessages: {
 		validate: isPositiveInteger,
-		transform: Number.parseInt
+		transform: Number.parseInt,
 	},
 	theme: {
-		validate: isString
-	}
+		validate: isString,
+	},
 };
 
 /**
  * Iterate over all provided query parameters and determine whether they're valid values,
  * and returns an object where invalid parameters are removed and other parameters are reformatted.
- * @param {Object<string, string>} queryStringParameters
- * @return {Object<string, any>} reformatted query parameters
+ *
+ * @param {object<string, string>} queryStringParameters
+ * @returns {object<string, any>} reformatted query parameters
  */
 function cleanseQueryParameters(queryStringParameters) {
 	// Preload configurations with OPTIONAL defaults
 	const queryParameters = {
 		showLatestMessages: 100,
-		theme: 'default'
+		theme: 'default',
 	};
 
 	// Iterate over provided query parameters
@@ -48,10 +50,14 @@ function cleanseQueryParameters(queryStringParameters) {
 				const newValue = transform ? transform(paramValue) : paramValue;
 				queryParameters[param] = newValue;
 			} else {
-				console.error(`"${paramValue}" is not a valid value for the "${param}" configuration.`);
+				console.error(
+					`"${paramValue}" is not a valid value for the "${param}" configuration.`
+				);
 			}
 		} else {
-			console.error(`"${param}" is not a valid configuration for a showmy.chat overlay`);
+			console.error(
+				`"${param}" is not a valid configuration for a showmy.chat overlay`
+			);
 		}
 	}
 	return queryParameters;
@@ -85,8 +91,6 @@ function isPositiveInteger(value) {
 	const num = Number(value);
 	return Number.isInteger(num) && num > 0;
 }
-
-
 
 // TRANSFORMERS FOR QUERY PARAMETER VALUES
 
