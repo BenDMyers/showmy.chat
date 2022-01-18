@@ -1,5 +1,5 @@
 /* global ComfyJS */
-
+let testVariable = "hi!"
 import {
 	replaceKeywordWithBttvEmoteImage,
 	getBttvImageUrl,
@@ -293,26 +293,14 @@ ComfyJS.onMessageDeleted = function (id, extra) {
 	}
 };
 
-/**
- * @param messageToDelete
- */
-function removeMessageFromDomAndShiftOthers(messageToDelete) {
-	let wasFirstInGroup = messageToDelete.getAttribute(
-		'data-twitch-first-message-in-group'
-	);
-	let group = messageToDelete.getAttribute('data-twitch-message-group');
-	let hasNextInGroup =
-		messageToDelete.nextSibling &&
-		messageToDelete.nextSibling.getAttribute('data-twitch-message-group') ===
-		group;
-	if (wasFirstInGroup && hasNextInGroup) {
-		messageToDelete.nextSibling.setAttribute(
-			'data-twitch-first-message-in-group',
-			true
-		);
-	}
-	messageToDelete.remove();
-}
+ComfyJS.onBan = (bannedUsername, reason, extra) => {
+	removeAllMessagesFromUser(bannedUsername)
+};
+ComfyJS.onTimeout = (timedOutUsername, reason, durationInSeconds, extra) => {
+	removeAllMessagesFromUser(timedOutUsername);
+};
+
+
 
 /**
  * Fetches necessary user data and begins listening for chat messages
