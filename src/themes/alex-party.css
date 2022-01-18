@@ -1,18 +1,19 @@
 :root {
-	--twitch-gray: rgb(70, 70, 95);
-	--twitch-light: rgb(239, 239, 241);
-	--twitch-dark-background: rgb(24, 24, 27);
-	--twitch-purple: rgb(180, 84, 255);
+	--twitch-gray: rgb(70 70 95);
+	--twitch-light: rgb(239 239 241);
+	--twitch-dark-background: rgb(24 24 27);
+	--twitch-purple: rgb(180 84 255);
 	--alex-border-color: blue;
 }
 
-html, body {
+html,
+body {
 	overflow: hidden;
 	height: 100vh;
 	margin: 0;
 }
 
-*{
+* {
 	box-sizing: border-box;
 }
 
@@ -25,12 +26,11 @@ body {
 	color: var(--twitch-dark-background);
 	border: 1em var(--alex-border-color) ridge;
 	border-radius: 1em;
-	font-family: "Comic Sans MS", cursive;
+	font-family: 'Comic Sans MS', cursive;
 	font-size: 24px;
 	list-style: none;
 	margin: 0;
 	padding: 0;
-
 	height: 100vh;
 	overflow: auto;
 	display: flex;
@@ -52,8 +52,8 @@ body {
 	display: block;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-    overflow: hidden;
-	font-family: 'Papyrus', 'Comic Sans MS', cursive;
+	overflow: hidden;
+	font-family: Papyrus, 'Comic Sans MS', cursive;
 	font-weight: 600;
 }
 
@@ -62,11 +62,11 @@ body {
 	display: inline;
 	font-weight: 700;
 	-webkit-text-stroke: 1px var(--alex-border-color);
-    text-shadow: 2px 2px 0px var(--alex-border-color);
+	text-shadow: 2px 2px 0 var(--alex-border-color);
 }
 
-[data-twitch-message] .twitch-chat-sender:after {
-	content: ": ";
+[data-twitch-message] .twitch-chat-sender::after {
+	content: ': ';
 	color: var(--twitch-dark-background);
 	font-weight: normal;
 }
@@ -79,11 +79,12 @@ body {
 	width: 1.25em;
 }
 
-[data-twitch-mentioned-user] {
+[data-twitch-mentioned-user],
+.twitch-chat-command {
 	background-color: transparent;
-	font-family: 'Papyrus', 'Comic Sans MS', cursive;
+	font-family: Papyrus, 'Comic Sans MS', cursive;
 	font-weight: 600;
-    text-shadow: 2px 2px 0px var(--twitch-purple);
+	text-shadow: 2px 2px 0 var(--twitch-purple);
 	color: inherit;
 }
 
@@ -92,9 +93,9 @@ body {
 	text-decoration: none;
 }
 
-[data-twitch-message-status*="highlighted"] .twitch-chat-message{
+[data-twitch-message-status*='highlighted'] .twitch-chat-message {
 	background-color: lightsalmon;
-	font-family: 'Papyrus', fantasy;
+	font-family: Papyrus, fantasy;
 	font-weight: 600;
 	padding: 0 0.1em;
 }

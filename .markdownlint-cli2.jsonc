@@ -1,0 +1,8 @@
+{
+	"config": {
+		"default": true,
+		"line-length": false,
+		"no-emphasis-as-heading": false
+	},
+	"ignores": ["node_modules"]
+}

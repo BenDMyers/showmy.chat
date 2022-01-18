@@ -1,0 +1,25 @@
+{
+	"env": {
+		"browser": true,
+		"node": true,
+		"jest": true,
+		"es2021": true
+	},
+	"parserOptions": {
+		"ecmaVersion": 13,
+		"sourceType": "script"
+	},
+	"extends": ["eslint:recommended", "plugin:jsdoc/recommended", "prettier"],
+	"plugins": ["jsdoc", "html"],
+	"rules": {
+		"no-unused-vars": ["error", {"args": "none"}]
+	},
+	"overrides": [
+		{
+			"files": ["src/scripts/bttvIntegration.js", "src/scripts/handleChat.js"],
+			"parserOptions": {
+				"sourceType": "module"
+			}
+		}
+	]
+}

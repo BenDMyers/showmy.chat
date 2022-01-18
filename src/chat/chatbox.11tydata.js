@@ -1,5 +1,5 @@
 module.exports = {
 	permalink: {
-		serverless: '/c/:channel'
-	}
+		serverless: '/c/:channel',
+	},
 };

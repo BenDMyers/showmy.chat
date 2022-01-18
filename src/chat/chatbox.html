@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<style>
 		:root {
 			color-scheme: light dark;
@@ -12,7 +12,8 @@
 	</style>
 	<link rel="stylesheet" href="{{ eleventy.serverless.query.theme | toStylesheet: themes }}" />
 	<script>
-		window.CONFIG = Object.freeze({{ eleventy.serverless.query | serialize }});
+		const config = JSON.parse(`{{ eleventy.serverless.query | serialize }}`);
+		window.CONFIG = Object.freeze(config);
 	</script>
 	{% if eleventy.serverless.query.DEMO %}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
@@ -23,9 +24,7 @@
 	<title>{{ eleventy.serverless.path.channel }} | showmy.chat</title>
 </head>
 
-<body
-	{% if eleventy.serverless.query.showAvatars %} data-avatars-enabled="true" {% endif %}
->
+<body>
 	<ul data-twitch-chat="{{ eleventy.serverless.path.channel }}"></ul>
 	<script src="/scripts/bttvIntegration.js" type="module"></script>
 	<script src="/scripts/handleChat.js" type="module"></script>

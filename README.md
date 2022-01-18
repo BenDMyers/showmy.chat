@@ -1,7 +1,14 @@
 # showmy.chat
+
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
 
 **On-Demand, Themeable Twitch Chat Overlays For Everyone**
 
@@ -26,6 +33,7 @@ This is the repo for [showmy.chat](https://showmy.chat), an on-demand themed Twi
 **showmy.chat** overlays leverage [ComfyJS](https://github.com/instafluff/ComfyJS), which in turn is built on top of [tmi.js](https://tmijs.com), to receive and parse messages. Major thanks to everyone in these communities who have done the hard work to ensure that interacting with Twitch's chat API is as easy as possible.
 
 Finally, **showmy.chat** is indebted to [Style Stage](https://stylestage.dev), [Stephanie Eckles](https://thinkdobecreate.com)'s modern spiritual successor to [CSS Zen Garden](http://www.csszengarden.com), for inspiration. Style Stage demonstrates how the same markup can be styled in a plethora of creative ways, and leverages community-contributed stylesheets. **showmy.chat** was initially conceived of as "What if Style Stage, but for Twitch chat overlays?"
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -41,10 +49,10 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://ajcweb.dev/"><img src="https://avatars.githubusercontent.com/u/12433465?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Anthony Campolo</b></sub></a><br /><a href="https://github.com/BenDMyers/showmy.chat/commits?author=ajcwebdev" title="Documentation">📖</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=ajcwebdev" title="Code">💻</a></td>
     <td align="center"><a href="http://helloyes.dev"><img src="https://avatars.githubusercontent.com/u/4201323?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Thomas Michael Semmler</b></sub></a><br /><a href="#translation-nachtfunke" title="Translation">🌍</a></td>
     <td align="center"><a href="https://alex.party"><img src="https://avatars.githubusercontent.com/u/13134182?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alex Riviere</b></sub></a><br /><a href="#content-fimion" title="Content">🖋</a> <a href="#design-fimion" title="Design">🎨</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=fimion" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/KenAKAFrosty"><img src="https://avatars.githubusercontent.com/u/90424167?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ken aka Frosty</b></sub></a><br /><a href="#content-KenAKAFrosty" title="Content">🖋</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=KenAKAFrosty" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/KenAKAFrosty"><img src="https://avatars.githubusercontent.com/u/90424167?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ken aka Frosty</b></sub></a><br /><a href="#content-KenAKAFrosty" title="Content">🖋</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=KenAKAFrosty" title="Code">💻</a> <a href="#infra-KenAKAFrosty" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://nickymeuleman.netlify.app/"><img src="https://avatars.githubusercontent.com/u/30179461?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nicky Meuleman</b></sub></a><br /><a href="#design-NickyMeuleman" title="Design">🎨</a></td>
+    <td align="center"><a href="https://nickymeuleman.netlify.app/"><img src="https://avatars.githubusercontent.com/u/30179461?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nicky Meuleman</b></sub></a><br /><a href="#design-NickyMeuleman" title="Design">🎨</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=NickyMeuleman" title="Code">💻</a> <a href="#tool-NickyMeuleman" title="Tools">🔧</a></td>
   </tr>
 </table>
 

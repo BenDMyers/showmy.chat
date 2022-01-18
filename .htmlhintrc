@@ -1,0 +1,19 @@
+{
+	"alt-require": true,
+	"attr-lowercase": true,
+	"attr-no-duplication": true,
+	"attr-unsafe-chars": true,
+	"attr-value-not-empty": true,
+	"doctype-first": false,
+	"html-lang-require": true,
+	"id-class-value": "dash",
+	"id-unique": true,
+	"input-requires-label": true,
+	"spec-char-escape": true,
+	"src-not-empty": true,
+	"tag-pair": true,
+	"tagname-lowercase": true,
+	"tagname-specialchars": true,
+	"title-require": true,
+	"attr-no-unnecessary-whitespace": true
+}
