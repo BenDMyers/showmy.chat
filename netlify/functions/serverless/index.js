@@ -6,7 +6,8 @@ const cleanseQueryParameters = require('./cleanse-query-parameters');
 require('./eleventy-bundler-modules.js');
 
 /**
- * @param event
+ * @param event - 11ty serverless event
+ * @returns object
  */
 async function handler(event) {
 	console.dir({path: event.path, ...event.queryStringParameters});

@@ -3,8 +3,8 @@
  */
 const VALID_PARAMETERS = {
 	DEMO: {
-		validate: isBoolean,
-		transform: toBoolean,
+		validate: getIsVariantOf('DEMO'),
+		transform: getVariantValue('DEMO'),
 	},
 	hideMessagesFrom: {
 		validate: isCommaSeparatedList,
@@ -21,6 +21,14 @@ const VALID_PARAMETERS = {
 	},
 	theme: {
 		validate: isString,
+	},
+};
+
+const ENUMS = {
+	DEMO: {
+		true: true,
+		false: false,
+		static: 'STATIC',
 	},
 };
 
@@ -68,6 +76,14 @@ module.exports = cleanseQueryParameters;
 // VALIDATORS
 
 /**
+ * @param {string} enumName - name of the enum the value should be a variant of
+ * @returns {Validator} - function used to determine whether a specific query parameter should be kept or thrown out
+ */
+function getIsVariantOf(enumName) {
+	return (value) => Object.keys(ENUMS[enumName]).includes(value);
+}
+
+/**
  * @callback Validator function used to determine whether a specific query parameter should be kept or thrown out
  * @param {string} queryValue value of a single query parameter
  * @returns {boolean} true if query parameter should be kept (value possibly transformed) or totally thrown out
@@ -93,6 +109,14 @@ function isPositiveInteger(value) {
 }
 
 // TRANSFORMERS FOR QUERY PARAMETER VALUES
+
+/**
+ * @param {string} enumName - name of the enum for this query parameter
+ * @returns {Transformer} - function that turns the passed value for the query parameter into a value for the corresponding enum
+ */
+function getVariantValue(enumName) {
+	return (variant) => ENUMS[enumName][variant];
+}
 
 /**
  * @callback Transformer function used to transform a query parameter's value into a more usable format

@@ -143,7 +143,13 @@ const MOCK_COMFY = (function () {
 			if (channelNames.length) {
 				broadcaster.user = channelNames[0];
 			}
-			setTimeout(_generateNextMessage, 500);
+			if (window.CONFIG.DEMO === 'STATIC') {
+				for (let i = 0; i < 10; i++) {
+					_generateNextMessage();
+				}
+			} else {
+				setTimeout(_generateNextMessage, 500);
+			}
 		},
 	};
 
@@ -239,10 +245,13 @@ const MOCK_COMFY = (function () {
 		comfy.onChat(...message);
 
 		// Ready up the next message
-		const duration = Math.floor(Math.random() * 4) + 3;
 		const nextGeneratedMessage =
 			Math.random() < 0.25 ? _generateChatCommand : _generateNextMessage;
-		setTimeout(nextGeneratedMessage, duration * 1000);
+
+		if (window.CONFIG.DEMO != 'STATIC') {
+			const duration = Math.floor(Math.random() * 4) + 3;
+			setTimeout(nextGeneratedMessage, duration * 1000);
+		}
 	}
 
 	/**
