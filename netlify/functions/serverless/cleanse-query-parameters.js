@@ -1,9 +1,17 @@
+const ENUMS = {
+	DEMO: {
+		true: true,
+		false: false,
+		static: 'STATIC',
+	},
+};
+
 /**
  * @type {object<string, {validate: Validator, transform?: Transformer}>}
  */
 const VALID_PARAMETERS = {
 	DEMO: {
-		validate: getIsVariantOf('DEMO'),
+		validate: oneOf(...Object.keys(ENUMS['DEMO'])),
 		transform: getVariantValue('DEMO'),
 	},
 	hideMessagesFrom: {
@@ -21,14 +29,6 @@ const VALID_PARAMETERS = {
 	},
 	theme: {
 		validate: isString,
-	},
-};
-
-const ENUMS = {
-	DEMO: {
-		true: true,
-		false: false,
-		static: 'STATIC',
 	},
 };
 
@@ -76,14 +76,6 @@ module.exports = cleanseQueryParameters;
 // VALIDATORS
 
 /**
- * @param {string} enumName - name of the enum the value should be a variant of
- * @returns {Validator} - function used to determine whether a specific query parameter should be kept or thrown out
- */
-function getIsVariantOf(enumName) {
-	return (value) => Object.keys(ENUMS[enumName]).includes(value);
-}
-
-/**
  * @callback Validator function used to determine whether a specific query parameter should be kept or thrown out
  * @param {string} queryValue value of a single query parameter
  * @returns {boolean} true if query parameter should be kept (value possibly transformed) or totally thrown out
@@ -106,6 +98,10 @@ function isString(value) {
 function isPositiveInteger(value) {
 	const num = Number(value);
 	return Number.isInteger(num) && num > 0;
+}
+/** @type {Validator} */
+function oneOf(...args) {
+	return (value) => args.includes(value);
 }
 
 // TRANSFORMERS FOR QUERY PARAMETER VALUES
