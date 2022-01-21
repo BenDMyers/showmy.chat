@@ -143,7 +143,7 @@ const MOCK_COMFY = (function () {
 			if (channelNames.length) {
 				broadcaster.user = channelNames[0];
 			}
-			if (window.CONFIG.DEMO === 'STATIC') {
+			if (window.CONFIG.DEMO === 'static') {
 				for (let i = 0; i < 10; i++) {
 					_generateNextMessage();
 				}
@@ -248,7 +248,7 @@ const MOCK_COMFY = (function () {
 		const nextGeneratedMessage =
 			Math.random() < 0.25 ? _generateChatCommand : _generateNextMessage;
 
-		if (window.CONFIG.DEMO != 'STATIC') {
+		if (window.CONFIG.DEMO != 'static') {
 			const duration = Math.floor(Math.random() * 4) + 3;
 			setTimeout(nextGeneratedMessage, duration * 1000);
 		}

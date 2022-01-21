@@ -2,7 +2,7 @@ const ENUMS = {
 	DEMO: {
 		true: true,
 		false: false,
-		static: 'STATIC',
+		static: 'static',
 	},
 };
 
