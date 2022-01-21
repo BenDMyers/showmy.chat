@@ -144,7 +144,7 @@ const MOCK_COMFY = (function () {
 				broadcaster.user = channelNames[0];
 			}
 			if (window.CONFIG.DEMO === 'static') {
-				for (let i = 0; i < 10; i++) {
+				for (let i = 0; i < window.CONFIG.showLatestMessages; i++) {
 					_generateNextMessage();
 				}
 			} else {
