@@ -2,7 +2,8 @@ const {EleventyServerlessBundlerPlugin} = require('@11ty/eleventy');
 const serialize = require('serialize-javascript');
 const {titleCase} = require('title-case');
 const {isWebUri} = require('valid-url');
-
+const markdownIt = require('markdown-it');
+const markdownItFootnote = require('markdown-it-footnote');
 /**
  * @typedef {import('@11ty/eleventy/src/UserConfig')} EleventyConfig
  * @typedef {ReturnType<import('@11ty/eleventy/src/defaultConfig')>} EleventyReturnValue
@@ -10,6 +11,14 @@ const {isWebUri} = require('valid-url');
  * @type {(eleventyConfig: EleventyConfig)) => EleventyReturnValue}
  */
 module.exports = function (eleventyConfig) {
+	let markdownItOptions = {
+		html: true,
+		breaks: true,
+		linkify: true,
+	};
+	let markdownLib = markdownIt(markdownItOptions).use(markdownItFootnote);
+	eleventyConfig.setLibrary('md', markdownLib);
+
 	eleventyConfig.addPlugin(EleventyServerlessBundlerPlugin, {
 		name: 'serverless',
 		functionsDir: './netlify/functions',
