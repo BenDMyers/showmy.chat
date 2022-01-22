@@ -1,4 +1,5 @@
 /* global ComfyJS */
+
 import {
 	replaceKeywordWithBttvEmoteImage,
 	getBttvImageUrl,
