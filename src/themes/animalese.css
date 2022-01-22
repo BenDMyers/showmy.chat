@@ -60,7 +60,7 @@ body {
 	transform: rotateX(1deg) rotateZ(-2deg) translateX(20%) translateY(-45%);
 }
 
-[data-twitch-sender-color-pair-with='light'] .twitch-chat-sender {
+[data-twitch-sender-color-lightness='dark'] .twitch-chat-sender {
 	color: var(--light-cream);
 }
 

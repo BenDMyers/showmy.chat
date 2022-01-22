@@ -218,15 +218,9 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 		);
 
 		const senderColorLightness = isLightOrDark(extra.userColor);
-		const idealContrastForSenderColor =
-			senderColorLightness === 'light' ? 'dark' : 'light';
 		newMessage.setAttribute(
 			'data-twitch-sender-color-lightness',
 			senderColorLightness
-		);
-		newMessage.setAttribute(
-			'data-twitch-sender-color-pair-with',
-			idealContrastForSenderColor
 		);
 	}
 
