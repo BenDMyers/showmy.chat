@@ -114,6 +114,14 @@ module.exports = [
 						],
 					},
 					{
+						name: 'data-twitch-sender-first-message',
+						present: `Whenever this is the sender's first message sent in this channel`,
+						value: '`true` if present',
+						use: [
+							'`[data-twitch-sender-first-message]` to style first-time messages',
+						],
+					},
+					{
 						name: 'data-twitch-sender-roles',
 						present: 'Whenever the sender has a role',
 						value:
