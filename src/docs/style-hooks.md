@@ -63,6 +63,7 @@ This flexibility makes data selectors really ideal for giving themes the tools t
 
  caption, caption * {
   font-weight: bold;
+  border-bottom: 1px solid var(--muted-border-color)
  }
 
  td:first-of-type, td:first-of-type * {
