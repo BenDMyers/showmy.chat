@@ -1,19 +1,37 @@
+/* global faker */
+
 /**
  * @typedef {object} MockUser
- * @property {string} user
+ * @property {string} user The name of a user
  * @property {{
  * 		broadcaster: boolean,
  * 		founder: boolean,
  * 		mod: boolean,
  * 		subscriber: boolean,
  * 		vip: boolean
- * }} roles
+ * }} roles The roles for the current user
  * @property {userColor} [string]
  */
 
 const MOCK_COMFY = (function () {
-	const COMMON_COLORS = ['#ff0000', '#0000ff', '#008000', '#b22222', '#ff7f50', '#9ACD32', '#FF4500', '#2E8B57', '#DAA520', '#D2691E', '#5F9EA0', '#1E90FF', '#FF69B4', '#8A2BE2', '#00FF7F']
-	
+	const COMMON_COLORS = [
+		'#ff0000',
+		'#0000ff',
+		'#008000',
+		'#b22222',
+		'#ff7f50',
+		'#9ACD32',
+		'#FF4500',
+		'#2E8B57',
+		'#DAA520',
+		'#D2691E',
+		'#5F9EA0',
+		'#1E90FF',
+		'#FF69B4',
+		'#8A2BE2',
+		'#00FF7F',
+	];
+
 	const GLOBAL_EMOTES = [
 		{name: 'VirtualHug', id: '301696583'},
 		{name: 'StinkyGlitch', id: '304486324'},
@@ -33,7 +51,10 @@ const MOCK_COMFY = (function () {
 
 	/**
 	 * Selects a random element from an element
-	 * @param {any[]} array 
+	 *
+	 * @template Item
+	 * @param {Item[]} array
+	 * @returns {Item} randomly selected element
 	 */
 	function _choose(array) {
 		if (array && array.length > 0) {
@@ -44,6 +65,7 @@ const MOCK_COMFY = (function () {
 
 	/**
 	 * Generates a realistic user, with potential roles and user color.
+	 *
 	 * @returns {MockUser}
 	 */
 	function _generateUser() {
@@ -61,9 +83,9 @@ const MOCK_COMFY = (function () {
 				mod: false,
 				founder,
 				subscriber,
-				vip
-			}
-		}
+				vip,
+			},
+		};
 	}
 
 	const mods = ['', '', ''].map(() => {
@@ -76,35 +98,53 @@ const MOCK_COMFY = (function () {
 	const viewers = twenty.map(_generateUser);
 
 	const broadcaster = _generateUser();
-	broadcaster.roles = {broadcaster: true, mod: false, subscriber: false, founder: false, vip: false};
-	
+	broadcaster.roles = {
+		broadcaster: true,
+		mod: false,
+		subscriber: false,
+		founder: false,
+		vip: false,
+	};
+
 	const allUsers = [broadcaster, ...mods, broadcaster, ...viewers, broadcaster];
 
 	const comfy = {
 		/**
-		 * @param {string} user 
-		 * @param {string} messageContents 
-		 * @param {object} flags 
+		 * @param {string} user
+		 * @param {string} messageContents
+		 * @param {object} flags
 		 * @param {object} self
-		 * @param {{userState: object}} extra 
+		 * @param {{userState: object}} extra
 		 */
 		onChat(user, messageContents, flags, self, extra) {},
 
 		/**
+		 * @param {string} user
+		 * @param {string} command
+		 * @param {string} messageContents
+		 * @param {object} flags
+		 * @param {object} self
+		 * @param {{userState: object}} extra
+		 */
+		onCommand(user, command, messageContents, flags, self, extra) {},
+
+		/**
 		 * @param {string} id
-		 * @param {object} extra 
+		 * @param {object} extra
 		 */
 		onMessageDeleted(id, extra) {},
 
 		/**
-	 	 * @param {string[]} [channelNames] 
-	 	 */
+		 * @param _
+		 * @param __
+		 * @param {string[]} [channelNames]
+		 */
 		Init(_, __, channelNames) {
 			if (channelNames.length) {
 				broadcaster.user = channelNames[0];
 			}
 			setTimeout(_generateNextMessage, 500);
-		}
+		},
 	};
 
 	const messages = [];
@@ -120,7 +160,7 @@ const MOCK_COMFY = (function () {
 		const extra = {
 			id: faker.random.uuid(),
 			userState: {},
-			userColor: chatter.userColor
+			userColor: chatter.userColor,
 		};
 
 		const flags = {};
@@ -153,7 +193,7 @@ const MOCK_COMFY = (function () {
 		// Randomly highlight messages
 		if (Math.random() < 0.1) {
 			flags.highlighted = true;
-		} 
+		}
 
 		// Randomly add emotes
 		if (Math.random() < 0.3) {
@@ -161,11 +201,14 @@ const MOCK_COMFY = (function () {
 			const words = messageContents.split(' ');
 			const minimumIndex = isReply ? 1 : 0;
 			do {
-				const index = Math.max(minimumIndex, Math.floor(Math.random() * words.length));
+				const index = Math.max(
+					minimumIndex,
+					Math.floor(Math.random() * words.length)
+				);
 				/** @type {{name: string, id: string}} */
 				const chosenEmote = _choose(GLOBAL_EMOTES);
 				words.splice(index, 0, chosenEmote.name);
-			} while (Math.random() < 0.15)
+			} while (Math.random() < 0.15);
 			messageContents = words.join(' ');
 
 			extra.messageEmotes = {};
@@ -190,21 +233,65 @@ const MOCK_COMFY = (function () {
 			messageContents,
 			{...chatter.roles, ...flags},
 			null,
-			extra
+			extra,
 		];
 		messages.push(message);
 		comfy.onChat(...message);
 
 		// Ready up the next message
-		let duration = Math.floor(Math.random() * 4) + 3;
-		setTimeout(_generateNextMessage, duration * 1000);
+		const duration = Math.floor(Math.random() * 4) + 3;
+		const nextGeneratedMessage =
+			Math.random() < 0.25 ? _generateChatCommand : _generateNextMessage;
+		setTimeout(nextGeneratedMessage, duration * 1000);
 	}
 
 	/**
-	 * @param {string} id
-	 * @param {object} extra 
+	 * Sends a mock `!uptime` command from a random user or a mock `!so` command from the broadcaster
 	 */
-	comfy.onMessageDeleted = function(id, extra) {}
+	function _generateChatCommand() {
+		const extra = {userState: {}};
+
+		if (Math.random() < 0.2) {
+			// 1 in every 5 commands, the broadcaster shouts out someone
+			extra.userColor = broadcaster.userColor;
+			const mentionedUser = _choose([...mods, ...viewers]);
+			const mention = `@${mentionedUser.user}`;
+			messages.push([
+				broadcaster.user,
+				`!so ${mention}`,
+				{...broadcaster.roles},
+				null,
+				extra,
+			]);
+			comfy.onCommand(
+				broadcaster.user,
+				'so',
+				mention,
+				{...broadcaster.roles},
+				extra
+			);
+		} else {
+			const randomCommenter = _choose(allUsers);
+			extra.userColor = randomCommenter.userColor;
+			messages.push([
+				randomCommenter.user,
+				'!uptime',
+				{...randomCommenter.roles},
+				null,
+				extra,
+			]);
+			comfy.onCommand(
+				randomCommenter.user,
+				'uptime',
+				'',
+				{...randomCommenter.roles},
+				extra
+			);
+		}
+
+		const duration = Math.floor(Math.random() * 2) + 2;
+		setTimeout(_generateNextMessage, duration * 1000);
+	}
 
 	return comfy;
 })();

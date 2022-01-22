@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap');
+
+:root {
+	--background: #0f0f23;
+	--text: #ccc;
+	--link: #090;
+	--accent: #ff6;
+}
+
+html,
+body {
+	overflow: hidden;
+	height: 100vh;
+	margin: 0;
+	font-family: 'Source Code Pro', monospace;
+	font-size: 14pt;
+	color: var(--text);
+	background-color: var(--background);
+}
+
+/* the entire list of messages */
+[data-twitch-chat] {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+[data-twitch-chat] > * {
+	margin-top: 1rem;
+}
+
+[data-twitch-chat] > *:last-child {
+	margin-bottom: 2rem;
+}
+
+/* single message block */
+[data-twitch-message] a {
+	text-decoration: none;
+	color: var(--link);
+}
+
+/* replying to line on top of a message */
+[data-twitch-message-reply] {
+	display: block;
+	opacity: 0.6;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+/* part of a message block with the sender of the message */
+.twitch-chat-sender {
+	color: var(--twitch-sender-color, var(--link));
+	font-size: 115%;
+}
+
+[data-twitch-sender-roles*='subscriber'] .twitch-chat-sender::after {
+	content: '*';
+	color: var(--accent);
+}
+
+[data-twitch-sender-roles*='founder'] .twitch-chat-sender::after,
+[data-twitch-sender-roles*='vip'] .twitch-chat-sender::after,
+[data-twitch-sender-roles*='mod'] .twitch-chat-sender::after,
+[data-twitch-sender-roles*='broadcaster'] .twitch-chat-sender::after {
+	content: '**';
+	color: var(--accent);
+}
+
+/* part of a message block with the text of the message */
+.twitch-chat-message {
+	display: inline;
+	max-width: 50ch;
+	word-wrap: break-word;
+}
+
+[data-twitch-message-status*='highlighted'] .twitch-chat-message {
+	text-shadow: 0 0 5px white;
+	color: white;
+}
+
+/* chat commands */
+.twitch-chat-command {
+	background-color: transparent;
+	color: white;
+	text-shadow: 0 0 5px white;
+}
+
+/* emotes */
+[data-twitch-emote] {
+	width: 1.5em;
+	margin-bottom: -0.3em;
+}
+
+/* mention tag */
+[data-twitch-mentioned-user] {
+	background-color: transparent;
+	color: var(--accent);
+	text-shadow: 0 0 5px var(--accent);
+}

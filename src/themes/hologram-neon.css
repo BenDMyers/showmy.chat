@@ -5,6 +5,7 @@
 	--message-glow-color: mediumpurple;
 	--emote-glow-color: mediumpurple;
 	--mention-glow-color: darkorange;
+	--command-glow-color: magenta;
 }
 
 html,
@@ -41,17 +42,24 @@ body {
 
 [data-twitch-message] {
 	color: white;
-	text-shadow:
-		0 0 7px rgba(188, 253, 254, 0.8),
-		0 0 7px rgba(188, 253, 254, 0.8),
-		0 0 7px rgba(188, 253, 254, 0.8),
-		0 0 7px rgba(188, 253, 254, 0.8);
+	text-shadow: 0 0 7px rgb(188 253 254 / 80%), 0 0 7px rgb(188 253 254 / 80%),
+		0 0 7px rgb(188 253 254 / 80%), 0 0 7px rgb(188 253 254 / 80%);
 }
 
 @keyframes flicker {
-	0%, 18%, 18.4%, 22%, 22.4%, 25%, 25.4%, 53%, 53.4%, 57%, 57.4%, 100% {
-		text-shadow:
-			0 0 calc(7px / 1.75) var(--neon-glow-color),
+	0%,
+	18%,
+	18.4%,
+	22%,
+	22.4%,
+	25%,
+	25.4%,
+	53%,
+	53.4%,
+	57%,
+	57.4%,
+	100% {
+		text-shadow: 0 0 calc(7px / 1.75) var(--neon-glow-color),
 			0 0 calc(10px / 1.75) var(--neon-glow-color),
 			0 0 calc(21px / 1.75) var(--neon-glow-color),
 			0 0 calc(42px / 1.75) var(--neon-glow-color),
@@ -64,16 +72,22 @@ body {
 		color: white;
 		font-style: normal;
 	}
-	0%, 18.2%, 22.2%, 25.2%, 53.2%, 57.2% {       
-		text-shadow: 
-			0 0 calc(7px / 1.75) var(--neon-glow-color),
+
+	0%,
+	18.2%,
+	22.2%,
+	25.2%,
+	53.2%,
+	57.2% {
+		text-shadow: 0 0 calc(7px / 1.75) var(--neon-glow-color),
 			0 0 calc(10px / 1.75) var(--neon-glow-color),
 			0 0 calc(21px / 1.75) var(--neon-glow-color),
 			0 0 calc(7px / 1.75) var(--neon-glow-color),
 			0 0 calc(10px / 1.75) var(--neon-glow-color),
 			0 0 calc(21px / 1.75) var(--neon-glow-color);
-		color:rgb(255, 255, 255, 0.7);
+		color: rgb(255 255 255 / 70%);
 	}
+
 	82.99% {
 		font-style: normal;
 	}
@@ -82,8 +96,8 @@ body {
 .twitch-chat-sender {
 	/* --neon-glow-color: var(--sender-glow-color); */
 	--neon-glow-color: var(--twitch-sender-color, var(--sender-glow-color));
-	text-shadow:
-		0 0 calc(7px / 1.75) var(--neon-glow-color),
+
+	text-shadow: 0 0 calc(7px / 1.75) var(--neon-glow-color),
 		0 0 calc(10px / 1.75) var(--neon-glow-color),
 		0 0 calc(21px / 1.75) var(--neon-glow-color),
 		0 0 calc(42px / 1.75) var(--neon-glow-color),
@@ -99,17 +113,17 @@ body {
 		0 0 calc(92px / 1.75) var(--neon-glow-color),
 		0 0 calc(102px / 1.75) var(--neon-glow-color),
 		0 0 calc(151px / 1.75) var(--neon-glow-color);
-	color: rgba(255, 255, 255, 0.8);
+	color: rgb(255 255 255 / 80%);
 	font-size: 115%;
 	animation: flicker 6s infinite;
 }
 
 .twitch-chat-message {
 	--neon-glow-color: var(--message-glow-color);
+
 	display: inline;
 	color: white;
-	text-shadow:
-		0 0 calc(3px / 1.75) var(--neon-glow-color),
+	text-shadow: 0 0 calc(3px / 1.75) var(--neon-glow-color),
 		0 0 calc(7px / 1.75) var(--neon-glow-color),
 		0 0 calc(7px / 1.75) var(--neon-glow-color);
 	max-width: 50ch;
@@ -120,16 +134,22 @@ body {
 [data-twitch-emote] {
 	width: 1.5em;
 	margin-bottom: -0.3em;
-	filter:
-		opacity(0.55)
-		brightness(1.2)
-		grayscale(0.7)
+	filter: opacity(0.55) brightness(1.2) grayscale(0.7)
 		drop-shadow(0 0 0 var(--emote-glow-color))
 		drop-shadow(0 0 calc(5px / 1.75) var(--emote-glow-color));
 }
 
+.twitch-chat-command {
+	--neon-glow-color: var(--command-glow-color);
+
+	background-color: transparent;
+	color: white;
+	animation: flicker 8s infinite;
+}
+
 [data-twitch-mentioned-user] {
 	--neon-glow-color: var(--mention-glow-color);
+
 	background-color: transparent;
 	color: white;
 	animation: flicker 8s infinite;
@@ -137,6 +157,7 @@ body {
 
 [data-twitch-message] a {
 	--neon-glow-color: var(--emote-glow-color);
+
 	animation: flicker 7s infinite;
 	text-decoration: none;
 }
