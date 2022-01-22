@@ -4,6 +4,7 @@ const {titleCase} = require('title-case');
 const {isWebUri} = require('valid-url');
 const markdownIt = require('markdown-it');
 const markdownItFootnote = require('markdown-it-footnote');
+const formatStyleHooksDocsTable = require('./src/_11ty/shortcodes/format-style-hooks-docs-table');
 /**
  * @typedef {import('@11ty/eleventy/src/UserConfig')} EleventyConfig
  * @typedef {ReturnType<import('@11ty/eleventy/src/defaultConfig')>} EleventyReturnValue
@@ -39,6 +40,10 @@ module.exports = function (eleventyConfig) {
 		serialize(input, {isJSON: true})
 	);
 	eleventyConfig.addFilter('toStylesheet', toStylesheet);
+	eleventyConfig.addShortcode(
+		'formatStyleHooksDocsTable',
+		formatStyleHooksDocsTable
+	);
 
 	return {
 		dir: {

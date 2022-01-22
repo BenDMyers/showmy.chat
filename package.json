@@ -21,6 +21,7 @@
 		"axios": "^0.24.0",
 		"jest": "^27.4.7",
 		"jsdom": "^16.6.0",
+		"outdent": "^0.8.0",
 		"serialize-javascript": "^6.0.0",
 		"title-case": "^3.0.3",
 		"valid-url": "^1.0.9"
