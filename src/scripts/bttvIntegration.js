@@ -47,7 +47,7 @@ export function areAllTruthyStrings(arrayOfInputs) {
 
 /**
  * @param {string} username twitch username, case insensitive
- * @param {function} [fetchFunction]
+ * @param {Function} [fetchFunction]
  * @returns {string} twitch user id
  */
 export async function getTwitchUserId(username, fetchFunction) {
@@ -150,7 +150,7 @@ export function getBttvImageUrl(bttvEmoteId) {
 
 /**
  * @param {object<string, string>} dictObject  key is friendly emote name, value is the BTTV emote id
- * @param {function} [fetchFunction]
+ * @param {Function} [fetchFunction]
  * @returns {object<string, string>} same as input - key is friendly name, value is id
  */
 export async function addGlobalBttvEmotesToDict(dictObject, fetchFunction) {
