@@ -281,7 +281,10 @@ ComfyJS.onMessageDeleted = function (id, extra) {
 		`[data-twitch-message="${id}"]`
 	);
 	if (messageToDelete) {
-		removeMessageFromDomAndShiftOthers(messageToDelete);
+		messageToDelete.setAttribute('data-twitch-message-status', 'deleting');
+		messageToDelete.addEventListener('transitionend', () =>
+			removeMessageFromDomAndShiftOthers(messageToDelete)
+		);
 	}
 };
 
