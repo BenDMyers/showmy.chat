@@ -1,4 +1,4 @@
-// import { html } from 'lit-html';
+const slugify = require('@sindresorhus/slugify');
 const outdent = require('outdent');
 const md = require('markdown-it')();
 
@@ -17,9 +17,17 @@ function render(markdown) {
  * @returns {string} HTML string documenting this node
  */
 module.exports = function formatStyleHooksDocsTable(chatboxNode, depth = 0) {
+	const nodeId = slugify(chatboxNode.name);
+
 	return outdent`
-		<section>
-			<h3><code>${render(chatboxNode.name)}</code></h3>
+		<section id="${nodeId}" aria-labelledby="heading-${nodeId}">
+			<h${3 + depth} id="heading-${nodeId}">
+				<code>
+					<a href="#${nodeId}">
+						${render(chatboxNode.name)}
+					</a>
+				</code>
+			</h${3 + depth}>
 			<p>${render(chatboxNode.description)}</p>
 			${
 				chatboxNode.attributes
@@ -36,16 +44,23 @@ module.exports = function formatStyleHooksDocsTable(chatboxNode, depth = 0) {
 				</thead>
 				<tbody>
 					${chatboxNode.attributes
-						.map(
-							(attr) => outdent`
-						<tr>
-							<td><code>${attr.name}</code></td>
+						.map((attr) => {
+							const attrId = slugify(attr.name);
+							return outdent`
+						<tr id="${attrId}">
+							<td>
+								<code>
+									<a href="#${attrId}">
+										${attr.name}
+									</a>
+								</code>
+							</td>
 							<td>${render(attr.present || '')}</td>
 							<td>${render(attr.value || '')}</td>
 							<td>${attr.use?.map(render).join('<br /><br />') || ''}</td>
 						</tr>
-					`
-						)
+					`;
+						})
 						.join('\n')}
 				</tbody>
 			</table>

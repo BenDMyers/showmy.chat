@@ -55,6 +55,7 @@ This flexibility makes data selectors really ideal for giving themes the tools t
   padding-inline-start: 2em;
   border-inline-start: 2px solid var(--muted-border-color);
  }
+
  section section {
   margin-inline-start: 2em;
   margin-block-start: 4em;
