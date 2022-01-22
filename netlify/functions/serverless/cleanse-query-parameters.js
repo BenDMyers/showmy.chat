@@ -6,6 +6,10 @@ const VALID_PARAMETERS = {
 		validate: isBoolean,
 		transform: toBoolean,
 	},
+	clearMessageAfter: {
+		validate: isPositiveInteger,
+		transform: Number.parseInt,
+	},
 	hideMessagesFrom: {
 		validate: isCommaSeparatedList,
 		transform: (value) => toStringArray(value.toLowerCase()),

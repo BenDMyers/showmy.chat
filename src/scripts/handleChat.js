@@ -237,6 +237,12 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 
 	chatbox.appendChild(newMessage);
 
+	if (window.CONFIG.clearMessageAfter) {
+		setTimeout(() => {
+			ComfyJS.onMessageDeleted(extra.id, extra);
+		}, window.CONFIG.clearMessageAfter);
+	}
+
 	// Optionally, users may specify a max number of messages to show.
 	// If we exceed that number, remove the oldest still shown message.
 	/** @type {{showLatestMessages?: number}} */
