@@ -55,6 +55,11 @@ body {
 	font-weight: 700;
 }
 
+[data-twitch-message][data-twitch-sender-color-lightness='light']
+	.twitch-chat-sender {
+	filter: brightness(0.7);
+}
+
 [data-twitch-message] .twitch-chat-sender::after {
 	content: ': ';
 	color: var(--twitch-dark-background);
