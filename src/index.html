@@ -15,7 +15,7 @@ layout: page.html
 			<a href="docs/configuration/#theme" aria-label="Docs for theme">&#9432;</a>
 		</div>
 		<select id="theme" name="theme">
-			<option value="{{defaults.theme}}">{{defaults.theme | formatThemeName}}</option>
+			<option value="{{defaults.theme}}">Default</option>
 			<option value="light">Light</option>
 			{%- for theme in themes.list -%}
 			{%- unless theme == "default" or theme == "light" -%}
