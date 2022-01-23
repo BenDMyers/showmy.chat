@@ -1,11 +1,12 @@
 :root {
-	--twitch-gray: rgb(173, 173, 184);
-	--twitch-light: rgb(239, 239, 241);
-	--twitch-dark-background: rgb(24, 24, 27);
-	--twitch-purple: rgb(180, 84, 255);
+	--twitch-gray: rgb(173 173 184);
+	--twitch-light: rgb(239 239 241);
+	--twitch-dark-background: rgb(24 24 27);
+	--twitch-purple: rgb(180 84 255);
 }
 
-html, body {
+html,
+body {
 	overflow: hidden;
 	height: 100vh;
 	margin-top: 0;
@@ -18,12 +19,12 @@ body {
 [data-twitch-chat] {
 	background-color: var(--twitch-light);
 	color: var(--twitch-dark-background);
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+		Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 	font-size: 14.625px;
 	list-style: none;
 	margin: 0;
 	padding: 0;
-
 	height: 100vh;
 	overflow: auto;
 	display: flex;
@@ -45,7 +46,7 @@ body {
 	display: block;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-    overflow: hidden;
+	overflow: hidden;
 }
 
 [data-twitch-message] .twitch-chat-sender {
@@ -54,8 +55,13 @@ body {
 	font-weight: 700;
 }
 
-[data-twitch-message] .twitch-chat-sender:after {
-	content: ": ";
+[data-twitch-message][data-twitch-sender-color-lightness='light']
+	.twitch-chat-sender {
+	filter: brightness(0.7);
+}
+
+[data-twitch-message] .twitch-chat-sender::after {
+	content: ': ';
 	color: var(--twitch-dark-background);
 	font-weight: normal;
 }
@@ -64,10 +70,15 @@ body {
 	display: inline;
 }
 
-[data-twitch-message-status*="highlighted"] .twitch-chat-message {
+[data-twitch-message-status*='highlighted'] .twitch-chat-message {
 	background-color: var(--twitch-highlight-purple);
 	border: 4px solid var(--twitch-highlight-purple);
 	color: white;
+}
+
+.twitch-chat-command {
+	background-color: transparent;
+	color: inherit;
 }
 
 [data-twitch-emote] {
@@ -80,7 +91,7 @@ body {
 	padding: 0.2rem 0.4rem;
 }
 
-[data-twitch-message-status*="highlighted"] [data-twitch-mentioned-user] {
+[data-twitch-message-status*='highlighted'] [data-twitch-mentioned-user] {
 	background-color: transparent;
 }
 

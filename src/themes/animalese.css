@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@700&family=Varela+Round&display=swap');
 
-html, body {
+html,
+body {
 	overflow: hidden;
 	height: 100vh;
 	margin-top: 0;
 
+	--light-cream: #fdf8e3;
 	--link-blue: #00cfcf;
 	--mentions: #ed8400;
 }
@@ -16,7 +18,6 @@ html, body {
 	list-style: none;
 	margin: 0;
 	padding: 0;
-
 	height: 100vh;
 	overflow: auto;
 	display: flex;
@@ -34,7 +35,6 @@ html, body {
 
 [data-twitch-chat] [data-twitch-message] {
 	animation: show 300ms 100ms cubic-bezier(0.38, 0.97, 0.56, 0.76) forwards;
-
 	transform: scale(0);
 	transform-origin: 20%;
 }
@@ -45,25 +45,27 @@ html, body {
 	}
 }
 
-[data-twitch-chat] [data-twitch-message] [data-twitch-message-reply] {
+[data-twitch-message-reply] {
 	display: none;
 }
 
-[data-twitch-chat] [data-twitch-message] .twitch-chat-sender {
+.twitch-chat-sender {
 	background-color: var(--twitch-sender-color, turquoise);
 	font-family: 'Varela Round', Tahoma, sans-serif;
 	font-weight: 400;
-
 	padding: 0.5rem 2rem;
 	width: max-content;
-	color: rgba(0, 0, 0, 0.9);
-
-    border-radius: 100vw;
-    transform: rotateX(1deg) rotateZ(-2deg) translateX(20%) translateY(-45%);
+	color: rgb(0 0 0 / 90%);
+	border-radius: 100vw;
+	transform: rotateX(1deg) rotateZ(-2deg) translateX(20%) translateY(-45%);
 }
 
-[data-twitch-chat] [data-twitch-message] .twitch-chat-message {
-	background-color: #fdf8e3;
+[data-twitch-sender-color-lightness='dark'] .twitch-chat-sender {
+	color: var(--light-cream);
+}
+
+.twitch-chat-message {
+	background-color: var(--light-cream);
 	color: #807256;
 	padding: calc(1rem + 0.6em) 3rem 1rem 3rem;
 	max-width: 50ch;
@@ -71,14 +73,17 @@ html, body {
 	border-radius: 30%/100% 100% 120% 120%;
 	word-wrap: break-word;
 }
-[data-twitch-chat] [data-twitch-message] .twitch-chat-message [data-twitch-emote] {
+
+[data-twitch-emote] {
 	width: 1.5em;
 	margin-bottom: -0.3em;
 }
+
 [data-twitch-mentioned-user] {
 	background-color: transparent;
 	color: var(--mentions);
 }
+
 [data-twitch-message] a {
 	color: var(--link-blue);
 	text-decoration: none;

@@ -1,48 +1,31 @@
 ---
 layout: page.html
 ---
+
 <h1>Instant, themed Twitch chat overlays</h1>
 <div class="col-2">
-	<form id="overlay-builder" onsubmit="handleSubmit(event)">
+	<form id="overlay-builder">
 		<label for="channel">Channel name</label>
-		<input
-			type="text"
-			id="channel"
-			name="channel"
-			required
-			autocomplete="off"
-			autocorrect="off"
-			autocapitalize="off"
-			spellcheck="false"
-		/>
-	
+		<input type="text" id="channel" name="channel" required="true" autocomplete="off" autocorrect="off"
+			autocapitalize="off" spellcheck="false" />
 		<label for="theme">Theme</label>
-		<select
-			id="theme"
-			name="theme"
-		>
+		<select id="theme" name="theme">
 			<option value="default">Default</option>
 			<option value="light">Light</option>
 			{%- for theme in themes.list -%}
-			{%- unless theme == "default" or theme == "light" -%}
+			{%- unless theme == "default" or theme =="light" -%}
 			<option value="{{ theme }}">{{ theme | formatThemeName }}</option>
-			{%- endunless -%}
-			{%- endfor %}
+			{%- endunless -%} {%- endfor %}
 		</select>
-	
-		<button type="submit" style="margin-top: 1em;">Get my URL!</button>
-	
+
+		<button type="submit" style="margin-top: 1em">Get my URL!</button>
+
 		<div>
 			<output></output>
 		</div>
 	</form>
-	
-	<iframe
-		id="preview"
-		src="/c/showmychat?DEMO=true"
-		frameborder="0"
-		allowtransparency="true"
-	>
+
+	<iframe id="preview" src="/c/showmychat?DEMO=true" frameborder="0" allowtransparency="true">
 	</iframe>
 
 	<template id="output-template">
@@ -59,8 +42,12 @@ layout: page.html
 	const outputTemplate = document.querySelector("#output-template");
 	const preview = document.getElementById('preview');
 	const allFields = document.querySelectorAll('[name]');
-	allFields.forEach(field => field.addEventListener('change', updatePreview));
+	overlayBuilderForm.addEventListener('submit', handleSubmit);
+	allFields.forEach((field) => field.addEventListener('change', updatePreview));
 
+	/**
+	 * @param {Event} event - The form submit event
+	 */
 	function handleSubmit(event) {
 		event.preventDefault();
 
@@ -97,6 +84,9 @@ layout: page.html
 		linkOutput.appendChild(template);
 	}
 
+	/**
+	 * Reroutes the preview iframe to a preview using current form selections.
+	 */
 	function updatePreview() {
 		const values = new FormData(overlayBuilderForm);
 		const channelName = values.get('channel') || 'showmychat';

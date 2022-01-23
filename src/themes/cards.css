@@ -1,18 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Quicksand:wght@500;700&display=swap&display=swap');
 
-html, body {
+html,
+body {
 	overflow: hidden;
 	height: 100vh;
 	margin-top: 0;
 	font-family: Quicksand, sans-serif;
-	--animation-duration: 500ms
+
+	--animation-duration: 500ms;
 }
 
 [data-twitch-chat] {
 	list-style: none;
 	margin: 0;
 	padding: 0.1em;
-
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -21,27 +22,19 @@ html, body {
 }
 
 [data-twitch-message] {
-	background-image: radial-gradient(
-		circle at top left,
-		white,
-		#ccc
-	);
+	background-image: radial-gradient(circle at top left, white, #ccc);
 	margin-bottom: 1em;
 	margin-top: 1em;
 	padding: 0.75em;
 	word-wrap: break-word;
-	box-shadow:
-		0 0 #0000,
-		0 0 #0000,
-		0 20px 25px -5px rgba(0, 0, 0, 0.4),
-		0 10px 10px -5px rgba(0, 0, 0, 0.1);
-	transition:
-		opacity var(--animation-duration) ease-in,
+	box-shadow: 0 0 #0000, 0 0 #0000, 0 20px 25px -5px rgb(0 0 0 / 40%),
+		0 10px 10px -5px rgb(0 0 0 / 10%);
+	transition: opacity var(--animation-duration) ease-in,
 		transform var(--animation-duration) ease-in;
-
 	opacity: 0;
 	transform: rotateX(-90deg);
-	animation: show var(--animation-duration) 100ms cubic-bezier(0.38, 0.97, 0.56, 0.76) forwards;
+	animation: show var(--animation-duration) 100ms
+		cubic-bezier(0.38, 0.97, 0.56, 0.76) forwards;
 }
 
 @keyframes show {
@@ -57,11 +50,10 @@ html, body {
 	animation: none;
 }
 
-[data-twitch-message]:nth-last-child(n+5) {
+[data-twitch-message]:nth-last-child(n + 5) {
 	opacity: 0;
 	transform: rotateX(-90deg);
-	transition:
-		opacity var(--animation-duration) ease-in,
+	transition: opacity var(--animation-duration) ease-in,
 		transform var(--animation-duration) ease-in;
 }
 
@@ -77,7 +69,8 @@ html, body {
 	display: none;
 }
 
-[data-twitch-mentioned-user] {
+[data-twitch-mentioned-user],
+.twitch-chat-command {
 	background: transparent;
 	font-weight: 700;
 }
