@@ -1,3 +1,5 @@
+const defaults = require('../../../src/_data/defaults');
+
 /**
  * @type {object<string, {validate: Validator, transform?: Transformer}>}
  */
@@ -33,11 +35,7 @@ const VALID_PARAMETERS = {
  */
 function cleanseQueryParameters(queryStringParameters) {
 	// Preload configurations with OPTIONAL defaults
-	const queryParameters = {
-		showLatestMessages: 100,
-		theme: 'default',
-	};
-
+	const {channel, ...queryParameters} = defaults;
 	// Iterate over provided query parameters
 	for (const param in queryStringParameters) {
 		// If this is a valid parameter name at all…

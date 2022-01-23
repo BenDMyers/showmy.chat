@@ -12,7 +12,7 @@
 	"extends": ["eslint:recommended", "plugin:jsdoc/recommended", "prettier"],
 	"plugins": ["jsdoc", "html"],
 	"rules": {
-		"no-unused-vars": ["error", {"args": "none"}]
+		"no-unused-vars": ["error", {"args": "none", "ignoreRestSiblings": true}]
 	},
 	"overrides": [
 		{
