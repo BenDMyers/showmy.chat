@@ -61,7 +61,7 @@ layout: page.html
 	<template id="output-template">
 		<p>Your URL is:</p>
 		<div>
-			<p class="url"></p>
+			<a class="url"></a>
 			<button name="Copy link to clipboard">Copy</button>
 		</div>
 	</template>
@@ -87,6 +87,7 @@ layout: page.html
 		const template = outputTemplate.content.cloneNode(true);
 
 		const urlEl = template.querySelector(".url");
+		urlEl.href = `https://${fullURL}`;
 		urlEl.innerText = fullURL;
 
 		const copyButton = template.querySelector("button");
@@ -187,7 +188,7 @@ layout: page.html
 		align-items: center;
 	}
 
-	output div p {
+	output div a {
 		flex: 1;
 	}
 
