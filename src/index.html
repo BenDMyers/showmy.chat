@@ -10,7 +10,7 @@ layout: page.html
 			autocapitalize="off" spellcheck="false" placeholder="{{defaults.channel}}"
 			title="Your Twitch channel name" />
 
-		<div class="builder-header">
+		<div class="overlay-builder-header">
 			<label for="theme">Theme</label>
 			<a href="docs/configuration/#theme" aria-label="Docs for theme">?</a>
 		</div>
@@ -24,29 +24,24 @@ layout: page.html
 			{%- endfor %}
 		</select>
 
-		<div class="builder-header">
+		<div class="overlay-builder-header">
 			<label for="hide-messages-from">Hide messages from</label>
 			<a href="docs/configuration/#hide-messages-from" aria-label="Docs for hideMessagesFrom">?</a>
 		</div>
 		<input type="text" id="hide-messages-from" name="hideMessagesFrom" autocomplete="off" autocorrect="off"
 			autocapitalize="off" spellcheck="false" pattern="^[\w-]+(,[\w-]+)*$"
-			title="Comma seperated list of usernames to hide messages from" />
+			title="Comma seperated list of usernames to hide messages from"
+			placeholder="{{defaults.hideMessagesFrom}}" />
 
-		<fieldset>
-			<div class="builder-header">
-				<legend>Show commands</legend>
-				<a href="docs/configuration/#show-commands" aria-label="Docs for showCommands">?</a>
-			</div>
+		<div class="overlay-builder-header">
+			<label for="show-commands">Show commands</label>
+			<a href="docs/configuration/#show-commands" aria-label="Docs for showCommands">?</a>
+		</div>
+		<input type="text" id="show-commands" name="showCommands" autocomplete="off" autocorrect="off"
+			autocapitalize="off" spellcheck="false" pattern="^[\w-]+(,[\w-]+)*$"
+			title="Comma seperated list of commands to show" placeholder="{{defaults.showCommands}}" />
 
-			<input type="radio" id="show-commands-true" name="showCommands" value="true" />
-			<label for="show-commands-true">true</label>
-
-			<input type="radio" id="show-commands-default" name="showCommands" value="{{defaults.showCommands}}"
-				checked="true" />
-			<label for="show-commands-default">{{defaults.showCommands}}</label>
-		</fieldset>
-
-		<div class="builder-header">
+		<div class="overlay-builder-header">
 			<label for="show-latest-messages">Show latest messages</label>
 			<a href="docs/configuration/#show-latest-messages" aria-label="Docs for showLatestMessages">?</a>
 		</div>
@@ -144,7 +139,7 @@ layout: page.html
 		resize: both;
 	}
 
-	.builder-header {
+	.overlay-builder-header {
 		display: flex;
 		justify-content: space-between;
 	}
