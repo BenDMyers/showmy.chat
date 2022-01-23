@@ -10,7 +10,10 @@ layout: page.html
 			autocapitalize="off" spellcheck="false" placeholder="{{defaults.channel}}"
 			title="Your Twitch channel name" />
 
-		<label for="theme">Theme <a href="docs/configuration/#theme">?</a></label>
+		<div class="builder-header">
+			<label for="theme">Theme</label>
+			<a href="docs/configuration/#theme" aria-label="Docs for theme">?</a>
+		</div>
 		<select id="theme" name="theme">
 			<option value="{{defaults.theme}}">{{defaults.theme | formatThemeName}}</option>
 			<option value="light">Light</option>
@@ -21,15 +24,19 @@ layout: page.html
 			{%- endfor %}
 		</select>
 
-		<label for="hide-messages-from">Hide messages from <a
-				href="docs/configuration/#hide-messages-from">?</a></label>
+		<div class="builder-header">
+			<label for="hide-messages-from">Hide messages from</label>
+			<a href="docs/configuration/#hide-messages-from" aria-label="Docs for hideMessagesFrom">?</a>
+		</div>
 		<input type="text" id="hide-messages-from" name="hideMessagesFrom" autocomplete="off" autocorrect="off"
 			autocapitalize="off" spellcheck="false" pattern="^[\w-]+(,[\w-]+)*$"
 			title="Comma seperated list of usernames to hide messages from" />
 
 		<fieldset>
-			<!-- question: focus location when clicking on the legend, should this be a select-list instead? -->
-			<legend>Show commands <a href="docs/configuration/#show-commands">?</a></legend>
+			<div class="builder-header">
+				<legend>Show commands</legend>
+				<a href="docs/configuration/#show-commands" aria-label="Docs for showCommands">?</a>
+			</div>
 
 			<input type="radio" id="show-commands-true" name="showCommands" value="true" />
 			<label for="show-commands-true">true</label>
@@ -39,8 +46,10 @@ layout: page.html
 			<label for="show-commands-default">{{defaults.showCommands}}</label>
 		</fieldset>
 
-		<label for="show-latest-messages">Show latest messages <a
-				href="docs/configuration/#show-latest-messages">?</a></label>
+		<div class="builder-header">
+			<label for="show-latest-messages">Show latest messages</label>
+			<a href="docs/configuration/#show-latest-messages" aria-label="Docs for showLatestMessages">?</a>
+		</div>
 		<input type="number" id="show-latest-messages" name="showLatestMessages"
 			value="{{defaults.showLatestMessages}}" />
 
@@ -133,6 +142,11 @@ layout: page.html
 		position: sticky;
 		top: 3em;
 		resize: both;
+	}
+
+	.builder-header {
+		display: flex;
+		justify-content: space-between;
 	}
 
 	@media (max-width: 576px) {
