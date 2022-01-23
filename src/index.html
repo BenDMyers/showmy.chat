@@ -12,7 +12,7 @@ layout: page.html
 
 		<div class="overlay-builder-header">
 			<label for="theme">Theme</label>
-			<a href="docs/configuration/#theme" aria-label="Docs for theme">?</a>
+			<a href="docs/configuration/#theme" aria-label="Docs for theme">&#9432;</a>
 		</div>
 		<select id="theme" name="theme">
 			<option value="{{defaults.theme}}">{{defaults.theme | formatThemeName}}</option>
@@ -26,7 +26,7 @@ layout: page.html
 
 		<div class="overlay-builder-header">
 			<label for="hide-messages-from">Hide messages from</label>
-			<a href="docs/configuration/#hide-messages-from" aria-label="Docs for hideMessagesFrom">?</a>
+			<a href="docs/configuration/#hide-messages-from" aria-label="Docs for hideMessagesFrom">&#9432;</a>
 		</div>
 		<input type="text" id="hide-messages-from" name="hideMessagesFrom" autocomplete="off" autocorrect="off"
 			autocapitalize="off" spellcheck="false" pattern="^[\w-]+(,[\w-]+)*$"
@@ -35,7 +35,7 @@ layout: page.html
 
 		<div class="overlay-builder-header">
 			<label for="show-commands">Show commands</label>
-			<a href="docs/configuration/#show-commands" aria-label="Docs for showCommands">?</a>
+			<a href="docs/configuration/#show-commands" aria-label="Docs for showCommands">&#9432;</a>
 		</div>
 		<input type="text" id="show-commands" name="showCommands" autocomplete="off" autocorrect="off"
 			autocapitalize="off" spellcheck="false" pattern="^[\w-]+(,[\w-]+)*$"
@@ -43,7 +43,7 @@ layout: page.html
 
 		<div class="overlay-builder-header">
 			<label for="show-latest-messages">Show latest messages</label>
-			<a href="docs/configuration/#show-latest-messages" aria-label="Docs for showLatestMessages">?</a>
+			<a href="docs/configuration/#show-latest-messages" aria-label="Docs for showLatestMessages">&#9432;</a>
 		</div>
 		<input type="number" id="show-latest-messages" name="showLatestMessages"
 			value="{{defaults.showLatestMessages}}" />
@@ -148,6 +148,10 @@ layout: page.html
 	.overlay-builder-header {
 		display: flex;
 		justify-content: space-between;
+	}
+
+	.overlay-builder-header a {
+		font-size: 1.2em;
 	}
 
 	@media (max-width: 576px) {
