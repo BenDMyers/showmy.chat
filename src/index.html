@@ -59,7 +59,7 @@ layout: page.html
 	</iframe>
 </div>
 <script>
-	const { channel: defaultChannel, ...defaultQueryParameters } = JSON.parse(`{{defaults | serialize }}`);
+	const { channel: defaultChannel, DEMO, ...defaultQueryParameters } = JSON.parse(`{{defaults | serialize }}`);
 	const overlayBuilderForm = document.getElementById('overlay-builder');
 	const linkOutput = document.querySelector('output');
 	const preview = document.getElementById('preview');
@@ -97,10 +97,16 @@ layout: page.html
 
 		// prevent defaults from being explicitly set in the url
 		for (let [key, value] of Object.entries(defaultQueryParameters)) {
-			if (value === false) {
-				value = "false";
+			let chosenValue = values.get(key);
+
+			if (key == 'showCommands' && chosenValue === '') {
+				// the showCommands option remained unchanged and should use the default
+				chosenValue = defaultQueryParameters.showCommands;
 			}
-			if (values.get(key) == value) {
+			if (chosenValue === "false") {
+				chosenValue = false;
+			}
+			if (chosenValue == value) {
 				values.delete(key);
 			}
 		}
