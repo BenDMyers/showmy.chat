@@ -10,7 +10,7 @@ on:
     branches: [main]
 
 jobs:
-  setup:
+  lint-test-build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -25,27 +25,17 @@ jobs:
           cache: 'npm'
       # install deps
       - run: npm ci
-  lint:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      # JS
+      # lint JS
       - run: npm run eslint
-      # CSS
+      # lint CSS
       - run: npm run stylelint
-      # HTML
+      # lint HTML
       - run: npm run htmlhint
-      # Markdown
+      # lint Markdown
       - run: npm run markdownlint
       # Formatting
       - run: npm run prettier
-  test:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
+      # run tests
       - run: npm run test
-  build:
-    needs: [setup, lint, test]
-    runs-on: ubuntu-latest
-    steps:
+      # try build
       - run: npm run build
