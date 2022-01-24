@@ -16,7 +16,7 @@
 	},
 	"overrides": [
 		{
-			"files": ["src/scripts/bttvIntegration.js", "src/scripts/handleChat.js"],
+			"files": ["src/scripts/*.mjs", "jest.config.mjs", "tests/*.test.mjs"],
 			"parserOptions": {
 				"sourceType": "module"
 			}

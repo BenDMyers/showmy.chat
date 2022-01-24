@@ -1,12 +1,12 @@
-const {
+import {
 	replaceKeywordWithBttvEmoteImage,
 	getTwitchUserId,
 	getBttvChannelEmoteDict,
 	convertBttvChannelDataToEmoteDict,
 	getBttvImageUrl,
 	addGlobalBttvEmotesToDict,
-} = require('../src/scripts/bttvIntegration.js');
-const axios = require('axios');
+} from '../src/scripts/bttvIntegration.mjs';
+import axios from 'axios';
 
 /**
  * @param url

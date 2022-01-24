@@ -8,7 +8,7 @@
 	"scripts": {
 		"build": "eleventy",
 		"dev": "eleventy --serve",
-		"test": "jest",
+		"test": "NODE_OPTIONS=--experimental-vm-modules jest",
 		"prettier": "prettier -l .",
 		"stylelint": "stylelint '**/*.{css,html}'",
 		"eslint": "eslint '**/*.{js,html}'",

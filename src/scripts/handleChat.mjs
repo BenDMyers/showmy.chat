@@ -6,9 +6,9 @@ import {
 	getTwitchUserId,
 	getBttvChannelEmoteDict,
 	addGlobalBttvEmotesToDict,
-} from './bttvIntegration.js';
+} from './bttvIntegration.mjs';
 
-import {isLightOrDark} from './colorContrast.js';
+import {isLightOrDark} from './colorContrast.mjs';
 
 const chatbox = document.querySelector('[data-twitch-chat]');
 const watchedChannels = chatbox.getAttribute('data-twitch-chat');
