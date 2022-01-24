@@ -8,6 +8,8 @@ import {
 	addGlobalBttvEmotesToDict,
 } from './bttvIntegration.js';
 
+import {isLightOrDark} from './colorContrast.js';
+
 const chatbox = document.querySelector('[data-twitch-chat]');
 const watchedChannels = chatbox.getAttribute('data-twitch-chat');
 
@@ -213,6 +215,12 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 		newMessage.setAttribute(
 			'style',
 			`--twitch-sender-color: ${extra.userColor}`
+		);
+
+		const senderColorLightness = isLightOrDark(extra.userColor);
+		newMessage.setAttribute(
+			'data-twitch-sender-color-lightness',
+			senderColorLightness
 		);
 	}
 
