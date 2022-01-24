@@ -62,7 +62,7 @@ layout: page.html
 		<p>Your URL is:</p>
 		<div>
 			<a class="url"></a>
-			<button name="Copy link to clipboard">Copy</button>
+			<button>Copy</button>
 		</div>
 	</template>
 </div>
@@ -99,7 +99,6 @@ layout: page.html
 
 				await navigator.clipboard.writeText(url);
 				copyButton.innerText = "Copied";
-				copyButton.name = "Copied link to clipboard";
 			});
 		}
 
