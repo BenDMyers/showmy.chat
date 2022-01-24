@@ -11,19 +11,6 @@ layout: page.html
 	parameter is optional.
 </p>
 
-<blockquote>
-	<strong>
-		Not all of these APIs are currently supported by the URL builder on the
-		homepage.
-	</strong>
-	If you'd like to add support for these APIs in the URL builder, we'll happily
-	accept
-	<a href="https://github.com/BenDMyers/showmy.chat">
-		your contributions on GitHub
-	</a>
-	!
-</blockquote>
-
 <table style="position: relative; margin-top: 1em">
 	<caption style="font-weight: bold; margin-bottom: 1.5em">
 		Overlay Configuration Options
@@ -42,7 +29,7 @@ layout: page.html
 				<code><a href="#demo">DEMO</a></code>
 			</th>
 			<td><code>true</code> or <code>false</code></td>
-			<td><code>false</code></td>
+			<td><code>{{defaults.DEMO}}</code></td>
 			<td>
 				Displays plausible but randomly generated messages instead of a live
 				feed
@@ -53,7 +40,7 @@ layout: page.html
 				<code><a href="#hide-messages-from">hideMessagesFrom</a></code>
 			</th>
 			<td>A comma-separated list of case-insensitive usernames</td>
-			<td><code>undefined</code></td>
+			<td><code>{{defaults.hideMessagesFrom}}</code></td>
 			<td>
 				Does not display messages if sent by any users in the provided list
 			</td>
@@ -66,7 +53,7 @@ layout: page.html
 				<code>true</code>, <code>false</code>, or a comma-separated list of
 				commands to show
 			</td>
-			<td><code>false</code></td>
+			<td><code>{{defaults.showCommands}}</code></td>
 			<td>
 				Displays chat commands (such as <samp>!commands</samp>) as though they
 				were regular chat messages
@@ -77,7 +64,7 @@ layout: page.html
 				<code><a href="#show-latest-messages">showLatestMessages</a></code>
 			</th>
 			<td>Any positive integer</td>
-			<td>100</td>
+			<td><code>{{defaults.showLatestMessages}}</code></td>
 			<td>
 				Removes old messages once you reach the provided threshold (useful for
 				performance)
