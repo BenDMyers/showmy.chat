@@ -17,7 +17,7 @@
 	</script>
 	{% if eleventy.serverless.query.DEMO %}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
-	<script src="/scripts/demo.js"></script>
+	<script src="/scripts/demo.mjs" type="module"></script>
 	{% else %}
 	<script src="https://cdn.jsdelivr.net/npm/comfy.js@latest/dist/comfy.min.js"></script>
 	{% endif %}
