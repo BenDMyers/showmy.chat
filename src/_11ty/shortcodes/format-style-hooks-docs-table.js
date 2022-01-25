@@ -19,54 +19,56 @@ function render(markdown) {
 module.exports = function formatStyleHooksDocsTable(chatboxNode, depth = 0) {
 	const nodeId = slugify(chatboxNode.name);
 
+	const attributeRows = chatboxNode.attributes
+		?.map((attr) => {
+			const attrId = slugify(attr.name);
+			return outdent(String.raw`
+				<tr id="${attrId}">
+					<td>
+						<code>
+																											<a href="#${attrId}">
+																												${attr.name}
+																											</a>
+																										</code>
+					</td>
+					<td>${render(attr.present || '')}</td>
+					<td>${render(attr.value || '')}</td>
+					<td>${attr.use?.map(render).join('<br /><br />') || ''}</td>
+				</tr>
+			`);
+		})
+		.join('\n');
+
+	const attributesTable =
+		chatboxNode.attributes &&
+		outdent(String.raw`
+		<table>
+			<caption>Attributes for <code>${render(chatboxNode.name)}</code></caption>
+			<thead>
+				<tr>
+					<th scope="col">Attribute</th>
+					<th scope="col">Present</th>
+					<th scope="col">Value</th>
+					<th scope="col">Use</th>
+				</tr>
+			</thead>
+			<tbody>
+				${attributeRows ?? ''}
+			</tbody>
+		</table>
+	`);
+
 	return outdent(String.raw`
 		<section id="${nodeId}" aria-labelledby="heading-${nodeId}">
 			<h${3 + depth} id="heading-${nodeId}">
 				<code>
-					<a href="#${nodeId}">
-						${render(chatboxNode.name)}
-					</a>
-				</code>
-			</h${3 + depth}>
-			<p>${render(chatboxNode.description)}</p>
-			${
-				chatboxNode.attributes
-					? outdent(String.raw`
-			<table>
-				<caption>Attributes for <code>${render(chatboxNode.name)}</code></caption>
-				<thead>
-					<tr>
-						<th scope="col">Attribute</th>
-						<th scope="col">Present</th>
-						<th scope="col">Value</th>
-						<th scope="col">Use</th>
-					</tr>
-				</thead>
-				<tbody>
-					${chatboxNode.attributes
-						.map((attr) => {
-							const attrId = slugify(attr.name);
-							return outdent(String.raw`
-						<tr id="${attrId}">
-							<td>
-								<code>
-									<a href="#${attrId}">
-										${attr.name}
+									<a href="#${nodeId}">
+										${render(chatboxNode.name)}
 									</a>
 								</code>
-							</td>
-							<td>${render(attr.present || '')}</td>
-							<td>${render(attr.value || '')}</td>
-							<td>${attr.use?.map(render).join('<br /><br />') || ''}</td>
-						</tr>
-					`);
-						})
-						.join('\n')}
-				</tbody>
-			</table>
-			`)
-					: ''
-			}
+			</h${3 + depth}>
+			<p>${render(chatboxNode.description)}</p>
+			${attributesTable}
 			${
 				chatboxNode.children?.map((child) =>
 					formatStyleHooksDocsTable(child, depth + 1)
