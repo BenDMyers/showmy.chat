@@ -62,10 +62,10 @@ module.exports = function formatStyleHooksDocsTable(chatboxNode, depth = 0) {
 		<section id="${nodeId}" aria-labelledby="heading-${nodeId}">
 			<h${3 + depth} id="heading-${nodeId}">
 				<code>
-									<a href="#${nodeId}">
-										${render(chatboxNode.name)}
-									</a>
-								</code>
+					<a href="#${nodeId}">
+						${render(chatboxNode.name)}
+					</a>
+				</code>
 			</h${3 + depth}>
 			<p>${render(chatboxNode.description)}</p>
 			${attributesTable}
