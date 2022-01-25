@@ -26,10 +26,10 @@ module.exports = function formatStyleHooksDocsTable(chatboxNode, depth = 0) {
 				<tr id="${attrId}">
 					<td>
 						<code>
-																											<a href="#${attrId}">
-																												${attr.name}
-																											</a>
-																										</code>
+							<a href="#${attrId}">
+								${attr.name}
+							</a>
+						</code>
 					</td>
 					<td>${render(attr.present || '')}</td>
 					<td>${render(attr.value || '')}</td>
