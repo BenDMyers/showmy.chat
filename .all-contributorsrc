@@ -72,7 +72,7 @@
       "contributions": [
         "content",
         "code",
-		"infra"
+        "infra"
       ]
     },
     {
@@ -83,7 +83,8 @@
       "contributions": [
         "design",
         "code",
-        "tool"
+        "tool",
+        "doc"
       ]
     }
   ],
