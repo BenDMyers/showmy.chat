@@ -46,7 +46,7 @@ module.exports = function formatStyleHooksDocsTable(chatboxNode, depth = 0) {
 					${chatboxNode.attributes
 						.map((attr) => {
 							const attrId = slugify(attr.name);
-							return outdent`
+							return outdent(String.raw`
 						<tr id="${attrId}">
 							<td>
 								<code>
@@ -59,7 +59,7 @@ module.exports = function formatStyleHooksDocsTable(chatboxNode, depth = 0) {
 							<td>${render(attr.value || '')}</td>
 							<td>${attr.use?.map(render).join('<br /><br />') || ''}</td>
 						</tr>
-					`;
+					`);
 						})
 						.join('\n')}
 				</tbody>
