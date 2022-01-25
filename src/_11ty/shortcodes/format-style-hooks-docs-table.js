@@ -19,7 +19,7 @@ function render(markdown) {
 module.exports = function formatStyleHooksDocsTable(chatboxNode, depth = 0) {
 	const nodeId = slugify(chatboxNode.name);
 
-	return outdent`
+	return outdent(String.raw`
 		<section id="${nodeId}" aria-labelledby="heading-${nodeId}">
 			<h${3 + depth} id="heading-${nodeId}">
 				<code>
@@ -31,7 +31,7 @@ module.exports = function formatStyleHooksDocsTable(chatboxNode, depth = 0) {
 			<p>${render(chatboxNode.description)}</p>
 			${
 				chatboxNode.attributes
-					? outdent`
+					? outdent(String.raw`
 			<table>
 				<caption>Attributes for <code>${render(chatboxNode.name)}</code></caption>
 				<thead>
@@ -64,7 +64,7 @@ module.exports = function formatStyleHooksDocsTable(chatboxNode, depth = 0) {
 						.join('\n')}
 				</tbody>
 			</table>
-			`
+			`)
 					: ''
 			}
 			${
@@ -73,7 +73,7 @@ module.exports = function formatStyleHooksDocsTable(chatboxNode, depth = 0) {
 				) ?? ''
 			}
 		</section>
-	`;
+	`);
 };
 
 /**
