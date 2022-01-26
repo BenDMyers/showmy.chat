@@ -8,8 +8,11 @@ import {
 	addGlobalBttvEmotesToDict,
 } from './bttvIntegration.js';
 
-import { isLightOrDark } from './colorContrast.js';
-import { removeAllMessagesFromUser, removeMessageFromDomAndShiftOthers } from './utilities.js';
+import {isLightOrDark} from './colorContrast.js';
+import {
+	removeAllMessagesFromUser,
+	removeMessageFromDomAndShiftOthers,
+} from './utilities.js';
 
 const chatbox = document.querySelector('[data-twitch-chat]');
 const watchedChannels = chatbox.getAttribute('data-twitch-chat');
@@ -241,7 +244,7 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 	// Optionally, users may specify a max number of messages to show.
 	// If we exceed that number, remove the oldest still shown message.
 	/** @type {{showLatestMessages?: number}} */
-	const { showLatestMessages } = window.CONFIG;
+	const {showLatestMessages} = window.CONFIG;
 	if (showLatestMessages) {
 		while (
 			document.querySelectorAll('[data-twitch-message]').length >
@@ -278,6 +281,14 @@ ComfyJS.onMessageDeleted = function (id, extra) {
 	if (messageToDelete) {
 		removeMessageFromDomAndShiftOthers(messageToDelete);
 	}
+};
+
+ComfyJS.onBan = function (bannedUsername, extra) {
+	removeAllMessagesFromUser(bannedUsername);
+};
+
+ComfyJS.onTimeout = function (timedOutUsername, durationInSeconds, extra) {
+	removeAllMessagesFromUser(timedOutUsername);
 };
 
 /**
