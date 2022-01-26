@@ -8,7 +8,8 @@ import {
 	addGlobalBttvEmotesToDict,
 } from './bttvIntegration.js';
 
-import {isLightOrDark} from './colorContrast.js';
+import { isLightOrDark } from './colorContrast.js';
+import { removeAllMessagesFromUser, removeMessageFromDomAndShiftOthers } from './utilities.js';
 
 const chatbox = document.querySelector('[data-twitch-chat]');
 const watchedChannels = chatbox.getAttribute('data-twitch-chat');
@@ -240,7 +241,7 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 	// Optionally, users may specify a max number of messages to show.
 	// If we exceed that number, remove the oldest still shown message.
 	/** @type {{showLatestMessages?: number}} */
-	const {showLatestMessages} = window.CONFIG;
+	const { showLatestMessages } = window.CONFIG;
 	if (showLatestMessages) {
 		while (
 			document.querySelectorAll('[data-twitch-message]').length >
@@ -278,27 +279,6 @@ ComfyJS.onMessageDeleted = function (id, extra) {
 		removeMessageFromDomAndShiftOthers(messageToDelete);
 	}
 };
-
-/**
- * @param messageToDelete
- */
-function removeMessageFromDomAndShiftOthers(messageToDelete) {
-	let wasFirstInGroup = messageToDelete.getAttribute(
-		'data-twitch-first-message-in-group'
-	);
-	let group = messageToDelete.getAttribute('data-twitch-message-group');
-	let hasNextInGroup =
-		messageToDelete.nextSibling &&
-		messageToDelete.nextSibling.getAttribute('data-twitch-message-group') ===
-			group;
-	if (wasFirstInGroup && hasNextInGroup) {
-		messageToDelete.nextSibling.setAttribute(
-			'data-twitch-first-message-in-group',
-			true
-		);
-	}
-	messageToDelete.remove();
-}
 
 /**
  * Fetches necessary user data and begins listening for chat messages
