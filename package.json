@@ -6,8 +6,8 @@
 	"author": "Ben Myers <ben@benmyers.dev>",
 	"license": "MIT",
 	"scripts": {
-		"build": "ELEVENTY_ENV=production eleventy",
-		"dev": "ELEVENTY_ENV=development eleventy --serve",
+		"build": "eleventy",
+		"dev": "eleventy --serve",
 		"test": "jest",
 		"prettier": "prettier -l .",
 		"stylelint": "stylelint '**/*.{css,html}'",
