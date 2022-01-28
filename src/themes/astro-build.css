@@ -156,3 +156,11 @@ body {
 [data-twitch-message-status*='highlighted'] * {
 	color: var(--astro-dawn);
 }
+
+[data-twitch-message-status*='highlighted'] [data-twitch-mentioned-user] {
+	background-image: linear-gradient(
+		to right,
+		var(--astro-dawn),
+		var(--astro-dawn)
+	);
+}
