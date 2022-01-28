@@ -14,11 +14,13 @@
 	font-display: swap;
 }
 
-html, body {
+html,
+body {
 	overflow: hidden;
 	height: 100vh;
 	margin-top: 0;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
 	--animation-duration: 500ms;
 	--astro-orange: #ff5d01;
@@ -28,15 +30,12 @@ html, body {
 	--astro-midnight-rgb: 49, 39, 74;
 	--astro-blue: #205eff;
 	--astro-pink: #c238bd;
-	--astro-gradient: linear-gradient(
+	--astro-bold-gradient: linear-gradient(
 		to bottom,
 		var(--astro-blue),
 		var(--astro-pink)
 	);
-
-	/* --deep-space-purple: #2e1155; */
-	--deep-space-purple: #361365;
-	--light-space-purple: #710bc7;
+	--astro-light-gradient: linear-gradient(180deg, #ffb4b4 0%, #c487f0 100%);
 }
 
 [data-twitch-chat] {
@@ -56,14 +55,17 @@ html, body {
 	margin-top: 1em;
 	padding: 0.75em;
 	word-wrap: break-word;
-	box-shadow:
-	0px 19px 53px 0px rgba(var(--astro-midnight-rgb), 0.03), 0px 10px 28px 0px rgba(var(--astro-midnight-rgb), 0.05), 0px 6px 16px 0px rgba(var(--astro-midnight-rgb), 0.05), 0px 3px 9px 0px rgba(var(--astro-midnight-rgb), 0.075), 0px 1px 4px 0px rgba(var(--astro-midnight-rgb), 0.1);
-	transition:
-		opacity var(--animation-duration) ease-in,
+	box-shadow: 0 19px 53px 0 rgba(var(--astro-midnight-rgb) / 3%),
+		0 10px 28px 0 rgba(var(--astro-midnight-rgb) / 5%),
+		0 6px 16px 0 rgba(var(--astro-midnight-rgb) / 5%),
+		0 3px 9px 0 rgba(var(--astro-midnight-rgb) / 7.5%),
+		0 1px 4px 0 rgba(var(--astro-midnight-rgb) / 1%);
+	transition: opacity var(--animation-duration) ease-in,
 		transform var(--animation-duration) ease-in;
 	opacity: 0;
 	transform: rotateX(-90deg);
-	animation: show var(--animation-duration) 100ms cubic-bezier(0.38, 0.97, 0.56, 0.76) forwards;
+	animation: show var(--animation-duration) 100ms
+		cubic-bezier(0.38, 0.97, 0.56, 0.76) forwards;
 	border-radius: 12px;
 }
 
@@ -82,27 +84,29 @@ html, body {
 	display: inline;
 }
 
-/*[data-twitch-sender-roles*="broadcaster"] .twitch-chat-sender {
-	background-image: var(--astro-gradient);
+/*
+[data-twitch-sender-roles*="broadcaster"] .twitch-chat-sender {
+	background-image: var(--astro-bold-gradient);
 	background-clip: text;
 	/* stylelint-disable * /
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
-}*/
+}
+*/
 
-[data-twitch-sender-roles*="broadcaster"] {
-	background-image: var(--astro-gradient);
+[data-twitch-sender-roles*='broadcaster'] {
+	background-image: var(--astro-light-gradient);
 }
 
-[data-twitch-sender-roles*="broadcaster"] * {
+/* [data-twitch-sender-roles*="broadcaster"] * {
 	color: var(--astro-dawn);
-}
+} */
 
-[data-twitch-sender-roles*="broadcaster"] [data-twitch-mentioned-user] {
+/* [data-twitch-sender-roles*="broadcaster"] [data-twitch-mentioned-user] {
 	background-image: linear-gradient(to right, var(--astro-dawn), var(--astro-dawn));
-}
+} */
 
-[data-twitch-sender-roles*="broadcaster"] .twitch-chat-sender::after {
+[data-twitch-sender-roles*='broadcaster'] .twitch-chat-sender::after {
 	background-image: url('https://astro.build/favicon.ico');
 	background-size: 1.2em 1.2em;
 	height: 1.2em;
@@ -117,10 +121,10 @@ html, body {
 }
 
 [data-twitch-mentioned-user] {
-	font-family: 'RT Alias Medium';
+	font-family: 'RT Alias Medium', sans-serif;
 	font-weight: 700;
 	background: transparent;
-	background-image: var(--astro-gradient);
+	background-image: var(--astro-bold-gradient);
 	background-clip: text;
 	/* stylelint-disable */
 	-webkit-background-clip: text;
@@ -132,7 +136,7 @@ html, body {
 	margin-bottom: -0.2em;
 }
 
-[data-twitch-emote="<3"] {
+[data-twitch-emote='<3'] {
 	width: 2em;
 	margin-bottom: -0.6em;
 	margin-left: -0.4em;
@@ -144,11 +148,11 @@ html, body {
 }
 
 [data-twitch-message-status*='highlighted'] {
-	background: linear-gradient(180deg, #ffb4b4 0%, #c487f0 100%);
-	color: var(--astro-midnight);
+	/* background: var(--astro-light-gradient); */
+	background: var(--astro-bold-gradient);
+	/* color: var(--astro-midnight); */
 }
 
-[data-twitch-message-status*='highlighted'] [data-twitch-mentioned-user],
-[data-twitch-message-status*='highlighted'][data-twitch-sender-roles~="broadcaster"] .twitch-chat-sender {
-	background-image: linear-gradient(to right, var(--astro-dawn), var(--astro-dawn));
+[data-twitch-message-status*='highlighted'] * {
+	color: var(--astro-dawn);
 }
