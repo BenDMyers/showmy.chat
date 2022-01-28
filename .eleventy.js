@@ -1,7 +1,7 @@
-const {EleventyServerlessBundlerPlugin} = require('@11ty/eleventy');
+const { EleventyServerlessBundlerPlugin } = require('@11ty/eleventy');
 const serialize = require('serialize-javascript');
-const {titleCase} = require('title-case');
-const {isWebUri} = require('valid-url');
+const { titleCase } = require('title-case');
+const { isWebUri } = require('valid-url');
 const markdownIt = require('markdown-it');
 const markdownItFootnote = require('markdown-it-footnote');
 /**
@@ -36,9 +36,11 @@ module.exports = function (eleventyConfig) {
 		titleCase(input.replace(/\-/g, ' '))
 	);
 	eleventyConfig.addFilter('serialize', (input) =>
-		serialize(input, {isJSON: true})
+		serialize(input, { isJSON: true })
 	);
 	eleventyConfig.addFilter('toStylesheet', toStylesheet);
+
+	eleventyConfig.addPassthroughCopy('src/fonts/');
 
 	return {
 		dir: {

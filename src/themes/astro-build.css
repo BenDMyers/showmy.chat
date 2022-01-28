@@ -2,15 +2,7 @@
 	font-family: 'RT Alias Medium';
 	font-style: normal;
 	font-weight: 400;
-	src: local(''), url('https://astro.build/fonts/RTAliasMedium-Regular.woff2') format('woff2');
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'RT Alias Medium';
-	font-style: italic;
-	font-weight: 400;
-	src: local(''), url('https://astro.build/fonts/RTAliasMedium-RegularOblique.woff2') format('woff2');
+	src: local(''), url('/fonts/RTAliasMedium-Regular.woff2') format('woff2');
 	font-display: swap;
 }
 
@@ -18,15 +10,7 @@
 	font-family: 'RT Alias Medium';
 	font-style: normal;
 	font-weight: 700;
-	src: local(''), url('https://astro.build/fonts/RTAliasMedium-Bold.woff2') format('woff2');
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'RT Alias Medium';
-	font-style: italic;
-	font-weight: 700;
-	src: local(''), url('https://astro.build/fonts/RTAliasMedium-BoldOblique.woff2') format('woff2');
+	src: local(''), url('/fonts/RTAliasMedium-Bold.woff2') format('woff2');
 	font-display: swap;
 }
 
@@ -34,13 +18,14 @@ html, body {
 	overflow: hidden;
 	height: 100vh;
 	margin-top: 0;
-	font-family: 'RT Alias Medium', sans-serif;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 
 	--animation-duration: 500ms;
 	--astro-orange: #ff5d01;
 	--astro-dawn: #f3e9fa;
 	--astro-dusk: #514375;
 	--astro-midnight: #31274a;
+	--astro-midnight-rgb: 49, 39, 74;
 	--astro-blue: #205eff;
 	--astro-pink: #c238bd;
 	--astro-gradient: linear-gradient(
@@ -72,10 +57,7 @@ html, body {
 	padding: 0.75em;
 	word-wrap: break-word;
 	box-shadow:
-		0 0 #0000,
-		0 0 #0000,
-		0 20px 25px -5px rgb(0 0 0 / 40%),
-		0 10px 10px -5px rgb(0 0 0 / 10%);
+	0px 19px 53px 0px rgba(var(--astro-midnight-rgb), 0.03), 0px 10px 28px 0px rgba(var(--astro-midnight-rgb), 0.05), 0px 6px 16px 0px rgba(var(--astro-midnight-rgb), 0.05), 0px 3px 9px 0px rgba(var(--astro-midnight-rgb), 0.075), 0px 1px 4px 0px rgba(var(--astro-midnight-rgb), 0.1);
 	transition:
 		opacity var(--animation-duration) ease-in,
 		transform var(--animation-duration) ease-in;
@@ -100,12 +82,24 @@ html, body {
 	display: inline;
 }
 
-[data-twitch-sender-roles*="broadcaster"] .twitch-chat-sender {
+/*[data-twitch-sender-roles*="broadcaster"] .twitch-chat-sender {
 	background-image: var(--astro-gradient);
 	background-clip: text;
-	/* stylelint-disable */
+	/* stylelint-disable * /
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+}*/
+
+[data-twitch-sender-roles*="broadcaster"] {
+	background-image: var(--astro-gradient);
+}
+
+[data-twitch-sender-roles*="broadcaster"] * {
+	color: var(--astro-dawn);
+}
+
+[data-twitch-sender-roles*="broadcaster"] [data-twitch-mentioned-user] {
+	background-image: linear-gradient(to right, var(--astro-dawn), var(--astro-dawn));
 }
 
 [data-twitch-sender-roles*="broadcaster"] .twitch-chat-sender::after {
@@ -123,6 +117,7 @@ html, body {
 }
 
 [data-twitch-mentioned-user] {
+	font-family: 'RT Alias Medium';
 	font-weight: 700;
 	background: transparent;
 	background-image: var(--astro-gradient);
@@ -151,4 +146,9 @@ html, body {
 [data-twitch-message-status*='highlighted'] {
 	background: linear-gradient(180deg, #ffb4b4 0%, #c487f0 100%);
 	color: var(--astro-midnight);
+}
+
+[data-twitch-message-status*='highlighted'] [data-twitch-mentioned-user],
+[data-twitch-message-status*='highlighted'][data-twitch-sender-roles~="broadcaster"] .twitch-chat-sender {
+	background-image: linear-gradient(to right, var(--astro-dawn), var(--astro-dawn));
 }
