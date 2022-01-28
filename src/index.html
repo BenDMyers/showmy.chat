@@ -123,7 +123,7 @@ layout: page.html
 
 		// remove all parts of the url that are not query parameters
 		const channelName = values.get('channel') || defaultChannel;
-		let url = new URL(channelName, "https://showmy.chat/c/");
+		let url = new URL(channelName, "{{ site.baseUrl }}/c/");
 		values.delete('channel');
 
 		// prevent defaults from being explicitly set in the url
