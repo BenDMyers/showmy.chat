@@ -5,8 +5,8 @@
  * @param {string} username - account whose messages to remove from the overlay
  */
 export function removeAllMessagesFromUser(username) {
-	const messagesFromUser = Array.from(
-		document.querySelectorAll(`[data-twitch-sender="${username}" i]`)
+	const messagesFromUser = document.querySelectorAll(
+		`[data-twitch-sender="${username}" i]`
 	);
 	messagesFromUser.forEach(removeMessageFromDomAndShiftOthers);
 }
