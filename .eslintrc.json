@@ -24,7 +24,7 @@
 	},
 	"overrides": [
 		{
-			"files": ["src/scripts/*.mjs", "jest.config.mjs", "tests/*.test.mjs"],
+			"files": ["*.mjs"],
 			"parserOptions": {
 				"sourceType": "module"
 			}
