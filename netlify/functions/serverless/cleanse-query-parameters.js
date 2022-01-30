@@ -1,12 +1,20 @@
 const defaults = require('../../../src/_data/defaults');
 
+const ENUMS = {
+	DEMO: {
+		true: true,
+		false: false,
+		static: 'static',
+	},
+};
+
 /**
  * @type {object<string, {validate: Validator, transform?: Transformer}>}
  */
 const VALID_PARAMETERS = {
 	DEMO: {
-		validate: isBoolean,
-		transform: toBoolean,
+		validate: oneOf(...Object.keys(ENUMS['DEMO'])),
+		transform: getVariantValue('DEMO'),
 	},
 	hideMessagesFrom: {
 		validate: isCommaSeparatedList,
@@ -89,8 +97,20 @@ function isPositiveInteger(value) {
 	const num = Number(value);
 	return Number.isInteger(num) && num > 0;
 }
+/** @type {Validator} */
+function oneOf(...args) {
+	return (value) => args.includes(value);
+}
 
 // TRANSFORMERS FOR QUERY PARAMETER VALUES
+
+/**
+ * @param {string} enumName - name of the enum for this query parameter
+ * @returns {Transformer} - function that turns the passed value for the query parameter into a value for the corresponding enum
+ */
+function getVariantValue(enumName) {
+	return (variant) => ENUMS[enumName][variant];
+}
 
 /**
  * @callback Transformer function used to transform a query parameter's value into a more usable format
