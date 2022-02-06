@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;800&display=swap');
+
+:root {
+	--brand-font: 'Rubik';
+	--body-font: 'Rubik';
+	--border-width: 8px;
+	--animation-duration: 500ms;
+	--gradient-angle: 105deg;
+	--black: #0e091a;
+	--black-transparent: rgb(14 9 26 / 89%);
+	--white-transparent: rgb(245 245 245 / 84%);
+	--gradient-for-light-colors: transparent 16.6667%,
+		rgb(0 0 0 / 30%) 16.6667% 33.3333%, transparent 33.3333% 50%,
+		rgb(0 0 0 / 30%) 50% 66.6667%, transparent 66.6667% 83.3333%,
+		rgb(0 0 0 / 30%) 83.3333%;
+	--gradient-for-dark-colors: rgb(255 255 255 / 30%) 16.6667%,
+		transparent 16.6667% 33.3333%, rgb(255 255 255 / 30%) 33.3333% 50%,
+		transparent 50% 66.6667%, rgb(255 255 255 / 30%) 66.6667% 83.3333%,
+		transparent 83.3333%;
+}
+
+html,
+body {
+	overflow: hidden;
+	height: 100vh;
+	margin-top: 0;
+	font-family: var(--body-font), sans-serif;
+}
+
+[data-twitch-chat] {
+	list-style: none;
+	margin: 0;
+	padding: 0.1em;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+[data-twitch-message] {
+	--sender-color: var(--twitch-sender-color, rebeccapurple);
+
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	word-wrap: break-word;
+	box-shadow: 0 0 #0000, 0 0 #0000, 0 20px 25px -5px rgb(0 0 0 / 40%),
+		0 10px 10px -5px rgb(0 0 0 / 10%);
+	transition: opacity var(--animation-duration) ease-in,
+		transform var(--animation-duration) ease-in;
+	opacity: 0;
+	transform: rotateX(-90deg);
+	animation: show var(--animation-duration) 100ms
+		cubic-bezier(0.38, 0.97, 0.56, 0.76) forwards;
+	background-image: linear-gradient(
+			var(--gradient-angle),
+			var(--gradient-for-dark-colors)
+		),
+		linear-gradient(to right, var(--sender-color) 0% 100%);
+}
+
+[data-twitch-message][data-twitch-sender-color-lightness='light'] {
+	background-image: linear-gradient(
+			var(--gradient-angle),
+			var(--gradient-for-light-colors)
+		),
+		linear-gradient(to right, var(--sender-color) 0% 100%);
+}
+
+.twitch-chat-sender {
+	/* Spacing */
+	margin-top: var(--border-width);
+	padding: 0.75rem;
+	padding-bottom: 0;
+
+	/* Font */
+	font-family: var(--brand-font), sans-serif;
+	text-transform: uppercase;
+	font-weight: 700;
+
+	/* Colors */
+	background-color: var(--black-transparent);
+	color: rgb(255 255 255 / 80%);
+}
+
+.twitch-chat-message {
+	/* Spacing */
+	padding: 0.75rem;
+	padding-top: calc(0.75rem / 2);
+	margin-bottom: var(--border-width);
+
+	/* Colors */
+	background-color: var(--black-transparent);
+	color: rgb(255 255 255 / 80%);
+}
+
+@keyframes show {
+	100% {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+[data-twitch-message-reply] {
+	display: none;
+}
+
+[data-twitch-mentioned-user] {
+	background: transparent;
+	font-weight: 800;
+	font-family: var(--brand-font), sans-serif;
+	color: var(--sender-color);
+}
+
+[data-twitch-sender-color-lightness='dark'] [data-twitch-mentioned-user],
+[data-twitch-message]:not([data-twitch-sender-color-lightness])
+	[data-twitch-mentioned-user] {
+	filter: brightness(160%) saturate(70%);
+}
+
+[data-twitch-emote] {
+	width: 1.3em;
+	margin-bottom: -0.2em;
+}
+
+[data-twitch-emote='<3'] {
+	width: 2em;
+	margin: -0.6em -0.4em;
+}
+
+[data-twitch-message][data-twitch-message-status='highlighted'] > * {
+	background-color: var(--white-transparent);
+	color: var(--black-transparent);
+}
