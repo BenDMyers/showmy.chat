@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&family=Rowdies:wght@300;400&display=swap');
+
+:root {
+	--border-width: 8px;
+	--animation-duration: 500ms;
+	--red: tomato;
+	--orange: darkorange;
+	--yellow: gold;
+	--green: limegreen;
+	--blue: royalblue;
+	--purple: rebeccapurple;
+	--rainbow-angle: 105deg;
+	--rainbow: var(--red) 16.6667%, var(--orange) 16.6667% 33.3333%,
+		var(--yellow) 33.3333% 50%, var(--green) 50% 66.6667%,
+		var(--blue) 66.6667% 83.3333%, var(--purple) 83.3333%;
+	--black: #0e091a;
+	--black-transparent: rgb(14 9 26 / 89%);
+	--white-transparent: rgb(245 245 245 / 84%);
+}
+
+html,
+body {
+	overflow: hidden;
+	height: 100vh;
+	margin-top: 0;
+	font-family: Rubik, sans-serif;
+}
+
+[data-twitch-chat] {
+	list-style: none;
+	margin: 0;
+	padding: 0.1em;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+[data-twitch-message] {
+	margin-block: 1.5em;
+	word-wrap: break-word;
+	box-shadow: 0 0 #0000, 0 0 #0000, 0 20px 25px -5px rgb(0 0 0 / 40%),
+		0 10px 10px -5px rgb(0 0 0 / 10%);
+	transition: opacity var(--animation-duration) ease-in,
+		transform var(--animation-duration) ease-in;
+	opacity: 0;
+	transform: rotateX(-90deg);
+	animation: show var(--animation-duration) 100ms
+		cubic-bezier(0.38, 0.97, 0.56, 0.76) forwards;
+	background-image: linear-gradient(var(--rainbow-angle), var(--rainbow));
+}
+
+.twitch-chat-sender {
+	/* Spacing */
+	margin-top: var(--border-width);
+	padding: 0.75rem;
+	padding-bottom: 0;
+
+	/* Font */
+	font-family: Rowdies, sans-serif;
+	text-transform: uppercase;
+	font-weight: 700;
+
+	/* Colors */
+	background-color: var(--black-transparent);
+	color: rgb(255 255 255 / 80%);
+}
+
+.twitch-chat-message {
+	/* Spacing */
+	padding: 0.75rem;
+	padding-top: calc(0.75rem / 2);
+	margin-bottom: var(--border-width);
+
+	/* Colors */
+	background-color: var(--black-transparent);
+	color: rgb(255 255 255 / 80%);
+}
+
+@keyframes show {
+	100% {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+[data-twitch-message-reply] {
+	display: none;
+}
+
+[data-twitch-mentioned-user] {
+	background: transparent;
+	font-weight: 300;
+	font-family: Rowdies, sans-serif;
+
+	/* color: var(--orange); */
+	color: royalblue;
+	filter: brightness(140%);
+}
+
+[data-twitch-emote] {
+	width: 1.3em;
+	margin-bottom: -0.2em;
+}
+
+[data-twitch-emote='<3'] {
+	width: 2em;
+	margin-block: -0.6em;
+	margin-inline: -0.4em;
+}
+
+[data-twitch-message][data-twitch-message-status='highlighted'] > * {
+	background-color: var(--white-transparent);
+	color: var(--black-transparent);
+}
