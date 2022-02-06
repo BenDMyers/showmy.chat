@@ -60,7 +60,7 @@ body {
 	padding-bottom: 0;
 
 	/* Font */
-	font-family: var(--body-font), sans-serif;
+	font-family: var(--brand-font), sans-serif;
 	text-transform: uppercase;
 	font-weight: 700;
 
@@ -94,7 +94,7 @@ body {
 [data-twitch-mentioned-user] {
 	background: transparent;
 	font-weight: 300;
-	font-family: var(--body-font), sans-serif;
+	font-family: var(--brand-font), sans-serif;
 	color: royalblue;
 	filter: brightness(140%);
 }
