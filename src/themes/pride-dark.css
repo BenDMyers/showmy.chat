@@ -92,8 +92,6 @@ body {
 	background: transparent;
 	font-weight: 300;
 	font-family: Rowdies, sans-serif;
-
-	/* color: var(--orange); */
 	color: royalblue;
 	filter: brightness(140%);
 }
