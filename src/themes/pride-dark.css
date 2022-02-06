@@ -37,7 +37,8 @@ body {
 }
 
 [data-twitch-message] {
-	margin-block: 1.5em;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
 	word-wrap: break-word;
 	box-shadow: 0 0 #0000, 0 0 #0000, 0 20px 25px -5px rgb(0 0 0 / 40%),
 		0 10px 10px -5px rgb(0 0 0 / 10%);
@@ -103,8 +104,7 @@ body {
 
 [data-twitch-emote='<3'] {
 	width: 2em;
-	margin-block: -0.6em;
-	margin-inline: -0.4em;
+	margin: -0.6em -0.4em;
 }
 
 [data-twitch-message][data-twitch-message-status='highlighted'] > * {
