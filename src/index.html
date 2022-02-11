@@ -57,11 +57,20 @@ layout: page.html
 
 	<iframe id="preview" src="/c/{{defaults.channel}}?DEMO=true" frameborder="0" allowtransparency="true">
 	</iframe>
+
+	<template id="output-template">
+		<p>Your URL is:</p>
+		<div>
+			<a class="url"></a>
+			<button>Copy</button>
+		</div>
+	</template>
 </div>
 <script>
 	const { channel: defaultChannel, DEMO, ...defaultQueryParameters } = JSON.parse(`{{defaults | serialize }}`);
 	const overlayBuilderForm = document.getElementById('overlay-builder');
 	const linkOutput = document.querySelector('output');
+	const outputTemplate = document.querySelector("#output-template");
 	const preview = document.getElementById('preview');
 	const allFields = document.querySelectorAll('[name]');
 	overlayBuilderForm.addEventListener('submit', handleSubmit);
@@ -72,27 +81,49 @@ layout: page.html
 	 */
 	function handleSubmit(event) {
 		event.preventDefault();
-		let partialURL = buildPartialURL();
-		linkOutput.innerHTML = `<strong>showmy.chat/c/</strong>${partialURL}`;
+
+		const template = outputTemplate.content.cloneNode(true);
+
+		const urlEl = template.querySelector(".url");
+		let url = buildURL();
+		urlEl.href = url;
+		urlEl.innerText = url;
+
+		const copyButton = template.querySelector("button");
+		// remove copybutton if clipboard API is not supported
+		if (typeof navigator.clipboard === `undefined`) {
+			copyButton.remove();
+		} else {
+			copyButton.addEventListener("click", async (event) => {
+				event.preventDefault();
+
+				await navigator.clipboard.writeText(url);
+				copyButton.innerText = "Copied";
+			});
+		}
+
+		// clear output first, to replace old DOM nodes
+		linkOutput.innerHTML = "";
+		linkOutput.appendChild(template);
 	}
 
 	/**
 	 * Reroutes the preview iframe to a preview using current form selections.
 	 */
 	function updatePreview() {
-		let partialURL = buildPartialURL(true);
-		preview.contentWindow.location = `/c/${partialURL}`;
+		preview.contentWindow.location = buildURL(true);
 	}
 
 	/**
 	 * @param {boolean} isDemo - build url for demo purposes?
-	 * @returns {string} partialUrl - url after /c/ path
+	 * @returns {string} url - full url
 	 */
-	function buildPartialURL(isDemo) {
+	function buildURL(isDemo) {
 		const values = new FormData(overlayBuilderForm);
 
 		// remove all parts of the url that are not query parameters
 		const channelName = values.get('channel') || defaultChannel;
+		let url = new URL(channelName, `${window.location.origin}/c/`);
 		values.delete('channel');
 
 		// prevent defaults from being explicitly set in the url
@@ -115,10 +146,8 @@ layout: page.html
 			values.set('DEMO', 'true');
 		}
 
-		const queryParams = new URLSearchParams(values).toString();
-		const paramString = queryParams ? `?${queryParams}` : '';
-
-		return `${channelName}${paramString}`;
+		url.search = new URLSearchParams(values).toString();
+		return url.toString();
 	}
 </script>
 <style>
@@ -143,6 +172,26 @@ layout: page.html
 		position: sticky;
 		top: 3em;
 		resize: both;
+	}
+
+	output p {
+		margin-bottom: calc(var(--spacing) * .25);
+	}
+
+	output div {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+
+	output div a {
+		flex: 1;
+	}
+
+	output div button {
+		/* reset pico */
+		width: auto;
+		margin-bottom: 0;
 	}
 
 	.overlay-builder-header {
