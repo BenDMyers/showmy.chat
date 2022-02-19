@@ -8,10 +8,10 @@
 	"scripts": {
 		"build": "eleventy",
 		"dev": "eleventy --serve",
-		"test": "jest",
+		"test": "NODE_OPTIONS=--experimental-vm-modules jest",
 		"prettier": "prettier -l .",
 		"stylelint": "stylelint '**/*.{css,html}'",
-		"eslint": "eslint '**/*.{js,html}'",
+		"eslint": "eslint '**/*.{mjs,js,html}'",
 		"htmlhint": "htmlhint '**/*.html'",
 		"markdownlint": "markdownlint-cli2 '**/*.md'",
 		"prepare": "husky install"
@@ -45,9 +45,9 @@
 	},
 	"lint-staged": {
 		"*.{html}": "htmlhint",
-		"*.{js,html}": "eslint --cache --fix",
+		"*.{mjs,js,html}": "eslint --cache --fix",
 		"*.{css,html}": "stylelint --fix",
 		"*.md": "markdownlint-cli2-fix",
-		"*.{js,css,md,json,jsonc,yml}": "prettier --write"
+		"*.{mjs,js,css,md,json,jsonc,yml}": "prettier --write"
 	}
 }
