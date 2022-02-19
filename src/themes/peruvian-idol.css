@@ -1,0 +1,155 @@
+/* stylelint-disable no-descending-specificity */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+:root {
+	--line-height: 1.375;
+	--font-size: 1.5rem;
+	--font-weight: 600;
+	--font-family-default: 'Montserrat', sans-serif;
+	--font-family-highlighted: papyrus, 'Comic Sans', monospace;
+	--color-text-default: deepskyblue;
+	--color-brand: #d90368;
+	--color-text-inverse: white;
+	--color-subscriber: #f6f1d1;
+	--color-highlight: #f6f1d1;
+	--color-reply-bg: #2e294e;
+	--color-mentioned: #f6f1d1;
+	--color-text-subdued: gainsboro;
+	--color-mod: limegreen;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	overflow: hidden;
+	height: 100vh;
+	margin: 0;
+}
+
+[data-twitch-chat] {
+	list-style: none;
+	padding: 1em;
+	margin: 0;
+	font-family: var(--font-family-default);
+	font-feature-settings: 'liga' on;
+	font-size: var(--font-size);
+	line-height: var(--line-height);
+	color: var(--color-text-inverse);
+	text-shadow: 0.05em 0.05em 0.05em hsla(0deg 0% 0% / 80%);
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+[data-twitch-message] {
+	font-weight: var(--font-weight);
+	word-wrap: anywhere;
+	display: flex;
+	flex-direction: column;
+}
+
+[data-twitch-message]:not(:last-child) {
+	margin-bottom: 1em;
+}
+
+[data-twitch-message-reply] {
+	color: var(--color-text-subdued);
+	font-size: 0.875em;
+	line-height: 1.25;
+	background-color: var(--color-reply-bg);
+	padding: 0.125em 0.5em;
+	border-radius: 0.25em;
+	margin-bottom: 0.25em;
+	display: box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	order: 2;
+}
+
+.twitch-chat-sender {
+	width: max-content;
+	margin-bottom: 0.125em;
+	color: var(--color-text-default);
+	order: 1;
+}
+
+.twitch-chat-sender::after {
+	content: ':';
+}
+
+.twitch-chat-message {
+	order: 3;
+}
+
+[data-twitch-emote] {
+	width: auto;
+	height: 1.25em;
+	display: inline-block;
+	vertical-align: top;
+}
+
+[data-twitch-mentioned-user] {
+	background-color: transparent;
+	color: var(--color-mentioned);
+}
+
+[data-twitch-sender-roles] .twitch-chat-sender::before {
+	margin-right: 0.25em;
+	vertical-align: top;
+}
+
+[data-twitch-sender-roles~='broadcaster'] .twitch-chat-sender {
+	color: var(--color-text-inverse);
+	background-color: var(--color-brand);
+	border-radius: 0.25em;
+	padding: 0 0.25em;
+}
+
+[data-twitch-sender-roles~='broadcaster'] .twitch-chat-sender::before {
+	content: '🎙';
+}
+
+[data-twitch-sender-roles='subscriber'] .twitch-chat-sender,
+[data-twitch-sender-roles='founder'] .twitch-chat-sender {
+	color: var(--color-subscriber);
+}
+
+[data-twitch-sender-roles='founder'] .twitch-chat-sender::before {
+	content: '👑';
+}
+
+[data-twitch-sender-roles='subscriber'] .twitch-chat-sender::before {
+	content: '⭐';
+}
+
+[data-twitch-sender-roles~='mod'] .twitch-chat-sender {
+	color: var(--color-mod);
+}
+
+[data-twitch-sender-roles='mod'] .twitch-chat-sender::before {
+	content: '👮🏻‍♂️';
+}
+
+[data-twitch-sender-roles~='mod'][data-twitch-sender-roles~='subscriber']
+	.twitch-chat-sender::before {
+	content: '👮🏻‍♂️⭐';
+}
+
+[data-twitch-message-status='highlighted'] .twitch-chat-message {
+	font-family: var(--font-family-highlighted);
+	color: var(--color-highlight);
+}
+
+[data-twitch-sender='Nightbot'] .twitch-chat-sender {
+	color: #7c7ce1;
+}
+
+[data-twitch-sender='Nightbot'] .twitch-chat-sender::before {
+	content: '🤖';
+}
