@@ -1,12 +1,12 @@
 /* global ComfyJS */
 
-import {
-	replaceKeywordWithBttvEmoteImage,
-	getBttvImageUrl,
-	getTwitchUserId,
-	getBttvChannelEmoteDict,
-	addGlobalBttvEmotesToDict,
-} from './bttvIntegration.mjs';
+// import {
+// 	replaceKeywordWithBttvEmoteImage,
+// 	getBttvImageUrl,
+// 	getTwitchUserId,
+// 	getBttvChannelEmoteDict,
+// 	addGlobalBttvEmotesToDict,
+// } from './bttvIntegration.mjs';
 
 import {isLightOrDark} from './colorContrast.mjs';
 import {
@@ -19,7 +19,7 @@ const watchedChannels = chatbox.getAttribute('data-twitch-chat');
 
 let mostRecentSender = '';
 let currentMessageGroup = 0;
-let bttvEmoteDict = {};
+// let bttvEmoteDict = {};
 
 /**
  * @param {string} html full HTML. string for a message
@@ -83,23 +83,23 @@ function formatEmotes(text, emotes = {}) {
 	return htmlEntities(splitText).join('');
 }
 
-/**
- * @param {string} text message text
- */
-function formatBttvEmotes(text) {
-	for (const key in bttvEmoteDict) {
-		if (text.includes(key)) {
-			const bttvId = bttvEmoteDict[key];
-			text = replaceKeywordWithBttvEmoteImage(
-				text,
-				key,
-				getBttvImageUrl(bttvId),
-				bttvId
-			);
-		}
-	}
-	return text;
-}
+// /**
+//  * @param {string} text message text
+//  */
+// function formatBttvEmotes(text) {
+// 	for (const key in bttvEmoteDict) {
+// 		if (text.includes(key)) {
+// 			const bttvId = bttvEmoteDict[key];
+// 			text = replaceKeywordWithBttvEmoteImage(
+// 				text,
+// 				key,
+// 				getBttvImageUrl(bttvId),
+// 				bttvId
+// 			);
+// 		}
+// 	}
+// 	return text;
+// }
 
 /**
  * @param {string} messageContents
@@ -159,7 +159,7 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 
 	const message = document.createElement('div');
 	let formattedMessage = formatEmotes(messageContents, extra.messageEmotes);
-	formattedMessage = formatBttvEmotes(formattedMessage);
+	// formattedMessage = formatBttvEmotes(formattedMessage);
 	// formattedMessage = formatLinks(formattedMessage);
 	formattedMessage = formatUserMentions(formattedMessage);
 	if (extra._isCommand) {
@@ -295,9 +295,9 @@ ComfyJS.onTimeout = function (timedOutUsername, durationInSeconds, extra) {
  * Fetches necessary user data and begins listening for chat messages
  */
 async function init() {
-	const twitchUserId = await getTwitchUserId(watchedChannels.split(' ')[0]);
-	bttvEmoteDict = await getBttvChannelEmoteDict(twitchUserId);
-	bttvEmoteDict = await addGlobalBttvEmotesToDict(bttvEmoteDict);
+	// const twitchUserId = await getTwitchUserId(watchedChannels.split(' ')[0]);
+	// bttvEmoteDict = await getBttvChannelEmoteDict(twitchUserId);
+	// bttvEmoteDict = await addGlobalBttvEmotesToDict(bttvEmoteDict);
 	ComfyJS.Init(null, null, watchedChannels.split(' '));
 }
 
