@@ -18,7 +18,7 @@
 	},
 	"dependencies": {
 		"@11ty/eleventy": "^1.0.0-beta.10",
-		"axios": "^0.24.0",
+		"axios": "^0.26.0",
 		"jest": "^27.4.7",
 		"jsdom": "^16.6.0",
 		"serialize-javascript": "^6.0.0",
