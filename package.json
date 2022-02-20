@@ -9,7 +9,7 @@
 		"build": "eleventy",
 		"dev": "eleventy --serve",
 		"test": "NODE_OPTIONS=--experimental-vm-modules jest",
-		"prettier": "prettier -l .",
+		"prettier": "prettier . --check --ignore-unknown",
 		"stylelint": "stylelint '**/*.{css,html}'",
 		"eslint": "eslint '**/*.{mjs,js,html}'",
 		"htmlhint": "htmlhint '**/*.html'",
