@@ -12,11 +12,19 @@
 	"extends": ["eslint:recommended", "plugin:jsdoc/recommended", "prettier"],
 	"plugins": ["jsdoc", "html"],
 	"rules": {
-		"no-unused-vars": ["error", {"args": "none"}]
+		"no-unused-vars": [
+			"error",
+			{
+				"args": "none",
+				"ignoreRestSiblings": true,
+				"argsIgnorePattern": "^_",
+				"varsIgnorePattern": "^_"
+			}
+		]
 	},
 	"overrides": [
 		{
-			"files": ["src/scripts/bttvIntegration.js", "src/scripts/handleChat.js"],
+			"files": ["*.mjs"],
 			"parserOptions": {
 				"sourceType": "module"
 			}

@@ -22,7 +22,7 @@
 	</script>
 	{% if eleventy.serverless.query.DEMO %}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
-	<script src="/scripts/demo.js"></script>
+	<script src="/scripts/demo.mjs" type="module"></script>
 	{% else %}
 	<script src="https://cdn.jsdelivr.net/npm/comfy.js@latest/dist/comfy.min.js"></script>
 	{% endif %}
@@ -31,9 +31,10 @@
 
 <body>
 	<ul data-twitch-chat="{{ eleventy.serverless.path.channel }}"></ul>
-	<script src="/scripts/bttvIntegration.js" type="module"></script>
-	<script src="/scripts/colorContrast.js" type="module"></script>
-	<script src="/scripts/handleChat.js" type="module"></script>
+	<!-- <script src="/scripts/bttvIntegration.mjs" type="module"></script> -->
+	<script src="/scripts/colorContrast.mjs" type="module"></script>
+	<script src="/scripts/handleChat.mjs" type="module"></script>
+	<script src="/scripts/utilities.mjs" type="module"></script>
 </body>
 
 </html>

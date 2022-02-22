@@ -1,21 +1,25 @@
 /* global ComfyJS */
 
-import {
-	replaceKeywordWithBttvEmoteImage,
-	getBttvImageUrl,
-	getTwitchUserId,
-	getBttvChannelEmoteDict,
-	addGlobalBttvEmotesToDict,
-} from './bttvIntegration.js';
+// import {
+// 	replaceKeywordWithBttvEmoteImage,
+// 	getBttvImageUrl,
+// 	getTwitchUserId,
+// 	getBttvChannelEmoteDict,
+// 	addGlobalBttvEmotesToDict,
+// } from './bttvIntegration.mjs';
 
-import {isLightOrDark} from './colorContrast.js';
+import {isLightOrDark} from './colorContrast.mjs';
+import {
+	removeAllMessagesFromUser,
+	removeMessageFromDomAndShiftOthers,
+} from './utilities.mjs';
 
 const chatbox = document.querySelector('[data-twitch-chat]');
 const watchedChannels = chatbox.getAttribute('data-twitch-chat');
 
 let mostRecentSender = '';
 let currentMessageGroup = 0;
-let bttvEmoteDict = {};
+// let bttvEmoteDict = {};
 
 /**
  * @param {string} html full HTML. string for a message
@@ -79,23 +83,23 @@ function formatEmotes(text, emotes = {}) {
 	return htmlEntities(splitText).join('');
 }
 
-/**
- * @param {string} text message text
- */
-function formatBttvEmotes(text) {
-	for (const key in bttvEmoteDict) {
-		if (text.includes(key)) {
-			const bttvId = bttvEmoteDict[key];
-			text = replaceKeywordWithBttvEmoteImage(
-				text,
-				key,
-				getBttvImageUrl(bttvId),
-				bttvId
-			);
-		}
-	}
-	return text;
-}
+// /**
+//  * @param {string} text message text
+//  */
+// function formatBttvEmotes(text) {
+// 	for (const key in bttvEmoteDict) {
+// 		if (text.includes(key)) {
+// 			const bttvId = bttvEmoteDict[key];
+// 			text = replaceKeywordWithBttvEmoteImage(
+// 				text,
+// 				key,
+// 				getBttvImageUrl(bttvId),
+// 				bttvId
+// 			);
+// 		}
+// 	}
+// 	return text;
+// }
 
 /**
  * @param {string} messageContents
@@ -155,7 +159,7 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 
 	const message = document.createElement('div');
 	let formattedMessage = formatEmotes(messageContents, extra.messageEmotes);
-	formattedMessage = formatBttvEmotes(formattedMessage);
+	// formattedMessage = formatBttvEmotes(formattedMessage);
 	// formattedMessage = formatLinks(formattedMessage);
 	formattedMessage = formatUserMentions(formattedMessage);
 	if (extra._isCommand) {
@@ -288,34 +292,21 @@ ComfyJS.onMessageDeleted = function (id, extra) {
 	}
 };
 
-/**
- * @param messageToDelete
- */
-function removeMessageFromDomAndShiftOthers(messageToDelete) {
-	let wasFirstInGroup = messageToDelete.getAttribute(
-		'data-twitch-first-message-in-group'
-	);
-	let group = messageToDelete.getAttribute('data-twitch-message-group');
-	let hasNextInGroup =
-		messageToDelete.nextSibling &&
-		messageToDelete.nextSibling.getAttribute('data-twitch-message-group') ===
-			group;
-	if (wasFirstInGroup && hasNextInGroup) {
-		messageToDelete.nextSibling.setAttribute(
-			'data-twitch-first-message-in-group',
-			true
-		);
-	}
-	messageToDelete.remove();
-}
+ComfyJS.onBan = function (bannedUsername, extra) {
+	removeAllMessagesFromUser(bannedUsername);
+};
+
+ComfyJS.onTimeout = function (timedOutUsername, durationInSeconds, extra) {
+	removeAllMessagesFromUser(timedOutUsername);
+};
 
 /**
  * Fetches necessary user data and begins listening for chat messages
  */
 async function init() {
-	const twitchUserId = await getTwitchUserId(watchedChannels.split(' ')[0]);
-	bttvEmoteDict = await getBttvChannelEmoteDict(twitchUserId);
-	bttvEmoteDict = await addGlobalBttvEmotesToDict(bttvEmoteDict);
+	// const twitchUserId = await getTwitchUserId(watchedChannels.split(' ')[0]);
+	// bttvEmoteDict = await getBttvChannelEmoteDict(twitchUserId);
+	// bttvEmoteDict = await addGlobalBttvEmotesToDict(bttvEmoteDict);
 	ComfyJS.Init(null, null, watchedChannels.split(' '));
 }
 
