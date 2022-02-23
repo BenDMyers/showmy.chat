@@ -242,9 +242,7 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 	chatbox.appendChild(newMessage);
 
 	if (window.CONFIG.clearMessageAfter) {
-		console.log('wheeeeee', window.CONFIG.clearMessageAfter);
 		setTimeout(() => {
-			console.log('times up');
 			ComfyJS.onMessageDeleted(extra.id, extra);
 		}, window.CONFIG.clearMessageAfter);
 	}
