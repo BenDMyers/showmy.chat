@@ -6,7 +6,7 @@
  */
 export function removeAllMessagesFromUser(username) {
 	const messagesFromUser = document.querySelectorAll(
-		`[data-twitch-sender="${username}" i]:not([data-twitch-message-status="deleting])`
+		`[data-twitch-sender="${username}" i]:not([data-twitch-message-display-status="deleting"])`
 	);
 	messagesFromUser.forEach((message) => {
 		const messageId = message.getAttribute('data-twitch-message');
@@ -48,14 +48,17 @@ function _removeMessageFromDomAndShiftOthers(messageToDelete) {
  */
 export function removeMessage(messageId) {
 	const messageToDelete = document.querySelector(
-		`[data-twitch-message="${messageId}"]:not([data-twitch-message-status="deleting"])`
+		`[data-twitch-message="${messageId}"]:not([data-twitch-message-display-status="deleting"])`
 	);
 
 	// Message has already been deleted through another means, or is in the process of getting deleted
 	if (!messageToDelete) return;
 
 	// Apply style hook for themes' outbound transitions
-	messageToDelete.setAttribute('data-twitch-message-status', 'deleting');
+	messageToDelete.setAttribute(
+		'data-twitch-message-display-status',
+		'deleting'
+	);
 
 	/**
 	 * Callback to remove message from DOM if it still exists.

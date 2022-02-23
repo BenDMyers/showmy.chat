@@ -42,7 +42,7 @@ body {
 	padding-top: 5.625px;
 }
 
-[data-twitch-message-status='deleting'] {
+[data-twitch-message-display-status='deleting'] {
 	transition: 1s linear opacity;
 	opacity: 0;
 }
