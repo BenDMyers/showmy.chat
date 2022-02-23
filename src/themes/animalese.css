@@ -40,16 +40,22 @@ body {
 }
 
 [data-twitch-message][data-twitch-message-status='deleting'] {
-	/* transition: transform 0.3s ease-in-out;
-	transform: scale(0); */
-	transition: transform 1s ease-in-out !important;
-	transform: scale(0.5, 0.1);
-	opacity: 1;
+	animation: hide 400ms 0ms cubic-bezier(0.38, 0.97, 0.56, 0.76) forwards;
 }
 
 @keyframes show {
 	100% {
 		transform: none;
+	}
+}
+
+@keyframes hide {
+	0% {
+		transform: none;
+	}
+
+	100% {
+		transform: scale(0);
 	}
 }
 
