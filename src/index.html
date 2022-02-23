@@ -49,11 +49,11 @@ layout: page.html
 			placeholder="{{defaults.showLatestMessages}}" />
 
 		<div class="overlay-builder-header">
-			<label for="clear-message-after">Clear messages after (milliseconds)</label>
+			<label for="clear-message-after">Clear messages after (seconds)</label>
 			<a href="docs/configuration/#clear-message-after" aria-label="Docs for clearMessageAfter">&#9432;</a>
 		</div>
 		<input type="number" id="clear-message-after" name="clearMessageAfter"
-			placeholder="{{defaults.clearMessageAfter}}" step="500" />
+			placeholder="{{defaults.clearMessageAfter}}" step="0.1" />
 
 		<button type="submit" style="margin-top: 1em">Get my URL!</button>
 
@@ -147,6 +147,12 @@ layout: page.html
 			if (chosenValue == defaultValue || chosenValue === '') {
 				values.delete(key);
 			}
+		}
+
+		if (values.get('clearMessageAfter')) {
+			const seconds = values.get('clearMessageAfter');
+			const milliseconds = Math.floor(seconds * 1000);
+			values.set('clearMessageAfter', milliseconds);
 		}
 
 		if (isDemo) {
