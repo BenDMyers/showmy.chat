@@ -7,15 +7,16 @@
 export function removeAllMessagesFromUser(username) {
 	const undeletedMessagesSelector = `[data-twitch-sender="${username}" i]:not([data-twitch-message-status="deleting])`;
 	const messagesFromUser = document.querySelectorAll(undeletedMessagesSelector);
-	const messageIds = messagesFromUser.map((message) =>
-		message.getAttribute('data-twitch-message')
-	);
-	messageIds.forEach(removeMessage);
+	messagesFromUser.forEach((message) => {
+		const messageId = message.getAttribute('data-twitch-message');
+		removeMessage(messageId);
+	});
 }
 
 /**
- * Removes a specified message from the overlay.
+ * Removes a specified message from the overlay's DOM, and adjust attributes for other messages in the same message group.
  *
+ * @private
  * @param {Element} messageToDelete - list item containing a message to be removed from the overlay
  */
 function _removeMessageFromDomAndShiftOthers(messageToDelete) {
