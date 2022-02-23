@@ -133,8 +133,6 @@ layout: page.html
 		let url = new URL(channelName, `${window.location.origin}/c/`);
 		values.delete('channel');
 
-		console.log({ val: values.get('showLatestMessages') });
-
 		// prevent defaults from being explicitly set in the url
 		for (let [key, defaultValue] of Object.entries(defaultQueryParameters)) {
 			let chosenValue = values.get(key);
