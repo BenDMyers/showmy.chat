@@ -50,7 +50,6 @@ export function removeMessage(messageId) {
 	const messageToDelete = document.querySelector(
 		`[data-twitch-message="${messageId}"]:not([data-twitch-message-status="deleting"])`
 	);
-	console.log({messageId, messageToDelete});
 
 	// Message has already been deleted through another means, or is in the process of getting deleted
 	if (!messageToDelete) return;
