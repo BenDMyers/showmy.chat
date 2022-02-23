@@ -9,10 +9,7 @@
 // } from './bttvIntegration.mjs';
 
 import {isLightOrDark} from './colorContrast.mjs';
-import {
-	removeAllMessagesFromUser,
-	removeMessageFromDomAndShiftOthers,
-} from './utilities.mjs';
+import {removeAllMessagesFromUser, removeMessage} from './utilities.mjs';
 
 const chatbox = document.querySelector('[data-twitch-chat]');
 const watchedChannels = chatbox.getAttribute('data-twitch-chat');
@@ -243,7 +240,7 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 
 	if (window.CONFIG.clearMessageAfter) {
 		setTimeout(() => {
-			ComfyJS.onMessageDeleted(extra.id, extra);
+			removeMessage(extra.id);
 		}, window.CONFIG.clearMessageAfter);
 	}
 
@@ -257,7 +254,8 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 			showLatestMessages
 		) {
 			const oldestMessage = document.querySelector('[data-twitch-message]');
-			removeMessageFromDomAndShiftOthers(oldestMessage);
+			const oldestMessageId = oldestMessage.getAttribute('data-twitch-message');
+			removeMessage(oldestMessageId);
 		}
 	}
 };
@@ -281,24 +279,7 @@ ComfyJS.onCommand = function (user, command, message, flags, extra = {}) {
 };
 
 ComfyJS.onMessageDeleted = function (id, extra) {
-	const messageToDelete = document.querySelector(
-		`[data-twitch-message="${id}"]`
-	);
-	if (messageToDelete) {
-		messageToDelete.setAttribute('data-twitch-message-status', 'deleting');
-
-		// Give animation a chance
-		messageToDelete.addEventListener('transitionend', () =>
-			removeMessageFromDomAndShiftOthers(messageToDelete)
-		);
-
-		// If no animation, delete anyways
-		setTimeout(
-			() =>
-				messageToDelete && removeMessageFromDomAndShiftOthers(messageToDelete),
-			1000
-		);
-	}
+	removeMessage(id);
 };
 
 ComfyJS.onBan = function (bannedUsername, extra) {
