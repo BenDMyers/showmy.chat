@@ -5,8 +5,9 @@
  * @param {string} username - account whose messages to remove from the overlay
  */
 export function removeAllMessagesFromUser(username) {
-	const undeletedMessagesSelector = `[data-twitch-sender="${username}" i]:not([data-twitch-message-status="deleting])`;
-	const messagesFromUser = document.querySelectorAll(undeletedMessagesSelector);
+	const messagesFromUser = document.querySelectorAll(
+		`[data-twitch-sender="${username}" i]:not([data-twitch-message-status="deleting])`
+	);
 	messagesFromUser.forEach((message) => {
 		const messageId = message.getAttribute('data-twitch-message');
 		removeMessage(messageId);
