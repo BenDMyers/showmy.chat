@@ -146,10 +146,7 @@ layout: page.html
 			if (chosenValue === "false") {
 				chosenValue = false;
 			}
-			if (chosenValue == defaultValue) {
-				values.delete(key);
-			}
-			if (typeof defaultValue === 'number' && chosenValue === '') {
+			if (chosenValue == defaultValue || chosenValue === '') {
 				values.delete(key);
 			}
 		}
