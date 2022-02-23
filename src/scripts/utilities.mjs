@@ -57,32 +57,31 @@ export function removeMessage(messageId) {
 	// Apply style hook for themes' outbound transitions
 	messageToDelete.setAttribute('data-twitch-message-status', 'deleting');
 
-	// Give animation a chance
-	messageToDelete.addEventListener('transitionend', () => {
+	/**
+	 * Callback to remove message from DOM if it still exists.
+	 * Callback for addEventListener which cleans up after itself.
+	 */
+	function _callbackRemoveMessageFromDom() {
 		let remainingMessageToDelete = document.querySelector(
 			`[data-twitch-message="${messageId}"]`
 		);
 		if (remainingMessageToDelete) {
 			_removeMessageFromDomAndShiftOthers(messageToDelete);
+			removeEventListener('transitionend', _callbackRemoveMessageFromDom);
+			removeEventListener('animationend', _callbackRemoveMessageFromDom);
 		}
-	});
+	}
 
-	messageToDelete.addEventListener('animationend', () => {
-		let remainingMessageToDelete = document.querySelector(
-			`[data-twitch-message="${messageId}"]`
-		);
-		if (remainingMessageToDelete) {
-			_removeMessageFromDomAndShiftOthers(messageToDelete);
-		}
-	});
+	// Give animation a chance
+	messageToDelete.addEventListener(
+		'transitionend',
+		_callbackRemoveMessageFromDom
+	);
+	messageToDelete.addEventListener(
+		'animationend',
+		_callbackRemoveMessageFromDom
+	);
 
 	// If no animation, delete anyways
-	setTimeout(() => {
-		let remainingMessageToDelete = document.querySelector(
-			`[data-twitch-message="${messageId}"]`
-		);
-		if (remainingMessageToDelete) {
-			_removeMessageFromDomAndShiftOthers(messageToDelete);
-		}
-	}, 1200);
+	setTimeout(_callbackRemoveMessageFromDom, 1200);
 }
