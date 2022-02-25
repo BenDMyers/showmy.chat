@@ -137,10 +137,6 @@ layout: page.html
 		for (let [key, defaultValue] of Object.entries(defaultQueryParameters)) {
 			let chosenValue = values.get(key);
 
-			if (key == 'showCommands' && chosenValue === '') {
-				// the showCommands option remained unchanged and should use the default
-				chosenValue = defaultQueryParameters.showCommands;
-			}
 			if (chosenValue === "false") {
 				chosenValue = false;
 			}
