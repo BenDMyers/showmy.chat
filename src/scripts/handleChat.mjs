@@ -250,8 +250,9 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 	const {showLatestMessages} = window.CONFIG;
 	if (showLatestMessages) {
 		while (
-			document.querySelectorAll('[data-twitch-message]').length >
-			showLatestMessages
+			document.querySelectorAll(
+				'[data-twitch-message]:not([data-twitch-message-display-status="deleting"])'
+			).length > showLatestMessages
 		) {
 			const oldestMessage = document.querySelector('[data-twitch-message]');
 			const oldestMessageId = oldestMessage.getAttribute('data-twitch-message');
