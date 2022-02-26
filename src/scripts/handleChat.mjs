@@ -9,10 +9,7 @@
 // } from './bttvIntegration.mjs';
 
 import {isLightOrDark} from './colorContrast.mjs';
-import {
-	removeAllMessagesFromUser,
-	removeMessageFromDomAndShiftOthers,
-} from './utilities.mjs';
+import {removeAllMessagesFromUser, removeMessage} from './utilities.mjs';
 
 const chatbox = document.querySelector('[data-twitch-chat]');
 const watchedChannels = chatbox.getAttribute('data-twitch-chat');
@@ -241,6 +238,12 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 
 	chatbox.appendChild(newMessage);
 
+	if (window.CONFIG.clearMessageAfter) {
+		setTimeout(() => {
+			removeMessage(extra.id);
+		}, window.CONFIG.clearMessageAfter);
+	}
+
 	// Optionally, users may specify a max number of messages to show.
 	// If we exceed that number, remove the oldest still shown message.
 	/** @type {{showLatestMessages?: number}} */
@@ -251,7 +254,8 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 			showLatestMessages
 		) {
 			const oldestMessage = document.querySelector('[data-twitch-message]');
-			removeMessageFromDomAndShiftOthers(oldestMessage);
+			const oldestMessageId = oldestMessage.getAttribute('data-twitch-message');
+			removeMessage(oldestMessageId);
 		}
 	}
 };
@@ -275,12 +279,7 @@ ComfyJS.onCommand = function (user, command, message, flags, extra = {}) {
 };
 
 ComfyJS.onMessageDeleted = function (id, extra) {
-	const messageToDelete = document.querySelector(
-		`[data-twitch-message="${id}"]`
-	);
-	if (messageToDelete) {
-		removeMessageFromDomAndShiftOthers(messageToDelete);
-	}
+	removeMessage(id);
 };
 
 ComfyJS.onBan = function (bannedUsername, extra) {
