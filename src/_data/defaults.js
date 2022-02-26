@@ -1,5 +1,6 @@
 module.exports = {
 	channel: 'showmychat',
+	clearMessageAfter: '',
 	DEMO: false,
 	hideMessagesFrom: '',
 	showCommands: false,
