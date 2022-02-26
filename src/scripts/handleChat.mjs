@@ -249,11 +249,13 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 	/** @type {{showLatestMessages?: number}} */
 	const {showLatestMessages} = window.CONFIG;
 	if (showLatestMessages) {
+		const oldestMessageSelector =
+			'[data-twitch-message]:not([data-twitch-message-display-status="deleting"])';
 		while (
-			document.querySelectorAll('[data-twitch-message]').length >
+			document.querySelectorAll(oldestMessageSelector).length >
 			showLatestMessages
 		) {
-			const oldestMessage = document.querySelector('[data-twitch-message]');
+			const oldestMessage = document.querySelector(oldestMessageSelector);
 			const oldestMessageId = oldestMessage.getAttribute('data-twitch-message');
 			removeMessage(oldestMessageId);
 		}
