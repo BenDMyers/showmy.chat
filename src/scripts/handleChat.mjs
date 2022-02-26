@@ -9,7 +9,11 @@
 // } from './bttvIntegration.mjs';
 
 import {isLightOrDark} from './colorContrast.mjs';
-import {removeAllMessagesFromUser, removeMessage} from './utilities.mjs';
+import {
+	removeAllMessagesFromUser,
+	removeMessage,
+	createAnimationHandler,
+} from './utilities.mjs';
 
 const chatbox = document.querySelector('[data-twitch-chat]');
 const watchedChannels = chatbox.getAttribute('data-twitch-chat');
@@ -237,6 +241,8 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 	newMessage.setAttribute('data-twitch-message-group', currentMessageGroup);
 
 	chatbox.appendChild(newMessage);
+
+	createAnimationHandler('created', newMessage);
 
 	if (window.CONFIG.clearMessageAfter) {
 		setTimeout(() => {

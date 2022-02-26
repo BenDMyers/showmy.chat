@@ -1,4 +1,66 @@
 /**
+ * Adds animation/transition listeners for a given event. Will immediately abort if there is no animation or transition.
+ *
+ * @param {string} eventName - the name of the event to be used. There will be data-attributes added to the element with the event name for the animation/transition event.
+ * @param {HTMLElement} element - the element to apply listeners/attributes to.
+ * @param {Function?} [callback] - The callback function at the end of the animation/transition. Optional.
+ */
+export function createAnimationHandler(eventName, element, callback) {
+	const attrPrefix = (e) => `data-${eventName}-${e}`;
+	element.setAttribute(attrPrefix('from'), true);
+
+	const trackedProperties = new Set();
+
+	const __finishAnimation = () => {
+		if (trackedProperties.size === 0) {
+			element.removeEventListener('transitionstart', __transitionStart);
+			element.removeEventListener('transitionend', __transitionEnd);
+			element.removeEventListener('animationstart', __animationStart);
+			element.removeEventListener('animationend', __animationEnd);
+			element.removeEventListener('animationiteration', __animationEnd);
+			element.removeAttribute(attrPrefix('active'));
+			element.removeAttribute(attrPrefix('to'));
+			if (typeof callback === 'function') callback();
+		}
+	};
+
+	const __transitionStart = (e) => {
+		clearTimeout(abortCode);
+		trackedProperties.add('transition:' + e.propertyName);
+	};
+	const __transitionEnd = (e) => {
+		trackedProperties.delete('transition:' + e.propertyName);
+		__finishAnimation(e.target);
+	};
+	const __animationStart = (e) => {
+		clearTimeout(abortCode);
+		trackedProperties.add('animation:' + e.propertyName);
+	};
+
+	const __animationEnd = (e) => {
+		trackedProperties.delete('animation:' + e.propertyName);
+		__finishAnimation(e.target);
+	};
+
+	const abortCode = setTimeout(() => {
+		console.log('Aborting...');
+		__finishAnimation(element);
+	}, 100);
+
+	element.addEventListener('transitionstart', __transitionStart);
+	element.addEventListener('transitionend', __transitionEnd);
+	element.addEventListener('animationstart', __animationStart);
+	element.addEventListener('animationend', __animationEnd);
+	element.addEventListener('animationiteration', __animationEnd);
+
+	requestIdleCallback(() => {
+		element.setAttribute(attrPrefix('active'), true);
+		element.setAttribute(attrPrefix('to'), true);
+		element.removeAttribute(attrPrefix('from'));
+	});
+}
+
+/**
  * Removes all messages sent by a given user from the overlay.
  * Called when a user is banned.
  *
@@ -70,21 +132,12 @@ export function removeMessage(messageId) {
 		);
 		if (remainingMessageToDelete) {
 			_removeMessageFromDomAndShiftOthers(messageToDelete);
-			removeEventListener('transitionend', _callbackRemoveMessageFromDom);
-			removeEventListener('animationend', _callbackRemoveMessageFromDom);
 		}
 	}
 
-	// Give animation a chance
-	messageToDelete.addEventListener(
-		'transitionend',
+	createAnimationHandler(
+		'delete',
+		messageToDelete,
 		_callbackRemoveMessageFromDom
 	);
-	messageToDelete.addEventListener(
-		'animationend',
-		_callbackRemoveMessageFromDom
-	);
-
-	// If no animation, delete anyways
-	setTimeout(_callbackRemoveMessageFromDom, 1200);
 }
