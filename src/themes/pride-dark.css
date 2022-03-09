@@ -117,6 +117,13 @@ body {
 	filter: brightness(140%);
 }
 
+.twitch-chat-command {
+	background: transparent;
+	font-weight: 300;
+	font-family: var(--brand-font), sans-serif;
+	color: inherit;
+}
+
 [data-twitch-emote] {
 	width: 1.3em;
 	margin-bottom: -0.2em;
