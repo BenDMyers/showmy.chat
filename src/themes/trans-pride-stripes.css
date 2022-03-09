@@ -5,16 +5,14 @@
 	--body-font: 'Rubik';
 	--border-width: 8px;
 	--animation-duration: 500ms;
-	--red: tomato;
-	--orange: darkorange;
-	--yellow: gold;
-	--green: limegreen;
-	--blue: royalblue;
-	--purple: rebeccapurple;
+	--trans-flag-white: seashell;
+	--trans-flag-pink: pink;
+	--trans-flag-blue: skyblue;
 	--rainbow-angle: 105deg;
-	--rainbow: var(--red) 16.6667%, var(--orange) 16.6667% 33.3333%,
-		var(--yellow) 33.3333% 50%, var(--green) 50% 66.6667%,
-		var(--blue) 66.6667% 83.3333%, var(--purple) 83.3333%;
+	--rainbow: var(--trans-flag-blue) 20%, var(--trans-flag-pink) 20% 40%,
+		var(--trans-flag-white) 40% 60%, var(--trans-flag-pink) 60% 80%,
+		var(--trans-flag-blue) 80%;
+	--mention-color: #4099bd;
 	--black: #0e091a;
 	--black-transparent: rgb(14 9 26 / 89%);
 	--white-transparent: rgb(245 245 245 / 84%);
@@ -113,8 +111,19 @@ body {
 	background: transparent;
 	font-weight: 300;
 	font-family: var(--brand-font), sans-serif;
-	color: royalblue;
-	filter: brightness(140%);
+	color: var(--trans-flag-blue);
+}
+
+.twitch-chat-command {
+	background: transparent;
+	font-weight: 300;
+	font-family: var(--brand-font), sans-serif;
+	color: var(--white);
+}
+
+[data-twitch-message-status='highlighted'] [data-twitch-mentioned-user],
+[data-twitch-message-status='highlighted'] .twitch-chat-command {
+	filter: brightness(85%) saturate(120%);
 }
 
 [data-twitch-emote] {
