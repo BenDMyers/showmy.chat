@@ -152,6 +152,7 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 
 	const sender = document.createElement('div');
 	sender.classList.add('twitch-chat-sender');
+	sender.setAttribute('data-twitch-sender-inner', user);
 	sender.innerHTML = user;
 
 	const message = document.createElement('div');
