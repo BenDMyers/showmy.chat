@@ -91,6 +91,13 @@ li {
 	padding-right: 12px;
 }
 
+[data-twitch-sender-color-lightness='light'] > .twitch-chat-sender::after {
+	content: attr(data-twitch-sender-inner);
+	position: absolute;
+	left: 66px;
+	color: rgb(0 0 0 / 60%);
+}
+
 /* Horse SVG */
 
 [data-twitch-message]::before,
