@@ -114,6 +114,15 @@
         "content",
         "design"
       ]
+    },
+    {
+      "login": "kevin-powell",
+      "name": "Kevin Powell",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25749407?v=4",
+      "profile": "https://youtube.com/kevinpowell",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
