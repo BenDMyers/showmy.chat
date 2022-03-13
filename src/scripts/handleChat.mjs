@@ -112,7 +112,7 @@ function formatUserMentions(messageContents) {
 	return messageContents.replace(
 		/@(([\w]|&#83;|&#115;)+)/g,
 		function (substring, mentionedUser) {
-			return `<mark data-twitch-mentioned-user="${mentionedUser}">@${mentionedUser}</mark>`;
+			return `<mark data-twitch-mentioned-user="@${mentionedUser}">@${mentionedUser}</mark>`;
 		}
 	);
 }
