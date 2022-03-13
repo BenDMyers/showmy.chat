@@ -104,6 +104,16 @@
       "contributions": [
         "design"
       ]
+    },
+    {
+      "login": "a-trost",
+      "name": "Alex Trost",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19617280?v=4",
+      "profile": "https://www.frontend.horse",
+      "contributions": [
+        "content",
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
