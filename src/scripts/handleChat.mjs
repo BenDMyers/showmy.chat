@@ -152,6 +152,7 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 
 	const sender = document.createElement('div');
 	sender.classList.add('twitch-chat-sender');
+	sender.setAttribute('data-twitch-sender-inner', user);
 	sender.innerHTML = user;
 
 	const message = document.createElement('div');
@@ -249,11 +250,13 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 	/** @type {{showLatestMessages?: number}} */
 	const {showLatestMessages} = window.CONFIG;
 	if (showLatestMessages) {
+		const oldestMessageSelector =
+			'[data-twitch-message]:not([data-twitch-message-display-status="deleting"])';
 		while (
-			document.querySelectorAll('[data-twitch-message]').length >
+			document.querySelectorAll(oldestMessageSelector).length >
 			showLatestMessages
 		) {
-			const oldestMessage = document.querySelector('[data-twitch-message]');
+			const oldestMessage = document.querySelector(oldestMessageSelector);
 			const oldestMessageId = oldestMessage.getAttribute('data-twitch-message');
 			removeMessage(oldestMessageId);
 		}

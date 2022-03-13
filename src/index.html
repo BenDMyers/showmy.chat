@@ -74,7 +74,7 @@ layout: page.html
 	</template>
 </div>
 <script>
-	const { channel: defaultChannel, DEMO, ...defaultQueryParameters } = JSON.parse(`{{defaults | serialize }}`);
+	const { channel: defaultChannel } = JSON.parse(`{{defaults | serialize }}`);
 	const overlayBuilderForm = document.getElementById('overlay-builder');
 	const linkOutput = document.querySelector('output');
 	const outputTemplate = document.querySelector("#output-template");
@@ -126,37 +126,32 @@ layout: page.html
 	 * @returns {string} url - full url
 	 */
 	function buildURL(isDemo) {
-		const values = new FormData(overlayBuilderForm);
+		const formData = new FormData(overlayBuilderForm);
 
-		// remove all parts of the url that are not query parameters
-		const channelName = values.get('channel') || defaultChannel;
-		let url = new URL(channelName, `${window.location.origin}/c/`);
-		values.delete('channel');
+		const channelName = formData.get('channel') || defaultChannel;
+		let urlObject = new URL(channelName, `${window.location.origin}/c/`);
 
-		// prevent defaults from being explicitly set in the url
-		for (let [key, defaultValue] of Object.entries(defaultQueryParameters)) {
-			let chosenValue = values.get(key);
-
-			if (chosenValue === "false") {
-				chosenValue = false;
+		for (let [key, value] of formData) {
+			// prevent values from being set in the URL
+			if (key === "channel" || value === '') {
+				continue;
 			}
-			if (chosenValue === '') {
-				values.delete(key);
-			}
-		}
 
-		if (values.get('clearMessageAfter')) {
-			const seconds = values.get('clearMessageAfter');
-			const milliseconds = Math.floor(seconds * 1000);
-			values.set('clearMessageAfter', milliseconds);
+			if (key === 'clearMessageAfter') {
+				// convert the form value that's given in seconds to a millisecond value for the URL query param
+				const seconds = value;
+				const milliseconds = Math.floor(seconds * 1000);
+				value = milliseconds;
+			}
+
+			urlObject.searchParams.append(key, value)
 		}
 
 		if (isDemo) {
-			values.set('DEMO', 'true');
+			urlObject.searchParams.append('DEMO', 'true');
 		}
 
-		url.search = new URLSearchParams(values).toString();
-		return url.toString();
+		return urlObject.toString();
 	}
 </script>
 <style>
