@@ -124,7 +124,7 @@ function formatUserMentions(messageContents) {
 function formatChatCommand(messageContents) {
 	const COMMAND_REGEX = /^!(([\w]|&#83;|&#115;)+)/;
 	return messageContents.replace(COMMAND_REGEX, function (substring, command) {
-		return `<mark class="twitch-chat-command">!${command}</mark>`;
+		return `<mark class="twitch-chat-command" data-twitch-command-inner="!${command}">!${command}</mark>`;
 	});
 }
 
