@@ -99,3 +99,15 @@ body {
 	font-weight: 600;
 	padding: 0 0.1em;
 }
+
+[data-created-from] {
+	max-height: 0;
+}
+
+[data-created-active] {
+	transition: max-height 2s ease;
+}
+
+[data-created-to] {
+	max-height: 300px;
+}
