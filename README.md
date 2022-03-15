@@ -3,7 +3,7 @@
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -55,6 +55,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://redsparr0w.com"><img src="https://avatars.githubusercontent.com/u/7288322?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Danial</b></sub></a><br /><a href="#design-RedSparr0w" title="Design">🎨</a></td>
     <td align="center"><a href="https://www.frontend.horse"><img src="https://avatars.githubusercontent.com/u/19617280?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alex Trost</b></sub></a><br /><a href="#content-a-trost" title="Content">🖋</a> <a href="#design-a-trost" title="Design">🎨</a></td>
     <td align="center"><a href="https://youtube.com/kevinpowell"><img src="https://avatars.githubusercontent.com/u/25749407?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kevin Powell</b></sub></a><br /><a href="#content-kevin-powell" title="Content">🖋</a></td>
+    <td align="center"><a href="http://www.jacobbolda.com"><img src="https://avatars.githubusercontent.com/u/2019387?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jacob Bolda</b></sub></a><br /><a href="#content-jbolda" title="Content">🖋</a></td>
   </tr>
 </table>
 
