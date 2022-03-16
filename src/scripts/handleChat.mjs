@@ -8,6 +8,7 @@
 // 	addGlobalBttvEmotesToDict,
 // } from './bttvIntegration.mjs';
 
+import {applyChatMiddleware} from './chatMiddleware.mjs';
 import {isLightOrDark} from './colorContrast.mjs';
 import {removeAllMessagesFromUser, removeMessage} from './utilities.mjs';
 
@@ -145,7 +146,10 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 	const hideSender =
 		Array.isArray(window.CONFIG.hideMessagesFrom) &&
 		window.CONFIG.hideMessagesFrom.includes(user.toLowerCase());
-	if (hideSender) return;
+	if (hideSender) {
+		applyChatMiddleware({user, messageContents, flags, extra}, null);
+		return;
+	}
 
 	// Assemble message node
 	const newMessage = document.createElement('li');
@@ -236,6 +240,8 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 		newMessage.setAttribute('data-twitch-first-message-in-group', true);
 	}
 	newMessage.setAttribute('data-twitch-message-group', currentMessageGroup);
+
+	applyChatMiddleware({user, messageContents, flags, extra}, newMessage);
 
 	chatbox.appendChild(newMessage);
 
