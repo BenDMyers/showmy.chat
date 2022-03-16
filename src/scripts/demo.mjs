@@ -135,6 +135,101 @@ const MOCK_COMFY = (function () {
 		onMessageDeleted(id, extra) {},
 
 		/**
+		 * Responds to raid event
+		 *
+		 *
+		 * @param {string} user
+		 * @param viewers
+		 * @param extra
+		 */
+		onRaid(user, viewers, extra) {},
+
+		/**
+		 * Responds to user cheering
+		 *
+		 * @param {string} user
+		 * @param {string} message
+		 * @param bits
+		 * @param flags
+		 * @param extra
+		 */
+		onCheer(user, message, bits, flags, extra) {},
+
+		/**
+		 * Responds to user channel subscription
+		 *
+		 * @param {string} user
+		 * @param {string} message
+		 * @param subTierInfo
+		 * @param extra
+		 */
+		onSub(user, message, subTierInfo, extra) {},
+
+		/**
+		 * Responds to user channel subscription anniversary
+		 *
+		 * @param {string} user
+		 * @param {string} message
+		 * @param streamMonths
+		 * @param cumulativeMonths
+		 * @param subTierInfo
+		 * @param extra
+		 */
+		onResub(
+			user,
+			message,
+			streamMonths,
+			cumulativeMonths,
+			subTierInfo,
+			extra
+		) {},
+
+		/**
+		 * Responds to user gift subscription
+		 *
+		 * @param gifterUser
+		 * @param streakMonths
+		 * @param recipientUser
+		 * @param senderCount
+		 * @param subTierInfo
+		 * @param extra
+		 */
+		onSubGift(
+			gifterUser,
+			streakMonths,
+			recipientUser,
+			senderCount,
+			subTierInfo,
+			extra
+		) {},
+
+		/**
+		 * Responds to user sending gift subscriptions
+		 *
+		 * @param gifterUser
+		 * @param numbOfSubs
+		 * @param senderCount
+		 * @param subTierInfo
+		 * @param extra
+		 */
+		onSubMysteryGift(
+			gifterUser,
+			numbOfSubs,
+			senderCount,
+			subTierInfo,
+			extra
+		) {},
+
+		/**
+		 * Responds to user continuing gift subscription
+		 *
+		 * @param {string} user
+		 * @param sender
+		 * @param extra
+		 */
+		onGiftSubContinue(user, sender, extra) {},
+
+		/**
 		 * @param _
 		 * @param __
 		 * @param {string[]} [channelNames]
@@ -144,6 +239,7 @@ const MOCK_COMFY = (function () {
 				broadcaster.user = channelNames[0];
 			}
 			setTimeout(_generateNextMessage, 500);
+			setTimeout(_generateNextAlert, 500);
 		},
 	};
 
@@ -291,6 +387,27 @@ const MOCK_COMFY = (function () {
 
 		const duration = Math.floor(Math.random() * 2) + 2;
 		setTimeout(_generateNextMessage, duration * 1000);
+	}
+
+	/**
+	 * Generates a realistic message and "sends" it
+	 */
+	function _generateNextAlert() {
+		// Generate user
+		let chatter = _choose(allUsers);
+		const extra = {
+			id: faker.random.uuid(),
+			userState: {},
+			userColor: chatter.userColor,
+		};
+
+		// Publish alert
+		const raid = [chatter.user, Math.floor(Math.random() * 300), extra];
+		comfy.onRaid(...raid);
+
+		// Ready up the next alert
+		const duration = Math.random() * 10000;
+		setTimeout(_generateNextAlert, duration);
 	}
 
 	return comfy;
