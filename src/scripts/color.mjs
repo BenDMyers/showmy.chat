@@ -2,12 +2,12 @@ const HEXADECIMAL = 16;
 const LIGHTNESS_THRESHOLD = Math.sqrt(1.05 * 0.05) - 0.05; // see https://stackoverflow.com/a/3943023
 
 /**
- * Converts a hex code into {r, g, b}
+ * Converts a hex code into {r, g, b}, where r, g, and b are 0-255.
  *
  * @param {string} hexCode pound sign followed by six hexadecimal digits
- * @returns {{r: number, g: number, b: number}} red, green, and blue components normalized to the 0-1 range
+ * @returns {{r: number, g: number, b: number}} red, green, and blue components normalized to the 0-255 range
  */
-function hexCodeToSrgb(hexCode) {
+export function hexCodeToRgb(hexCode) {
 	const [_octothorpe, red1, red2, green1, green2, blue1, blue2] =
 		hexCode.split('');
 	const red = red1 + red2;
@@ -15,22 +15,37 @@ function hexCodeToSrgb(hexCode) {
 	const blue = blue1 + blue2;
 
 	return {
-		r: parseInt(red, HEXADECIMAL) / 255,
-		g: parseInt(green, HEXADECIMAL) / 255,
-		b: parseInt(blue, HEXADECIMAL) / 255,
+		r: parseInt(red, HEXADECIMAL),
+		g: parseInt(green, HEXADECIMAL),
+		b: parseInt(blue, HEXADECIMAL),
+	};
+}
+
+/**
+ * Converts a hex code into {r, g, b}, where r, g, and b are normalized to 0-1.
+ *
+ * @param {string} hexCode pound sign followed by six hexadecimal digits
+ * @returns {{r: number, g: number, b: number}} red, green, and blue components normalized to the 0-1 range
+ */
+function hexCodeToSrgb(hexCode) {
+	const {r, g, b} = hexCodeToRgb(hexCode);
+	return {
+		r: r / 255,
+		g: g / 255,
+		b: b / 255,
 	};
 }
 
 /**
  * Gets the relative luminance of a given color
  *
- * @param {{r: number, g: number, b: number}} color color provided in sRGB (R, G, B values normalized to the range 0-1)
+ * @param {{r: number, g: number, b: number}} srgbColor color provided in sRGB (R, G, B values normalized to the range 0-1)
  * @returns {number} relative luminance
  * @see https://www.w3.org/TR/WCAG21/#dfn-relative-luminance
  * @see https://stackoverflow.com/a/3943023
  */
-function getLuminance(color) {
-	const {r, g, b} = color;
+function getLuminance(srgbColor) {
+	const {r, g, b} = srgbColor;
 	const redLuminance =
 		r <= 0.03928 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4);
 	const greenLuminance =
