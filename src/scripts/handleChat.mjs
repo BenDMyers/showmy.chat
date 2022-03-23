@@ -8,7 +8,7 @@
 // 	addGlobalBttvEmotesToDict,
 // } from './bttvIntegration.mjs';
 
-import {isLightOrDark} from './colorContrast.mjs';
+import {isLightOrDark} from './color.mjs';
 import {removeAllMessagesFromUser, removeMessage} from './utilities.mjs';
 
 const chatbox = document.querySelector('[data-twitch-chat]');
