@@ -37,6 +37,48 @@ function hexCodeToSrgb(hexCode) {
 }
 
 /**
+ * Converts a hex code into {h, s, l}
+ *
+ * @see https://css-tricks.com/converting-color-spaces-in-javascript/#aa-rgb-to-hsl
+ * @param {string} hexCode pound sign followed by six hexadecimal digits
+ * @returns {{h: number, s: number, l: number}} hue, saturation, and lightness components
+ */
+export function hexCodeToHsl(hexCode) {
+	// Red, green, and blue components normalized to 0-1 range.
+	const {r, g, b} = hexCodeToSrgb(hexCode);
+
+	const largestChannel = Math.max(r, g, b);
+	const smallestChannel = Math.min(r, g, b);
+	const delta = largestChannel - smallestChannel;
+	const isGray = delta === 0;
+
+	let hueFloat = 0;
+
+	if (isGray) {
+		hueFloat = 0;
+	} else if (r === largestChannel) {
+		hueFloat = (g - b) / delta;
+	} else if (g === largestChannel) {
+		hueFloat = 2 + (b - r) / delta;
+	} else {
+		// b === largestChannel
+		hueFloat = 4 + (r - g) / delta;
+	}
+
+	let hueAngle = Math.round(hueFloat * 60);
+	let normalizedHueAngle = (hueAngle + 360) % 360;
+
+	let lightness = (largestChannel + smallestChannel) / 2;
+	let saturation = isGray ? 0 : delta / (1 - Math.abs(2 * lightness - 1));
+
+	return {
+		h: normalizedHueAngle,
+		s: saturation,
+		l: lightness,
+	};
+}
+
+/**
  * Gets the relative luminance of a given color
  *
  * @param {{r: number, g: number, b: number}} srgbColor color provided in sRGB (R, G, B values normalized to the range 0-1)
