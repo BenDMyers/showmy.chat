@@ -31,7 +31,7 @@ body {
 	border-radius: 20px;
 	list-style: none;
 	margin: 0;
-	overflow: auto;
+	overflow: hidden;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
