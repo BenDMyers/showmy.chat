@@ -72,8 +72,14 @@ body {
 	animation: content-enter 1500ms ease-in-out forwards 600ms;
 }
 
-.twitch-chat-message > mark {
+[data-twitch-mentioned-user] {
 	background-color: #ffe484;
+	padding: 0 2px;
+	border-radius: 3px;
+}
+
+.twitch-chat-command {
+	background-color: #ffd4d4;
 	padding: 0 2px;
 	border-radius: 3px;
 }
