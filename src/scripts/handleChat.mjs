@@ -8,7 +8,7 @@
 // 	addGlobalBttvEmotesToDict,
 // } from './bttvIntegration.mjs';
 
-import {isLightOrDark} from './colorContrast.mjs';
+import {hexCodeToHsl, hexCodeToRgb, isLightOrDark} from './color.mjs';
 import {removeAllMessagesFromUser, removeMessage} from './utilities.mjs';
 
 const chatbox = document.querySelector('[data-twitch-chat]');
@@ -214,9 +214,14 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 
 	if (extra.userColor) {
 		newMessage.setAttribute('data-twitch-sender-color', extra.userColor);
+		const {r, g, b} = hexCodeToRgb(extra.userColor);
+		const {h, s, l} = hexCodeToHsl(extra.userColor);
+		const saturationPercent = +(s * 100).toFixed(1) + '%';
+		const lightnessPercent = +(l * 100).toFixed(1) + '%';
+
 		newMessage.setAttribute(
 			'style',
-			`--twitch-sender-color: ${extra.userColor}`
+			`--twitch-sender-color: ${extra.userColor}; --twitch-sender-color-rgb: ${r} ${g} ${b}; --twitch-sender-color-red: ${r}; --twitch-sender-color-green: ${g}; --twitch-sender-color-blue: ${b}; --twitch-sender-color-hsl: ${h} ${saturationPercent} ${lightnessPercent}; --twitch-sender-color-hue: ${h}; --twitch-sender-color-saturation: ${saturationPercent}; --twitch-sender-color-lightness: ${lightnessPercent};`
 		);
 
 		const senderColorLightness = isLightOrDark(extra.userColor);
