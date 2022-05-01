@@ -38,7 +38,7 @@
 		"postcss-html": "^1.4.1",
 		"postcss-syntax": "^0.36.2",
 		"prettier": "2.6.2",
-		"stylelint": "^14.6.1",
+		"stylelint": "^14.8.1",
 		"stylelint-config-prettier": "^9.0.3",
 		"stylelint-config-standard": "^24.0.0"
 	},
