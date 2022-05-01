@@ -17,7 +17,7 @@
 		"prepare": "husky install"
 	},
 	"dependencies": {
-		"@11ty/eleventy": "^1.0.0-beta.10",
+		"@11ty/eleventy": "^1.0.1",
 		"axios": "^0.26.1",
 		"jest": "^27.5.1",
 		"serialize-javascript": "^6.0.0",
