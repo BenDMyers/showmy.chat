@@ -80,10 +80,8 @@ layout: page.html
 	const allFields = document.querySelectorAll('[name]');
 
 	allFields.forEach((field) => {
-		field.addEventListener('change', () => {
-			updatePreview();
-			updateURL();
-		})
+		field.addEventListener('change', updatePreview);
+		field.addEventListener('input', updateURL);
 	});
 
 	// fill in the URL section under the form  with the default URL 
@@ -169,7 +167,7 @@ layout: page.html
 		gap: 4em;
 	}
 
-	.col-2>* {
+	.col-2 > * {
 		width: 50%;
 	}
 
@@ -218,7 +216,7 @@ layout: page.html
 			flex-direction: column;
 		}
 
-		.col-2>* {
+		.col-2 > * {
 			width: 100%;
 		}
 	}
