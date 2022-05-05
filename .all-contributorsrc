@@ -104,6 +104,34 @@
       "contributions": [
         "design"
       ]
+    },
+    {
+      "login": "a-trost",
+      "name": "Alex Trost",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19617280?v=4",
+      "profile": "https://www.frontend.horse",
+      "contributions": [
+        "content",
+        "design"
+      ]
+    },
+    {
+      "login": "kevin-powell",
+      "name": "Kevin Powell",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25749407?v=4",
+      "profile": "https://youtube.com/kevinpowell",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "jbolda",
+      "name": "Jacob Bolda",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2019387?v=4",
+      "profile": "http://www.jacobbolda.com",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
