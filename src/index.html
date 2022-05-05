@@ -55,8 +55,6 @@ layout: page.html
 		<input type="number" id="clear-message-after" name="clearMessageAfter"
 			placeholder="{{defaults.clearMessageAfter}}" step="0.1" min="0" />
 
-		<button type="submit" style="margin-top: 1em">Get my URL!</button>
-
 		<div>
 			<output></output>
 		</div>
@@ -66,7 +64,7 @@ layout: page.html
 	</iframe>
 
 	<template id="output-template">
-		<p>Your URL is:</p>
+		<h2>Your URL is:</h2>
 		<div>
 			<a class="url"></a>
 			<button>Copy</button>
@@ -80,15 +78,17 @@ layout: page.html
 	const outputTemplate = document.querySelector("#output-template");
 	const preview = document.getElementById('preview');
 	const allFields = document.querySelectorAll('[name]');
-	overlayBuilderForm.addEventListener('submit', handleSubmit);
 	allFields.forEach((field) => field.addEventListener('change', updatePreview));
+	// Fill in the URL section under the form with the default URL
+	showURL();
+	// Update the URL section when a form input changes
+	overlayBuilderForm.addEventListener('input', showURL);
 
 	/**
-	 * @param {Event} event - The form submit event
+	 * Shows the URL section under the form.
+	 * Uses the template tag as blueprint and fills in the output tag
 	 */
-	function handleSubmit(event) {
-		event.preventDefault();
-
+	function showURL() {
 		const template = outputTemplate.content.cloneNode(true);
 
 		const urlEl = template.querySelector(".url");
@@ -164,7 +164,7 @@ layout: page.html
 		gap: 4em;
 	}
 
-	.col-2 > * {
+	.col-2>* {
 		width: 50%;
 	}
 
@@ -178,12 +178,13 @@ layout: page.html
 		resize: both;
 	}
 
-	output p {
+	output h2 {
 		margin-bottom: calc(var(--spacing) * .25);
 	}
 
 	output div {
 		display: flex;
+		gap: 1em;
 		flex-wrap: wrap;
 		align-items: center;
 	}
@@ -195,7 +196,7 @@ layout: page.html
 	output div button {
 		/* reset pico */
 		width: auto;
-		margin-bottom: 0;
+		margin: 0;
 	}
 
 	.overlay-builder-header {
@@ -212,7 +213,7 @@ layout: page.html
 			flex-direction: column;
 		}
 
-		.col-2 > * {
+		.col-2>* {
 			width: 100%;
 		}
 	}
