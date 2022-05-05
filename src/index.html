@@ -78,17 +78,22 @@ layout: page.html
 	const outputTemplate = document.querySelector("#output-template");
 	const preview = document.getElementById('preview');
 	const allFields = document.querySelectorAll('[name]');
-	allFields.forEach((field) => field.addEventListener('change', updatePreview));
-	// Fill in the URL section under the form with the default URL
-	showURL();
-	// Update the URL section when a form input changes
-	overlayBuilderForm.addEventListener('input', showURL);
+
+	allFields.forEach((field) => {
+		field.addEventListener('change', () => {
+			updatePreview();
+			updateURL();
+		})
+	});
+
+	// fill in the URL section under the form  with the default URL 
+	updateURL();
 
 	/**
 	 * Shows the URL section under the form.
 	 * Uses the template tag as blueprint and fills in the output tag
 	 */
-	function showURL() {
+	function updateURL() {
 		const template = outputTemplate.content.cloneNode(true);
 
 		const urlEl = template.querySelector(".url");
