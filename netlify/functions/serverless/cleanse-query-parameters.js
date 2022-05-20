@@ -12,6 +12,10 @@ const VALID_PARAMETERS = {
 		validate: isPositiveInteger,
 		transform: Number.parseInt,
 	},
+	disableAnimatedEmotes: {
+		validate: isBoolean,
+		transform: toBoolean,
+	},
 	hideMessagesFrom: {
 		validate: isCommaSeparatedList,
 		transform: (value) => toStringArray(value.toLowerCase()),
