@@ -181,7 +181,7 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 			/\\s/g,
 			' '
 		);
-		replyPreview.innerHTML = `Replying to @${extra.userState['reply-parent-display-name']}: ${repliedMessage}`;
+		replyPreview.innerHTML = `Replying to <span data-twitch-replied-user="@${extra.userState['reply-parent-display-name']}">@${extra.userState['reply-parent-display-name']}</span>: ${repliedMessage}`;
 		newMessage.appendChild(replyPreview);
 	}
 
