@@ -1,7 +1,7 @@
 const defaults = require('../../../src/_data/defaults');
 
 /**
- * @type {object<string, {validate: Validator, transform?: Transformer}>}
+ * @type {Object<string, {validate: Validator, transform?: Transformer}>}
  */
 const VALID_PARAMETERS = {
 	DEMO: {
@@ -38,8 +38,8 @@ const VALID_PARAMETERS = {
  * Iterate over all provided query parameters and determine whether they're valid values,
  * and returns an object where invalid parameters are removed and other parameters are reformatted.
  *
- * @param {object<string, string>} queryStringParameters
- * @returns {object<string, any>} reformatted query parameters
+ * @param {Object<string, string>} queryStringParameters all query string parameters provided to serverless function via the overlay URL
+ * @returns {Object<string, any>} reformatted query parameters
  */
 function cleanseQueryParameters(queryStringParameters) {
 	// Preload configurations with OPTIONAL defaults
@@ -108,7 +108,7 @@ function isPositiveInteger(value) {
 
 /**
  * @type {Transformer}
- * @returns {string[]}
+ * @returns {string[]} array of substrings split by the comma delimiter
  */
 function toStringArray(value) {
 	return value.split(',');
@@ -116,7 +116,7 @@ function toStringArray(value) {
 
 /**
  * @type {Transformer}
- * @returns {boolean}
+ * @returns {boolean} boolean version of original 'true' or 'false' string
  */
 function toBoolean(value) {
 	return value === 'true' ? true : false;
