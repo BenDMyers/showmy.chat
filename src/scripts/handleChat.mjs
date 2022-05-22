@@ -44,6 +44,8 @@ function htmlEntities(html) {
 	return html;
 }
 
+const emoteFormat = window.CONFIG.disableAnimatedEmotes ? 'static' : 'default';
+
 /**
  *
  * @param {string} text - message contents
@@ -68,7 +70,7 @@ function formatEmotes(text, emotes = {}) {
 					.slice(0, mote[0])
 					.concat(empty)
 					.concat(splitText.slice(mote[1] + 1, splitText.length));
-				let emoteSrc = `https://static-cdn.jtvnw.net/emoticons/v2/${emoteId}/default/light/3.0`;
+				let emoteSrc = `https://static-cdn.jtvnw.net/emoticons/v2/${emoteId}/${emoteFormat}/light/3.0`;
 				splitText.splice(
 					mote[0],
 					1,
