@@ -5,7 +5,7 @@ const cleanseQueryParameters = require('./cleanse-query-parameters');
 require('./eleventy-bundler-modules.js');
 
 /**
- * @param event
+ * @type {import('@netlify/functions').Handler}
  */
 async function handler(event) {
 	console.dir({path: event.path, ...event.queryStringParameters});

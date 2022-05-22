@@ -10,7 +10,7 @@
  * 		subscriber: boolean,
  * 		vip: boolean
  * }} roles The roles for the current user
- * @property {userColor} [string]
+ * @property {string} [userColor] hex code representing the user's chosen chat appearance color
  */
 
 const MOCK_COMFY = (function () {
@@ -53,7 +53,7 @@ const MOCK_COMFY = (function () {
 	 * Selects a random element from an element
 	 *
 	 * @template Item
-	 * @param {Item[]} array
+	 * @param {Item[]} array any list of elements
 	 * @returns {Item} randomly selected element
 	 */
 	function _choose(array) {
@@ -66,7 +66,7 @@ const MOCK_COMFY = (function () {
 	/**
 	 * Generates a realistic user, with potential roles and user color.
 	 *
-	 * @returns {MockUser}
+	 * @returns {MockUser} realistically generated user
 	 */
 	function _generateUser() {
 		const user = faker.internet.userName().replace(/\./g, '');
@@ -110,36 +110,36 @@ const MOCK_COMFY = (function () {
 
 	const comfy = {
 		/**
-		 * @param {string} user
-		 * @param {string} messageContents
-		 * @param {object} flags
-		 * @param {object} self
-		 * @param {{userState: object}} extra
+		 * @param {string} user chatter's username, all lowercase
+		 * @param {string} messageContents body of message
+		 * @param {object} flags metadata about sender or message
+		 * @param {object} self message
+		 * @param {{userState: object}} extra metadata about sender
 		 */
 		onChat(user, messageContents, flags, self, extra) {},
 
 		/**
-		 * @param {string} user
-		 * @param {string} command
-		 * @param {string} messageContents
-		 * @param {object} flags
-		 * @param {object} self
-		 * @param {{userState: object}} extra
+		 * @param {string} user chatter's username, all lowercase
+		 * @param {string} command name of issued chat command
+		 * @param {string} messageContents body of message
+		 * @param {object} flags metadata about sender or message
+		 * @param {object} self message
+		 * @param {{userState: object}} extra metadata about sender
 		 */
 		onCommand(user, command, messageContents, flags, self, extra) {},
 
 		/**
-		 * @param {string} id
-		 * @param {object} extra
+		 * @param {string} id unique identifier for deleted message
+		 * @param {object} extra metadata about message
 		 */
 		onMessageDeleted(id, extra) {},
 
 		/**
-		 * @param _
-		 * @param __
-		 * @param {string[]} [channelNames]
+		 * @param {string} __username Twitch channel to authenticate as (unused argument)
+		 * @param {string} __auth OAuth token for authentication (unused argument)
+		 * @param {string[]} [channelNames] list of channels whose chat we should subscribe to
 		 */
-		Init(_, __, channelNames) {
+		Init(__username, __auth, channelNames) {
 			if (channelNames.length) {
 				broadcaster.user = channelNames[0];
 			}

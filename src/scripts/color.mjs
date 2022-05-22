@@ -102,7 +102,7 @@ function getLuminance(srgbColor) {
 
 /**
  * @param {string} hexCode color defined as a hex code (strictly, one pound sign followed by six hexadecimal digits)
- * @returns {'light'|'dark'}
+ * @returns {'light'|'dark'} `light` if color is lighter than given threshold, `dark` otherwise
  */
 export function isLightOrDark(hexCode) {
 	const sRGB = hexCodeToSrgb(hexCode);

@@ -19,21 +19,35 @@ let currentMessageGroup = 0;
 // let bttvEmoteDict = {};
 
 /**
- * @param {string} html full HTML. string for a message
+ * Sanitizes HTML string.
+ *
+ * @see https://gist.github.com/Eotones/0d8813c44276cce0f6b7f7e429fce602
+ * @param {string | string[]} html full HTML string for a message
+ * @returns {string} provided HTML with certain characters sanitized as HTML entities.
  */
 function htmlEntities(html) {
 	/**
+	 * Iterates over each character of the HTML and replace with a corresponding HTML entity if necessary.
 	 *
+	 * @returns {string[]} array of HTML characters and entities
 	 */
 	function it() {
-		return html.map(function (n, i, arr) {
-			if (n.length == 1) {
-				return n.replace(/[\u00A0-\u9999<>&]/gim, function (i) {
-					return '&#' + i.charCodeAt(0) + ';';
-				});
+		return html.map(
+			/**
+			 * @param {string} n character
+			 * @param {number} i index in array
+			 * @param {string[]} arr array of characters
+			 * @returns {string} character or its corresponding entity
+			 */
+			function (n, i, arr) {
+				if (n.length === 1) {
+					return n.replace(/[\u00A0-\u9999<>&]/gim, function (i) {
+						return '&#' + i.charCodeAt(0) + ';';
+					});
+				}
+				return n;
 			}
-			return n;
-		});
+		);
 	}
 	var isArray = Array.isArray(html);
 	if (!isArray) {
@@ -47,9 +61,10 @@ function htmlEntities(html) {
 const emoteFormat = window.CONFIG.disableAnimatedEmotes ? 'static' : 'default';
 
 /**
+ * Replace emote names with corresponding `<img>` tags
  *
  * @param {string} text - message contents
- * @param {object} emotes - object which details which emote IDs can be found at which substring ranges in the message
+ * @param {Object<string, Object<string, string>>} emotes - object which details which emote IDs can be found at which substring ranges in the message
  * @returns {string} message with valid emotes replaced with `<img>` tags
  */
 function formatEmotes(text, emotes = {}) {
@@ -58,7 +73,7 @@ function formatEmotes(text, emotes = {}) {
 		let e = emotes[emoteId];
 		for (let j in e) {
 			let mote = e[j];
-			if (typeof mote == 'string') {
+			if (typeof mote === 'string') {
 				mote = mote.split('-');
 				mote = [parseInt(mote[0]), parseInt(mote[1])];
 				let length = mote[1] - mote[0];
@@ -101,7 +116,7 @@ function formatEmotes(text, emotes = {}) {
 // }
 
 /**
- * @param {string} messageContents
+ * @param {string} messageContents full message body
  * @returns {string} message with any user mentioned wrapped in <mark> tags
  */
 function formatUserMentions(messageContents) {
@@ -120,7 +135,7 @@ function formatUserMentions(messageContents) {
 }
 
 /**
- * @param {string} messageContents
+ * @param {string} messageContents full message body
  * @returns {string} message with the chat command wrapped in a <mark> tag
  */
 function formatChatCommand(messageContents) {
