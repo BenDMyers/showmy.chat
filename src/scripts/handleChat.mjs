@@ -88,7 +88,7 @@ function formatEmotes(text, emotes = {}) {
 			splitText.splice(
 				start,
 				emoteName.length,
-				// Insert tags and enough empty strings to ensure splitText's length stays the same
+				// Insert tag and enough empty strings to ensure splitText's length stays the same
 				markup,
 				...emptyPaddingElements
 			);
