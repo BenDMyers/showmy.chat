@@ -147,7 +147,11 @@ layout: page.html
 
 		for (let [key, value] of formData) {
 			// prevent values from being set in the URL
-			if (key === "channel" || value === '') {
+			if (
+				key === "channel" ||
+				value === '' ||
+				(key === 'theme' && value === 'default')
+			) {
 				continue;
 			}
 
