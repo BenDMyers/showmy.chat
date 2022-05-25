@@ -64,35 +64,36 @@ const emoteFormat = window.CONFIG.disableAnimatedEmotes ? 'static' : 'default';
  * Replace emote names with corresponding `<img>` tags
  *
  * @param {string} text - message contents
- * @param {Object<string, Object<string, string>>} emotes - object which details which emote IDs can be found at which substring ranges in the message
+ * @param {Object<string, string[]>} emotes - object which details which emote IDs can be found at which substring ranges in the message
  * @returns {string} message with valid emotes replaced with `<img>` tags
  */
 function formatEmotes(text, emotes = {}) {
+	// Characters of message body
 	let splitText = text.split('');
-	for (let emoteId in emotes) {
-		let e = emotes[emoteId];
-		for (let j in e) {
-			let mote = e[j];
-			if (typeof mote === 'string') {
-				mote = mote.split('-');
-				mote = [parseInt(mote[0]), parseInt(mote[1])];
-				let length = mote[1] - mote[0];
-				let empty = Array.apply(null, new Array(length + 1)).map(function () {
-					return '';
-				});
-				let emoteName = text.substr(mote[0], length + 1);
-				splitText = splitText
-					.slice(0, mote[0])
-					.concat(empty)
-					.concat(splitText.slice(mote[1] + 1, splitText.length));
-				let emoteSrc = `https://static-cdn.jtvnw.net/emoticons/v2/${emoteId}/${emoteFormat}/light/3.0`;
-				splitText.splice(
-					mote[0],
-					1,
-					`<img alt="${emoteName}" data-twitch-emote="${emoteName}" data-twitch-emote-id="${emoteId}" src="${emoteSrc}">`
-				);
-			}
-		}
+
+	for (const emoteId in emotes) {
+		const emoteSrc = `https://static-cdn.jtvnw.net/emoticons/v2/${emoteId}/${emoteFormat}/light/3.0`;
+
+		const ranges = emotes[emoteId];
+		ranges.forEach((range) => {
+			const [startStr, endStr] = range.split('-');
+			const start = Number.parseInt(startStr);
+			const end = Number.parseInt(endStr);
+
+			const emoteName = text.substring(start, end + 1);
+			const markup = `<img alt="${emoteName}" data-twitch-emote="${emoteName}" data-twitch-emote-id="${emoteId}" src="${emoteSrc}">`;
+
+			// Remove emote name and insert emote markup without changing splitText's array length
+			// (Not changing the array length makes it easier to manage indexing)
+			const emptyPaddingElements = Array(emoteName.length - 1).fill(''); // the -1 accounts for the extra markup element getting added
+			splitText.splice(
+				start,
+				emoteName.length,
+				// Insert tag and enough empty strings to ensure splitText's length stays the same
+				markup,
+				...emptyPaddingElements
+			);
+		});
 	}
 	return htmlEntities(splitText).join('');
 }
