@@ -72,6 +72,8 @@ function formatEmotes(text, emotes = {}) {
 	let splitText = text.split('');
 
 	for (const emoteId in emotes) {
+		const emoteSrc = `https://static-cdn.jtvnw.net/emoticons/v2/${emoteId}/${emoteFormat}/light/3.0`;
+
 		const ranges = emotes[emoteId];
 		ranges.forEach((range) => {
 			const [startStr, endStr] = range.split('-');
@@ -79,7 +81,6 @@ function formatEmotes(text, emotes = {}) {
 			const end = Number.parseInt(endStr);
 
 			const emoteName = text.substring(start, end + 1);
-			const emoteSrc = `https://static-cdn.jtvnw.net/emoticons/v2/${emoteId}/${emoteFormat}/light/3.0`;
 			const markup = `<img alt="${emoteName}" data-twitch-emote="${emoteName}" data-twitch-emote-id="${emoteId}" src="${emoteSrc}">`;
 
 			// Remove emote name and insert emote markup without changing splitText's array length
