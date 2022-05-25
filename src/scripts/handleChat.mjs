@@ -85,12 +85,12 @@ function formatEmotes(text, emotes = {}) {
 			// Remove emote name and insert emote markup without changing splitText's array length
 			// (Not changing the array length makes it easier to manage indexing)
 			const emptyPaddingElements = Array(emoteName.length - 1).fill(''); // the -1 accounts for the extra markup element getting added
-			splitText = [
-				...splitText.slice(0, start),
+			splitText.splice(
+				start,
+				emoteName.length,
 				markup,
-				...emptyPaddingElements,
-				...splitText.slice(end + 1),
-			];
+				...emptyPaddingElements
+			);
 		});
 	}
 	return htmlEntities(splitText).join('');
