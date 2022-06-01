@@ -1,0 +1,52 @@
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	overflow: hidden;
+	height: 100vh;
+	margin-top: 0;
+}
+
+/* Style the entire list of messages */
+[data-twitch-chat] {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+
+	/* This is the part that adds new messages to the bottom and lifts up old messages */
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	gap: 1em;
+}
+
+/* Style an individual message list item (this includes sender, reply snippets, etc) */
+[data-twitch-message] {
+	/* Message item styles here */
+}
+
+/* Style snippet of replied-to messages */
+[data-twitch-message-reply] {
+	display: block;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+/* Style the sender's username in each message item */
+.twitch-chat-sender {
+	/* Username styles here */
+}
+
+/* Style the message contents themselves */
+.twitch-chat-message {
+	/* Message contents styles here */
+}
+
+/* Style chat emotes */
+[data-twitch-emote] {
+	width: 1.2em;
+}
