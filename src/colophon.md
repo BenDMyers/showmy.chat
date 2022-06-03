@@ -1,8 +1,7 @@
 ---
 layout: page.html
+title: Colophon
 ---
-
-# Colophon
 
 **showmy.chat** was built as an experiment with the [Eleventy](https://11ty.dev) static site generator's new on-demand [Eleventy Serverless](https://www.11ty.dev/docs/plugins/serverless/) build mode. To learn more about Eleventy Serverless, [see my stream with Eleventy creator Zach Leatherman](https://someantics.dev/first-look-eleventy-serverless/).
 
