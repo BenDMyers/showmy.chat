@@ -1,7 +1,17 @@
+const MINUTES = 1000 * 60;
+const CACHE_TIME_TO_LIVE = 15 * MINUTES;
+
 /** Map pronouns from Alejo's pronouns API to neatly formatted pronouns */
 const FORMATTED_PRONOUNS = window.CONFIG.showPronouns
 	? await initializeFormattedPronouns()
 	: {};
+
+/**
+ * Memoization for chatter's designated pronouns
+ *
+ * @type {Object<string, {lastChecked: number, pronouns: false | string}>}
+ */
+const chatterPronouns = {};
 
 /**
  * Retrieves list of formatted pronoun strings from Alejo's pronouns API
@@ -25,25 +35,36 @@ async function initializeFormattedPronouns() {
 }
 
 /**
- * Memoization for chatter's designated pronouns
+ * Determine whether a given username was fetched recently enough that we should leverage their cache.
  *
- * @type {Object<string, false | string>}
+ * @param {string} username chatter's username
+ * @returns {boolean} `true` if the cache should NOT be revalidated
  */
-const chatterPronouns = {};
+function withinCacheTimeToLive(username) {
+	const cache = chatterPronouns[username];
+	if (!cache) {
+		return false;
+	}
+
+	const revalidateTime = cache.lastChecked + CACHE_TIME_TO_LIVE;
+	return Date.now() < revalidateTime;
+}
 
 /**
+ * Gets the user's specified pronouns, leveraging the cache if possible.
  *
  * @param {string} username chatter's username
  * @returns {false | string} chatter's pronouns, or false if unset
  */
 export async function getPronouns(username) {
-	const memoizedPronouns = chatterPronouns[username];
-	if (memoizedPronouns !== undefined) {
-		return memoizedPronouns;
+	if (withinCacheTimeToLive(username)) {
+		const {pronouns} = chatterPronouns[username];
+		return pronouns;
 	}
 
 	const response = await fetch(
-		`https://pronouns.alejo.io/api/users/${username}`
+		`https://pronouns.alejo.io/api/users/${username}`,
+		{cache: 'no-cache'}
 	);
 	/** @type {{id: string, login: string, pronoun_id: string}[]} */
 	const [pronounsSet] = (await response.json()) || [];
@@ -52,10 +73,16 @@ export async function getPronouns(username) {
 		const {pronoun_id} = pronounsSet;
 		/** @type {string | false} */
 		const formattedPronoun = FORMATTED_PRONOUNS[pronoun_id] || false;
-		chatterPronouns[username] = formattedPronoun;
+		chatterPronouns[username] = {
+			lastChecked: Date.now(),
+			pronouns: formattedPronoun,
+		};
 		return formattedPronoun;
 	} else {
-		chatterPronouns[username] = false;
+		chatterPronouns[username] = {
+			lastChecked: Date.now(),
+			pronouns: false,
+		};
 		return false;
 	}
 }
