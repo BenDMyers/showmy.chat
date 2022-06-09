@@ -29,7 +29,7 @@ const VALID_PARAMETERS = {
 		validate: isPositiveInteger,
 		transform: Number.parseInt,
 	},
-	showSenderPronouns: {
+	showPronouns: {
 		validate: isBoolean,
 		transform: toBoolean,
 	},

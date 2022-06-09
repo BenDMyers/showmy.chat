@@ -9,7 +9,7 @@
 // } from './bttvIntegration.mjs';
 
 import {hexCodeToHsl, hexCodeToRgb, isLightOrDark} from './color.mjs';
-import {getChatterPronouns} from './pronouns.mjs';
+import {getPronouns} from './pronouns.mjs';
 import {removeAllMessagesFromUser, removeMessage} from './utilities.mjs';
 
 const chatbox = document.querySelector('[data-twitch-chat]');
@@ -204,8 +204,8 @@ ComfyJS.onChat = async function (user, messageContents, flags, self, extra) {
 		newMessage.appendChild(replyPreview);
 	}
 
-	if (window.CONFIG.showSenderPronouns) {
-		const pronouns = await getChatterPronouns(user);
+	if (window.CONFIG.showPronouns) {
+		const pronouns = await getPronouns(user);
 		if (pronouns) {
 			newMessage.setAttribute('data-twitch-sender-pronouns', pronouns);
 			const pronounsTag = document.createElement('span');

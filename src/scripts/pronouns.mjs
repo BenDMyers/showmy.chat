@@ -30,7 +30,7 @@ const chatterPronouns = {};
  * @param {string} username chatter's username
  * @returns {false | string} chatter's pronouns, or false if unset
  */
-export async function getChatterPronouns(username) {
+export async function getPronouns(username) {
 	const memoizedPronouns = chatterPronouns[username];
 	if (memoizedPronouns !== undefined) {
 		return memoizedPronouns;
