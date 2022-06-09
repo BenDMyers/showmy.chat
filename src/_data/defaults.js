@@ -6,5 +6,6 @@ module.exports = {
 	hideMessagesFrom: '',
 	showCommands: false,
 	showLatestMessages: 100,
+	showSenderPronouns: false,
 	theme: 'default',
 };

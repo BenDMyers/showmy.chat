@@ -204,13 +204,15 @@ ComfyJS.onChat = async function (user, messageContents, flags, self, extra) {
 		newMessage.appendChild(replyPreview);
 	}
 
-	const pronouns = await getChatterPronouns(user);
-	if (pronouns) {
-		newMessage.setAttribute('data-twitch-sender-pronouns', pronouns);
-		const pronounsTag = document.createElement('span');
-		pronounsTag.setAttribute('data-twitch-sender-pronouns-inner', pronouns);
-		pronounsTag.innerText = pronouns;
-		newMessage.appendChild(pronounsTag);
+	if (window.CONFIG.showSenderPronouns) {
+		const pronouns = await getChatterPronouns(user);
+		if (pronouns) {
+			newMessage.setAttribute('data-twitch-sender-pronouns', pronouns);
+			const pronounsTag = document.createElement('span');
+			pronounsTag.setAttribute('data-twitch-sender-pronouns-inner', pronouns);
+			pronounsTag.innerText = pronouns;
+			newMessage.appendChild(pronounsTag);
+		}
 	}
 
 	newMessage.appendChild(sender);
