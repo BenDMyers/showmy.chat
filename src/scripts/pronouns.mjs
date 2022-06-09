@@ -1,22 +1,28 @@
 /** Map pronouns from Alejo's pronouns API to neatly formatted pronouns */
-const FORMATTED_PRONOUNS = {
-	aeaer: 'Ae/Aer',
-	any: 'Any',
-	eem: 'E/Em',
-	faefaer: 'Fae/Faer',
-	hehim: 'He/Him',
-	heshe: 'He/She',
-	hethem: 'He/They',
-	itits: 'It/Its',
-	other: 'Other',
-	perper: 'Per/Per',
-	sheher: 'She/Her',
-	shethem: 'She/They',
-	theythem: 'They/Them',
-	vever: 'Ve/Ver',
-	xexem: 'Xe/Xem',
-	ziehier: 'Zie/Hir',
-};
+const FORMATTED_PRONOUNS = window.CONFIG.showPronouns
+	? await initializeFormattedPronouns()
+	: {};
+
+/**
+ * Retrieves list of formatted pronoun strings from Alejo's pronouns API
+ *
+ * @returns map of pronouns' API IDs to their neatly formatted versions
+ */
+async function initializeFormattedPronouns() {
+	/** @type {Object<string, string>} */
+	const pronounsMap = {};
+
+	const response = await fetch('https://pronouns.alejo.io/api/pronouns');
+	/** @type {{name: string, display: string}[]} */
+	const pronounsList = (await response.json()) || [];
+
+	for (let pronoun of pronounsList) {
+		const {name, display} = pronoun;
+		pronounsMap[name] = display;
+	}
+
+	return pronounsMap;
+}
 
 /**
  * Memoization for chatter's designated pronouns
@@ -40,7 +46,7 @@ export async function getPronouns(username) {
 		`https://pronouns.alejo.io/api/users/${username}`
 	);
 	/** @type {{id: string, login: string, pronoun_id: string}[]} */
-	const [pronounsSet] = await response.json();
+	const [pronounsSet] = (await response.json()) || [];
 
 	if (pronounsSet) {
 		const {pronoun_id} = pronounsSet;
