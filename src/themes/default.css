@@ -55,6 +55,24 @@ body {
 	overflow: hidden;
 }
 
+[data-twitch-message] [data-twitch-sender-pronouns-inner] {
+	color: var(--twitch-gray);
+	font-style: italic;
+	margin-inline-end: 0.75em;
+	text-transform: lowercase;
+	outline: 1px solid var(--twitch-gray);
+	border-radius: 5px;
+	outline-offset: 4px;
+}
+
+/* [data-twitch-message] [data-twitch-sender-pronouns-inner]::before {
+	content: '[';
+}
+
+[data-twitch-message] [data-twitch-sender-pronouns-inner]::after {
+	content: ']';
+} */
+
 [data-twitch-message] .twitch-chat-sender {
 	color: var(--twitch-sender-color, var(--twitch-purple));
 	display: inline;
