@@ -61,17 +61,9 @@ body {
 	margin-inline-end: 0.75em;
 	text-transform: lowercase;
 	outline: 1px solid var(--twitch-gray);
-	border-radius: 5px;
+	border-radius: 3px;
 	outline-offset: 4px;
 }
-
-/* [data-twitch-message] [data-twitch-sender-pronouns-inner]::before {
-	content: '[';
-}
-
-[data-twitch-message] [data-twitch-sender-pronouns-inner]::after {
-	content: ']';
-} */
 
 [data-twitch-message] .twitch-chat-sender {
 	color: var(--twitch-sender-color, var(--twitch-purple));
