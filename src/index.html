@@ -208,6 +208,7 @@ description: Build a plug-and-play themed chat overlay for OBS and more with the
 	}
 
 	output h2 {
+		margin-top: var(--spacing);
 		margin-bottom: calc(var(--spacing) * .25);
 	}
 
@@ -231,6 +232,10 @@ description: Build a plug-and-play themed chat overlay for OBS and more with the
 	.overlay-builder-header {
 		display: flex;
 		justify-content: space-between;
+	}
+
+	.overlay-builder-header + .overlay-builder-header {
+		margin-top: var(--spacing);
 	}
 
 	.overlay-builder-header a {
