@@ -1,4 +1,50 @@
 /* global faker */
+let BROADCASTER_NAME = '';
+let USERS = [];
+
+const defaultFetch = window.fetch;
+window.fetch = async function (...args) {
+	let [resource, config] = args;
+
+	// Intercept request
+	if (resource === 'https://pronouns.alejo.io/api/pronouns') {
+		return new Response(
+			JSON.stringify([
+				{name: 'aeaer', display: 'Ae/Aer'},
+				{name: 'any', display: 'Any'},
+				{name: 'eem', display: 'E/Em'},
+				{name: 'faefaer', display: 'Fae/Faer'},
+				{name: 'hehim', display: 'He/Him'},
+				{name: 'heshe', display: 'He/She'},
+				{name: 'hethem', display: 'He/They'},
+				{name: 'itits', display: 'It/Its'},
+				{name: 'other', display: 'Other'},
+				{name: 'perper', display: 'Per/Per'},
+				{name: 'sheher', display: 'She/Her'},
+				{name: 'shethem', display: 'She/They'},
+				{name: 'theythem', display: 'They/Them'},
+				{name: 'vever', display: 'Ve/Ver'},
+				{name: 'xexem', display: 'Xe/Xem'},
+				{name: 'ziehir', display: 'Zie/Hir'},
+			])
+		);
+	} else if (resource.startsWith('https://pronouns.alejo.io/api/users')) {
+		const [, username] = resource.split('https://pronouns.alejo.io/api/users/');
+		if (username.toLowerCase() !== BROADCASTER_NAME.toLowerCase()) {
+			const fakeUser = USERS.find(
+				({user}) => user.toLowerCase() === username.toLowerCase()
+			);
+			console.log({username, USERS, fakeUser});
+			return new Response(
+				JSON.stringify([{id: -1, login: '', pronoun_id: fakeUser.pronouns}])
+			);
+		}
+	}
+
+	// Intercept response
+	const response = await defaultFetch(resource, config);
+	return response;
+};
 
 /**
  * @typedef {object} MockUser
@@ -74,6 +120,10 @@ const MOCK_COMFY = (function () {
 		const founder = subscriber && Math.random() < 0.33;
 		const vip = Math.random() < 0.2;
 		const userColor = Math.random() < 0.7 ? _choose(COMMON_COLORS) : undefined;
+		const pronouns =
+			Math.random() < 0.25
+				? _choose(['hehim', 'hethem', 'sheher', 'shethem', 'theythem', 'any'])
+				: false;
 
 		return {
 			user,
@@ -85,6 +135,7 @@ const MOCK_COMFY = (function () {
 				subscriber,
 				vip,
 			},
+			pronouns,
 		};
 	}
 
@@ -107,6 +158,7 @@ const MOCK_COMFY = (function () {
 	};
 
 	const allUsers = [broadcaster, ...mods, broadcaster, ...viewers, broadcaster];
+	USERS = [broadcaster, ...mods, ...viewers];
 
 	const comfy = {
 		/**
@@ -142,6 +194,7 @@ const MOCK_COMFY = (function () {
 		Init(__username, __auth, channelNames) {
 			if (channelNames.length) {
 				broadcaster.user = channelNames[0];
+				BROADCASTER_NAME = broadcaster.user;
 			}
 			setTimeout(_generateNextMessage, 500);
 		},
