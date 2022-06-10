@@ -9,6 +9,7 @@
 // } from './bttvIntegration.mjs';
 
 import {hexCodeToHsl, hexCodeToRgb, isLightOrDark} from './color.mjs';
+import {getPronouns} from './pronouns.mjs';
 import {removeAllMessagesFromUser, removeMessage} from './utilities.mjs';
 
 const chatbox = document.querySelector('[data-twitch-chat]');
@@ -158,7 +159,7 @@ function formatChatCommand(messageContents) {
 // 	});
 // }
 
-ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
+ComfyJS.onChat = async function (user, messageContents, flags, self, extra) {
 	// If sender is blocklisted, don't even think about doing the rest of this
 	const hideSender =
 		Array.isArray(window.CONFIG.hideMessagesFrom) &&
@@ -201,6 +202,17 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 		);
 		replyPreview.innerHTML = `Replying to <span data-twitch-replied-user="@${extra.userState['reply-parent-display-name']}">@${extra.userState['reply-parent-display-name']}</span>: ${repliedMessage}`;
 		newMessage.appendChild(replyPreview);
+	}
+
+	if (window.CONFIG.showPronouns) {
+		const pronouns = await getPronouns(user);
+		if (pronouns) {
+			newMessage.setAttribute('data-twitch-sender-pronouns', pronouns);
+			const pronounsTag = document.createElement('span');
+			pronounsTag.setAttribute('data-twitch-sender-pronouns-inner', pronouns);
+			pronounsTag.innerText = pronouns;
+			newMessage.appendChild(pronounsTag);
+		}
 	}
 
 	newMessage.appendChild(sender);
