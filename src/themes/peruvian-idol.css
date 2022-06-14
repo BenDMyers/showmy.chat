@@ -75,6 +75,7 @@ body {
 	margin-bottom: 0.125em;
 	color: var(--color-text-default);
 	order: 1;
+	word-break: break-word;
 }
 
 .twitch-chat-sender::after {
