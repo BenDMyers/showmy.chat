@@ -74,6 +74,7 @@ body {
 
 [data-twitch-message] .twitch-chat-message {
 	display: inline;
+	word-break: break-word;
 }
 
 [data-twitch-message-status*='highlighted'] .twitch-chat-message {
