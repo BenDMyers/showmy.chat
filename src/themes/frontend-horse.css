@@ -189,6 +189,7 @@ body {
 	color: var(--chat-text-color);
 	display: inline;
 	line-height: 24px;
+	word-break: break-word;
 }
 
 .twitch-chat-command {
