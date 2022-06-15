@@ -44,6 +44,8 @@ body {
 /* Style the message contents themselves */
 .twitch-chat-message {
 	/* Message contents styles here */
+
+	word-break: break-word;
 }
 
 /* Style chat emotes */
