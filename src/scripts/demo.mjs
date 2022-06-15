@@ -195,6 +195,23 @@ const MOCK_COMFY = (function () {
 			flags.highlighted = true;
 		}
 
+		// Randomly add a long-ish URL
+		if (Math.random() < 0.07) {
+			/** @type {string[]} */
+			const words = messageContents.split(' ');
+			const minimumIndex = isReply ? 1 : 0;
+			const insertionIndex = Math.max(
+				minimumIndex,
+				Math.floor(Math.random() * words.length)
+			);
+			words.splice(
+				insertionIndex,
+				0,
+				`https://www.twitch.tv/videos/1315188393`
+			);
+			messageContents = words.join(' ');
+		}
+
 		// Randomly add emotes
 		if (Math.random() < 0.3) {
 			/** @type {string[]} */
