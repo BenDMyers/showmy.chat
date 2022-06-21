@@ -253,6 +253,10 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 		newMessage.setAttribute('data-twitch-sender-first-message', true);
 	}
 
+	if (extra.isEmoteOnly) {
+		newMessage.setAttribute('data-twitch-emote-only', true);
+	}
+
 	if (user !== mostRecentSender) {
 		mostRecentSender = user;
 		currentMessageGroup++;
