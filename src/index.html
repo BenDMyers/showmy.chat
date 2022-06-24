@@ -103,8 +103,11 @@ description: Build a plug-and-play themed chat overlay for OBS and more with the
 		</section>
 	</div>
 
-	<iframe id="preview" src="/c/{{defaults.channel}}?DEMO=true" frameborder="0" allowtransparency="true">
-	</iframe>
+	<div class="preview-container">
+		<small class="eyebrow align-center" style="margin-bottom: 0.5em;">Your overlay will look like this!</small>
+		<iframe id="preview" src="/c/{{defaults.channel}}?DEMO=true" frameborder="0" allowtransparency="true">
+		</iframe>
+	</div>
 
 	<template id="output-template">
 		<div class="url-container">
@@ -240,13 +243,21 @@ description: Build a plug-and-play themed chat overlay for OBS and more with the
 		width: 50%;
 	}
 
-	#preview {
-		min-height: 30em;
+	.preview-container {
 		height: 100%;
-		background: transparent;
-		background: var(--code-background-color);
 		position: sticky;
 		top: 3em;
+	}
+
+	.align-center {
+		text-align: center;
+	}
+
+	#preview {
+		min-height: 30em;
+		width: 100%;
+		background: transparent;
+		background: var(--code-background-color);
 		resize: both;
 	}
 
