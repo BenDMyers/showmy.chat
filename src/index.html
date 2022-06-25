@@ -5,82 +5,120 @@ description: Build a plug-and-play themed chat overlay for OBS and more with the
 ---
 
 <div class="col-2">
-	<form id="overlay-builder">
-		<label for="channel">Channel name</label>
-		<input type="text" id="channel" name="channel" required="true" autocomplete="off" autocorrect="off"
-			autocapitalize="off" spellcheck="false" placeholder="{{defaults.channel}}"
-			title="Your Twitch channel name" />
+	<div>
+		<section aria-labelledby="step-1">
+			<h2 id="step-1">
+				<small class="eyebrow">Step 1</small>
+				<span>Pick a theme.</span>
+			</h2>
 
-		<div class="overlay-builder-header">
-			<label for="theme">Theme</label>
-			<a href="docs/configuration/#theme" aria-label="Docs for theme">&#9432;</a>
-		</div>
-		<select id="theme" name="theme">
-			<option value="{{defaults.theme}}">Default</option>
-			<option value="light">Light</option>
-			{%- for theme in themes.list -%}
-			{%- unless theme == "default" or theme == "light" -%}
-			<option value="{{ theme }}">{{ theme | formatThemeName }}</option>
-			{%- endunless -%}
-			{%- endfor %}
-		</select>
+			<label for="channel">Channel name</label>
+			<input type="text" id="channel" name="channel" required="true" autocomplete="off" autocorrect="off"
+				autocapitalize="off" spellcheck="false" placeholder="{{defaults.channel}}"
+				title="Your Twitch channel name" form="overlay-builder" />
 
-		<div class="overlay-builder-header">
-			<label for="hide-messages-from">Hide messages from</label>
-			<a href="docs/configuration/#hide-messages-from" aria-label="Docs for hideMessagesFrom">&#9432;</a>
-		</div>
-		<input type="text" id="hide-messages-from" name="hideMessagesFrom" autocomplete="off" autocorrect="off"
-			autocapitalize="off" spellcheck="false" pattern="^[\w-]+(,[\w-]+)*$"
-			title="Comma seperated list of usernames to hide messages from"
-			placeholder="{{defaults.hideMessagesFrom}}" />
-
-		<div class="overlay-builder-header">
-			<label for="show-commands">Show commands</label>
-			<a href="docs/configuration/#show-commands" aria-label="Docs for showCommands">&#9432;</a>
-		</div>
-		<input type="text" id="show-commands" name="showCommands" autocomplete="off" autocorrect="off"
-			autocapitalize="off" spellcheck="false" pattern="^[\w-]+(,[\w-]+)*$"
-			title="Comma seperated list of commands to show" placeholder="{{defaults.showCommands}}" />
-
-		<div class="overlay-builder-header">
-			<label for="show-latest-messages">Show latest messages</label>
-			<a href="docs/configuration/#show-latest-messages" aria-label="Docs for showLatestMessages">&#9432;</a>
-		</div>
-		<input type="number" id="show-latest-messages" name="showLatestMessages"
-			placeholder="{{defaults.showLatestMessages}}" />
-
-		<div class="overlay-builder-header">
-			<label for="clear-message-after">Clear messages after (seconds)</label>
-			<a href="docs/configuration/#clear-message-after" aria-label="Docs for clearMessageAfter">&#9432;</a>
-		</div>
-		<input type="number" id="clear-message-after" name="clearMessageAfter"
-			placeholder="{{defaults.clearMessageAfter}}" step="0.1" min="0" />
-
-		<div class="overlay-builder-header">
-			<div>
-				<input type="checkbox" id="disable-animated-emotes" name="disableAnimatedEmotes" value="true" />
-				<label for="disable-animated-emotes">
-					Disable Animated Emotes?
-				</label>
+			<div class="overlay-builder-header">
+				<label for="theme">Theme</label>
+				<a href="docs/configuration/#theme" aria-label="Docs for theme">&#9432;</a>
 			</div>
-			<a href="docs/configuration/#disable-animated-emotes"
-				aria-label="Docs for disableAnimatedEmotes">&#9432;</a>
-		</div>
+			<select id="theme" name="theme" form="overlay-builder">
+				<option value="{{defaults.theme}}">Default</option>
+				<option value="light">Light</option>
+				{%- for theme in themes.list -%}
+				{%- unless theme == "default" or theme == "light" -%}
+				<option value="{{ theme }}">{{ theme | formatThemeName }}</option>
+				{%- endunless -%}
+				{%- endfor %}
+			</select>
+		</section>
 
-		<div>
-			<output></output>
-		</div>
-	</form>
+		<section aria-labelledby="step-2">
+			<h2 id="step-2">
+				<small class="eyebrow">Step 2</small>
+				<span>Customize your overlay.</span>
+			</h2>
 
-	<iframe id="preview" src="/c/{{defaults.channel}}?DEMO=true" frameborder="0" allowtransparency="true">
-	</iframe>
+			<p>This part is completely optional. It's up to you!</p>
+
+			<form id="overlay-builder">
+				<div class="overlay-builder-header">
+					<label for="hide-messages-from">Hide messages from</label>
+					<a href="docs/configuration/#hide-messages-from" aria-label="Docs for hideMessagesFrom">&#9432;</a>
+				</div>
+				<input type="text" id="hide-messages-from" name="hideMessagesFrom" autocomplete="off" autocorrect="off"
+					autocapitalize="off" spellcheck="false" pattern="^[\w-]+(,[\w-]+)*$"
+					title="Comma seperated list of usernames to hide messages from"
+					placeholder="{{defaults.hideMessagesFrom}}" />
+
+				<div class="overlay-builder-header">
+					<label for="show-commands">Show commands</label>
+					<a href="docs/configuration/#show-commands" aria-label="Docs for showCommands">&#9432;</a>
+				</div>
+				<input type="text" id="show-commands" name="showCommands" autocomplete="off" autocorrect="off"
+					autocapitalize="off" spellcheck="false" pattern="^[\w-]+(,[\w-]+)*$"
+					title="Comma seperated list of commands to show" placeholder="{{defaults.showCommands}}" />
+
+				<div class="overlay-builder-header">
+					<label for="show-latest-messages">Show latest messages</label>
+					<a href="docs/configuration/#show-latest-messages"
+						aria-label="Docs for showLatestMessages">&#9432;</a>
+				</div>
+				<input type="number" id="show-latest-messages" name="showLatestMessages"
+					placeholder="{{defaults.showLatestMessages}}" />
+
+				<div class="overlay-builder-header">
+					<label for="clear-message-after">Clear messages after (seconds)</label>
+					<a href="docs/configuration/#clear-message-after"
+						aria-label="Docs for clearMessageAfter">&#9432;</a>
+				</div>
+				<input type="number" id="clear-message-after" name="clearMessageAfter"
+					placeholder="{{defaults.clearMessageAfter}}" step="0.1" min="0" />
+
+				<div class="overlay-builder-header">
+					<div>
+						<input type="checkbox" id="disable-animated-emotes" name="disableAnimatedEmotes" value="true" />
+						<label for="disable-animated-emotes">
+							Disable Animated Emotes?
+						</label>
+					</div>
+					<a href="docs/configuration/#disable-animated-emotes"
+						aria-label="Docs for disableAnimatedEmotes">&#9432;</a>
+				</div>
+			</form>
+		</section>
+
+		<section aria-labelledby="step-3">
+			<h2 id="step-3">
+				<small class="eyebrow">Step 3</small>
+				<span>Plug and play.</span>
+			</h2>
+			<p>Let's get this added to OBS!</p>
+			<ol>
+				<li>Open OBS.</li>
+				<li>In your <b>Sources</b> pane, click the <b>+</b> button to create a new source.</li>
+				<li>Choose the option to create a <b>Browser</b> source.</li>
+				<li>For the source's URL, enter the following link:</li>
+			</ol>
+			<div>
+				<output form="overlay-builder"></output>
+			</div>
+			<br />
+			<p><strong>That's all there is to it!</strong> The next time you go live, showmy.chat will display your
+				chat's messages!</p>
+		</section>
+	</div>
+
+	<div class="preview-container">
+		<small class="eyebrow align-center" style="margin-bottom: 0.5em;">Your overlay will look like this!</small>
+		<iframe id="preview" src="/c/{{defaults.channel}}?DEMO=true" frameborder="0" allowtransparency="true">
+		</iframe>
+	</div>
 
 	<template id="output-template">
-		<h2>Your URL is:</h2>
-		<div>
+		<div class="url-container">
 			<a class="url"></a>
-			<button>Copy</button>
 		</div>
+		<button class="copy">Copy overlay URL</button>
 	</template>
 </div>
 <script>
@@ -89,12 +127,9 @@ description: Build a plug-and-play themed chat overlay for OBS and more with the
 	const linkOutput = document.querySelector('output');
 	const outputTemplate = document.querySelector("#output-template");
 	const preview = document.getElementById('preview');
-	const allFields = document.querySelectorAll('[name]');
 
-	allFields.forEach((field) => {
-		field.addEventListener('change', updatePreview);
-		field.addEventListener('input', updateURL);
-	});
+	document.addEventListener('change', updatePreview);
+	document.addEventListener('input', updateURL);
 
 	// fill in the URL section under the form  with the default URL 
 	updateURL();
@@ -178,6 +213,29 @@ description: Build a plug-and-play themed chat overlay for OBS and more with the
 		color-scheme: light dark;
 	}
 
+	.col-2 h2 {
+		margin-bottom: calc(var(--typography-spacing-vertical) / 2);
+	}
+
+	.col-2 section {
+		padding-bottom: var(--typography-spacing-vertical);
+		margin-bottom: var(--typography-spacing-vertical);
+	}
+
+	.col-2 section:not(:last-child) {
+		border-bottom: 1px solid var(--muted-border-color);
+	}
+
+	small.eyebrow {
+		display: block;
+		text-transform: uppercase;
+		color: var(--muted-color);
+		font-weight: 400;
+		letter-spacing: 0.4ex;
+		font-size: 65%;
+		margin-bottom: -0.25em;
+	}
+
 	.col-2 {
 		display: flex;
 		gap: 4em;
@@ -187,13 +245,21 @@ description: Build a plug-and-play themed chat overlay for OBS and more with the
 		width: 50%;
 	}
 
-	#preview {
-		min-height: 30em;
+	.preview-container {
 		height: 100%;
-		background: transparent;
-		background: var(--code-background-color);
 		position: sticky;
 		top: 3em;
+	}
+
+	.align-center {
+		text-align: center;
+	}
+
+	#preview {
+		min-height: 30em;
+		width: 100%;
+		background: transparent;
+		background: var(--code-background-color);
 		resize: both;
 	}
 
@@ -202,20 +268,17 @@ description: Build a plug-and-play themed chat overlay for OBS and more with the
 	}
 
 	output div {
-		display: flex;
-		gap: 1em;
-		flex-wrap: wrap;
-		align-items: center;
+		background-color: var(--card-background-color);
+		padding: 0.5em 1em;
+		position: relative;
 	}
 
-	output div a {
-		flex: 1;
-	}
-
-	output div button {
+	button.copy {
 		/* reset pico */
 		width: auto;
-		margin: 0;
+		padding: 0.2em 0.5em;
+		font-size: 0.8rem;
+		margin: 1em auto;
 	}
 
 	.overlay-builder-header {
@@ -225,6 +288,10 @@ description: Build a plug-and-play themed chat overlay for OBS and more with the
 
 	.overlay-builder-header a {
 		font-size: 1.2em;
+	}
+
+	ol li::marker {
+		color: var(--muted-color);
 	}
 
 	@media (max-width: 576px) {
