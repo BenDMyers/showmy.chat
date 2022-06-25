@@ -127,12 +127,9 @@ description: Build a plug-and-play themed chat overlay for OBS and more with the
 	const linkOutput = document.querySelector('output');
 	const outputTemplate = document.querySelector("#output-template");
 	const preview = document.getElementById('preview');
-	const allFields = document.querySelectorAll('[name]');
 
-	allFields.forEach((field) => {
-		field.addEventListener('change', updatePreview);
-		field.addEventListener('input', updateURL);
-	});
+	document.addEventListener('change', updatePreview);
+	document.addEventListener('input', updateURL);
 
 	// fill in the URL section under the form  with the default URL 
 	updateURL();
