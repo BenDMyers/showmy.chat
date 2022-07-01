@@ -26,7 +26,7 @@
 	},
 	"devDependencies": {
 		"@netlify/functions": "^1.0.0",
-		"eslint": "^8.16.0",
+		"eslint": "^8.18.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-html": "^6.2.0",
 		"eslint-plugin-jsdoc": "^39.3.2",
