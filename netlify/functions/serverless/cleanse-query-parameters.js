@@ -23,7 +23,7 @@ const VALID_PARAMETERS = {
 	showCommands: {
 		validate: (value) => isBoolean(value) || isCommaSeparatedList(value),
 		transform: (value) =>
-			isBoolean(value) ? toBoolean(value) : toStringArray(value),
+			isBoolean(value) ? toBoolean(value) : toCommandArray(value),
 	},
 	showLatestMessages: {
 		validate: isPositiveInteger,
@@ -112,6 +112,17 @@ function isPositiveInteger(value) {
  */
 function toStringArray(value) {
 	return value.split(',');
+}
+
+/**
+ * @type {Transformer}
+ * @returns {string[]} array of command names, all starting with an exclamation mark
+ */
+function toCommandArray(value) {
+	const rawCommandNames = toStringArray(value);
+	return rawCommandNames.map((command) =>
+		command.startsWith('!') ? command : `!${command}`
+	);
 }
 
 /**
