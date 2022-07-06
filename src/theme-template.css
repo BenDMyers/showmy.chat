@@ -52,3 +52,10 @@ body {
 [data-twitch-emote] {
 	width: 1.2em;
 }
+
+/* Style @-mentions */
+[data-twitch-mentioned-user] {
+	background: none;
+	color: inherit;
+	font-weight: bold;
+}
