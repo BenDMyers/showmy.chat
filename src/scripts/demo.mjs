@@ -190,9 +190,12 @@ const MOCK_COMFY = (function () {
 			}
 		}
 
-		// Randomly highlight messages
 		if (Math.random() < 0.1) {
+			// Randomly highlight messages
 			flags.highlighted = true;
+		} else if (Math.random() < 0.08) {
+			// Randomly mark messages as actions (i.e. user started message with "/me")
+			extra.messageType = 'action';
 		}
 
 		// Randomly add a long-ish URL
