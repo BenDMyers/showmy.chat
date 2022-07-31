@@ -158,7 +158,7 @@ function formatChatCommand(messageContents) {
 // 	});
 // }
 
-ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
+ComfyJS.onChat = function (user, messageContents, flags, self, extra = {}) {
 	// If sender is blocklisted, don't even think about doing the rest of this
 	const hideSender =
 		Array.isArray(window.CONFIG.hideMessagesFrom) &&
@@ -223,6 +223,7 @@ ComfyJS.onChat = function (user, messageContents, flags, self, extra) {
 	const messageStatus = [];
 	if (flags.highlighted) messageStatus.push('highlighted');
 	if (flags.customReward) messageStatus.push('customReward');
+	if (extra.messageType === 'action') messageStatus.push('action');
 	if (messageStatus.length > 0) {
 		newMessage.setAttribute(
 			'data-twitch-message-status',
