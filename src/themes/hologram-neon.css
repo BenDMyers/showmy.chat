@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Megrim&display=swap');
+@import 'https://fonts.googleapis.com/css2?family=Megrim&display=swap';
 
 :root {
 	--sender-glow-color: mediumpurple;
@@ -73,7 +73,7 @@ body {
 		font-style: normal;
 	}
 
-	0%,
+	0.0%,
 	18.2%,
 	22.2%,
 	25.2%,
