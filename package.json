@@ -41,7 +41,7 @@
 		"stylelint": "^14.9.1",
 		"prettier": "2.7.1",
 		"stylelint-config-prettier": "^9.0.3",
-		"stylelint-config-standard": "^24.0.0"
+		"stylelint-config-standard": "^26.0.0"
 	},
 	"lint-staged": {
 		"*.{html}": "htmlhint",
