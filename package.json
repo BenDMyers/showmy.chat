@@ -38,10 +38,10 @@
 		"markdownlint-cli2": "^0.5.0",
 		"postcss-html": "^1.5.0",
 		"postcss-syntax": "^0.36.2",
-		"stylelint": "^14.9.1",
 		"prettier": "2.7.1",
+		"stylelint": "^14.9.1",
 		"stylelint-config-prettier": "^9.0.3",
-		"stylelint-config-standard": "^24.0.0"
+		"stylelint-config-standard": "^26.0.0"
 	},
 	"lint-staged": {
 		"*.{html}": "htmlhint",
