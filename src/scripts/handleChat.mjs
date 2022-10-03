@@ -205,7 +205,9 @@ ComfyJS.onChat = async function (user, messageContents, flags, self, extra) {
 	}
 
 	if (window.CONFIG.showPronouns) {
-		const pronouns = await getPronouns(user);
+		const pronouns = await getPronouns(user).catch((cause) =>
+			console.error('Could not get pronouns:', cause)
+		);
 		if (pronouns) {
 			newMessage.setAttribute('data-twitch-sender-pronouns', pronouns);
 			const pronounsTag = document.createElement('span');
