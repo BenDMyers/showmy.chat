@@ -16,7 +16,7 @@ const chatterPronouns = {};
 /**
  * Retrieves list of formatted pronoun strings from Alejo's pronouns API
  *
- * @returns map of pronouns' API IDs to their neatly formatted versions
+ * @returns {Promise<Record<string, string>>} map of pronouns' API IDs to their neatly formatted versions
  */
 async function initializeFormattedPronouns() {
 	/** @type {Object<string, string>} */
