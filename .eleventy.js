@@ -4,6 +4,7 @@ const {titleCase} = require('title-case');
 const {isWebUri} = require('valid-url');
 const markdownIt = require('markdown-it');
 const markdownItFootnote = require('markdown-it-footnote');
+
 /**
  * @typedef {import('@11ty/eleventy/src/UserConfig')} EleventyConfig
  * @typedef {ReturnType<import('@11ty/eleventy/src/defaultConfig')>} EleventyReturnValue
@@ -26,6 +27,7 @@ module.exports = function (eleventyConfig) {
 		copy: ['src/themes/'],
 	});
 
+	eleventyConfig.addPassthroughCopy('src/assets');
 	eleventyConfig.addPassthroughCopy('src/scripts');
 	eleventyConfig.addPassthroughCopy('src/themes');
 

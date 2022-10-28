@@ -2,7 +2,10 @@
 	"config": {
 		"default": true,
 		"line-length": false,
-		"no-emphasis-as-heading": false
+		"no-emphasis-as-heading": false,
+		"no-trailing-punctuation": false,
+		"no-inline-html": false,
+		"no-hard-tabs": false
 	},
 	"ignores": ["node_modules"]
 }
