@@ -132,6 +132,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "jennjunod",
+      "name": "Jenn Junod",
+      "avatar_url": "https://avatars.githubusercontent.com/u/77285384?v=4",
+      "profile": "http://teachjenntech.com",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -139,5 +148,6 @@
   "projectOwner": "BenDMyers",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "angular"
 }

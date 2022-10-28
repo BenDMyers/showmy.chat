@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;800&display=swap');
+@import 'https://fonts.googleapis.com/css2?family=Rubik:wght@400;800&display=swap';
 
 :root {
 	--brand-font: 'Rubik';
@@ -144,7 +144,18 @@ body {
 	margin: -0.6em -0.4em;
 }
 
-[data-twitch-message][data-twitch-message-status='highlighted'] > * {
+[data-twitch-message][data-twitch-message-status~='highlighted'] > * {
 	background-color: var(--white-transparent);
 	color: var(--black-transparent);
+}
+
+[data-twitch-message-status~='action'] .twitch-chat-message {
+	font-style: italic;
+}
+
+.twitch-chat-command {
+	background-color: transparent;
+	font-weight: 800;
+	font-family: var(--brand-font), sans-serif;
+	color: inherit;
 }

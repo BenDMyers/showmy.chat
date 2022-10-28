@@ -3,7 +3,7 @@
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -40,23 +40,26 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
-  <tr>
-    <td align="center"><a href="http://benmyers.dev"><img src="https://avatars.githubusercontent.com/u/18060369?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ben Myers</b></sub></a><br /><a href="https://github.com/BenDMyers/showmy.chat/commits?author=BenDMyers" title="Code">💻</a> <a href="#design-BenDMyers" title="Design">🎨</a> <a href="#infra-BenDMyers" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
-    <td align="center"><a href="https://non-traditional.dev"><img src="https://avatars.githubusercontent.com/u/5460770?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Travis Waith-Mair</b></sub></a><br /><a href="#design-Jarvis1010" title="Design">🎨</a></td>
-    <td align="center"><a href="http://twitter.com/chantastic"><img src="https://avatars.githubusercontent.com/u/658360?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Michael Chan</b></sub></a><br /><a href="#content-chantastic" title="Content">🖋</a></td>
-    <td align="center"><a href="https://ajcweb.dev/"><img src="https://avatars.githubusercontent.com/u/12433465?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Anthony Campolo</b></sub></a><br /><a href="https://github.com/BenDMyers/showmy.chat/commits?author=ajcwebdev" title="Documentation">📖</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=ajcwebdev" title="Code">💻</a></td>
-    <td align="center"><a href="http://helloyes.dev"><img src="https://avatars.githubusercontent.com/u/4201323?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Thomas Michael Semmler</b></sub></a><br /><a href="#translation-nachtfunke" title="Translation">🌍</a></td>
-    <td align="center"><a href="https://alex.party"><img src="https://avatars.githubusercontent.com/u/13134182?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alex Riviere</b></sub></a><br /><a href="#content-fimion" title="Content">🖋</a> <a href="#design-fimion" title="Design">🎨</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=fimion" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/KenAKAFrosty"><img src="https://avatars.githubusercontent.com/u/90424167?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ken aka Frosty</b></sub></a><br /><a href="#content-KenAKAFrosty" title="Content">🖋</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=KenAKAFrosty" title="Code">💻</a> <a href="#infra-KenAKAFrosty" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://nickymeuleman.netlify.app/"><img src="https://avatars.githubusercontent.com/u/30179461?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nicky Meuleman</b></sub></a><br /><a href="#design-NickyMeuleman" title="Design">🎨</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=NickyMeuleman" title="Code">💻</a> <a href="#tool-NickyMeuleman" title="Tools">🔧</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=NickyMeuleman" title="Documentation">📖</a></td>
-    <td align="center"><a href="http://www.mikeaparicio.com"><img src="https://avatars.githubusercontent.com/u/242304?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mike Aparicio</b></sub></a><br /><a href="#design-peruvianidol" title="Design">🎨</a></td>
-    <td align="center"><a href="https://redsparr0w.com"><img src="https://avatars.githubusercontent.com/u/7288322?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Danial</b></sub></a><br /><a href="#design-RedSparr0w" title="Design">🎨</a></td>
-    <td align="center"><a href="https://www.frontend.horse"><img src="https://avatars.githubusercontent.com/u/19617280?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alex Trost</b></sub></a><br /><a href="#content-a-trost" title="Content">🖋</a> <a href="#design-a-trost" title="Design">🎨</a></td>
-    <td align="center"><a href="https://youtube.com/kevinpowell"><img src="https://avatars.githubusercontent.com/u/25749407?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kevin Powell</b></sub></a><br /><a href="#content-kevin-powell" title="Content">🖋</a></td>
-    <td align="center"><a href="http://www.jacobbolda.com"><img src="https://avatars.githubusercontent.com/u/2019387?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jacob Bolda</b></sub></a><br /><a href="#content-jbolda" title="Content">🖋</a></td>
-  </tr>
+  <tbody>
+    <tr>
+      <td align="center"><a href="http://benmyers.dev"><img src="https://avatars.githubusercontent.com/u/18060369?v=4?s=100" width="100px;" alt="Ben Myers"/><br /><sub><b>Ben Myers</b></sub></a><br /><a href="https://github.com/BenDMyers/showmy.chat/commits?author=BenDMyers" title="Code">💻</a> <a href="#design-BenDMyers" title="Design">🎨</a> <a href="#infra-BenDMyers" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+      <td align="center"><a href="https://non-traditional.dev"><img src="https://avatars.githubusercontent.com/u/5460770?v=4?s=100" width="100px;" alt="Travis Waith-Mair"/><br /><sub><b>Travis Waith-Mair</b></sub></a><br /><a href="#design-Jarvis1010" title="Design">🎨</a></td>
+      <td align="center"><a href="http://twitter.com/chantastic"><img src="https://avatars.githubusercontent.com/u/658360?v=4?s=100" width="100px;" alt="Michael Chan"/><br /><sub><b>Michael Chan</b></sub></a><br /><a href="#content-chantastic" title="Content">🖋</a></td>
+      <td align="center"><a href="https://ajcweb.dev/"><img src="https://avatars.githubusercontent.com/u/12433465?v=4?s=100" width="100px;" alt="Anthony Campolo"/><br /><sub><b>Anthony Campolo</b></sub></a><br /><a href="https://github.com/BenDMyers/showmy.chat/commits?author=ajcwebdev" title="Documentation">📖</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=ajcwebdev" title="Code">💻</a></td>
+      <td align="center"><a href="http://helloyes.dev"><img src="https://avatars.githubusercontent.com/u/4201323?v=4?s=100" width="100px;" alt="Thomas Michael Semmler"/><br /><sub><b>Thomas Michael Semmler</b></sub></a><br /><a href="#translation-nachtfunke" title="Translation">🌍</a></td>
+      <td align="center"><a href="https://alex.party"><img src="https://avatars.githubusercontent.com/u/13134182?v=4?s=100" width="100px;" alt="Alex Riviere"/><br /><sub><b>Alex Riviere</b></sub></a><br /><a href="#content-fimion" title="Content">🖋</a> <a href="#design-fimion" title="Design">🎨</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=fimion" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/KenAKAFrosty"><img src="https://avatars.githubusercontent.com/u/90424167?v=4?s=100" width="100px;" alt="Ken aka Frosty"/><br /><sub><b>Ken aka Frosty</b></sub></a><br /><a href="#content-KenAKAFrosty" title="Content">🖋</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=KenAKAFrosty" title="Code">💻</a> <a href="#infra-KenAKAFrosty" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://nickymeuleman.netlify.app/"><img src="https://avatars.githubusercontent.com/u/30179461?v=4?s=100" width="100px;" alt="Nicky Meuleman"/><br /><sub><b>Nicky Meuleman</b></sub></a><br /><a href="#design-NickyMeuleman" title="Design">🎨</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=NickyMeuleman" title="Code">💻</a> <a href="#tool-NickyMeuleman" title="Tools">🔧</a> <a href="https://github.com/BenDMyers/showmy.chat/commits?author=NickyMeuleman" title="Documentation">📖</a></td>
+      <td align="center"><a href="http://www.mikeaparicio.com"><img src="https://avatars.githubusercontent.com/u/242304?v=4?s=100" width="100px;" alt="Mike Aparicio"/><br /><sub><b>Mike Aparicio</b></sub></a><br /><a href="#design-peruvianidol" title="Design">🎨</a></td>
+      <td align="center"><a href="https://redsparr0w.com"><img src="https://avatars.githubusercontent.com/u/7288322?v=4?s=100" width="100px;" alt="Danial"/><br /><sub><b>Danial</b></sub></a><br /><a href="#design-RedSparr0w" title="Design">🎨</a></td>
+      <td align="center"><a href="https://www.frontend.horse"><img src="https://avatars.githubusercontent.com/u/19617280?v=4?s=100" width="100px;" alt="Alex Trost"/><br /><sub><b>Alex Trost</b></sub></a><br /><a href="#content-a-trost" title="Content">🖋</a> <a href="#design-a-trost" title="Design">🎨</a></td>
+      <td align="center"><a href="https://youtube.com/kevinpowell"><img src="https://avatars.githubusercontent.com/u/25749407?v=4?s=100" width="100px;" alt="Kevin Powell"/><br /><sub><b>Kevin Powell</b></sub></a><br /><a href="#content-kevin-powell" title="Content">🖋</a></td>
+      <td align="center"><a href="http://www.jacobbolda.com"><img src="https://avatars.githubusercontent.com/u/2019387?v=4?s=100" width="100px;" alt="Jacob Bolda"/><br /><sub><b>Jacob Bolda</b></sub></a><br /><a href="#content-jbolda" title="Content">🖋</a></td>
+      <td align="center"><a href="http://teachjenntech.com"><img src="https://avatars.githubusercontent.com/u/77285384?v=4?s=100" width="100px;" alt="Jenn Junod"/><br /><sub><b>Jenn Junod</b></sub></a><br /><a href="https://github.com/BenDMyers/showmy.chat/commits?author=jennjunod" title="Documentation">📖</a></td>
+    </tr>
+  </tbody>
 </table>
 
 <!-- markdownlint-restore -->

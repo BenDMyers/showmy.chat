@@ -71,10 +71,14 @@ body {
 	word-break: break-word;
 }
 
-[data-twitch-message-status*='highlighted'] .twitch-chat-message {
+[data-twitch-message-status~='highlighted'] .twitch-chat-message {
 	background-color: var(--twitch-highlight-purple);
 	border: 4px solid var(--twitch-highlight-purple);
 	color: white;
+}
+
+[data-twitch-message-status~='action'] .twitch-chat-message {
+	font-style: italic;
 }
 
 .twitch-chat-command {

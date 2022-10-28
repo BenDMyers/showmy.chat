@@ -143,7 +143,15 @@ const MOCK_COMFY = (function () {
 			if (channelNames.length) {
 				broadcaster.user = channelNames[0];
 			}
-			setTimeout(_generateNextMessage, 500);
+
+			// send all messages at once if the demo page is static
+			if (window.CONFIG.DEMO === 'static') {
+				for (let i = 0; i < window.CONFIG.showLatestMessages; i++) {
+					_generateNextMessage();
+				}
+			} else {
+				setTimeout(_generateNextMessage, 500);
+			}
 		},
 	};
 
@@ -190,9 +198,12 @@ const MOCK_COMFY = (function () {
 			}
 		}
 
-		// Randomly highlight messages
 		if (Math.random() < 0.1) {
+			// Randomly highlight messages
 			flags.highlighted = true;
+		} else if (Math.random() < 0.08) {
+			// Randomly mark messages as actions (i.e. user started message with "/me")
+			extra.messageType = 'action';
 		}
 
 		// Randomly add a long-ish URL
@@ -255,11 +266,15 @@ const MOCK_COMFY = (function () {
 		messages.push(message);
 		comfy.onChat(...message);
 
-		// Ready up the next message
-		const duration = Math.floor(Math.random() * 4) + 3;
-		const nextGeneratedMessage =
-			Math.random() < 0.25 ? _generateChatCommand : _generateNextMessage;
-		setTimeout(nextGeneratedMessage, duration * 1000);
+		// do not send more messages if the demo page is static
+		if (window.CONFIG.DEMO !== 'static') {
+			// Ready up the next message
+			const nextGeneratedMessage =
+				Math.random() < 0.25 ? _generateChatCommand : _generateNextMessage;
+
+			const duration = Math.floor(Math.random() * 4) + 3;
+			setTimeout(nextGeneratedMessage, duration * 1000);
+		}
 	}
 
 	/**

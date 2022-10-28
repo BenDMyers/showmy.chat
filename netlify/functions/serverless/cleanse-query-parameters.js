@@ -5,8 +5,8 @@ const defaults = require('../../../src/_data/defaults');
  */
 const VALID_PARAMETERS = {
 	DEMO: {
-		validate: isBoolean,
-		transform: toBoolean,
+		validate: (value) => isBoolean(value) || value === 'static',
+		transform: (value) => (isBoolean(value) ? toBoolean(value) : value),
 	},
 	clearMessageAfter: {
 		validate: isPositiveInteger,
