@@ -18,10 +18,11 @@ Go through the [quick and easy overlay builder on our homepage](/), picking a th
 1. Open OBS and open a scene you want to display your chat overlay on.
 2. In your **Sources** pane, click the **+** button to add a new scene.
 3. Choose **Browser** from the list of source types.
-   ![A selection menu has opened up from the plus button in OBS Studio's Sources pane, listing different kinds of sources that can be added such as audio, display capture, images, video capture, and more. The Browser option is highlighted.](https://www.fillmurray.com/400/300/)
+   ![A selection menu has opened up from the plus button in OBS Studio's Sources pane, listing different kinds of sources that can be added such as audio, display capture, images, video capture, and more. The Browser option is highlighted.](/assets/obs-docs/obs-docs-4.png)
 4. Make sure that the **Create new** radio button is selected. Name the scene something like "Chat Overlay," and click **OK**.
-   ![A modal dialog offers the choice to create new or add existing. "Create new" is selected, and the new scene is set to be named "Chat Overlay." A checkbox labeled "Make source visible" is checked.](https://www.fillmurray.com/400/300/)
+   ![A modal dialog offers the choice to create new or add existing. "Create new" is selected, and the new scene is set to be named "Chat Overlay." A checkbox labeled "Make source visible" is checked.](/assets/obs-docs/obs-docs-5.png)
 5. Paste your generated overlay URL in the **URL** field.
+   ![A modal dialog provides fields for browser source properties. The URL is filled out, and the width and height are set to 600 and 800 respectively.](/assets/obs-docs/obs-docs-6.png)
 6. Choose a width and a height that make an aspect ratio that you like. Themes should work at most dimensions you need, but many of them look great at around a width of 600 and a height of 800.
 7. Click **OK** to save your source.
 
