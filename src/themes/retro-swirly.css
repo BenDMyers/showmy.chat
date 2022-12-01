@@ -1,4 +1,4 @@
-@import 'https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100..900&family=Zen+Antique+Soft&display=swap';
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100..900&family=Zen+Antique+Soft&display=swap');
 
 :root {
 	--twitch-gray: rgb(97 97 97);
