@@ -31,7 +31,7 @@
 		"eslint-plugin-html": "^7.1.0",
 		"eslint-plugin-jsdoc": "^39.7.5",
 		"htmlhint": "^1.1.4",
-		"husky": "^8.0.2",
+		"husky": "^8.0.3",
 		"lint-staged": "^13.1.0",
 		"markdown-it": "^13.0.0",
 		"markdown-it-footnote": "^3.0.3",
