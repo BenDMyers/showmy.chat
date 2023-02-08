@@ -47,6 +47,10 @@ body {
 [data-twitch-message] .twitch-chat-sender {
 	display: inline;
 	font-weight: 700;
+	padding: 0.2rem 0.4rem;
+	margin-right: 0.5rem;
+	background-color: red;
+	color: white;
 }
 
 [data-twitch-message][data-twitch-sender-color-lightness='dark']
