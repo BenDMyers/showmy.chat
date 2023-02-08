@@ -141,6 +141,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "maciejpedzich",
+      "name": "Maciej Pędzich (Mac)",
+      "avatar_url": "https://avatars.githubusercontent.com/u/68030845?v=4",
+      "profile": "https://maciejpedzi.ch",
+      "contributions": [
+        "content",
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
