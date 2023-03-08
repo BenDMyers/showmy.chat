@@ -26,7 +26,11 @@ description: Build a plug-and-play themed chat overlay for OBS and more with the
 				<option value="light">Light</option>
 				{%- for theme in themes.list -%}
 				{%- unless theme == "default" or theme == "light" -%}
+				{%- if themes.details[theme] -%}
+				<option value="{{ theme }}">{{ themes.details[theme].name || (theme|formatThemeName) }}</option>
+				{%- else -%}
 				<option value="{{ theme }}">{{ theme | formatThemeName }}</option>
+				{%- endif -%}
 				{%- endunless -%}
 				{%- endfor %}
 			</select>
@@ -84,6 +88,8 @@ description: Build a plug-and-play themed chat overlay for OBS and more with the
 					<a href="docs/configuration/#disable-animated-emotes"
 						aria-label="Docs for disableAnimatedEmotes">&#9432;</a>
 				</div>
+
+				<div id="theme-options"></div>
 			</form>
 		</section>
 
@@ -122,17 +128,21 @@ description: Build a plug-and-play themed chat overlay for OBS and more with the
 		<button class="copy">Copy overlay URL</button>
 	</template>
 </div>
-<script>
+<script type="module">
 	const { channel: defaultChannel } = JSON.parse(`{{defaults | serialize }}`);
+	const scriptThemes = JSON.parse(`{{themes.scripts | serialize}}`);
 	const overlayBuilderForm = document.getElementById('overlay-builder');
 	const linkOutput = document.querySelector('output');
 	const outputTemplate = document.querySelector("#output-template");
 	const preview = document.getElementById('preview');
+	const themeOptionsArea = document.getElementById('theme-options');
+
+	let currentTheme;
 
 	document.addEventListener('change', updatePreview);
 	document.addEventListener('input', updateURL);
 
-	// fill in the URL section under the form  with the default URL 
+	// fill in the URL section under the form  with the default URL
 	updateURL();
 
 	/**
@@ -197,6 +207,31 @@ description: Build a plug-and-play themed chat overlay for OBS and more with the
 				const seconds = value;
 				const milliseconds = Math.floor(seconds * 1000);
 				value = milliseconds;
+			}
+
+			if(key === 'theme' && value !== currentTheme){
+				currentTheme = value;
+				themeOptionsArea.innerHTML = '';
+				if(scriptThemes.includes(currentTheme)) {
+					import('./themes/' + currentTheme + '.mjs').then((module) => {
+						const {options} = module.default();
+						if(Array.isArray(options)){
+							options.forEach((el)=>{
+								if(['number','color'].includes(el.type)) {
+									const identifier = `themeOption${el.paramName}}`
+									const input = document.createElement('input');
+									const header = document.createElement('div');
+									header.classList.add('overlay-builder-header');
+									header.innerHTML = `<label for="${identifier}">${el.name}</label>`
+									input.type = el.type;
+									input.id = identifier;
+									input.name = identifier;
+									themeOptionsArea.append(header, input)
+								}
+							})
+						}
+					}).catch((e) => undefined);
+				}
 			}
 
 			urlObject.searchParams.append(key, value)
